@@ -196,4 +196,3 @@ export interface DataTableSimpleStaticProps<T> extends CommonDataTableProps<T> {
   tableTitle?: string;
   hideIfEmpty?: boolean;
 }
-

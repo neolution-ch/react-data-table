@@ -1,8 +1,11 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import React from "react";
 import { DataTable, DataTableStatic } from "src/lib/DataTable/DataTable";
 import { DataTableColumnDescription, TableQueryResult, DataTableActions } from "src/lib/DataTable/DataTableInterfaces";
 import { ColumnFilterType, ListSortDirection } from "src/lib/DataTable/DataTableTypes";
+
+global.React = React; // this also works for other globally available libraries
 
 describe("DataTable", () => {
   enum Status {
@@ -30,10 +33,10 @@ describe("DataTable", () => {
     date.setDate(date.getDate() - i);
     return {
       id: `id${i.toString().padStart(3, "0")}`,
-      count: 1,
+      count: i,
       dateCreated: date,
       name: `Name ${i.toString().padStart(3, "0")}`,
-      status: 1 % 20 === 0 ? Status.Deleted : Status.Active,
+      status: i % 20 === 0 ? Status.Deleted : Status.Active,
     };
   });
 
@@ -65,6 +68,7 @@ describe("DataTable", () => {
     },
   ];
 
+  // eslint-disable-next-line complexity
   function fakeQuery(
     filter: DataFilter,
     limit?: number,
@@ -144,13 +148,13 @@ describe("DataTable", () => {
   };
 
   const actions: DataTableActions<DataInterface> = {
-    // delete: {
-    //   action: ({ key }) => {
-    //     dataDynamic = dataDynamic.filter((item) => item.id !== key);
-    //   },
-    //   text: "Will be deleted permanentally! Are you sure?",
-    //   title: "Delete entry",
-    // },
+    delete: {
+      action: ({ key }) => {
+        dataDynamic = dataDynamic.filter((item) => item.id !== key);
+      },
+      text: "Will be deleted permanentally! Are you sure?",
+      title: "Delete entry",
+    },
   };
 
   test("renders static correctly", () => {
@@ -162,6 +166,7 @@ describe("DataTable", () => {
   });
 
   test("renders dynamic correctly", () => {
+
     const { container } = render(
       <DataTable<DataInterface, DataFilter>
         keyField="id"
@@ -169,7 +174,6 @@ describe("DataTable", () => {
         data={fakeQuery({}, 20)}
         client={dynamicClient}
         actions={actions}
-        showPaging={false}
         possiblePageItemCounts={[10, 15, 20, 25, 50, 100, 200]}
         predefinedItemsPerPage={20}
       />,

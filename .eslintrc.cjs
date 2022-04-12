@@ -26,7 +26,10 @@ module.exports = {
     },
   },
   ignorePatterns: ["dist"],
-  globals: {},
+  globals: {
+    React: true,
+    JSX: true,
+  },
   // rules we want to enforce or disable
   rules: {
     // https://github.com/typescript-eslint/typescript-eslint/issues/2621
