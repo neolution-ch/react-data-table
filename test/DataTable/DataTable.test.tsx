@@ -166,7 +166,6 @@ describe("DataTable", () => {
   });
 
   test("renders dynamic correctly", () => {
-
     const { container } = render(
       <DataTable<DataInterface, DataFilter>
         keyField="id"
