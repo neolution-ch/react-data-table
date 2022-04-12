@@ -15,11 +15,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "shx rm -rf dist && microbundle --no-compress --tsconfig ./tsconfig.microbundle.json",
+    "build": "shx rm -rf dist && microbundle --jsx React.createElement --no-compress --tsconfig ./tsconfig.microbundle.json",
     "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
     "prepack": "yarn build",
     "prettier-check": "prettier --check .",
-    "start": "microbundle watch --no-compress --tsconfig ./tsconfig.microbundle.json",
+    "start": "microbundle watch --jsx React.createElement --no-compress --tsconfig ./tsconfig.microbundle.json",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
     "test": "cross-env DEBUG_PRINT_LIMIT=100 jest",
@@ -51,7 +51,7 @@
     "prettier": "^2.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "reactstrap": "^8.0.0",
+    "reactstrap": "^8.9.0",
     "shx": "^0.3.4",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3",

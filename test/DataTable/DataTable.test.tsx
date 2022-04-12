@@ -26,7 +26,7 @@ describe("DataTable", () => {
   }
 
   let dataDynamic: DataInterface[] = Array.from(Array(100)).map((_, i) => {
-    const date = new Date();
+    const date = new Date(2022, 12, 31);
     date.setDate(date.getDate() - i);
     return {
       id: `id${i.toString().padStart(3, "0")}`,
@@ -144,13 +144,13 @@ describe("DataTable", () => {
   };
 
   const actions: DataTableActions<DataInterface> = {
-    delete: {
-      action: ({ key }) => {
-        dataDynamic = dataDynamic.filter((item) => item.id !== key);
-      },
-      text: "Will be deleted permanentally! Are you sure?",
-      title: "Delete entry",
-    },
+    // delete: {
+    //   action: ({ key }) => {
+    //     dataDynamic = dataDynamic.filter((item) => item.id !== key);
+    //   },
+    //   text: "Will be deleted permanentally! Are you sure?",
+    //   title: "Delete entry",
+    // },
   };
 
   test("renders static correctly", () => {
@@ -169,7 +169,7 @@ describe("DataTable", () => {
         data={fakeQuery({}, 20)}
         client={dynamicClient}
         actions={actions}
-        showPaging
+        showPaging={false}
         possiblePageItemCounts={[10, 15, 20, 25, 50, 100, 200]}
         predefinedItemsPerPage={20}
       />,
