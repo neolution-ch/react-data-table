@@ -1,0 +1,71 @@
+{
+  "name": "@neolution-ch/react-data-table",
+  "version": "1.0.9",
+  "description": "A small and clean data-table with a lot of integrated functions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neolution-ch/react-data-table"
+  },
+  "license": "MIT",
+  "author": "Neolution",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "shx rm -rf dist && microbundle --jsx React.createElement --no-compress --tsconfig ./tsconfig.microbundle.json",
+    "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
+    "prepack": "yarn build",
+    "prettier-check": "prettier --check .",
+    "start": "microbundle watch --jsx React.createElement --no-compress --tsconfig ./tsconfig.microbundle.json",
+    "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
+    "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
+    "test": "cross-env DEBUG_PRINT_LIMIT=100 jest",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "@neolution-ch/react-pattern-ui": "^2.0.1",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^14.0.4",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@types/reactstrap": "^8.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^27.5.1",
+    "microbundle": "^0.14.2",
+    "prettier": "^2.6.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "reactstrap": "^8.9.0",
+    "shx": "^0.3.4",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "peerDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "reactstrap": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
