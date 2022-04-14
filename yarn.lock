@@ -1264,9 +1264,9 @@
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
 "@neolution-ch/react-pattern-ui@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@neolution-ch/react-pattern-ui/-/react-pattern-ui-2.0.1.tgz#602c8593c6ff56b9e1d0267c820a3efe6401e388"
-  integrity sha512-8PMlaHXkAFwq5T1i4I+Dni3Ei+QvTmteRqzCmw0YFKqe1GY4pm9Rx0t0jp1u77rbK5RnvudRupewkIEOyt40iQ==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@neolution-ch/react-pattern-ui/-/react-pattern-ui-2.0.2.tgz#21608c58eb44e1a98fb2e3f3094d5451432111cd"
+  integrity sha512-rck6k6iSlhbwu/f3mS6QUtZcsTZmXPoFTpMXDlyX3REoQP0VCc7ALBCJCL6pAVm4lguuoEB0spUweR24mtT+vQ==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
