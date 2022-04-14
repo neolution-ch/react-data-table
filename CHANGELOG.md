@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 2022-04-14
+
 ### Changed
 
-- Upgraded @neolution-ch/react-pattern-ui dependency to 2.0.2
+-   Upgraded @neolution-ch/react-pattern-ui dependency to 2.0.2
 
 ## [2.0.1] - 2022-04-14
 
@@ -23,7 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   created package :tada: 
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.0.1...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.0.2...HEAD
+
+[2.0.2]: https://github.com/neolution-ch/react-data-table/compare/2.0.1...2.0.2
 
 [2.0.1]: https://github.com/neolution-ch/react-data-table/compare/2.0.0...2.0.1
 
