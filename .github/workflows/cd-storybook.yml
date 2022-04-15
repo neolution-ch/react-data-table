@@ -14,7 +14,7 @@ jobs:
       - name: "Authenticate with GCP"
         uses: "google-github-actions/auth@v0"
         with:
-          credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
+          credentials_json: "${{ secrets.GCP_STORYBOOKS_SERVICE_ACCOUNT_KEY }}"
 
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v0"
