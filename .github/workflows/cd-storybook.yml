@@ -31,4 +31,11 @@ jobs:
           context: .
           file: ./.storybook/Dockerfile
           push: true
-          tags: eu.gcr.io/storybooks-9731/storybook-react-data-table:latest
+          tags: "eu.gcr.io/${{ secrets.GCP_STORYBOOKS_PROJECT_ID }}/storybook-react-data-table:latest"
+
+      - name: "Deploy Cloud Run"
+        uses: "google-github-actions/deploy-cloudrun@v0"
+        with:
+          service: "storybook-react-data-table	"
+          image: "eu.gcr.io/${{ secrets.GCP_STORYBOOKS_PROJECT_ID }}/storybook-react-data-table:latest"
+          region: "europe-west4"
