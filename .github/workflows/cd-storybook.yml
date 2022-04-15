@@ -3,7 +3,7 @@ name: CD - Storybook
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [feature/storybook]
 
 jobs:
   build:
@@ -24,6 +24,11 @@ jobs:
 
       - name: "Authenticate Docker"
         run: gcloud auth configure-docker -q
+
+      - name: "Cache docker"
+        uses: satackey/action-docker-layer-caching@v0.0.11
+        # Ignore the failure of a step and avoid terminating the job.
+        continue-on-error: true
 
       - name: Build and push
         uses: docker/build-push-action@v2
