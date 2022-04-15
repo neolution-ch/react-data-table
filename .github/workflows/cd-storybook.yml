@@ -3,7 +3,7 @@ name: CD - Storybook
 on:
   workflow_dispatch:
   push:
-    branches: [feature/storybook]
+    branches: [main]
 
 jobs:
   build:
