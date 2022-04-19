@@ -1,0 +1,41 @@
+name: CD - Storybook
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Authenticate with GCP"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.GCP_STORYBOOKS_SERVICE_ACCOUNT_KEY }}"
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v0"
+
+      - name: "Set up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+
+      - name: "Authenticate Docker"
+        run: gcloud auth configure-docker -q
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./.storybook/Dockerfile
+          push: true
+          tags: "eu.gcr.io/${{ secrets.GCP_STORYBOOKS_PROJECT_ID }}/storybook-react-data-table:latest"
+
+      - name: "Deploy Cloud Run"
+        uses: "google-github-actions/deploy-cloudrun@v0"
+        with:
+          service: "storybook-react-data-table	"
+          image: "eu.gcr.io/${{ secrets.GCP_STORYBOOKS_PROJECT_ID }}/storybook-react-data-table:latest"
+          region: "europe-west4"

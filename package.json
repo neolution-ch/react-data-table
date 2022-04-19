@@ -1,6 +1,6 @@
 {
   "name": "@neolution-ch/react-data-table",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A small and clean data-table with a lot of integrated functions",
   "repository": {
     "type": "git",
@@ -19,18 +19,28 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
     "prepack": "yarn build",
     "prettier-check": "prettier --check .",
+    "prettier-write": "prettier --write .",
     "prepare-pr": "yarn prettier . --write && yarn lint && yarn build && yarn test\"",
     "start": "microbundle watch --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx --no-compress --tsconfig ./tsconfig.microbundle.json",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
     "test": "cross-env DEBUG_PRINT_LIMIT=100 jest",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@neolution-ch/react-pattern-ui": "^2.0.1",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.9",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.2",
@@ -42,11 +52,14 @@
     "@types/reactstrap": "^8.7.2",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
+    "babel-loader": "^8.2.4",
+    "bootstrap": "^4.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-storybook": "^0.5.8",
     "jest": "^27.5.1",
     "microbundle": "^0.14.2",
     "prettier": "^2.6.2",
@@ -68,5 +81,6 @@
   },
   "engines": {
     "node": ">=14"
-  }
+  },
+  "dependencies": {}
 }

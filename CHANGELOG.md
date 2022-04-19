@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2022-04-19
+
+### Added
+
+-   Story book
+
 ## [2.0.2] - 2022-04-14
 
 ### Changed
@@ -25,7 +31,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   created package :tada: 
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.0.2...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.0.3...HEAD
+
+[2.0.3]: https://github.com/neolution-ch/react-data-table/compare/2.0.2...2.0.3
 
 [2.0.2]: https://github.com/neolution-ch/react-data-table/compare/2.0.1...2.0.2
 
