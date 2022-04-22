@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable complexity */
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +27,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   showPaging = true,
   predefinedFilter = undefined,
   handlers,
+  className,
+  style,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -122,14 +125,18 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
 
   return (
     <React.Fragment>
-      <Table striped hover size="sm">
+      <Table striped hover size="sm" className={className} style={style}>
         <thead>
           <tr>
             {actions &&
               (actions.columnTitle != null ? (
-                <th>{actions.columnTitle}</th>
+                <th className={actions.className} style={actions.style}>
+                  {actions.columnTitle}
+                </th>
               ) : (
-                <th style={{ width: "80px" }}>{dataTableTranslations.actionTitle}</th>
+                <th className={actions.className} style={{ width: "80px", ...actions.style }}>
+                  {dataTableTranslations.actionTitle}
+                </th>
               ))}
             {columns.map((column) =>
               column.sortable === true ? (

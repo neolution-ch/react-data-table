@@ -218,6 +218,8 @@ TriggeredReload.parameters = {
     source: {
       format: true,
       code: `
+// Triggered reload example.
+// Useful if you need to reload the table as a result of an external event.
 const dataHandlersRef = useRef<DataHandlers>();
 
 type DataType = {};

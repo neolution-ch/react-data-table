@@ -5,6 +5,8 @@ export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
 export interface CommonDataTableProps<T> {
   rowStyle?: RowStyleType<T>;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {
@@ -70,6 +72,8 @@ export interface DataTableRoutedActions<T, TRouteNames> {
   delete?: DeleteAction<T>;
   collapse?: DataTableCollapseActions<T>;
   others?: DataTableAction<T>[];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface DataTableActions<T> {
@@ -77,6 +81,8 @@ export interface DataTableActions<T> {
   delete?: DeleteAction<T>;
   collapse?: DataTableCollapseActions<T>;
   others?: DataTableAction<T>[];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface DataTableCollapseActions<T> {
