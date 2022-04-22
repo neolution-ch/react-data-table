@@ -90,6 +90,7 @@ export function DataTable<T, TFilter>({
   rowStyle,
   showPaging = true,
   predefinedFilter = undefined,
+  handlers,
 }: DataTableProps<T, TFilter>) {
   return (
     <DataTableRouted<T, TFilter, T>
@@ -104,6 +105,7 @@ export function DataTable<T, TFilter>({
       rowStyle={rowStyle}
       showPaging={showPaging}
       predefinedFilter={predefinedFilter}
+      handlers={handlers}
     />
   );
 }

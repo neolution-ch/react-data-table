@@ -25,6 +25,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   rowStyle,
   showPaging = true,
   predefinedFilter = undefined,
+  handlers,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -34,6 +35,11 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   });
   const [orderState, setOrderState] = useState<OrderOption>({ orderBy: columns[0].dataField, asc: true });
   const filterRefs = useRef<Filters>({});
+
+  if (handlers)
+    handlers({
+      reloadData: () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
+    });
 
   function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
     if (query) {

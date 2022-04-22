@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
@@ -17,6 +18,10 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   query?: QueryFunction<T, TFilter>;
   showPaging?: boolean;
   predefinedFilter?: TFilter;
+  /**
+   * The data table handlers.
+   */
+  handlers?: DataTableHandlers;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
@@ -30,6 +35,10 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
   query?: QueryFunction<T, TFilter>;
   showPaging?: boolean;
   predefinedFilter?: TFilter;
+  /**
+   * The data table handlers.
+   */
+  handlers?: DataTableHandlers;
 }
 
 export interface DataTableColumnDescription<T> {
@@ -125,6 +134,21 @@ export interface TableQueryResult<T> {
 
 export interface TableQueryClient<T> {
   query?(filter: any, limit?: number, page?: number, orderBy?: string, sortDirection?: ListSortDirection): Promise<TableQueryResult<T>>;
+}
+
+/**
+ * The data table handlers types.
+ */
+export type DataTableHandlers = (dataHandlers: DataHandlers) => void;
+
+/**
+ * The data handlers.
+ */
+export interface DataHandlers {
+  /**
+   * Triggers a table data reload.
+   */
+  reloadData: () => void;
 }
 
 export interface OrderOption {
