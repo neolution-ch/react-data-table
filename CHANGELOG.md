@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2022-04-22
+
+### Added
+-   Dynamic table handler to reload the data from an external source.
+-   Added new story to reload data with sample code.
+-   Implemented className and style properties to the table and the actions.
+
 ## [2.0.3] - 2022-04-19
 
 ### Added
