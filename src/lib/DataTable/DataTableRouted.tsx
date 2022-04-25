@@ -27,8 +27,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   showPaging = true,
   predefinedFilter = undefined,
   handlers,
-  className,
-  style,
+  tableClassName,
+  tableStyle,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -129,7 +129,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
 
   return (
     <React.Fragment>
-      <Table striped hover size="sm" className={className} style={style}>
+      <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
         <thead>
           <tr>
             {actions &&

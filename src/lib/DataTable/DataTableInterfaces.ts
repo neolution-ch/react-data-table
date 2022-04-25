@@ -5,8 +5,8 @@ export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
 export interface CommonDataTableProps<T> {
   rowStyle?: RowStyleType<T>;
-  className?: string;
-  style?: React.CSSProperties;
+  tableClassName?: string;
+  tableStyle?: React.CSSProperties;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {
