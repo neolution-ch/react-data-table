@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable complexity */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -38,11 +38,6 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   });
   const [orderState, setOrderState] = useState<OrderOption>({ orderBy: columns[0].dataField, asc: true });
   const filterRefs = useRef<Filters>({});
-
-  if (handlers)
-    handlers({
-      reloadData: () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
-    });
 
   function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
     if (query) {
@@ -117,6 +112,15 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     if (key !== orderState.orderBy) return faSort;
     return orderState.asc ? faSortDown : faSortUp;
   }
+
+  useEffect(() => {
+    if (handlers) {
+      handlers({
+        reloadData: () =>
+          loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
+      });
+    }
+  }, []);
 
   useDidMountEffect(
     () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
