@@ -113,19 +113,15 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     return orderState.asc ? faSortDown : faSortUp;
   }
 
-  useEffect(() => {
-    if (handlers) {
-      handlers({
-        reloadData: () =>
-          loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
-      });
-    }
-  }, []);
+  if (handlers) {
+    handlers({
+      reloadData: () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
+    });
+  }
 
-  useDidMountEffect(
-    () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
-    [filterState, orderState],
-  );
+  useDidMountEffect(() => {
+    loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc);
+  }, [filterState, orderState]);
 
   return (
     <React.Fragment>
