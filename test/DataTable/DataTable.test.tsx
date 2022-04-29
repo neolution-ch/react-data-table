@@ -5,7 +5,7 @@ import React, { CSSProperties } from "react";
 import { DataTable, DataTableStatic } from "src/lib/DataTable/DataTable";
 import { DataTableColumnDescription, TableQueryResult, DataTableActions } from "src/lib/DataTable/DataTableInterfaces";
 import { ColumnFilterType, ListSortDirection } from "src/lib/DataTable/DataTableTypes";
-import { DataTableReload } from "test/__mocks__/DataTable/Dynamic";
+import { DataTableReload } from "test/__mocks__/DataTable/dynamic";
 
 global.React = React; // this also works for other globally available libraries
 
