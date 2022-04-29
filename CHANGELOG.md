@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Dynamic table handler to reload the data from an external source.
 -   Added new story to reload data with sample code.
 -   Implemented className and style properties to the table and the actions.
+-   Added reload tests.
+-   Changed max-lines allowed in DataTableInterfaces.ts.
 
 ## [2.0.3] - 2022-04-19
 

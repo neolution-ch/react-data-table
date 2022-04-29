@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+/* eslint max-lines: ["error", 230]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
