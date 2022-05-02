@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+-   Dynamic table handler to reload the data from an external source.
+-   Added new story to reload data with sample code.
+-   Implemented className and style properties to the table and the actions.
+-   Added reload tests.
+
+### Changed
+-   Changed max-lines allowed in DataTableInterfaces.ts.
+-   Changed max-lines allowed in DataTableRouted.tsx.
 
 ## [2.0.3] - 2022-04-19
 

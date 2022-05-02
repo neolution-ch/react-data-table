@@ -2,7 +2,8 @@
 
 exports[`DataTable renders dynamic correctly 1`] = `
 <table
-  class="table table-sm table-striped table-hover"
+  class="bg-danger table table-sm table-striped table-hover"
+  style="color: blue;"
 >
   <thead>
     <tr>
@@ -582,7 +583,8 @@ exports[`DataTable renders static correctly 1`] = `
     Static Table
   </h4>
   <table
-    class="table table-sm table-striped table-hover"
+    class="bg-danger table table-sm table-striped table-hover"
+    style="color: blue;"
   >
     <thead>
       <tr>

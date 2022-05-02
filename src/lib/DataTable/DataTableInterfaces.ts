@@ -1,9 +1,12 @@
+/* eslint max-lines: ["error", 230]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
 export interface CommonDataTableProps<T> {
   rowStyle?: RowStyleType<T>;
+  tableClassName?: string;
+  tableStyle?: React.CSSProperties;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {
@@ -17,6 +20,10 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   query?: QueryFunction<T, TFilter>;
   showPaging?: boolean;
   predefinedFilter?: TFilter;
+  /**
+   * The data table handlers.
+   */
+  handlers?: DataTableHandlers;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
@@ -30,6 +37,10 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
   query?: QueryFunction<T, TFilter>;
   showPaging?: boolean;
   predefinedFilter?: TFilter;
+  /**
+   * The data table handlers.
+   */
+  handlers?: DataTableHandlers;
 }
 
 export interface DataTableColumnDescription<T> {
@@ -61,6 +72,8 @@ export interface DataTableRoutedActions<T, TRouteNames> {
   delete?: DeleteAction<T>;
   collapse?: DataTableCollapseActions<T>;
   others?: DataTableAction<T>[];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface DataTableActions<T> {
@@ -68,6 +81,8 @@ export interface DataTableActions<T> {
   delete?: DeleteAction<T>;
   collapse?: DataTableCollapseActions<T>;
   others?: DataTableAction<T>[];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface DataTableCollapseActions<T> {
@@ -125,6 +140,21 @@ export interface TableQueryResult<T> {
 
 export interface TableQueryClient<T> {
   query?(filter: any, limit?: number, page?: number, orderBy?: string, sortDirection?: ListSortDirection): Promise<TableQueryResult<T>>;
+}
+
+/**
+ * The data table handlers types.
+ */
+export type DataTableHandlers = (dataHandlers: DataHandlers) => void;
+
+/**
+ * The data handlers.
+ */
+export interface DataHandlers {
+  /**
+   * Triggers a table data reload.
+   */
+  reloadData: () => void;
 }
 
 export interface OrderOption {

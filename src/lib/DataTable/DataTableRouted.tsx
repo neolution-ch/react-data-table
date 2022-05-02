@@ -1,3 +1,4 @@
+/* eslint max-lines: ["error", 230]  */ // Increased max-lines required due to new implementations.
 /* eslint-disable complexity */
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,6 +26,9 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   rowStyle,
   showPaging = true,
   predefinedFilter = undefined,
+  handlers,
+  tableClassName,
+  tableStyle,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -109,21 +113,30 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     return orderState.asc ? faSortDown : faSortUp;
   }
 
-  useDidMountEffect(
-    () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
-    [filterState, orderState],
-  );
+  if (handlers) {
+    handlers({
+      reloadData: () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
+    });
+  }
+
+  useDidMountEffect(() => {
+    loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc);
+  }, [filterState, orderState]);
 
   return (
     <React.Fragment>
-      <Table striped hover size="sm">
+      <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
         <thead>
           <tr>
             {actions &&
               (actions.columnTitle != null ? (
-                <th>{actions.columnTitle}</th>
+                <th className={actions.className} style={actions.style}>
+                  {actions.columnTitle}
+                </th>
               ) : (
-                <th style={{ width: "80px" }}>{dataTableTranslations.actionTitle}</th>
+                <th className={actions.className} style={{ width: "80px", ...actions.style }}>
+                  {dataTableTranslations.actionTitle}
+                </th>
               ))}
             {columns.map((column) =>
               column.sortable === true ? (

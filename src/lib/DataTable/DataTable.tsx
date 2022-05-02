@@ -27,6 +27,8 @@ export function DataTableStaticRouted<T, TRouteNames>({
   showPaging = false,
   tableTitle,
   hideIfEmpty = false,
+  tableClassName,
+  tableStyle,
 }: DataTableStaticRoutedProps<T, TRouteNames>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -42,6 +44,8 @@ export function DataTableStaticRouted<T, TRouteNames>({
         predefinedItemsPerPage={predefinedItemsPerPage}
         rowStyle={rowStyle}
         showPaging={showPaging}
+        tableClassName={tableClassName}
+        tableStyle={tableStyle}
       />
     </React.Fragment>
   );
@@ -58,6 +62,8 @@ export function DataTableStatic<T>({
   showPaging = false,
   tableTitle,
   hideIfEmpty = false,
+  tableClassName,
+  tableStyle,
 }: DataTableStaticProps<T>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -73,6 +79,8 @@ export function DataTableStatic<T>({
         predefinedItemsPerPage={predefinedItemsPerPage}
         rowStyle={rowStyle}
         showPaging={showPaging}
+        tableClassName={tableClassName}
+        tableStyle={tableStyle}
       />
     </React.Fragment>
   );
@@ -90,6 +98,9 @@ export function DataTable<T, TFilter>({
   rowStyle,
   showPaging = true,
   predefinedFilter = undefined,
+  handlers,
+  tableClassName,
+  tableStyle,
 }: DataTableProps<T, TFilter>) {
   return (
     <DataTableRouted<T, TFilter, T>
@@ -104,6 +115,9 @@ export function DataTable<T, TFilter>({
       rowStyle={rowStyle}
       showPaging={showPaging}
       predefinedFilter={predefinedFilter}
+      handlers={handlers}
+      tableClassName={tableClassName}
+      tableStyle={tableStyle}
     />
   );
 }
