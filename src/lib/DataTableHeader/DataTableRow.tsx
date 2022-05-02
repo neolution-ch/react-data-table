@@ -23,7 +23,7 @@ export function DataTableRow<T, TRouteNames>({ keyField, record, columns, action
     <React.Fragment>
       <tr key={`${keyValue}_row`} style={rowStyle ? rowStyle(keyValue, record) : undefined}>
         {actions && (
-          <th scope="row">
+          <th scope="row" className={actions.className} style={actions.style}>
             {actions.collapse && (
               <FontAwesomeIcon
                 icon={collapsed ? faPlus : faMinus}

@@ -33,7 +33,7 @@ export function DataTableFilterRow<T>({
   return (
     <tr>
       {actions && (
-        <th>
+        <th className={actions.className} style={actions.style}>
           <FontAwesomeIcon
             style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
             title={translations.searchToolTip}

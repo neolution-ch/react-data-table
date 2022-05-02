@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2022-05-02
+
+### Added
+
+-   Dynamic table handler to reload the data from an external source.
+-   Added new story to reload data with sample code.
+-   Implemented className and style properties to the table and the actions.
+-   Added reload tests.
+
+### Changed
+
+-   Changed max-lines allowed in DataTableInterfaces.ts.
+-   Changed max-lines allowed in DataTableRouted.tsx.
+
 ## [2.0.3] - 2022-04-19
 
 ### Added
@@ -31,7 +45,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   created package :tada: 
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.0.3...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.1.0...HEAD
+
+[2.1.0]: https://github.com/neolution-ch/react-data-table/compare/2.0.3...2.1.0
 
 [2.0.3]: https://github.com/neolution-ch/react-data-table/compare/2.0.2...2.0.3
 

@@ -1,8 +1,14 @@
 /* eslint-disable max-lines */
-import React from "react";
+import React, { CSSProperties, useRef } from "react";
 import { Story, Meta } from "@storybook/react";
 import { DataTable, DataTableStatic } from "../lib/DataTable/DataTable";
-import { DataTableActions, DataTableColumnDescription, DataTableProps, TableQueryResult } from "../lib/DataTable/DataTableInterfaces";
+import {
+  DataHandlers,
+  DataTableActions,
+  DataTableColumnDescription,
+  DataTableProps,
+  TableQueryResult,
+} from "../lib/DataTable/DataTableInterfaces";
 import { ColumnFilterType, ListSortDirection } from "../lib/DataTable/DataTableTypes";
 
 export default {
@@ -30,11 +36,35 @@ interface DataFilter {
   dateCreated?: Date;
 }
 
+const INFO_STYLE: CSSProperties = Object.freeze({ backgroundColor: "#cfd9e6", border: "1px dotted gray" });
+
 const DynamicTemplate: Story<DataTableProps<DataInterface, DataFilter>> = (args) => (
   <React.Fragment>
     <DataTable {...args} />
   </React.Fragment>
 );
+
+const TriggeredReloadDynamicTemplate: Story<DataTableProps<DataInterface, DataFilter>> = (args) => {
+  const dataHandlersRef = useRef<DataHandlers>();
+
+  return (
+    <React.Fragment>
+      <div style={INFO_STYLE}>
+        <p>Try deleting a row and then click the button below to reload the table.</p>
+        <button type="button" onClick={() => dataHandlersRef.current?.reloadData()} className="btn btn-primary">
+          Reload table
+        </button>
+      </div>
+
+      <DataTable
+        {...args}
+        handlers={(dataHandlers) => {
+          dataHandlersRef.current = dataHandlers;
+        }}
+      />
+    </React.Fragment>
+  );
+};
 
 let dataDynamic: DataInterface[] = Array.from(Array(100)).map((_, i) => {
   const randomNumber: number = Math.floor(Math.random() * 500);
@@ -171,3 +201,45 @@ DynamicTable.decorators = [
     </React.Fragment>
   ),
 ];
+
+export const TriggeredReload = TriggeredReloadDynamicTemplate.bind({});
+
+TriggeredReload.args = {
+  keyField: "id",
+  columns: columnsDynamic,
+  data: fakeQuery({}),
+  client: dynamicClient,
+  actions: dynamicActions,
+  showPaging: true,
+} as DataTableProps<DataInterface, DataFilter>;
+
+TriggeredReload.parameters = {
+  docs: {
+    source: {
+      format: true,
+      code: `
+// Triggered reload example.
+// Useful if you need to reload the table as a result of an external event.
+const dataHandlersRef = useRef<DataHandlers>();
+
+type DataType = {};
+type FilterType = {};
+
+return (
+  <React.Fragment>
+    <button type="button" onClick={() => dataHandlersRef.current?.reloadData()} className="btn btn-primary">
+      Reload Dynamic Table
+    </button>
+
+    <DataTable<DataType, FilterType>
+      // ...other properties
+      handlers={(dataHandlers) => {
+        dataHandlersRef.current = dataHandlers;
+      }}
+    />
+  </React.Fragment>
+);`,
+      language: "tsx",
+    },
+  },
+};
