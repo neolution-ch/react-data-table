@@ -11,31 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Authenticate with GCP"
-        uses: "google-github-actions/auth@v0"
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          credentials_json: "${{ secrets.GCP_STORYBOOKS_SERVICE_ACCOUNT_KEY }}"
+          node-version: 16
+          cache: "yarn"
+          registry-url: "https://registry.npmjs.org"
 
-      - name: "Set up Cloud SDK"
-        uses: "google-github-actions/setup-gcloud@v0"
+      - run: yarn
 
-      - name: "Set up Docker Buildx"
-        uses: docker/setup-buildx-action@v1
-
-      - name: "Authenticate Docker"
-        run: gcloud auth configure-docker -q
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./.storybook/Dockerfile
-          push: true
-          tags: "eu.gcr.io/${{ secrets.GCP_STORYBOOKS_PROJECT_ID }}/storybook-react-data-table:latest"
-
-      - name: "Deploy Cloud Run"
-        uses: "google-github-actions/deploy-cloudrun@v0"
-        with:
-          service: "storybook-react-data-table	"
-          image: "eu.gcr.io/${{ secrets.GCP_STORYBOOKS_PROJECT_ID }}/storybook-react-data-table:latest"
-          region: "europe-west4"
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          yarn build-storybook && yarn gh-pages -d storybook-static -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
