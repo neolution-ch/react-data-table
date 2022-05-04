@@ -1,6 +1,7 @@
 {
   "name": "@neolution-ch/react-data-table",
   "version": "2.1.0",
+  "homepage": "https://neolution-ch.github.io/react-data-table",
   "description": "A small and clean data-table with a lot of integrated functions",
   "repository": {
     "type": "git",
@@ -60,6 +61,7 @@
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-storybook": "^0.5.8",
+    "gh-pages": "^3.2.3",
     "jest": "^27.5.1",
     "microbundle": "^0.14.2",
     "prettier": "^2.6.2",

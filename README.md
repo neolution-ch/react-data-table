@@ -6,4 +6,4 @@ A react data-table that uses bootstrap design, can be either used for showing st
 
 The storybook is a visual testing tool that makes it easy to test and tinker with the components.
 
-It can be found at https://storybook-react-data-table.neolution.dev
+It can be found at https://neolution-ch.github.io/react-data-table
