@@ -192,6 +192,7 @@ DynamicTable.args = {
   client: dynamicClient,
   actions: dynamicActions,
   showPaging: true,
+  asc: true,
 } as DataTableProps<DataInterface, DataFilter>;
 DynamicTable.decorators = [
   (StoryComponent: any) => (
@@ -211,6 +212,7 @@ TriggeredReload.args = {
   client: dynamicClient,
   actions: dynamicActions,
   showPaging: true,
+  asc: true,
 } as DataTableProps<DataInterface, DataFilter>;
 
 TriggeredReload.parameters = {

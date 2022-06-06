@@ -24,6 +24,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
    * The data table handlers.
    */
   handlers?: DataTableHandlers;
+  asc?: boolean;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
@@ -41,6 +42,7 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
    * The data table handlers.
    */
   handlers?: DataTableHandlers;
+  asc?: boolean;
 }
 
 export interface DataTableColumnDescription<T> {
