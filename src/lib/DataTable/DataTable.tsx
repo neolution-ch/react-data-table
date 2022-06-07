@@ -101,7 +101,7 @@ export function DataTable<T, TFilter>({
   handlers,
   tableClassName,
   tableStyle,
-  asc
+  asc,
 }: DataTableProps<T, TFilter>) {
   return (
     <DataTableRouted<T, TFilter, T>
