@@ -63,7 +63,7 @@ export function DataTableStatic<T>({
   tableTitle,
   hideIfEmpty = false,
   tableClassName,
-  tableStyle,
+  tableStyle,  
 }: DataTableStaticProps<T>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -102,6 +102,7 @@ export function DataTable<T, TFilter>({
   tableClassName,
   tableStyle,
   asc,
+  orderBy,
 }: DataTableProps<T, TFilter>) {
   return (
     <DataTableRouted<T, TFilter, T>
@@ -120,6 +121,7 @@ export function DataTable<T, TFilter>({
       tableClassName={tableClassName}
       tableStyle={tableStyle}
       asc={asc}
+      orderBy={orderBy}
     />
   );
 }
