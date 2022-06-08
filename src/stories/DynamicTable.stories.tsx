@@ -193,6 +193,7 @@ DynamicTable.args = {
   actions: dynamicActions,
   showPaging: true,
   asc: true,
+  orderBy: "name",
 } as DataTableProps<DataInterface, DataFilter>;
 DynamicTable.decorators = [
   (StoryComponent: any) => (

@@ -25,6 +25,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
    */
   handlers?: DataTableHandlers;
   asc?: boolean;
+  orderBy?: Extract<keyof T, string>
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
@@ -42,7 +43,14 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
    * The data table handlers.
    */
   handlers?: DataTableHandlers;
+  /**
+   * The direction of the selected sorting column
+   */
   asc?: boolean;
+  /**
+   * The sorting column that is active first. if empty, it's the first column of the column description
+   * */ 
+  orderBy?: Extract<keyof T, string>;
 }
 
 export interface DataTableColumnDescription<T> {
