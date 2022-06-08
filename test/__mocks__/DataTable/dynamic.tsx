@@ -20,7 +20,6 @@ const DataTableReload = <T, F>(props: { reloadButtonName: string } & Omit<DataTa
         handlers={(dataHandlers) => {
           dataHandlersRef.current = dataHandlers;
         }}
-        asc={true}
       />
     </>
   );
