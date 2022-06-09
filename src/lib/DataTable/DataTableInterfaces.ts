@@ -1,4 +1,4 @@
-/* eslint max-lines: ["error", 230]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
+/* eslint max-lines: ["error", 250]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
@@ -25,7 +25,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
    */
   handlers?: DataTableHandlers;
   asc?: boolean;
-  orderBy?: Extract<keyof T, string>
+  orderBy?: Extract<keyof T, string>;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
@@ -49,7 +49,7 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
   asc?: boolean;
   /**
    * The sorting column that is active first. if empty, it's the first column of the column description
-   * */ 
+   * */
   orderBy?: Extract<keyof T, string>;
 }
 
@@ -61,13 +61,16 @@ export interface DataTableColumnDescription<T> {
   filter?: ColumnFilter;
   enumValues?: EnumValue[];
   dateTimeFormat?: string;
+
   formatter?({ key, row, value }: DataTableCellFormatterParams<T>): JSX.Element | string;
+
   cellStyle?: CellFunction<T, React.CSSProperties> | React.CSSProperties;
   headerStyle?: React.CSSProperties;
 }
 
 export interface ColumnFilter {
   filterType: ColumnFilterType;
+
   validate?(value: string): string;
 }
 
@@ -97,6 +100,7 @@ export interface DataTableActions<T> {
 
 export interface DataTableCollapseActions<T> {
   getRows(cell: T): T[];
+
   columns?: DataTableColumnDescription<T>[];
 }
 
@@ -129,7 +133,9 @@ export interface DeleteAction<T> extends DataTablePredefinedAction<T> {
 
 export interface DataTablePredefinedActionLink<T, TRouteNames> {
   route: TRouteNames;
+
   getParams({ keyValue, cell }: DataTablePredefinedActionLinkGetParamsParams<T>): any;
+
   link: React.ComponentType<LinkProps>;
 }
 

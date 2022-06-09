@@ -63,7 +63,7 @@ export function DataTableStatic<T>({
   tableTitle,
   hideIfEmpty = false,
   tableClassName,
-  tableStyle,  
+  tableStyle,
 }: DataTableStaticProps<T>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
