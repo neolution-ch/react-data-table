@@ -61,16 +61,13 @@ export interface DataTableColumnDescription<T> {
   filter?: ColumnFilter;
   enumValues?: EnumValue[];
   dateTimeFormat?: string;
-
   formatter?({ key, row, value }: DataTableCellFormatterParams<T>): JSX.Element | string;
-
   cellStyle?: CellFunction<T, React.CSSProperties> | React.CSSProperties;
   headerStyle?: React.CSSProperties;
 }
 
 export interface ColumnFilter {
   filterType: ColumnFilterType;
-
   validate?(value: string): string;
 }
 
@@ -100,7 +97,6 @@ export interface DataTableActions<T> {
 
 export interface DataTableCollapseActions<T> {
   getRows(cell: T): T[];
-
   columns?: DataTableColumnDescription<T>[];
 }
 
@@ -133,9 +129,7 @@ export interface DeleteAction<T> extends DataTablePredefinedAction<T> {
 
 export interface DataTablePredefinedActionLink<T, TRouteNames> {
   route: TRouteNames;
-
   getParams({ keyValue, cell }: DataTablePredefinedActionLinkGetParamsParams<T>): any;
-
   link: React.ComponentType<LinkProps>;
 }
 
