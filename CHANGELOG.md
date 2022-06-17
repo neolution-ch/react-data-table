@@ -11,51 +11,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added asc and orderBy parameter to set values of initial ordering dynamically
+- Added asc prop to specify the arrow icon sorting direction
+- Added orderBy prop to specify the sorting key value
 
 ## [2.1.1] - 2022-05-04
 
 ### Changed
 
--   Moved storybook to github pages
+- Moved storybook to github pages
 
 ## [2.1.0] - 2022-05-02
 
 ### Added
 
--   Dynamic table handler to reload the data from an external source.
--   Added new story to reload data with sample code.
--   Implemented className and style properties to the table and the actions.
--   Added reload tests.
+- Dynamic table handler to reload the data from an external source.
+- Added new story to reload data with sample code.
+- Implemented className and style properties to the table and the actions.
+- Added reload tests.
 
 ### Changed
 
--   Changed max-lines allowed in DataTableInterfaces.ts.
--   Changed max-lines allowed in DataTableRouted.tsx.
+- Changed max-lines allowed in DataTableInterfaces.ts.
+- Changed max-lines allowed in DataTableRouted.tsx.
 
 ## [2.0.3] - 2022-04-19
 
 ### Added
 
--   Story book
+- Story book
 
 ## [2.0.2] - 2022-04-14
 
 ### Changed
 
--   Upgraded @neolution-ch/react-pattern-ui dependency to 2.0.2
+- Upgraded @neolution-ch/react-pattern-ui dependency to 2.0.2
 
 ## [2.0.1] - 2022-04-14
 
 ### Fixed
 
--   Fix added for missing react import aftger microbundling
+- Fix added for missing react import aftger microbundling
 
 ## [2.0.0] - 2022-04-12
 
 ### Added
 
--   created package :tada: 
+- created package :tada:
 
 [Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.1.1...HEAD
 
