@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Added legacyBehavior to the link component https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor to support next js 13
+
 ## [2.1.1] - 2022-05-04
 
 ### Changed
