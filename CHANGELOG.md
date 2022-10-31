@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Added legacyBehavior to the link component https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor to support next js 13
+## [2.1.2] - 2022-06-20
+
+### Added
+
+-   Added asc prop to specify the arrow icon sorting direction
+-   Added orderBy prop to specify the sorting key value
 
 ## [2.1.1] - 2022-05-04
 
@@ -53,9 +59,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   created package :tada: 
+-   created package :tada:
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.1.1...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.1.2...HEAD
+
+[2.1.2]: https://github.com/neolution-ch/react-data-table/compare/2.1.1...2.1.2
 
 [2.1.1]: https://github.com/neolution-ch/react-data-table/compare/2.1.0...2.1.1
 

@@ -1,4 +1,4 @@
-/* eslint max-lines: ["error", 230]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
+/* eslint max-lines: ["error", 250]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
@@ -24,6 +24,8 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
    * The data table handlers.
    */
   handlers?: DataTableHandlers;
+  asc?: boolean;
+  orderBy?: Extract<keyof T, string>;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
@@ -41,6 +43,14 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
    * The data table handlers.
    */
   handlers?: DataTableHandlers;
+  /**
+   * The direction of the selected sorting column
+   */
+  asc?: boolean;
+  /**
+   * The sorting column that is active first. if empty, it's the first column of the column description
+   * */
+  orderBy?: Extract<keyof T, string>;
 }
 
 export interface DataTableColumnDescription<T> {
@@ -121,6 +131,7 @@ export interface DataTablePredefinedActionLink<T, TRouteNames> {
   route: TRouteNames;
   getParams({ keyValue, cell }: DataTablePredefinedActionLinkGetParamsParams<T>): any;
   link: React.ComponentType<LinkProps>;
+  omitHyperLink?: boolean;
 }
 
 interface LinkProps {

@@ -101,6 +101,8 @@ export function DataTable<T, TFilter>({
   handlers,
   tableClassName,
   tableStyle,
+  asc,
+  orderBy,
 }: DataTableProps<T, TFilter>) {
   return (
     <DataTableRouted<T, TFilter, T>
@@ -118,6 +120,8 @@ export function DataTable<T, TFilter>({
       handlers={handlers}
       tableClassName={tableClassName}
       tableStyle={tableStyle}
+      asc={asc}
+      orderBy={orderBy}
     />
   );
 }
