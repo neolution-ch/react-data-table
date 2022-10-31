@@ -126,6 +126,7 @@ export interface DataTablePredefinedActionLink<T, TRouteNames> {
 interface LinkProps {
   route: any;
   params?: RouteParams;
+  legacyBehavior?: boolean;
 }
 
 export interface DataTablePredefinedActionLinkGetParamsParams<T> {

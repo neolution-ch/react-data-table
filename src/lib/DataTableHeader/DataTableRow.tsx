@@ -32,7 +32,7 @@ export function DataTableRow<T, TRouteNames>({ keyField, record, columns, action
               />
             )}
             {actions.view && (
-              <actions.view.link route={actions.view.route} params={actions.view.getParams({ keyValue, cell: record })}>
+              <actions.view.link legacyBehavior route={actions.view.route} params={actions.view.getParams({ keyValue, cell: record })}>
                 <a>
                   <FontAwesomeIcon icon={faEye} style={{ marginRight: "5px" }} />
                 </a>
