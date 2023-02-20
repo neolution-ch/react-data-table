@@ -156,7 +156,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 </th>
               ),
             )}
-           {actions && !actionsOnTheLeft &&
+            {actions && !actionsOnTheLeft &&
               (actions.columnTitle != null ? (
                 <th className={actions.className} style={actions.style}>
                   {actions.columnTitle}
