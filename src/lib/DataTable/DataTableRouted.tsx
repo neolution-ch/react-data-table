@@ -156,16 +156,16 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 </th>
               ),
             )}
-            {actions && !actionsOnTheLeft &&
-            (actions.columnTitle != null ? (
-              <th className={actions.className} style={actions.style}>
-                 {actions.columnTitle}
-              </th>
+           {actions && !actionsOnTheLeft &&
+              (actions.columnTitle != null ? (
+                <th className={actions.className} style={actions.style}>
+                  {actions.columnTitle}
+                </th>
               ) : (
-              <th className={actions.className} style={{ width: "80px", ...actions.style }}>
-                {dataTableTranslations.actionTitle}
-              </th>
-            ))}
+                <th className={actions.className} style={{ width: "80px", ...actions.style }}>
+                  {dataTableTranslations.actionTitle}
+                </th>
+              ))}
           </tr>
           <DataTableFilterRow
             actions={actions}

@@ -14,7 +14,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   data: TableQueryResult<T>;
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableRoutedActions<T, TRouteName>;
-  actionsOnTheLeft?: boolean,
+  actionsOnTheLeft?: boolean;
   client?: TableQueryClient<T>;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
@@ -34,7 +34,7 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
   data: TableQueryResult<T>;
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
-  actionsOnTheLeft?: boolean,
+  actionsOnTheLeft?: boolean;
   client?: TableQueryClient<T>;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
@@ -208,7 +208,7 @@ export interface DataTableStaticProps<T> extends CommonDataTableProps<T> {
   data: T[];
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
-  actionsOnTheLeft?: boolean,
+  actionsOnTheLeft?: boolean;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
   showPaging?: boolean;
@@ -221,7 +221,7 @@ export interface DataTableStaticRoutedProps<T, TRouteNames> extends CommonDataTa
   data: T[];
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableRoutedActions<T, TRouteNames>;
-  actionsOnTheLeft?: boolean,
+  actionsOnTheLeft?: boolean;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
   showPaging?: boolean;
@@ -234,7 +234,7 @@ export interface DataTableSimpleStaticProps<T> extends CommonDataTableProps<T> {
   data: T[];
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
-  actionsOnTheLeft?: boolean,
+  actionsOnTheLeft?: boolean;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
   showPaging?: boolean;
