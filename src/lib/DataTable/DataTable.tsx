@@ -21,6 +21,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
   data,
   columns,
   actions,
+  actionsOnTheLeft,
   possiblePageItemCounts,
   predefinedItemsPerPage,
   rowStyle,
@@ -40,6 +41,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
         data={{ records: data ?? [], totalRecords: data?.length ?? 0 }}
         columns={columns}
         actions={actions}
+        actionsOnTheLeft={actionsOnTheLeft}
         possiblePageItemCounts={possiblePageItemCounts}
         predefinedItemsPerPage={predefinedItemsPerPage}
         rowStyle={rowStyle}
@@ -56,6 +58,7 @@ export function DataTableStatic<T>({
   data,
   columns,
   actions,
+  actionsOnTheLeft,
   possiblePageItemCounts,
   predefinedItemsPerPage,
   rowStyle,
@@ -75,6 +78,7 @@ export function DataTableStatic<T>({
         data={{ records: data ?? [], totalRecords: data?.length ?? 0 }}
         columns={columns}
         actions={actions}
+        actionsOnTheLeft={actionsOnTheLeft}
         possiblePageItemCounts={possiblePageItemCounts}
         predefinedItemsPerPage={predefinedItemsPerPage}
         rowStyle={rowStyle}
@@ -91,6 +95,7 @@ export function DataTable<T, TFilter>({
   data,
   columns,
   actions,
+  actionsOnTheLeft,
   client,
   possiblePageItemCounts,
   predefinedItemsPerPage,
@@ -112,6 +117,7 @@ export function DataTable<T, TFilter>({
       client={client}
       query={query}
       actions={actions}
+      actionsOnTheLeft={actionsOnTheLeft}
       possiblePageItemCounts={possiblePageItemCounts}
       predefinedItemsPerPage={predefinedItemsPerPage}
       rowStyle={rowStyle}

@@ -19,6 +19,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   data,
   columns,
   actions,
+  actionsOnTheLeft = true,
   client,
   possiblePageItemCounts,
   predefinedItemsPerPage,
@@ -130,7 +131,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
       <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
         <thead>
           <tr>
-            {actions &&
+            {actions && actionsOnTheLeft &&
               (actions.columnTitle != null ? (
                 <th className={actions.className} style={actions.style}>
                   {actions.columnTitle}
@@ -155,6 +156,16 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 </th>
               ),
             )}
+            {actions && !actionsOnTheLeft &&
+            (actions.columnTitle != null ? (
+              <th className={actions.className} style={actions.style}>
+                 {actions.columnTitle}
+              </th>
+              ) : (
+              <th className={actions.className} style={{ width: "80px", ...actions.style }}>
+                {dataTableTranslations.actionTitle}
+              </th>
+            ))}
           </tr>
           <DataTableFilterRow
             actions={actions}
