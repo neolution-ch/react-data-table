@@ -31,50 +31,47 @@ export function DataTableFilterRow<T>({
   setFilterRef,
   onSearch,
 }: DataTableFilterRowProps<T>) {
-
-    const Actions = () => {
-        return (
-            <>
-                {actions && (
-                    <th className={actions.className} style={actions.style}>
-                        <FontAwesomeIcon
-                            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                            title={translations.searchToolTip}
-                            icon={faSearch}
-                            onClick={() => {
-                                onSearch();
-                            }}
-                        />
-                        <FontAwesomeIcon
-                            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                            title={translations.clearSearchToolTip}
-                            icon={faTimes}
-                            onClick={() => {
-                                const filterRefs = getFilterRefs();
-                                if (filterRefs) {
-                                    Object.values(filterRefs).forEach((ref) => {
-                                        if (ref instanceof HTMLSelectElement) {
-                                            // eslint-disable-next-line no-param-reassign
-                                            ref.value = null as unknown as string;
-                                        } else {
-                                            // eslint-disable-next-line no-param-reassign
-                                            ref.value = "";
-                                        }
-                                    });
-                                    onSearch();
-                                }
-                            }}
-                        />
-                    </th>
-                )}
-            </>)
-    }
-
+  const Actions = () => (
+    <>
+      {actions && (
+        <th className={actions.className} style={actions.style}>
+          <FontAwesomeIcon
+            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+            title={translations.searchToolTip}
+            icon={faSearch}
+            onClick={() => {
+              onSearch();
+            }}
+          />
+          <FontAwesomeIcon
+            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+            title={translations.clearSearchToolTip}
+            icon={faTimes}
+            onClick={() => {
+              const filterRefs = getFilterRefs();
+              if (filterRefs) {
+                Object.values(filterRefs).forEach((ref) => {
+                  if (ref instanceof HTMLSelectElement) {
+                    // eslint-disable-next-line no-param-reassign
+                    ref.value = null as unknown as string;
+                  } else {
+                    // eslint-disable-next-line no-param-reassign
+                    ref.value = "";
+                  }
+                });
+                onSearch();
+              }
+            }}
+          />
+        </th>
+      )}
+    </>
+  );
 
   if (!filterPossible || columns.filter((column) => column.filter).length <= 0) return <React.Fragment />;
   return (
     <tr>
-      {actionsPosition == ActionsPosition.Left && <Actions></Actions>}
+      {actionsPosition == ActionsPosition.Left && <Actions />}
       {columns.map((column) => (
         <th key={column.dataField}>
           {column.filter && column.filter.filterType === ColumnFilterType.String && (
@@ -106,7 +103,7 @@ export function DataTableFilterRow<T>({
           )}
         </th>
       ))}
-          {actionsPosition == ActionsPosition.Right && <Actions></Actions>}
+      {actionsPosition == ActionsPosition.Right && <Actions />}
     </tr>
   );
 }

@@ -15,69 +15,65 @@ import { DataTableRow } from "../DataTableHeader/DataTableRow";
 import { dataTableTranslations } from "./DataTable";
 
 export function DataTableRouted<T, TFilter, TRouteNames>({
-    keyField,
-    data,
-    columns,
-    actions,
-    actionsPosition = ActionsPosition.Left,
-    client,
-    possiblePageItemCounts,
-    predefinedItemsPerPage,
-    query,
-    rowStyle,
-    showPaging = true,
-    predefinedFilter = undefined,
-    handlers,
-    tableClassName,
-    tableStyle,
-    asc = true,
-    orderBy,
+  keyField,
+  data,
+  columns,
+  actions,
+  actionsPosition = ActionsPosition.Left,
+  client,
+  possiblePageItemCounts,
+  predefinedItemsPerPage,
+  query,
+  rowStyle,
+  showPaging = true,
+  predefinedFilter = undefined,
+  handlers,
+  tableClassName,
+  tableStyle,
+  asc = true,
+  orderBy,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
-    const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
-    const [filterState, setFilterState] = useState<FilterPageState>({
-        currentPage: 1,
-        filter: predefinedFilter ?? {},
-        itemsPerPage: predefinedItemsPerPage ?? 25,
-    });
-    const [orderState, setOrderState] = useState<OrderOption>({ orderBy: orderBy ?? columns[0].dataField, asc });
-    const filterRefs = useRef<Filters>({});
+  const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
+  const [filterState, setFilterState] = useState<FilterPageState>({
+    currentPage: 1,
+    filter: predefinedFilter ?? {},
+    itemsPerPage: predefinedItemsPerPage ?? 25,
+  });
+  const [orderState, setOrderState] = useState<OrderOption>({ orderBy: orderBy ?? columns[0].dataField, asc });
+  const filterRefs = useRef<Filters>({});
 
-    function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
-        if (query) {
-            query(filter, limit, page, orderBy, asc).then((result) => setQueryResult(result));
-        } else if (client && client.query) {
-            client
-                .query(filter, limit, page, orderBy, asc ? ListSortDirection.Ascending : ListSortDirection.Descending)
-                .then((result) => setQueryResult(result));
-        }
+  function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
+    if (query) {
+      query(filter, limit, page, orderBy, asc).then((result) => setQueryResult(result));
+    } else if (client && client.query) {
+      client
+        .query(filter, limit, page, orderBy, asc ? ListSortDirection.Ascending : ListSortDirection.Descending)
+        .then((result) => setQueryResult(result));
     }
+  }
 
-    function getFilterRefs(): Filters {
-        return filterRefs?.current;
-    }
+  function getFilterRefs(): Filters {
+    return filterRefs?.current;
+  }
 
-    function setFilterRef(filterName: string, ref: HTMLInputElement) {
-        setDeepValue(filterRefs.current, filterName, ref);
-    }
+  function setFilterRef(filterName: string, ref: HTMLInputElement) {
+    setDeepValue(filterRefs.current, filterName, ref);
+  }
 
-    const Actions = () => {
-        return(
+  const Actions = () => (
     <>
-        {
-            actions &&
-            (actions.columnTitle != null ? (
-                <th className={actions.className} style={actions.style}>
-                    {actions.columnTitle}
-                </th>
-            ) : (
-                <th className={actions.className} style={{ width: "80px", ...actions.style }}>
-                    {dataTableTranslations.actionTitle}
-                </th>
-            ))
-        }
-            </>
-            )
-    }
+      {actions &&
+        (actions.columnTitle != null ? (
+          <th className={actions.className} style={actions.style}>
+            {actions.columnTitle}
+          </th>
+        ) : (
+          <th className={actions.className} style={{ width: "80px", ...actions.style }}>
+            {dataTableTranslations.actionTitle}
+          </th>
+        ))}
+    </>
+  );
 
   function setCurrentPage(page: number) {
     setFilterState({ currentPage: page, filter: filterState.filter, itemsPerPage: filterState.itemsPerPage });
@@ -149,8 +145,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     <React.Fragment>
       <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
         <thead>
-                  <tr>
-                      {actionsPosition == ActionsPosition.Left && <Actions />}
+          <tr>
+            {actionsPosition == ActionsPosition.Left && <Actions />}
             {columns.map((column) =>
               column.sortable === true ? (
                 <th
@@ -165,8 +161,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                   {column.text}
                 </th>
               ),
-                      )}
-                      {actionsPosition == ActionsPosition.Right && <Actions />}
+            )}
+            {actionsPosition == ActionsPosition.Right && <Actions />}
           </tr>
           <DataTableFilterRow
             actions={actions}
