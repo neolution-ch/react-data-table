@@ -20,6 +20,11 @@ export enum ListSortDirection {
   Descending = 1,
 }
 
+export enum ActionsPosition {
+  Left = 0,
+  Right = 1,
+}
+
 export type RouteParams = {
   [k: string]: string | number;
 };

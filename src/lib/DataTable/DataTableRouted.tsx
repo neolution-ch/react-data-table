@@ -9,7 +9,7 @@ import { Table } from "reactstrap";
 import { DataTableRoutedProps, FilterPageState, Filters, OrderOption, TableQueryResult } from "./DataTableInterfaces";
 import { setDeepValue, getDeepValue } from "../Utils/DeepValue";
 import useDidMountEffect from "../Utils/UseDidMountEffect";
-import { ListSortDirection, ColumnFilterType } from "./DataTableTypes";
+import { ListSortDirection, ColumnFilterType, ActionsPosition } from "./DataTableTypes";
 import { DataTableFilterRow } from "../DataTableFilterRow/DataTableFilterRow";
 import { DataTableRow } from "../DataTableHeader/DataTableRow";
 import { dataTableTranslations } from "./DataTable";
@@ -19,7 +19,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   data,
   columns,
   actions,
-  actionsOnTheLeft = true,
+  actionsPosition = ActionsPosition.Left,
   client,
   possiblePageItemCounts,
   predefinedItemsPerPage,
@@ -58,6 +58,22 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
 
   function setFilterRef(filterName: string, ref: HTMLInputElement) {
     setDeepValue(filterRefs.current, filterName, ref);
+  }
+
+  function GetActions(position: ActionsPosition) {
+    if (actions && position === actionsPosition) {
+      return actions.columnTitle != null ? (
+        <th className={actions.className} style={actions.style}>
+          {actions.columnTitle}
+        </th>
+      ) : (
+        <th className={actions.className} style={{ width: "80px", ...actions.style }}>
+          {dataTableTranslations.actionTitle}
+        </th>
+      );
+    } else {
+      return;
+    }
   }
 
   function setCurrentPage(page: number) {
@@ -131,16 +147,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
       <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
         <thead>
           <tr>
-            {actions && actionsOnTheLeft &&
-              (actions.columnTitle != null ? (
-                <th className={actions.className} style={actions.style}>
-                  {actions.columnTitle}
-                </th>
-              ) : (
-                <th className={actions.className} style={{ width: "80px", ...actions.style }}>
-                  {dataTableTranslations.actionTitle}
-                </th>
-              ))}
+            {GetActions(ActionsPosition.Left)}
             {columns.map((column) =>
               column.sortable === true ? (
                 <th
@@ -156,16 +163,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 </th>
               ),
             )}
-            {actions && !actionsOnTheLeft &&
-              (actions.columnTitle != null ? (
-                <th className={actions.className} style={actions.style}>
-                  {actions.columnTitle}
-                </th>
-              ) : (
-                <th className={actions.className} style={{ width: "80px", ...actions.style }}>
-                  {dataTableTranslations.actionTitle}
-                </th>
-              ))}
+            {GetActions(ActionsPosition.Right)}
           </tr>
           <DataTableFilterRow
             actions={actions}

@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "reactstrap";
 import { DataTableColumnDescription, DataTableActions, Filters } from "../DataTable/DataTableInterfaces";
-import { ColumnFilterType } from "../DataTable/DataTableTypes";
+import { ColumnFilterType, ActionsPosition } from "../DataTable/DataTableTypes";
 
 interface DataTableFilterRowProps<T> {
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
+  actionsPosition?: ActionsPosition;
   translations: FilterTranslations;
   filterPossible: boolean;
   getFilterRefs(): Filters;
@@ -23,16 +24,16 @@ interface FilterTranslations {
 export function DataTableFilterRow<T>({
   columns,
   actions,
+  actionsPosition = ActionsPosition.Left,
   filterPossible = true,
   translations,
   getFilterRefs,
   setFilterRef,
   onSearch,
 }: DataTableFilterRowProps<T>) {
-  if (!filterPossible || columns.filter((column) => column.filter).length <= 0) return <React.Fragment />;
-  return (
-    <tr>
-      {actions && (
+  function GetActions(position: ActionsPosition) {
+    if (actions && position === actionsPosition) {
+      return (
         <th className={actions.className} style={actions.style}>
           <FontAwesomeIcon
             style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
@@ -63,7 +64,16 @@ export function DataTableFilterRow<T>({
             }}
           />
         </th>
-      )}
+      );
+    } else {
+      return;
+    }
+  }
+
+  if (!filterPossible || columns.filter((column) => column.filter).length <= 0) return <React.Fragment />;
+  return (
+    <tr>
+      {GetActions(ActionsPosition.Left)}
       {columns.map((column) => (
         <th key={column.dataField}>
           {column.filter && column.filter.filterType === ColumnFilterType.String && (
@@ -95,6 +105,7 @@ export function DataTableFilterRow<T>({
           )}
         </th>
       ))}
+      {GetActions(ActionsPosition.Right)}
     </tr>
   );
 }
