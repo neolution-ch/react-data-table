@@ -1,5 +1,5 @@
 /* eslint max-lines: ["error", 250]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
-import { CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
+import { ActionsPosition, CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
@@ -14,6 +14,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   data: TableQueryResult<T>;
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableRoutedActions<T, TRouteName>;
+  actionsPosition?: ActionsPosition;
   client?: TableQueryClient<T>;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
@@ -33,6 +34,7 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
   data: TableQueryResult<T>;
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
+  actionsPosition?: ActionsPosition;
   client?: TableQueryClient<T>;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
@@ -206,6 +208,7 @@ export interface DataTableStaticProps<T> extends CommonDataTableProps<T> {
   data: T[];
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
+  actionsPosition?: ActionsPosition;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
   showPaging?: boolean;
@@ -218,6 +221,7 @@ export interface DataTableStaticRoutedProps<T, TRouteNames> extends CommonDataTa
   data: T[];
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableRoutedActions<T, TRouteNames>;
+  actionsPosition?: ActionsPosition;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
   showPaging?: boolean;
@@ -230,9 +234,15 @@ export interface DataTableSimpleStaticProps<T> extends CommonDataTableProps<T> {
   data: T[];
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
+  actionsPosition?: ActionsPosition;
   possiblePageItemCounts?: number[];
   predefinedItemsPerPage?: number;
   showPaging?: boolean;
   tableTitle?: string;
   hideIfEmpty?: boolean;
+}
+
+export interface FilterTranslations {
+  searchToolTip: string;
+  clearSearchToolTip: string;
 }

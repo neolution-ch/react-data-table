@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2023-02-22
+
+### Added
+
+-   the prop `actionsPosition` to the `DataTable` component to specify the position of the actions column. Possible values are `left` and `right`. The default value is `left`.
+
 ## [2.1.2] - 2022-06-20
 
 ### Added
@@ -58,7 +64,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   created package :tada:
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.1.2...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.2.0...HEAD
+
+[2.2.0]: https://github.com/neolution-ch/react-data-table/compare/2.1.2...2.2.0
 
 [2.1.2]: https://github.com/neolution-ch/react-data-table/compare/2.1.1...2.1.2
 

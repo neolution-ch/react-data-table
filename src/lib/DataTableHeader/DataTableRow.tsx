@@ -1,10 +1,10 @@
 /* eslint-disable complexity */
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { DeleteAction, DateHandler } from "@neolution-ch/react-pattern-ui";
+import { DateHandler } from "@neolution-ch/react-pattern-ui";
 import { DataTableColumnDescription, DataTableRoutedActions, RowStyleType } from "../DataTable/DataTableInterfaces";
 import { getDeepValue } from "../Utils/DeepValue";
+import { ActionsCell } from "../DataTable/Actions/ActionsCell";
+import { ActionsPosition } from "../DataTable/DataTableTypes";
 
 interface DataTableRowProps<T, TRouteNames> {
   keyField: Extract<keyof T, string>;
@@ -12,42 +12,26 @@ interface DataTableRowProps<T, TRouteNames> {
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableRoutedActions<T, TRouteNames>;
   rowStyle?: RowStyleType<T>;
+  actionsPosition?: ActionsPosition;
 }
 
 // eslint-disable-next-line complexity
-export function DataTableRow<T, TRouteNames>({ keyField, record, columns, actions, rowStyle }: DataTableRowProps<T, TRouteNames>) {
+export function DataTableRow<T, TRouteNames>({
+  keyField,
+  record,
+  columns,
+  actions,
+  rowStyle,
+  actionsPosition,
+}: DataTableRowProps<T, TRouteNames>) {
   const keyValue = getDeepValue(record, keyField);
   const [collapsed, setCollapsed] = useState(true);
 
   return (
     <React.Fragment>
       <tr key={`${keyValue}_row`} style={rowStyle ? rowStyle(keyValue, record) : undefined}>
-        {actions && (
-          <th scope="row" className={actions.className} style={actions.style}>
-            {actions.collapse && (
-              <FontAwesomeIcon
-                icon={collapsed ? faPlus : faMinus}
-                style={{ marginRight: "5px", cursor: "pointer" }}
-                onClick={() => setCollapsed(!collapsed)}
-              />
-            )}
-            {actions.view && (
-              <actions.view.link route={actions.view.route} params={actions.view.getParams({ keyValue, cell: record })}>
-                <a>
-                  <FontAwesomeIcon icon={faEye} style={{ marginRight: "5px" }} />
-                </a>
-              </actions.view.link>
-            )}
-            {actions.delete && (
-              <DeleteAction
-                title={actions.delete.title}
-                text={actions.delete.text}
-                iconOnly
-                onDelete={() => actions?.delete?.action({ key: keyValue, cell: record })}
-              />
-            )}
-            {actions.others && actions.others.map((action) => action.formatter({ key: keyValue, row: record }))}
-          </th>
+        {actionsPosition === ActionsPosition.Left && (
+          <ActionsCell collapsed={collapsed} setCollapsed={setCollapsed} actions={actions} keyValue={keyValue} record={record} />
         )}
 
         {columns.map((column) => {
@@ -79,6 +63,10 @@ export function DataTableRow<T, TRouteNames>({ keyField, record, columns, action
             </td>
           );
         })}
+
+        {actionsPosition === ActionsPosition.Right && (
+          <ActionsCell collapsed={collapsed} setCollapsed={setCollapsed} actions={actions} keyValue={keyValue} record={record} />
+        )}
       </tr>
       {!collapsed &&
         actions?.collapse?.getRows &&
@@ -88,6 +76,7 @@ export function DataTableRow<T, TRouteNames>({ keyField, record, columns, action
             keyField={keyField}
             columns={actions?.collapse?.columns || columns}
             record={subRow}
+            actionsPosition={actionsPosition}
             actions={{
               others: [
                 {
