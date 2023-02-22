@@ -1,13 +1,13 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "reactstrap";
-import { DataTableColumnDescription, DataTableActions, Filters } from "../DataTable/DataTableInterfaces";
-import { ColumnFilterType } from "../DataTable/DataTableTypes";
+import { DataTableColumnDescription, DataTableActions, Filters, FilterTranslations } from "../DataTable/DataTableInterfaces";
+import { ColumnFilterType, ActionsPosition } from "../DataTable/DataTableTypes";
+import { ActionsHeaderFilterCell } from "../DataTable/Actions/ActionsHeaderFilterCell";
 
 interface DataTableFilterRowProps<T> {
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableActions<T>;
+  actionsPosition?: ActionsPosition;
   translations: FilterTranslations;
   filterPossible: boolean;
   getFilterRefs(): Filters;
@@ -15,14 +15,10 @@ interface DataTableFilterRowProps<T> {
   onSearch(): void;
 }
 
-interface FilterTranslations {
-  searchToolTip: string;
-  clearSearchToolTip: string;
-}
-
 export function DataTableFilterRow<T>({
   columns,
   actions,
+  actionsPosition,
   filterPossible = true,
   translations,
   getFilterRefs,
@@ -32,37 +28,8 @@ export function DataTableFilterRow<T>({
   if (!filterPossible || columns.filter((column) => column.filter).length <= 0) return <React.Fragment />;
   return (
     <tr>
-      {actions && (
-        <th className={actions.className} style={actions.style}>
-          <FontAwesomeIcon
-            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-            title={translations.searchToolTip}
-            icon={faSearch}
-            onClick={() => {
-              onSearch();
-            }}
-          />
-          <FontAwesomeIcon
-            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-            title={translations.clearSearchToolTip}
-            icon={faTimes}
-            onClick={() => {
-              const filterRefs = getFilterRefs();
-              if (filterRefs) {
-                Object.values(filterRefs).forEach((ref) => {
-                  if (ref instanceof HTMLSelectElement) {
-                    // eslint-disable-next-line no-param-reassign
-                    ref.value = null as unknown as string;
-                  } else {
-                    // eslint-disable-next-line no-param-reassign
-                    ref.value = "";
-                  }
-                });
-                onSearch();
-              }
-            }}
-          />
-        </th>
+      {actionsPosition == ActionsPosition.Left && (
+        <ActionsHeaderFilterCell<T> onSearch={onSearch} translations={translations} actions={actions} getFilterRefs={getFilterRefs} />
       )}
       {columns.map((column) => (
         <th key={column.dataField}>
@@ -95,6 +62,9 @@ export function DataTableFilterRow<T>({
           )}
         </th>
       ))}
+      {actionsPosition == ActionsPosition.Right && (
+        <ActionsHeaderFilterCell<T> onSearch={onSearch} translations={translations} actions={actions} getFilterRefs={getFilterRefs} />
+      )}
     </tr>
   );
 }
