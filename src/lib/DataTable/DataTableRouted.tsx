@@ -13,6 +13,7 @@ import { ListSortDirection, ColumnFilterType, ActionsPosition } from "./DataTabl
 import { DataTableFilterRow } from "../DataTableFilterRow/DataTableFilterRow";
 import { DataTableRow } from "../DataTableHeader/DataTableRow";
 import { dataTableTranslations } from "./DataTable";
+import { ActionsHeaderTitleCell } from "./Actions/ActionsHeaderTitleCell";
 
 export function DataTableRouted<T, TFilter, TRouteNames>({
   keyField,
@@ -59,21 +60,6 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   function setFilterRef(filterName: string, ref: HTMLInputElement) {
     setDeepValue(filterRefs.current, filterName, ref);
   }
-
-  const Actions = () => (
-    <>
-      {actions &&
-        (actions.columnTitle != null ? (
-          <th className={actions.className} style={actions.style}>
-            {actions.columnTitle}
-          </th>
-        ) : (
-          <th className={actions.className} style={{ width: "80px", ...actions.style }}>
-            {dataTableTranslations.actionTitle}
-          </th>
-        ))}
-    </>
-  );
 
   function setCurrentPage(page: number) {
     setFilterState({ currentPage: page, filter: filterState.filter, itemsPerPage: filterState.itemsPerPage });
@@ -146,7 +132,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
       <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
         <thead>
           <tr>
-            {actionsPosition == ActionsPosition.Left && <Actions />}
+            {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
             {columns.map((column) =>
               column.sortable === true ? (
                 <th
@@ -162,7 +148,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 </th>
               ),
             )}
-            {actionsPosition == ActionsPosition.Right && <Actions />}
+            {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
           </tr>
           <DataTableFilterRow
             actions={actions}
@@ -172,6 +158,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
             getFilterRefs={getFilterRefs}
             setFilterRef={setFilterRef}
             translations={dataTableTranslations}
+            actionsPosition={actionsPosition}
           />
         </thead>
         <tbody>
@@ -184,6 +171,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 actions={actions}
                 key={getDeepValue(record, keyField)}
                 rowStyle={rowStyle}
+                actionsPosition={actionsPosition}
               />
             ))
           ) : (

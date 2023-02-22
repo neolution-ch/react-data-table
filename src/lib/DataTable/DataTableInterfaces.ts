@@ -241,3 +241,8 @@ export interface DataTableSimpleStaticProps<T> extends CommonDataTableProps<T> {
   tableTitle?: string;
   hideIfEmpty?: boolean;
 }
+
+export interface FilterTranslations {
+  searchToolTip: string;
+  clearSearchToolTip: string;
+}
