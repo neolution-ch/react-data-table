@@ -25,7 +25,7 @@ const ActionsCell = <T, TRouteName>({ actions, collapsed, setCollapsed, keyValue
         {actions.view && (
           <actions.view.link route={actions.view.route} params={actions.view.getParams({ keyValue, cell: record })}>
             <a>
-              <FontAwesomeIcon icon={faEye} style={{ marginRight: "5px" }} />
+              <FontAwesomeIcon icon={actions.view.icon ?? faEye} style={{ marginRight: "5px" }} />
             </a>
           </actions.view.link>
         )}
