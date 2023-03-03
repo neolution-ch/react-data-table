@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   the prop `icon` to the `DataTablePredefinedActionLink` interface to specify the view action icon. Possible values are all `IconProp`. The default value is the eye icon `faEye`
+-   the prop `icon` to the `DataTablePredefinedActionLink` interface to specify the view action column icon. Possible values are all `IconProp`. The default value is the eye icon `faEye`
 
 
 ## [2.2.0] - 2023-02-22
