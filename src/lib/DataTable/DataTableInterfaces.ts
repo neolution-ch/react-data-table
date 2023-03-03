@@ -134,7 +134,7 @@ export interface DataTablePredefinedActionLink<T, TRouteNames> {
   route: TRouteNames;
   getParams({ keyValue, cell }: DataTablePredefinedActionLinkGetParamsParams<T>): any;
   link: React.ComponentType<LinkProps>;
-  icon: IconProp;
+  icon?: IconProp;
 }
 
 interface LinkProps {
