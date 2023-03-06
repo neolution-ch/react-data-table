@@ -1,5 +1,6 @@
 /* eslint max-lines: ["error", 250]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { ActionsPosition, CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
@@ -133,6 +134,7 @@ export interface DataTablePredefinedActionLink<T, TRouteNames> {
   route: TRouteNames;
   getParams({ keyValue, cell }: DataTablePredefinedActionLinkGetParamsParams<T>): any;
   link: React.ComponentType<LinkProps>;
+  icon?: IconProp;
 }
 
 interface LinkProps {
