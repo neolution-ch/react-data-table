@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- the style 'white-space:no-wrap' to default 'ActionCell' to have icons on the same line
+
 ## [2.3.1] - 2023-03-07
 
 ### Changed:
