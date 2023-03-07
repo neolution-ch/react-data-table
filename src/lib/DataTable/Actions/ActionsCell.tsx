@@ -14,7 +14,7 @@ interface ActionsCellProps<T, TRouteName> {
 const ActionsCell = <T, TRouteName>({ actions, collapsed, setCollapsed, keyValue, record }: ActionsCellProps<T, TRouteName>) => (
   <>
     {actions && (
-            <th scope="row" className={actions.className} style={{ whiteSpace: "nowrap", ...actions.style }}>
+      <th scope="row" className={actions.className} style={{ whiteSpace: "nowrap", ...actions.style }}>
         {actions.collapse && (
           <FontAwesomeIcon
             icon={collapsed ? faPlus : faMinus}
