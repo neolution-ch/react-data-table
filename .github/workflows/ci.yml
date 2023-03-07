@@ -11,9 +11,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  contents: write
-  checks: write
+permissions: write-all
 
 jobs:
   depandabot-modify-changelog:
@@ -54,13 +52,6 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          # check if PR is coming from dependabot
-          if [ "${{ github.actor }}" == "dependabot[bot]" ]; then
-            echo "This action is not needed for dependabot PRs"
-            exit 0
-          fi
-
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -71,6 +62,11 @@ jobs:
 
       - name: Check if changelog was touched
         run: |
+          if [ "${{ github.actor }}" == "dependabot[bot]" ]; then
+            echo "changelog is not needed for dependabot PRs"
+            exit 0
+          fi
+
           changelogFound=$(echo ${{ steps.changed-files.outputs.all_changed_files }} | grep -ow "CHANGELOG.md" | wc -w)
           if [ $changelogFound -eq 0 ]; then
             echo '### :boom: Please update the changelog accordingly (https://keepachangelog.com)' >> $GITHUB_STEP_SUMMARY
