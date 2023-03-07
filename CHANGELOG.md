@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed:
+
+- depandabot: Bump ejs from 3.1.6 to 3.1.8
+
 ## [2.3.0] - 2023-03-06
 
 ### Added
