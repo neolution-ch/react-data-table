@@ -1,4 +1,4 @@
-name: Modify Changelog
+name: Depandabot Modify Changelog
 
 on:
   pull_request:
