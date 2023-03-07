@@ -1,8 +1,8 @@
 {
   "name": "@neolution-ch/react-data-table",
   "version": "2.3.0",
-  "homepage": "https://neolution-ch.github.io/react-data-table",
   "description": "A small and clean data-table with a lot of integrated functions",
+  "homepage": "https://neolution-ch.github.io/react-data-table",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neolution-ch/react-data-table"
@@ -17,19 +17,20 @@
   ],
   "scripts": {
     "build": "shx rm -rf dist && microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx --no-compress --tsconfig ./tsconfig.microbundle.json",
+    "build-storybook": "build-storybook",
     "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
     "prepack": "yarn build",
+    "prepare-pr": "yarn prettier . --write && yarn lint && yarn build && yarn test\"",
     "prettier-check": "prettier --check .",
     "prettier-write": "prettier --write .",
-    "prepare-pr": "yarn prettier . --write && yarn lint && yarn build && yarn test\"",
     "start": "microbundle watch --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx --no-compress --tsconfig ./tsconfig.microbundle.json",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
-    "test": "cross-env DEBUG_PRINT_LIMIT=100 jest",
-    "tsc": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "cross-env DEBUG_PRINT_LIMIT=100 jest",
+    "tsc": "tsc"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -86,5 +87,8 @@
   "engines": {
     "node": ">=14"
   },
-  "dependencies": {}
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }
