@@ -11,10 +11,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+  checks: write
+
 jobs:
   depandabot-modify-changelog:
-    permissions:
-      contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
@@ -49,9 +51,16 @@ jobs:
           git push
 
   check-changelog:
-    if: github.event.pull_request.draft == false && github.actor != 'dependabot[bot]'
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          # check if PR is coming from dependabot
+          if [ "${{ github.actor }}" == "dependabot[bot]" ]; then
+            echo "This action is not needed for dependabot PRs"
+            exit 0
+          fi
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
