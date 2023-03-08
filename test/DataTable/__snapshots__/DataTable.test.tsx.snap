@@ -116,6 +116,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -139,6 +140,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -162,6 +164,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -185,6 +188,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -208,6 +212,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -231,6 +236,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -254,6 +260,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -277,6 +284,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -300,6 +308,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -323,6 +332,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -346,6 +356,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -369,6 +380,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -392,6 +404,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -415,6 +428,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -438,6 +452,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -461,6 +476,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -484,6 +500,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -507,6 +524,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -530,6 +548,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
@@ -553,6 +572,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
     <tr>
       <th
         scope="row"
+        style="white-space: nowrap;"
       >
         <i
           class="fa undefined"
