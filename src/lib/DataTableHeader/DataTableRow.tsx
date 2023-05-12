@@ -51,14 +51,12 @@ export function DataTableRow<T, TRouteNames>({
     };
 
     if (rowHighlight) {
-      console.log(typeof rowObjectT[rowHighlight.compareField], rowObjectT[rowHighlight.compareField], rowObjectT);
       let selectedValue: number | Date | undefined;
       if (typeof rowObjectT[rowHighlight.compareField] == "number") {
         selectedValue = rowObjectT[rowHighlight.compareField] as unknown as number;
       } else if (typeof rowObjectT[rowHighlight.compareField] == "string") {
         selectedValue = new Date(rowObjectT[rowHighlight.compareField] as unknown as string);
       }
-      console.log("selected", selectedValue, rowHighlight.compareValue);
       if (selectedValue != null) {
         if (typeof selectedValue == "number" || !isNaN(selectedValue?.getDate())) {
           if (operator_table[rowHighlight.operation](selectedValue, rowHighlight.compareValue)) {
