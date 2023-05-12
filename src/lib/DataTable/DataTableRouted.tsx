@@ -33,6 +33,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   tableStyle,
   asc = true,
   orderBy,
+  highlight,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -171,6 +172,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 actions={actions}
                 key={getDeepValue(record, keyField)}
                 rowStyle={rowStyle}
+                highlight={ highlight }
                 actionsPosition={actionsPosition}
               />
             ))
