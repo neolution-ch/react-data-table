@@ -25,7 +25,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
   possiblePageItemCounts,
   predefinedItemsPerPage,
   rowStyle,
-  highlight,
+  rowHighlight,
   showPaging = false,
   tableTitle,
   hideIfEmpty = false,
@@ -46,7 +46,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
         possiblePageItemCounts={possiblePageItemCounts}
         predefinedItemsPerPage={predefinedItemsPerPage}
         rowStyle={rowStyle}
-        highlight={highlight}
+        rowHighlight={rowHighlight}
         showPaging={showPaging}
         tableClassName={tableClassName}
         tableStyle={tableStyle}
@@ -64,7 +64,7 @@ export function DataTableStatic<T>({
   possiblePageItemCounts,
   predefinedItemsPerPage,
   rowStyle,
-  highlight,
+  rowHighlight,
   showPaging = false,
   tableTitle,
   hideIfEmpty = false,
@@ -85,7 +85,7 @@ export function DataTableStatic<T>({
         possiblePageItemCounts={possiblePageItemCounts}
         predefinedItemsPerPage={predefinedItemsPerPage}
         rowStyle={rowStyle}
-        highlight={highlight}
+        rowHighlight={rowHighlight}
         showPaging={showPaging}
         tableClassName={tableClassName}
         tableStyle={tableStyle}
@@ -105,7 +105,7 @@ export function DataTable<T, TFilter>({
   predefinedItemsPerPage,
   query,
   rowStyle,
-  highlight,
+  rowHighlight,
   showPaging = true,
   predefinedFilter = undefined,
   handlers,
@@ -126,7 +126,7 @@ export function DataTable<T, TFilter>({
       possiblePageItemCounts={possiblePageItemCounts}
       predefinedItemsPerPage={predefinedItemsPerPage}
       rowStyle={rowStyle}
-      highlight={highlight}
+      rowHighlight={rowHighlight}
       showPaging={showPaging}
       predefinedFilter={predefinedFilter}
       handlers={handlers}

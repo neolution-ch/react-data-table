@@ -5,9 +5,9 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
-export interface HighlightInterface {
-  compareField: string;
-  operation: string;
+export interface RowHighlightInterface<T> {
+  compareField: Extract<keyof T, string>;
+  operation: "<" | ">" | "==" | "!=";
   compareValue: number | Date;
   customStyle?: CSSProperties;
 }
@@ -16,7 +16,7 @@ export interface CommonDataTableProps<T> {
   rowStyle?: RowStyleType<T>;
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
-  highlight?: HighlightInterface;
+  rowHighlight?: RowHighlightInterface<T>;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {

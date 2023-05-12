@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import React, { CSSProperties, useState } from "react";
 import { DateHandler } from "@neolution-ch/react-pattern-ui";
-import { DataTableColumnDescription, DataTableRoutedActions, HighlightInterface , RowStyleType } from "../DataTable/DataTableInterfaces";
+import { DataTableColumnDescription, DataTableRoutedActions, RowHighlightInterface, RowStyleType } from "../DataTable/DataTableInterfaces";
 import { getDeepValue } from "../Utils/DeepValue";
 import { ActionsCell } from "../DataTable/Actions/ActionsCell";
 import { ActionsPosition } from "../DataTable/DataTableTypes";
@@ -12,7 +12,7 @@ interface DataTableRowProps<T, TRouteNames> {
   columns: DataTableColumnDescription<T>[];
   actions?: DataTableRoutedActions<T, TRouteNames>;
   rowStyle?: RowStyleType<T>;
-  highlight?: HighlightInterface;
+  rowHighlight?: RowHighlightInterface<T>;
   actionsPosition?: ActionsPosition;
 }
 
@@ -23,32 +23,43 @@ export function DataTableRow<T, TRouteNames>({
   columns,
   actions,
   rowStyle,
-  highlight,
+  rowHighlight,
   actionsPosition,
 }: DataTableRowProps<T, TRouteNames>) {
   const keyValue = getDeepValue(record, keyField);
   const [collapsed, setCollapsed] = useState(true);
 
   var operator_table = {
-    ">": function (a: number | Date, b: number | Date) { return a > b; },
-    "<": function (a: number | Date, b: number | Date) { return a < b; },
-    "==": function (a: number | Date, b: number | Date) { return a == b; },
-    "!=": function (a: number | Date, b: number | Date) { return a != b; },
+    ">": function (a: number | Date, b: number | Date) {
+      return a > b;
+    },
+    "<": function (a: number | Date, b: number | Date) {
+      return a < b;
+    },
+    "==": function (a: number | Date, b: number | Date) {
+      return a == b;
+    },
+    "!=": function (a: number | Date, b: number | Date) {
+      return a != b;
+    },
   };
 
-  function setStyle(
-    rowObjectT: T,
-    highlight?: HighlightInterface,
-  ): CSSProperties | undefined
-  {
+  function setStyle(rowObjectT: T, rowHighlight?: RowHighlightInterface<T>): CSSProperties | undefined {
     const defaultStyle: CSSProperties = {
-      backgroundColor: "rgba(255,0,0,0.5)",
+      backgroundColor: "rgba(255,0,0,0.7)",
+      color: "white",
     };
-    if (highlight) {
-      if (typeof rowObjectT[highlight.compareField] === typeof highlight.compareValue) {
-        if (operator_table[highlight.operation](rowObjectT[highlight.compareField], highlight.compareValue)) {
-          return highlight.customStyle ?? defaultStyle;
-        }
+
+    if (rowHighlight) {
+      console.log(typeof rowObjectT[rowHighlight.compareField], rowObjectT[rowHighlight.compareField], rowObjectT);
+      let selectedValue: number | Date | undefined;
+      if (typeof rowObjectT[rowHighlight.compareField] == "number") {
+        selectedValue = rowObjectT[rowHighlight.compareField] as unknown as number;
+      } else if (typeof rowObjectT[rowHighlight.compareField] == "string") {
+        selectedValue = new Date(rowObjectT[rowHighlight.compareField] as unknown as string);
+      }
+      if (selectedValue) {
+        return operator_table[rowHighlight.operation](selectedValue, rowHighlight.compareValue) ? rowHighlight.customStyle : defaultStyle;
       }
     }
     return undefined;
@@ -56,7 +67,7 @@ export function DataTableRow<T, TRouteNames>({
 
   return (
     <React.Fragment>
-      <tr key={`${keyValue}_row`} style={{ ...rowStyle ? rowStyle(keyValue, record) : undefined, ...setStyle(record, highlight) }}>
+      <tr key={`${keyValue}_row`} style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined) }}>
         {actionsPosition === ActionsPosition.Left && (
           <ActionsCell collapsed={collapsed} setCollapsed={setCollapsed} actions={actions} keyValue={keyValue} record={record} />
         )}
@@ -69,23 +80,22 @@ export function DataTableRow<T, TRouteNames>({
             column.cellStyle instanceof Function
               ? column.cellStyle({ key: keyValue, row: record, value: deepValue })
               : column.cellStyle ?? undefined;
-
           if (column.enumValues && !Number.isNaN(deepValueInt) && column.enumValues.filter((c) => c.value === deepValueInt).length > 0)
             return (
-              <td key={key} style={style}>
+              <td key={key} style={{...setStyle(record, rowHighlight), ...style }}>
                 {column.enumValues.filter((c) => c.value === deepValueInt)[0].text}
               </td>
             );
 
           if (column.formatter)
             return (
-              <td key={key} style={style}>
+              <td key={key} style={{...setStyle(record, rowHighlight), ...style }}>
                 {column.formatter({ key: keyValue, row: record, value: deepValue })}
               </td>
             );
 
           return (
-            <td key={key} style={style}>
+            <td key={key} style={{...setStyle(record, rowHighlight), ...style }}>
               {column.dateTimeFormat ? DateHandler.getDateFormattedWithDefault(deepValue, column.dateTimeFormat, "-") : deepValue}
             </td>
           );
@@ -101,7 +111,7 @@ export function DataTableRow<T, TRouteNames>({
           <DataTableRow
             key={`${keyValue}_subrow_${getDeepValue(subRow, keyField)}`}
             keyField={keyField}
-            highlight={highlight}
+            rowHighlight={rowHighlight}
             columns={actions?.collapse?.columns || columns}
             record={subRow}
             actionsPosition={actionsPosition}

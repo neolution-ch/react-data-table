@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- the prop `rowHighlight` to all tables. Check `RowHighlightInterface` for prop definition. Set condition for which a row should be highlighted. Possibility to set custom style for highlights
+
 ## [2.3.2] - 2023-03-08
 
 ### Added
