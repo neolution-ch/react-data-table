@@ -82,20 +82,20 @@ export function DataTableRow<T, TRouteNames>({
               : column.cellStyle ?? undefined;
           if (column.enumValues && !Number.isNaN(deepValueInt) && column.enumValues.filter((c) => c.value === deepValueInt).length > 0)
             return (
-              <td key={key} style={{...setStyle(record, rowHighlight), ...style }}>
+              <td key={key} style={{ ...setStyle(record, rowHighlight), ...style }}>
                 {column.enumValues.filter((c) => c.value === deepValueInt)[0].text}
               </td>
             );
 
           if (column.formatter)
             return (
-              <td key={key} style={{...setStyle(record, rowHighlight), ...style }}>
+              <td key={key} style={{ ...setStyle(record, rowHighlight), ...style }}>
                 {column.formatter({ key: keyValue, row: record, value: deepValue })}
               </td>
             );
 
           return (
-            <td key={key} style={{...setStyle(record, rowHighlight), ...style }}>
+            <td key={key} style={{ ...setStyle(record, rowHighlight), ...style }}>
               {column.dateTimeFormat ? DateHandler.getDateFormattedWithDefault(deepValue, column.dateTimeFormat, "-") : deepValue}
             </td>
           );
