@@ -58,8 +58,13 @@ export function DataTableRow<T, TRouteNames>({
       } else if (typeof rowObjectT[rowHighlight.compareField] == "string") {
         selectedValue = new Date(rowObjectT[rowHighlight.compareField] as unknown as string);
       }
-      if (selectedValue) {
-        return operator_table[rowHighlight.operation](selectedValue, rowHighlight.compareValue) ? rowHighlight.customStyle : defaultStyle;
+      console.log("selected", selectedValue, rowHighlight.compareValue);
+      if (selectedValue != null) {
+        if (typeof selectedValue == "number" || !isNaN(selectedValue?.getDate())) {
+          if (operator_table[rowHighlight.operation](selectedValue, rowHighlight.compareValue)) {
+            return rowHighlight.customStyle ? rowHighlight.customStyle : defaultStyle;
+          }
+        }
       }
     }
     return undefined;
