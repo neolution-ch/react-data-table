@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2
+
 ## [2.4.0] - 2023-05-17
 
 ### Added
