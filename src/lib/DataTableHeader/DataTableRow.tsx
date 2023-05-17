@@ -70,7 +70,7 @@ export function DataTableRow<T, TRouteNames>({
     }
 
     if (operator_table[rowHighlight.operation](selectedValue, rowHighlight.compareValue)) {
-      return rowHighlight.customStyle ? rowHighlight.customStyle : defaultStyle;
+      return rowHighlight.customStyle ?? defaultStyle;
     }
 
     return undefined;
