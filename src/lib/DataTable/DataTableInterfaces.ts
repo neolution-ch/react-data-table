@@ -1,13 +1,22 @@
-/* eslint max-lines: ["error", 250]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
+/* eslint max-lines: ["error", 260]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
+import { CSSProperties } from "react";
 import { ActionsPosition, CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
+export interface RowHighlightInterface<T> {
+  compareField: Extract<keyof T, string>;
+  operation: "<" | ">" | "==" | "!=";
+  compareValue: number | Date;
+  customStyle?: CSSProperties;
+}
+
 export interface CommonDataTableProps<T> {
   rowStyle?: RowStyleType<T>;
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
+  rowHighlight?: RowHighlightInterface<T>;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {
