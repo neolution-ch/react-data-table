@@ -1,4 +1,4 @@
-/* eslint max-lines: ["error", 230]  */ // Increased max-lines required due to new implementations.
+/* eslint max-lines: ["error", 240]  */ // Increased max-lines required due to new implementations.
 /* eslint-disable complexity */
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +14,8 @@ import { DataTableFilterRow } from "../DataTableFilterRow/DataTableFilterRow";
 import { DataTableRow } from "../DataTableHeader/DataTableRow";
 import { dataTableTranslations } from "./DataTable";
 import { ActionsHeaderTitleCell } from "./Actions/ActionsHeaderTitleCell";
+import { DndProvider } from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend"
 
 export function DataTableRouted<T, TFilter, TRouteNames>({
   keyField,
@@ -34,6 +36,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   asc = true,
   orderBy,
   rowHighlight,
+  useDragAndDrop,
+  moveRow,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -41,7 +45,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     filter: predefinedFilter ?? {},
     itemsPerPage: predefinedItemsPerPage ?? 25,
   });
-  const [orderState, setOrderState] = useState<OrderOption>({ orderBy: orderBy ?? columns[0].dataField, asc });
+  const [orderState, setOrderState] = useState<OrderOption>({ orderBy: orderBy ?? undefined, asc });
   const filterRefs = useRef<Filters>({});
 
   function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
@@ -124,66 +128,77 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     });
   }
 
+  
   useDidMountEffect(() => {
     loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc);
   }, [filterState, orderState]);
 
   return (
     <React.Fragment>
-      <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
-        <thead>
-          <tr>
-            {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
-            {columns.map((column) =>
-              column.sortable === true ? (
-                <th
-                  key={column.dataField}
-                  style={{ cursor: "pointer", ...column.headerStyle }}
-                  onClick={() => onOrder(column.sortField ?? column.dataField)}
-                >
-                  {column.text} {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
-                </th>
-              ) : (
-                <th style={column.headerStyle} key={column.dataField}>
-                  {column.text}
-                </th>
-              ),
-            )}
-            {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
-          </tr>
-          <DataTableFilterRow
-            actions={actions}
-            columns={columns}
-            onSearch={onSearch}
-            filterPossible={!!(query || client)}
-            getFilterRefs={getFilterRefs}
-            setFilterRef={setFilterRef}
-            translations={dataTableTranslations}
-            actionsPosition={actionsPosition}
-          />
-        </thead>
-        <tbody>
-          {queryResult && queryResult.records && queryResult.totalRecords && queryResult.totalRecords > 0 ? (
-            queryResult.records.map((record) => (
-              <DataTableRow
-                record={record}
-                columns={columns}
-                keyField={keyField}
-                actions={actions}
-                key={getDeepValue(record, keyField)}
-                rowStyle={rowStyle}
-                rowHighlight={rowHighlight}
-                actionsPosition={actionsPosition}
-              />
-            ))
-          ) : (
+      <DndProvider backend={HTML5Backend}>
+        <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
+          <thead>
             <tr>
-              <td colSpan={columns.length + (actions ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
+              {useDragAndDrop && (
+                <th>
+                </th> 
+              )}
+              {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
+              {columns.map((column) =>
+                column.sortable === true ? (
+                  <th
+                    key={column.dataField}
+                    style={{ cursor: "pointer", ...column.headerStyle }}
+                    onClick={() => onOrder(column.sortField ?? column.dataField)}
+                  >
+                    {column.text} {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
+                  </th>
+                ) : (
+                  <th style={column.headerStyle} key={column.dataField}>
+                    {column.text}
+                  </th>
+                ),
+              )}
+              {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
             </tr>
-          )}
-        </tbody>
-      </Table>
+            <DataTableFilterRow
+              actions={actions}
+              columns={columns}
+              onSearch={onSearch}
+              filterPossible={!!(query || client)}
+              getFilterRefs={getFilterRefs}
+              setFilterRef={setFilterRef}
+              translations={dataTableTranslations}
+              actionsPosition={actionsPosition}
+              useDragAndDrop
+            />
+          </thead>
+          <tbody>
+            {queryResult && queryResult.records && queryResult.totalRecords && queryResult.totalRecords > 0 ? (
+              queryResult.records.map((record, index) => (
+                <DataTableRow
+                  record={record}
+                  columns={columns}
+                  keyField={keyField}
+                  actions={actions}
+                  key={getDeepValue(record, keyField)}
+                  rowStyle={rowStyle}
+                  rowHighlight={rowHighlight}
+                  actionsPosition={actionsPosition}
+                  moveRow={moveRow}
+                  id={index}
+                  useDragAndDrop={useDragAndDrop}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={columns.length + (actions ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
 
+      
       {showPaging && (
         <Paging
           currentItemsPerPage={filterState.itemsPerPage}
@@ -196,7 +211,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
           translations={dataTableTranslations}
           pagingPossible={!!(query || client)}
         />
-      )}
+        )}
+        </DndProvider>
     </React.Fragment>
   );
 }
