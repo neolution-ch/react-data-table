@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2
+
+## [2.4.0] - 2023-05-17
+
 ### Added
 
 - the prop `rowHighlight` to all tables. Check `RowHighlightInterface` for prop definition. Set condition for which a row should be highlighted. Possibility to set custom style for highlights
@@ -86,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.3.2...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.4.0...HEAD
+[2.4.0]: https://github.com/neolution-ch/react-data-table/compare/2.3.2...2.4.0
 [2.3.2]: https://github.com/neolution-ch/react-data-table/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/neolution-ch/react-data-table/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/neolution-ch/react-data-table/compare/2.2.0...2.3.0
