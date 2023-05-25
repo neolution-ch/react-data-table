@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2
 
+## [2.4.1] - 2023-05-25
+
+### Added
+
+- the prop `enablePredefinedSort` to all tables. Set boolean condition for which the orderBy option should be ignored. Set as `false` by default if not specified.
+
 ## [2.4.0] - 2023-05-17
 
 ### Added
