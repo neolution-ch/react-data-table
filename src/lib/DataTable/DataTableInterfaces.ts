@@ -17,6 +17,7 @@ export interface CommonDataTableProps<T> {
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
   rowHighlight?: RowHighlightInterface<T>;
+  enablePredefinedSort?: boolean;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {
