@@ -37,7 +37,7 @@ const ActionsCell = <T, TRouteName>({ actions, collapsed, setCollapsed, keyValue
             onDelete={() => actions?.delete?.action({ key: keyValue, cell: record })}
           />
         )}
-        {actions.others && actions.others.map((action) => action.formatter({ key: keyValue, row: record }))}
+        {actions.others && (actions.others.map((action, idx) => action.formatter({ key: `${keyValue}_${idx}`, row: record })))}
       </th>
     )}
   </>

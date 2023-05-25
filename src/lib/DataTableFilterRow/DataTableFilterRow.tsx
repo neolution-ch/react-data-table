@@ -10,7 +10,6 @@ interface DataTableFilterRowProps<T> {
   actionsPosition?: ActionsPosition;
   translations: FilterTranslations;
   filterPossible: boolean;
-  useDragAndDrop?: boolean;
   getFilterRefs(): Filters;
   setFilterRef(filterName: string, ref: HTMLInputElement): void;
   onSearch(): void;
@@ -22,7 +21,6 @@ export function DataTableFilterRow<T>({
   actionsPosition,
   filterPossible = true,
   translations,
-  useDragAndDrop,
   getFilterRefs,
   setFilterRef,
   onSearch,
@@ -30,10 +28,6 @@ export function DataTableFilterRow<T>({
   if (!filterPossible || columns.filter((column) => column.filter).length <= 0) return <React.Fragment />;
   return (
     <tr>
-      {useDragAndDrop && (
-        <th key="drag">
-        </th> 
-      )}
       {actionsPosition == ActionsPosition.Left && (
         <ActionsHeaderFilterCell<T> onSearch={onSearch} translations={translations} actions={actions} getFilterRefs={getFilterRefs} />
       )}

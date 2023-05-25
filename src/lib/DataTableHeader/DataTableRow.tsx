@@ -94,9 +94,10 @@ export function DataTableRow<T, TRouteNames>({
   const dropRef = useRef<any>(null)
   const dragRef = useRef<any>(null)
   let opacity = 1;
+  let hId: string | symbol | null = null;
 
-
-    const [{ handlerId }, drop] = useDrop<DragItem, void,{ handlerId: string | symbol | null }>({
+  if (useDragAndDrop) {
+    const [{ handlerId }, drop] = useDrop<DragItem, void, { handlerId: string | symbol | null }>({
       accept: "draggableItem",
       collect(monitor) {
         return {
@@ -130,7 +131,7 @@ export function DataTableRow<T, TRouteNames>({
     const [{ isDragging }, drag, preview] = useDrag({
       type: "draggableItem",
       item: () => {
-        const dragItem = { id, index:id };
+        const dragItem = { id, index: id };
         return dragItem;
       },
       collect: (monitor: DragSourceMonitor<DragItem, void>) => ({
@@ -138,16 +139,19 @@ export function DataTableRow<T, TRouteNames>({
       }),
     });
 
-    opacity = isDragging ? 0 : 1
+    opacity = isDragging ? 0 : 1;
+    hId = handlerId;
 
     preview(drop(dropRef))
     drag(dragRef)
-  
+  }
+
+  console.log("Oltre l'if")
   
 
   return (
     <React.Fragment>
-      <tr key={`${keyValue}_row`} data-handler-id={handlerId} ref={dropRef} style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined), opacity }}>
+      <tr key={`${keyValue}_row`} data-handler-id={hId} ref={dropRef} style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined), opacity }}>
         {useDragAndDrop && (
           <td ref={dragRef}>
             <FontAwesomeIcon icon={faBars} style={{ cursor: "move"}} />

@@ -1,8 +1,8 @@
 /* eslint-disable complexity */
-import React, { useState } from "react";
-import { DataTableProps, DataTableStaticRoutedProps, DataTableStaticProps, DataTableTranslations, TableQueryResult } from "./DataTableInterfaces";
+import React from "react";
+import { DataTableProps, DataTableStaticRoutedProps, DataTableStaticProps, DataTableTranslations } from "./DataTableInterfaces";
 import { DataTableRouted } from "./DataTableRouted";
-import update from "immutability-helper";
+// import update from "immutability-helper";
 
 export let dataTableTranslations: DataTableTranslations = {
   actionTitle: "Aktionen",
@@ -33,7 +33,6 @@ export function DataTableStaticRouted<T, TRouteNames>({
   hideIfEmpty = false,
   tableClassName,
   tableStyle,
-  moveRow
 }: DataTableStaticRoutedProps<T, TRouteNames>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -54,7 +53,6 @@ export function DataTableStaticRouted<T, TRouteNames>({
         tableClassName={tableClassName}
         tableStyle={tableStyle}
         useDragAndDrop={useDragAndDrop}
-        moveRow={moveRow}
       />
     </React.Fragment>
   );
@@ -76,7 +74,6 @@ export function DataTableStatic<T>({
   hideIfEmpty = false,
   tableClassName,
   tableStyle,
-  moveRow
 }: DataTableStaticProps<T>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -97,7 +94,6 @@ export function DataTableStatic<T>({
         tableClassName={tableClassName}
         tableStyle={tableStyle}
         useDragAndDrop={useDragAndDrop}
-        moveRow={moveRow}
       />
     </React.Fragment>
   );
@@ -124,33 +120,35 @@ export function DataTable<T, TFilter>({
   orderBy,
   useDragAndDrop = false,
 }: DataTableProps<T, TFilter>) {
-  const [records, setRecords] = useState<TableQueryResult<T>>(data);
+  // const [records, setRecords] = useState<TableQueryResult<T>>(data);
   
   if (useDragAndDrop) {
     columns.forEach(x => x.sortable = false);    
   }
 
 
-  const moveRow = (dragIndex: number, hoverIndex: number): void => {
-    const tableRecords = records.records;
-    if (!tableRecords) {
-      throw new Error("Ciao");
-    }
-      update(tableRecords, {
-        $splice: 
-          [
-          [dragIndex, 1],
-          [hoverIndex, 0, tableRecords[dragIndex] as T],
-        ]
-      },
-    )
-    setRecords({ ...records, records: tableRecords });
-  }
+  // const moveRow = (dragIndex: number, hoverIndex: number): void => {
+  //   const tableRecords = records.records;
+  //   if (!tableRecords) {
+  //     throw new Error("Ciao");
+  //   }
+  //   const updatedTableRecords = update(tableRecords, {
+  //       $splice: 
+  //         [
+  //         [dragIndex, 1],
+  //         [hoverIndex, 0, tableRecords[dragIndex] as T],
+  //       ]
+  //     },
+  //   )
+  //   console.log()
+  //   setRecords({ ...records, records: updatedTableRecords });
+  // }
 
   return (
     <DataTableRouted<T, TFilter, T>
       keyField={keyField}
-      data={records}
+      data={data}
+      // data={records}
       columns={columns}
       client={client}
       query={query}
@@ -168,7 +166,7 @@ export function DataTable<T, TFilter>({
       asc={asc}
       orderBy={orderBy}
       useDragAndDrop={useDragAndDrop}
-      moveRow={moveRow}
+      // moveRow={moveRow}
     />
   );
 }
