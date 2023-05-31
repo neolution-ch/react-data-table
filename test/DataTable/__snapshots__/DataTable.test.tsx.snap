@@ -84,7 +84,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
       </th>
       <th>
         <select
-          class="form-control-sm form-control"
+          class="form-select-sm form-select"
         >
           <option
             value="null"

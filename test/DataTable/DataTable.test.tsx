@@ -2,6 +2,7 @@
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React, { CSSProperties } from "react";
+import ReactDOM from "react-dom/client";
 import { DataTable, DataTableStatic } from "src/lib/DataTable/DataTable";
 import { DataTableColumnDescription, TableQueryResult, DataTableActions } from "src/lib/DataTable/DataTableInterfaces";
 import { ColumnFilterType, ListSortDirection } from "src/lib/DataTable/DataTableTypes";
