@@ -36,7 +36,7 @@ export default [
     output: {
       file: "dist/index.js",
       format: "cjs",
-      name: "ReactHookFormComponents",
+      name: "ReactDataTable",
       sourcemap: true,
       globals: { react: "React" },
       exports: "named",
@@ -50,7 +50,7 @@ export default [
     output: {
       file: "dist/index.modern.js",
       format: "esm",
-      name: "ReactHookFormComponents",
+      name: "ReactDataTable",
       sourcemap: true,
       globals: { react: "React" },
       exports: "named",
@@ -63,7 +63,7 @@ export default [
     output: {
       file: "dist/index.umd.js",
       format: "umd",
-      name: "ReactHookFormComponents",
+      name: "ReactDataTable",
       sourcemap: true,
       globals: { react: "React" },
       exports: "named",
