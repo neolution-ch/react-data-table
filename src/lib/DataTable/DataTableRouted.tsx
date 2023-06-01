@@ -50,7 +50,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   });
 
   const [orderState, setOrderState] = useState<OrderOption>({
-    orderBy: orderBy ?? (enablePredefinedSort || useDragAndDrop) ? undefined : columns[0].dataField),
+    orderBy: orderBy ?? (enablePredefinedSort || useDragAndDrop ? undefined : columns[0].dataField),
     asc,
   });
 
