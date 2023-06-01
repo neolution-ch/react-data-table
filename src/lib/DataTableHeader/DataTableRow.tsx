@@ -169,7 +169,7 @@ export function DataTableRow<T, TRouteNames>({
         style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined), opacity }}
       >
         {useDragAndDrop && (
-          <td ref={dragRef}>
+          <td style={{ width: "2%" }} ref={dragRef}>
             <FontAwesomeIcon icon={faBars} style={{ cursor: "move" }} />
           </td>
         )}

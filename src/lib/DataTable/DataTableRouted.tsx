@@ -179,7 +179,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
         <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
           <thead>
             <tr>
-              {useDragAndDrop && <th></th>}
+              {useDragAndDrop && <th style={{ width: "2%" }}></th>}
               {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
               {columns.map((column) =>
                 column.sortable === true ? (
@@ -233,8 +233,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 />
               ))
             ) : (
-                <tr>
-                  <td colSpan={columns.length + (actions ? 1 : 0) + (useDragAndDrop ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
+              <tr>
+                <td colSpan={columns.length + (actions ? 1 : 0) + (useDragAndDrop ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
               </tr>
             )}
           </tbody>
