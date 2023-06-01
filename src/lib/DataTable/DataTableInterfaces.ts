@@ -1,9 +1,14 @@
-/* eslint max-lines: ["error", 260]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
+/* eslint max-lines: ["error", 270]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { CSSProperties } from "react";
 import { ActionsPosition, CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
+
+export interface DndOut {
+  index: number | null;
+  keyValue: any | null;
+}
 
 export interface RowHighlightInterface<T> {
   compareField: Extract<keyof T, string>;
@@ -17,6 +22,8 @@ export interface CommonDataTableProps<T> {
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
   rowHighlight?: RowHighlightInterface<T>;
+  useDragAndDrop?: boolean;
+  onDrag?(startOut: DndOut, finalOut: DndOut): void;
   enablePredefinedSort?: boolean;
 }
 
@@ -38,6 +45,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   handlers?: DataTableHandlers;
   asc?: boolean;
   orderBy?: Extract<keyof T, string>;
+  // moveRow: (dragIndex: number, hoverIndex: number) => void;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {

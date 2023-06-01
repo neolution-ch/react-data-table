@@ -2,6 +2,7 @@
 import React from "react";
 import { DataTableProps, DataTableStaticRoutedProps, DataTableStaticProps, DataTableTranslations } from "./DataTableInterfaces";
 import { DataTableRouted } from "./DataTableRouted";
+// import update from "immutability-helper";
 
 export let dataTableTranslations: DataTableTranslations = {
   actionTitle: "Aktionen",
@@ -26,6 +27,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
   predefinedItemsPerPage,
   rowStyle,
   rowHighlight,
+  useDragAndDrop = false,
   showPaging = false,
   tableTitle,
   hideIfEmpty = false,
@@ -51,6 +53,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
         showPaging={showPaging}
         tableClassName={tableClassName}
         tableStyle={tableStyle}
+        useDragAndDrop={useDragAndDrop}
         enablePredefinedSort={enablePredefinedSort}
       />
     </React.Fragment>
@@ -67,6 +70,7 @@ export function DataTableStatic<T>({
   predefinedItemsPerPage,
   rowStyle,
   rowHighlight,
+  useDragAndDrop = false,
   showPaging = false,
   tableTitle,
   hideIfEmpty = false,
@@ -92,6 +96,7 @@ export function DataTableStatic<T>({
         showPaging={showPaging}
         tableClassName={tableClassName}
         tableStyle={tableStyle}
+        useDragAndDrop={useDragAndDrop}
         enablePredefinedSort={enablePredefinedSort}
       />
     </React.Fragment>
@@ -117,6 +122,8 @@ export function DataTable<T, TFilter>({
   tableStyle,
   asc,
   orderBy,
+  useDragAndDrop = false,
+  onDrag,
   enablePredefinedSort = false,
 }: DataTableProps<T, TFilter>) {
   return (
@@ -139,6 +146,8 @@ export function DataTable<T, TFilter>({
       tableStyle={tableStyle}
       asc={asc}
       orderBy={orderBy}
+      useDragAndDrop={useDragAndDrop}
+      onDrag={onDrag}
       enablePredefinedSort={enablePredefinedSort}
     />
   );

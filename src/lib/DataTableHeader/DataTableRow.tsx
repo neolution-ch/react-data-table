@@ -1,19 +1,41 @@
+/* eslint-disable max-lines */
 /* eslint-disable complexity */
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, useRef, useState } from "react";
 import { DateHandler } from "@neolution-ch/react-pattern-ui";
-import { DataTableColumnDescription, DataTableRoutedActions, RowHighlightInterface, RowStyleType } from "../DataTable/DataTableInterfaces";
+import {
+  DataTableColumnDescription,
+  DataTableRoutedActions,
+  DndOut,
+  RowHighlightInterface,
+  RowStyleType,
+} from "../DataTable/DataTableInterfaces";
 import { getDeepValue } from "../Utils/DeepValue";
 import { ActionsCell } from "../DataTable/Actions/ActionsCell";
 import { ActionsPosition } from "../DataTable/DataTableTypes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { DragSourceMonitor, XYCoord, useDrag, useDrop } from "react-dnd";
+
+interface DragItem {
+  index: number;
+  id: string;
+  type: string;
+}
 
 interface DataTableRowProps<T, TRouteNames> {
   keyField: Extract<keyof T, string>;
   record: T;
   columns: DataTableColumnDescription<T>[];
+  moveRow: (dragIndex: number, hoverIndex: number) => void;
+  setNewOrder: (finalOut: DndOut) => void;
+  id: number;
   actions?: DataTableRoutedActions<T, TRouteNames>;
   rowStyle?: RowStyleType<T>;
   rowHighlight?: RowHighlightInterface<T>;
   actionsPosition?: ActionsPosition;
+  useDragAndDrop?: boolean;
+  setInitialOut(out: DndOut): void;
+  initialOut: DndOut | null;
 }
 
 // eslint-disable-next-line complexity
@@ -25,6 +47,12 @@ export function DataTableRow<T, TRouteNames>({
   rowStyle,
   rowHighlight,
   actionsPosition,
+  moveRow,
+  setNewOrder,
+  id,
+  useDragAndDrop,
+  setInitialOut,
+  initialOut,
 }: DataTableRowProps<T, TRouteNames>) {
   const keyValue = getDeepValue(record, keyField);
   const [collapsed, setCollapsed] = useState(true);
@@ -46,8 +74,7 @@ export function DataTableRow<T, TRouteNames>({
 
   function getStyle(rowObjectT: T, rowHighlight?: RowHighlightInterface<T>): CSSProperties | undefined {
     const defaultStyle: CSSProperties = {
-      backgroundColor: "rgba(255,0,0,0.7)",
-      color: "white",
+      color: "red",
     };
 
     if (!rowHighlight) {
@@ -76,9 +103,83 @@ export function DataTableRow<T, TRouteNames>({
     return undefined;
   }
 
+  const dropRef = useRef<any>(null);
+  const dragRef = useRef<any>(null);
+  let opacity = 1;
+  let hId: string | symbol | null = null;
+
+  if (useDragAndDrop) {
+    const [{ handlerId }, drop] = useDrop<DragItem, void, { handlerId: string | symbol | null }>({
+      accept: "draggableItem",
+      collect(monitor) {
+        return {
+          handlerId: monitor.getHandlerId(),
+        };
+      },
+      hover(item: DragItem, monitor) {
+        if (!dragRef.current) {
+          return;
+        }
+
+        const dragIndex = item.index;
+        const hoverIndex = id;
+        if (dragIndex === hoverIndex) {
+          return;
+        }
+        const hoverBoundingRect = dragRef.current?.getBoundingClientRect();
+        const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+        const clientOffset = monitor.getClientOffset();
+        const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
+        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+          return;
+        }
+        if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+          return;
+        }
+        if (initialOut?.index == null) {
+          setInitialOut({ index: item.index, keyValue: keyValue });
+        }
+        moveRow(dragIndex, hoverIndex);
+
+        item.index = hoverIndex;
+      },
+      drop() {
+        setNewOrder({ index: id, keyValue: keyValue });
+      },
+    });
+
+    const [{ isDragging }, drag, preview] = useDrag({
+      type: "draggableItem",
+      item: () => {
+        const dragItem = { id, index: id };
+        return dragItem;
+      },
+      collect: (monitor: DragSourceMonitor<DragItem, void>) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    });
+
+    opacity = isDragging ? 0 : 1;
+    hId = handlerId;
+
+    preview(drop(dropRef));
+    drag(dragRef);
+  }
+
   return (
     <React.Fragment>
-      <tr key={`${keyValue}_row`} style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined) }}>
+      <tr
+        key={`${keyValue}_row`}
+        data-handler-id={hId}
+        ref={dropRef}
+        style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined), opacity }}
+      >
+        {useDragAndDrop && (
+          <td style={{ width: "2%" }} ref={dragRef}>
+            <FontAwesomeIcon icon={faBars} style={{ cursor: "move" }} />
+          </td>
+        )}
+
         {actionsPosition === ActionsPosition.Left && (
           <ActionsCell collapsed={collapsed} setCollapsed={setCollapsed} actions={actions} keyValue={keyValue} record={record} />
         )}
@@ -119,7 +220,7 @@ export function DataTableRow<T, TRouteNames>({
       </tr>
       {!collapsed &&
         actions?.collapse?.getRows &&
-        actions?.collapse?.getRows(record).map((subRow) => (
+        actions?.collapse?.getRows(record).map((subRow, index) => (
           <DataTableRow
             key={`${keyValue}_subrow_${getDeepValue(subRow, keyField)}`}
             keyField={keyField}
@@ -134,6 +235,11 @@ export function DataTableRow<T, TRouteNames>({
                 },
               ],
             }}
+            moveRow={moveRow}
+            setNewOrder={setNewOrder}
+            id={index}
+            initialOut={initialOut}
+            setInitialOut={setInitialOut}
           />
         ))}
     </React.Fragment>
