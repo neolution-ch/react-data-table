@@ -2,7 +2,13 @@
 /* eslint-disable complexity */
 import React, { CSSProperties, useRef, useState } from "react";
 import { DateHandler } from "@neolution-ch/react-pattern-ui";
-import { DataTableColumnDescription, DataTableRoutedActions, RowHighlightInterface, RowStyleType } from "../DataTable/DataTableInterfaces";
+import {
+  DataTableColumnDescription,
+  DataTableRoutedActions,
+  DndOut,
+  RowHighlightInterface,
+  RowStyleType,
+} from "../DataTable/DataTableInterfaces";
 import { getDeepValue } from "../Utils/DeepValue";
 import { ActionsCell } from "../DataTable/Actions/ActionsCell";
 import { ActionsPosition } from "../DataTable/DataTableTypes";
@@ -21,15 +27,15 @@ interface DataTableRowProps<T, TRouteNames> {
   record: T;
   columns: DataTableColumnDescription<T>[];
   moveRow: (dragIndex: number, hoverIndex: number) => void;
-  setNewOrder: (id: number) => void;
+  setNewOrder: (finalOut: DndOut) => void;
   id: number;
   actions?: DataTableRoutedActions<T, TRouteNames>;
   rowStyle?: RowStyleType<T>;
   rowHighlight?: RowHighlightInterface<T>;
   actionsPosition?: ActionsPosition;
   useDragAndDrop?: boolean;
-  setInitialIndex(id: number | null): void;
-  initialIndex: number | null;
+  setInitialOut(out: DndOut): void;
+  initialOut: DndOut | null;
 }
 
 // eslint-disable-next-line complexity
@@ -45,8 +51,8 @@ export function DataTableRow<T, TRouteNames>({
   setNewOrder,
   id,
   useDragAndDrop,
-  setInitialIndex,
-  initialIndex,
+  setInitialOut,
+  initialOut,
 }: DataTableRowProps<T, TRouteNames>) {
   const keyValue = getDeepValue(record, keyField);
   const [collapsed, setCollapsed] = useState(true);
@@ -130,15 +136,15 @@ export function DataTableRow<T, TRouteNames>({
         if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
           return;
         }
-        if (initialIndex == null) {
-          setInitialIndex(item.index);
+        if (initialOut?.index == null) {
+          setInitialOut({ index: item.index, keyValue: keyValue });
         }
         moveRow(dragIndex, hoverIndex);
 
         item.index = hoverIndex;
       },
       drop() {
-        setNewOrder(id);
+        setNewOrder({ index: id, keyValue: keyValue });
       },
     });
 
@@ -232,8 +238,8 @@ export function DataTableRow<T, TRouteNames>({
             moveRow={moveRow}
             setNewOrder={setNewOrder}
             id={index}
-            initialIndex={initialIndex}
-            setInitialIndex={setInitialIndex}
+            initialOut={initialOut}
+            setInitialOut={setInitialOut}
           />
         ))}
     </React.Fragment>

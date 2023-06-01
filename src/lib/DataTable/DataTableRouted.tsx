@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Table } from "reactstrap";
-import { DataTableRoutedProps, FilterPageState, Filters, OrderOption, TableQueryResult } from "./DataTableInterfaces";
+import { DataTableRoutedProps, DndOut, FilterPageState, Filters, OrderOption, TableQueryResult } from "./DataTableInterfaces";
 import { setDeepValue, getDeepValue } from "../Utils/DeepValue";
 
 import { ColumnFilterType, ActionsPosition, ListSortDirection } from "./DataTableTypes";
@@ -157,18 +157,18 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     });
     setQueryResult({ ...queryResult, records: updatedTableRecords });
   };
-  const [initialIndex, setInitialIndex] = useState<number | null>(null);
+  const [initialOut, setInitialOut] = useState<DndOut>({ index: null, keyValue: null });
 
-  const setNewOrder = (finalIndex: number): void => {
+  const setNewOrder = (finalIndex: DndOut): void => {
     if (!useDragAndDrop || !queryResult.records) {
       return;
     }
 
-    if (onDrag && initialIndex !== null) {
-      const tmpInd = initialIndex;
-      setInitialIndex(null);
-      if (tmpInd !== finalIndex) {
-        onDrag(tmpInd, finalIndex);
+    if (onDrag && initialOut.index !== null) {
+      const tmpOut = initialOut;
+      setInitialOut({ index: null, keyValue: null });
+      if (tmpOut.index !== finalIndex.index) {
+        onDrag(tmpOut, finalIndex);
       }
     }
   };
@@ -228,8 +228,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                   setNewOrder={setNewOrder}
                   id={index}
                   useDragAndDrop={useDragAndDrop}
-                  initialIndex={initialIndex}
-                  setInitialIndex={setInitialIndex}
+                  initialOut={initialOut}
+                  setInitialOut={setInitialOut}
                 />
               ))
             ) : (
