@@ -24,6 +24,7 @@ export interface CommonDataTableProps<T> {
   rowHighlight?: RowHighlightInterface<T>;
   useDragAndDrop?: boolean;
   onDrag?(startOut: DndOut, finalOut: DndOut): void;
+  enablePredefinedSort?: boolean;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {

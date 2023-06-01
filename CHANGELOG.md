@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2023-05-25
+
 ### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2
 
 ## [2.5.0] - 2023-06-01
@@ -15,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - the prop `useDragAndDrop` to set whether or not use the dnd feature which disable sorting and filtering
 - the prop `onDrag` function that is fired when dropped the item in a different position. takes in input two DndOut, one for the dragged element and one for the element in which the dragged element is dropped
+
+## [2.4.1] - 2023-05-25
+
+### Added
+
+- the prop `enablePredefinedSort` to all tables. Set boolean condition for which the orderBy option should be ignored. Set as `false` by default if not specified.
+
 
 ## [2.4.0] - 2023-05-17
 
@@ -97,7 +106,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.4.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.5.0...HEAD
+[2.5.0]: https://github.com/neolution-ch/react-data-table/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/neolution-ch/react-data-table/compare/2.3.2...2.4.0
 [2.3.2]: https://github.com/neolution-ch/react-data-table/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/neolution-ch/react-data-table/compare/2.3.0...2.3.1

@@ -40,6 +40,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   rowHighlight,
   useDragAndDrop,
   onDrag,
+  enablePredefinedSort = false,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -48,7 +49,11 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     itemsPerPage: predefinedItemsPerPage ?? 25,
   });
 
-  const [orderState, setOrderState] = useState<OrderOption>({ orderBy: orderBy ?? undefined, asc });
+  const [orderState, setOrderState] = useState<OrderOption>({
+    orderBy: orderBy ?? (enablePredefinedSort || useDragAndDrop) ? undefined : columns[0].dataField),
+    asc,
+  });
+
   const filterRefs = useRef<Filters>({});
 
   if (useDragAndDrop) {
