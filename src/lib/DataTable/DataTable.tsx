@@ -119,36 +119,12 @@ export function DataTable<T, TFilter>({
   asc,
   orderBy,
   useDragAndDrop = false,
+  onDrag,
 }: DataTableProps<T, TFilter>) {
-  // const [records, setRecords] = useState<TableQueryResult<T>>(data);
-  
-  if (useDragAndDrop) {
-    columns.forEach(x => x.sortable = false);    
-  }
-
-
-  // const moveRow = (dragIndex: number, hoverIndex: number): void => {
-  //   const tableRecords = records.records;
-  //   if (!tableRecords) {
-  //     throw new Error("Ciao");
-  //   }
-  //   const updatedTableRecords = update(tableRecords, {
-  //       $splice: 
-  //         [
-  //         [dragIndex, 1],
-  //         [hoverIndex, 0, tableRecords[dragIndex] as T],
-  //       ]
-  //     },
-  //   )
-  //   console.log()
-  //   setRecords({ ...records, records: updatedTableRecords });
-  // }
-
   return (
     <DataTableRouted<T, TFilter, T>
       keyField={keyField}
       data={data}
-      // data={records}
       columns={columns}
       client={client}
       query={query}
@@ -166,7 +142,7 @@ export function DataTable<T, TFilter>({
       asc={asc}
       orderBy={orderBy}
       useDragAndDrop={useDragAndDrop}
-      // moveRow={moveRow}
+      onDrag={onDrag}
     />
   );
 }

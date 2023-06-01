@@ -18,6 +18,7 @@ export interface CommonDataTableProps<T> {
   tableStyle?: React.CSSProperties;
   rowHighlight?: RowHighlightInterface<T>;
   useDragAndDrop?: boolean;
+  onDrag?(startIndex: number, destinationIndex: number): void;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {

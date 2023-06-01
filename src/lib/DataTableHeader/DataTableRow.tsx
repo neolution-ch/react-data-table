@@ -21,12 +21,15 @@ interface DataTableRowProps<T, TRouteNames> {
   record: T;
   columns: DataTableColumnDescription<T>[];
   moveRow: (dragIndex: number, hoverIndex: number) => void;
+  setNewOrder: (id: number) => void;
   id: number;
   actions?: DataTableRoutedActions<T, TRouteNames>;
   rowStyle?: RowStyleType<T>;
   rowHighlight?: RowHighlightInterface<T>;
   actionsPosition?: ActionsPosition;
   useDragAndDrop?: boolean;
+  setInitialIndex(id: number | null): void;
+  initialIndex: number | null;
 }
 
 // eslint-disable-next-line complexity
@@ -39,8 +42,11 @@ export function DataTableRow<T, TRouteNames>({
   rowHighlight,
   actionsPosition,
   moveRow,
+  setNewOrder,
   id,
   useDragAndDrop,
+  setInitialIndex,
+  initialIndex,
 }: DataTableRowProps<T, TRouteNames>) {
   const keyValue = getDeepValue(record, keyField);
   const [collapsed, setCollapsed] = useState(true);
@@ -91,8 +97,8 @@ export function DataTableRow<T, TRouteNames>({
     return undefined;
   }
 
-  const dropRef = useRef<any>(null)
-  const dragRef = useRef<any>(null)
+  const dropRef = useRef<any>(null);
+  const dragRef = useRef<any>(null);
   let opacity = 1;
   let hId: string | symbol | null = null;
 
@@ -102,12 +108,13 @@ export function DataTableRow<T, TRouteNames>({
       collect(monitor) {
         return {
           handlerId: monitor.getHandlerId(),
-        }
+        };
       },
       hover(item: DragItem, monitor) {
         if (!dragRef.current) {
           return;
         }
+
         const dragIndex = item.index;
         const hoverIndex = id;
         if (dragIndex === hoverIndex) {
@@ -123,10 +130,17 @@ export function DataTableRow<T, TRouteNames>({
         if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
           return;
         }
+        if (initialIndex == null) {
+          setInitialIndex(item.index);
+        }
         moveRow(dragIndex, hoverIndex);
+
         item.index = hoverIndex;
       },
-    })
+      drop() {
+        setNewOrder(id);
+      },
+    });
 
     const [{ isDragging }, drag, preview] = useDrag({
       type: "draggableItem",
@@ -142,19 +156,21 @@ export function DataTableRow<T, TRouteNames>({
     opacity = isDragging ? 0 : 1;
     hId = handlerId;
 
-    preview(drop(dropRef))
-    drag(dragRef)
+    preview(drop(dropRef));
+    drag(dragRef);
   }
-
-  console.log("Oltre l'if")
-  
 
   return (
     <React.Fragment>
-      <tr key={`${keyValue}_row`} data-handler-id={hId} ref={dropRef} style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined), opacity }}>
+      <tr
+        key={`${keyValue}_row`}
+        data-handler-id={hId}
+        ref={dropRef}
+        style={{ ...(rowStyle ? rowStyle(keyValue, record) : undefined), opacity }}
+      >
         {useDragAndDrop && (
           <td ref={dragRef}>
-            <FontAwesomeIcon icon={faBars} style={{ cursor: "move"}} />
+            <FontAwesomeIcon icon={faBars} style={{ cursor: "move" }} />
           </td>
         )}
 
@@ -214,7 +230,10 @@ export function DataTableRow<T, TRouteNames>({
               ],
             }}
             moveRow={moveRow}
+            setNewOrder={setNewOrder}
             id={index}
+            initialIndex={initialIndex}
+            setInitialIndex={setInitialIndex}
           />
         ))}
     </React.Fragment>

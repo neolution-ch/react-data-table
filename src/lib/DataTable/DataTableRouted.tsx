@@ -1,24 +1,23 @@
-/* eslint max-lines: ["error", 260]  */ // Increased max-lines required due to new implementations.
+/* eslint max-lines: ["error", 270]  */ // Increased max-lines required due to new implementations.
 /* eslint-disable complexity */
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faSortDown, faSortUp, } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-// import { Paging } from "@neolution-ch/react-pattern-ui";
 import { Table } from "reactstrap";
 import { DataTableRoutedProps, FilterPageState, Filters, OrderOption, TableQueryResult } from "./DataTableInterfaces";
 import { setDeepValue, getDeepValue } from "../Utils/DeepValue";
 
-import {  ColumnFilterType, ActionsPosition, ListSortDirection } from "./DataTableTypes";
+import { ColumnFilterType, ActionsPosition, ListSortDirection } from "./DataTableTypes";
 import { DataTableFilterRow } from "../DataTableFilterRow/DataTableFilterRow";
 import { DataTableRow } from "../DataTableHeader/DataTableRow";
 import { dataTableTranslations } from "./DataTable";
 import { ActionsHeaderTitleCell } from "./Actions/ActionsHeaderTitleCell";
-import update from "immutability-helper"
+import update from "immutability-helper";
 import useDidMountEffect from "../Utils/UseDidMountEffect";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { DndProvider } from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend"
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 export function DataTableRouted<T, TFilter, TRouteNames>({
   keyField,
@@ -40,6 +39,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   orderBy,
   rowHighlight,
   useDragAndDrop,
+  onDrag,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -47,14 +47,13 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     filter: predefinedFilter ?? {},
     itemsPerPage: predefinedItemsPerPage ?? 25,
   });
-  
+
   const [orderState, setOrderState] = useState<OrderOption>({ orderBy: orderBy ?? undefined, asc });
   const filterRefs = useRef<Filters>({});
 
   if (useDragAndDrop) {
-    columns.forEach(x => x.sortable = false);
+    columns.forEach((x) => (x.sortable = false));
     handlers = undefined;
-
   }
 
   function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
@@ -138,7 +137,6 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     });
   }
 
-  
   useDidMountEffect(() => {
     if (useDragAndDrop) {
       return;
@@ -152,16 +150,28 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
       throw new Error("No records found!");
     }
     const updatedTableRecords = update(tableRecords, {
-        $splice: 
-          [
-          [dragIndex, 1],
-          [hoverIndex, 0, tableRecords[dragIndex] as T],
-        ]
-      },
-    )
-    console.log()
+      $splice: [
+        [dragIndex, 1],
+        [hoverIndex, 0, tableRecords[dragIndex] as T],
+      ],
+    });
     setQueryResult({ ...queryResult, records: updatedTableRecords });
-  }
+  };
+  const [initialIndex, setInitialIndex] = useState<number | null>(null);
+
+  const setNewOrder = (finalIndex: number): void => {
+    if (!useDragAndDrop || !queryResult.records) {
+      return;
+    }
+
+    if (onDrag && initialIndex !== null) {
+      const tmpInd = initialIndex;
+      setInitialIndex(null);
+      if (tmpInd !== finalIndex) {
+        onDrag(tmpInd, finalIndex);
+      }
+    }
+  };
 
   return (
     <React.Fragment>
@@ -169,10 +179,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
         <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
           <thead>
             <tr>
-              {useDragAndDrop && (
-                <th>
-                </th> 
-              )}
+              {useDragAndDrop && <th></th>}
               {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
               {columns.map((column) =>
                 column.sortable === true ? (
@@ -181,7 +188,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                     style={{ cursor: "pointer", ...column.headerStyle }}
                     onClick={() => onOrder(column.sortField ?? column.dataField)}
                   >
-                    {column.text} {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
+                    {column.text}{" "}
+                    {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
                   </th>
                 ) : (
                   <th style={column.headerStyle} key={column.dataField}>
@@ -203,7 +211,6 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 actionsPosition={actionsPosition}
               />
             )}
-
           </thead>
           <tbody>
             {queryResult && queryResult.records && queryResult.totalRecords && queryResult.totalRecords > 0 ? (
@@ -218,8 +225,11 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                   rowHighlight={rowHighlight}
                   actionsPosition={actionsPosition}
                   moveRow={moveRow}
+                  setNewOrder={setNewOrder}
                   id={index}
                   useDragAndDrop={useDragAndDrop}
+                  initialIndex={initialIndex}
+                  setInitialIndex={setInitialIndex}
                 />
               ))
             ) : (
@@ -230,8 +240,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
           </tbody>
         </Table>
       </DndProvider>
-      
-      {(showPaging && !useDragAndDrop )&& (
+
+      {showPaging && !useDragAndDrop && (
         <Paging
           currentItemsPerPage={filterState.itemsPerPage}
           currentPage={filterState.currentPage}
@@ -243,7 +253,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
           translations={dataTableTranslations}
           pagingPossible={!!(query || client)}
         />
-        )}
+      )}
     </React.Fragment>
   );
 }
