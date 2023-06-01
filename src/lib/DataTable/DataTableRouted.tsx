@@ -233,8 +233,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
                 />
               ))
             ) : (
-              <tr>
-                <td colSpan={columns.length + (actions ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
+                <tr>
+                  <td colSpan={columns.length + (actions ? 1 : 0) + (useDragAndDrop ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
               </tr>
             )}
           </tbody>
