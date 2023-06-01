@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2
 
+## [2.5.0] - 2023-06-01
+
+### Added
+
+- the prop `useDragAndDrop` to set whether or not use the dnd feature which disable sorting and filtering
+- the prop `onDrag` function that is fired when dropped the item in a different position. takes in input two DndOut, one for the dragged element and one for the element in which the dragged element is dropped
+
 ## [2.4.0] - 2023-05-17
 
 ### Added
