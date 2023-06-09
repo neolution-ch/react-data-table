@@ -1,4 +1,4 @@
-/* eslint max-lines: ["error", 260]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
+/* eslint max-lines: ["error", 270]  */ // Increased max-lines due to the addition of definitions going above the predefined limit.
 import { CSSProperties } from "react";
 import { ActionsPosition, CellFunction, ColumnFilterType, ListSortDirection, QueryFunction, RouteParams } from "./DataTableTypes";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
