@@ -189,6 +189,7 @@ describe("DataTable", () => {
         predefinedItemsPerPage={20}
         tableClassName={tableClassName}
         tableStyle={tableStyle}
+        predefinedFilter={{ name: "Name 001" }}
       />,
     );
 

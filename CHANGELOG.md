@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Display predefined filter in filter row
+
 ## [2.5.0] - 2023-05-25
 
 ### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2

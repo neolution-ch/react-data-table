@@ -150,6 +150,7 @@ export interface DataTablePredefinedActionLink<T, TRouteNames> {
 interface LinkProps {
   route: any;
   params?: RouteParams;
+  children: JSX.Element;
 }
 
 export interface DataTablePredefinedActionLinkGetParamsParams<T> {
