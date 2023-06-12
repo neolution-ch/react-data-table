@@ -155,7 +155,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
             )}
             {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
           </tr>
-          <DataTableFilterRow
+          <DataTableFilterRow<T, TFilter>
             actions={actions}
             columns={columns}
             onSearch={onSearch}
@@ -164,6 +164,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
             setFilterRef={setFilterRef}
             translations={dataTableTranslations}
             actionsPosition={actionsPosition}
+            predefinedFilter={predefinedFilter}
           />
         </thead>
         <tbody>

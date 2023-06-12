@@ -73,6 +73,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
           class="form-control-sm form-control"
           id="filter-name"
           type="text"
+          value="Name 001"
         />
       </th>
       <th>
@@ -80,6 +81,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
           class="form-control-sm form-control"
           id="filter-count"
           type="text"
+          value=""
         />
       </th>
       <th>
@@ -108,6 +110,7 @@ exports[`DataTable renders dynamic correctly 1`] = `
           class="form-control-sm form-control"
           id="filter-dateCreated"
           type="text"
+          value=""
         />
       </th>
     </tr>
