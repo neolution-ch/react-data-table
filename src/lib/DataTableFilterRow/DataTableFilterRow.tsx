@@ -34,39 +34,42 @@ export function DataTableFilterRow<T, TFilter>({
       {actionsPosition == ActionsPosition.Left && (
         <ActionsHeaderFilterCell<T> onSearch={onSearch} translations={translations} actions={actions} getFilterRefs={getFilterRefs} />
       )}
-      {columns.map((column) => (
-        <th key={column.dataField}>
-          {column.filter && column.filter.filterType === ColumnFilterType.String && (
-            <Input
-              bsSize="sm"
-              id={`filter-${column.dataField}`}
-              innerRef={(ref) => ref && ref instanceof HTMLInputElement && setFilterRef(column.dataField, ref)}
-              defaultValue={predefinedFilter ? getDeepValue(predefinedFilter, column.dataField) : undefined}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") onSearch();
-              }}
-            />
-          )}
-          {column.filter && column.filter.filterType === ColumnFilterType.Enum && column.enumValues && (
-            <Input
-              bsSize="sm"
-              innerRef={(ref) => ref && ref instanceof HTMLSelectElement && setFilterRef(column.dataField, ref as HTMLInputElement)}
-              type="select"
-              defaultValue={predefinedFilter ? getDeepValue(predefinedFilter, column.dataField) : undefined}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") onSearch();
-              }}
-              onChange={() => onSearch()}
-            >
-              {column.enumValues.map((item) => (
-                <option value={item.value ?? "null"} key={`${column.dataField}_filter_${item.value}`}>
-                  {item.text}
-                </option>
-              ))}
-            </Input>
-          )}
-        </th>
-      ))}
+      {columns.map((column) => {
+        var defaultValue = predefinedFilter ? getDeepValue(predefinedFilter, column.dataField) : undefined;
+        return (
+          <th key={column.dataField}>
+            {column.filter && column.filter.filterType === ColumnFilterType.String && (
+              <Input
+                bsSize="sm"
+                id={`filter-${column.dataField}`}
+                innerRef={(ref) => ref && ref instanceof HTMLInputElement && setFilterRef(column.dataField, ref)}
+                defaultValue={defaultValue}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") onSearch();
+                }}
+              />
+            )}
+            {column.filter && column.filter.filterType === ColumnFilterType.Enum && column.enumValues && (
+              <Input
+                bsSize="sm"
+                innerRef={(ref) => ref && ref instanceof HTMLSelectElement && setFilterRef(column.dataField, ref as HTMLInputElement)}
+                type="select"
+                defaultValue={defaultValue}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") onSearch();
+                }}
+                onChange={() => onSearch()}
+              >
+                {column.enumValues.map((item) => (
+                  <option value={item.value ?? "null"} key={`${column.dataField}_filter_${item.value}`}>
+                    {item.text}
+                  </option>
+                ))}
+              </Input>
+            )}
+          </th>
+        );
+      })}
       {actionsPosition == ActionsPosition.Right && (
         <ActionsHeaderFilterCell<T> onSearch={onSearch} translations={translations} actions={actions} getFilterRefs={getFilterRefs} />
       )}
