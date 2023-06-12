@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2023-06-12
+
 ### Changed
 
 - Changed from `microbundle` to `rollup` for building the package
@@ -107,7 +109,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.5.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.6.0...HEAD
+[2.6.0]: https://github.com/neolution-ch/react-data-table/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/neolution-ch/react-data-table/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/neolution-ch/react-data-table/compare/2.3.2...2.4.0
 [2.3.2]: https://github.com/neolution-ch/react-data-table/compare/2.3.1...2.3.2
