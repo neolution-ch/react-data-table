@@ -45,14 +45,13 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "rollup-plugin-import-css": "^3.2.1"
+    "@neolution-ch/react-pattern-ui": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
-    "@neolution-ch/react-pattern-ui": "^2.0.1",
     "@release-it/keep-a-changelog": "^3.1.0",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
@@ -91,6 +90,7 @@
     "reactstrap": "^8.10.1",
     "release-it": "^15.10.3",
     "rollup": "^3.21.4",
+    "rollup-plugin-import-css": "^3.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.34.1",
     "shx": "^0.3.4",
