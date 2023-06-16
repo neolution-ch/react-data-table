@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- update `@neolution-ch/react-pattern-ui` to the latest version (2.2.1)
+
 ## [2.6.1] - 2023-06-13
 
 ### Fixed
