@@ -17,6 +17,7 @@ const plugins = [
   typescript({
     clean: true,
     exclude: ["**/__tests__", "**/*.test.ts", "**/stories/**/*"],
+    tsconfig: "tsconfig.rollup.json",
   }),
   commonjs({
     include: /\/node_modules\//,
