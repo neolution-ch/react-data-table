@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.0] - 2023-06-29
+
+### Changed
+
+- `orderBy` property of `QueryFunction` type can be string or undefined.
+
 ## [2.7.2] - 2023-06-29
 
 ### Fixed
