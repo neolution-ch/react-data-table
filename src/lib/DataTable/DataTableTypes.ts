@@ -4,7 +4,7 @@ export type QueryFunction<T, TFilter> = (
   filter: TFilter,
   limit?: number | undefined,
   page?: number | undefined,
-  orderBy?: string | null | undefined,
+  orderBy?: string | undefined,
   asc?: boolean | undefined,
 ) => Promise<TableQueryResult<T>>;
 
