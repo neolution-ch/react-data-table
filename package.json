@@ -25,7 +25,7 @@
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "jsnext:main": "dist/index.modern.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],

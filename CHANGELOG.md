@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Excluded test code from the package and made sure the paths are pointing to the correct `.d.ts` files
+
 ## [2.7.1] - 2023-06-16
 
 ### Fixed
