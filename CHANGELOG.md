@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.2] - 2023-06-29
+
+### Fixed
+
+- Excluded test code from the package and made sure the paths are pointing to the correct `.d.ts` files
+
+## [2.7.1] - 2023-06-16
+
+### Fixed
+
+- update types file location in package.json
+
+## [2.7.0] - 2023-06-16
+
+### Fixed
+
+- update `@neolution-ch/react-pattern-ui` to the latest version (2.2.1)
+
+## [2.6.1] - 2023-06-13
+
+### Fixed
+
+- Moved `@neolution-ch/react-pattern-ui` to the dependencies, so it gets correctly detected by rollup as an external dependency
+
+## [2.6.0] - 2023-06-12
+
+### Changed
+
+- Changed from `microbundle` to `rollup` for building the package
+- Updated all the dependencies to the latest possible version
+
+### Fixed
+
+- Display predefined filter in filter row
+
+## [2.5.0] - 2023-05-25
+
 ### dependabot: \#33 Bump loader-utils from 1.4.0 to 1.4.2
 
 ## [2.4.1] - 2023-05-25
@@ -96,7 +133,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.4.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.7.2...HEAD
+[2.7.2]: https://github.com/neolution-ch/react-data-table/compare/2.7.1...2.7.2
+[2.7.1]: https://github.com/neolution-ch/react-data-table/compare/2.7.0...2.7.1
+[2.7.0]: https://github.com/neolution-ch/react-data-table/compare/2.6.1...2.7.0
+[2.6.1]: https://github.com/neolution-ch/react-data-table/compare/2.6.0...2.6.1
+[2.6.0]: https://github.com/neolution-ch/react-data-table/compare/2.5.0...2.6.0
+[2.5.0]: https://github.com/neolution-ch/react-data-table/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/neolution-ch/react-data-table/compare/2.3.2...2.4.0
 [2.3.2]: https://github.com/neolution-ch/react-data-table/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/neolution-ch/react-data-table/compare/2.3.0...2.3.1
