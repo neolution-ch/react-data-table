@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.3] - 2023-06-29
+
 ### Changed
 
 - `orderBy` property of `QueryFunction` type can be string or undefined.
@@ -137,7 +139,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.7.2...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.7.3...HEAD
+[2.7.3]: https://github.com/neolution-ch/react-data-table/compare/2.7.2...2.7.3
 [2.7.2]: https://github.com/neolution-ch/react-data-table/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/neolution-ch/react-data-table/compare/2.7.0...2.7.1
 [2.7.0]: https://github.com/neolution-ch/react-data-table/compare/2.6.1...2.7.0
