@@ -5,6 +5,11 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type RowStyleType<T> = (key: any, record: T) => React.CSSProperties;
 
+export interface DndOut {
+  index: number | undefined;
+  keyValue: any | undefined;
+}
+
 export interface RowHighlightInterface<T> {
   compareField: Extract<keyof T, string>;
   operation: "<" | ">" | "==" | "!=";
@@ -17,6 +22,8 @@ export interface CommonDataTableProps<T> {
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
   rowHighlight?: RowHighlightInterface<T>;
+  useDragAndDrop?: boolean;
+  onDrag?(startOut: DndOut, finalOut: DndOut): void;
   enablePredefinedSort?: boolean;
 }
 
@@ -38,6 +45,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   handlers?: DataTableHandlers;
   asc?: boolean;
   orderBy?: Extract<keyof T, string>;
+    // moveRow: (dragIndex: number, hoverIndex: number) => void;
 }
 
 export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {

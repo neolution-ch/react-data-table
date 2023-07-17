@@ -1,4 +1,4 @@
-/* eslint max-lines: ["error", 230]  */ // Increased max-lines required due to new implementations.
+/* eslint max-lines: ["error", 260]  */ // Increased max-lines required due to new implementations.
 /* eslint-disable complexity */
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +6,7 @@ import { faSort, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons"
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { Table } from "reactstrap";
-import { DataTableRoutedProps, FilterPageState, Filters, OrderOption, TableQueryResult } from "./DataTableInterfaces";
+import { DataTableRoutedProps, FilterPageState, Filters, OrderOption, TableQueryResult, DndOut } from "./DataTableInterfaces";
 import { setDeepValue, getDeepValue } from "../Utils/DeepValue";
 import useDidMountEffect from "../Utils/UseDidMountEffect";
 import { ListSortDirection, ColumnFilterType, ActionsPosition } from "./DataTableTypes";
@@ -14,7 +14,7 @@ import { DataTableFilterRow } from "../DataTableFilterRow/DataTableFilterRow";
 import { DataTableRow } from "../DataTableHeader/DataTableRow";
 import { dataTableTranslations } from "./DataTable";
 import { ActionsHeaderTitleCell } from "./Actions/ActionsHeaderTitleCell";
-
+import update from "immutability-helper";
 export function DataTableRouted<T, TFilter, TRouteNames>({
   keyField,
   data,
@@ -35,6 +35,8 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   orderBy,
   rowHighlight,
   enablePredefinedSort = false,
+  useDragAndDrop,
+  onDrag,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState>({
@@ -42,11 +44,17 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     filter: predefinedFilter ?? {},
     itemsPerPage: predefinedItemsPerPage ?? 25,
   });
+
   const [orderState, setOrderState] = useState<OrderOption>({
-    orderBy: orderBy ?? (enablePredefinedSort ? undefined : columns[0].dataField),
+    orderBy: orderBy ?? (enablePredefinedSort || useDragAndDrop ? undefined : columns[0].dataField),
     asc,
   });
   const filterRefs = useRef<Filters>({});
+
+  if (useDragAndDrop) {
+    columns.forEach((x) => (x.sortable = false));
+    handlers = undefined;
+  }
 
   function loadPage(filter: any, limit?: number, page?: number, orderBy?: string, asc?: boolean) {
     if (query) {
@@ -67,6 +75,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   }
 
   function setCurrentPage(page: number) {
+    //Page number ci sta che possa essere cambiato ed anche crurrent page, ma quindi vorrebbe dire che devi fare una query per salvare dal DB probabilmente
     setFilterState({ currentPage: page, filter: filterState.filter, itemsPerPage: filterState.itemsPerPage });
   }
 
@@ -129,67 +138,108 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   }
 
   useDidMountEffect(() => {
+    if (useDragAndDrop) {
+      return;
+    }
     loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc);
   }, [filterState, orderState]);
 
+  const moveRow = (dragIndex: number, hoverIndex: number): void => {
+    const tableRecords = queryResult.records;
+    if (!tableRecords) {
+      throw new Error("No records found!");
+    }
+    const updatedTableRecords = update(tableRecords, {
+      $splice: [
+        [dragIndex, 1],
+        [hoverIndex, 0, tableRecords[dragIndex] as T],
+      ],
+    });
+    setQueryResult({ ...queryResult, records: updatedTableRecords });
+  };
+  const [initialOut, setInitialOut] = useState<DndOut>({ index: undefined, keyValue: undefined });
+
+  const setNewOrder = (finalIndex: DndOut): void => {
+    if (!useDragAndDrop || !queryResult.records) {
+      return;
+    }
+
+    if (onDrag && initialOut.index !== undefined) {
+      const tmpOut = initialOut;
+      setInitialOut({ index: undefined, keyValue: undefined });
+      if (tmpOut.index !== finalIndex.index) {
+        onDrag(tmpOut, finalIndex);
+      }
+    }
+  };
+
   return (
     <React.Fragment>
-      <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
-        <thead>
-          <tr>
-            {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
-            {columns.map((column) =>
-              column.sortable === true ? (
-                <th
-                  key={column.dataField}
-                  style={{ cursor: "pointer", ...column.headerStyle }}
-                  onClick={() => onOrder(column.sortField ?? column.dataField)}
-                >
-                  {column.text} {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
-                </th>
-              ) : (
-                <th style={column.headerStyle} key={column.dataField}>
-                  {column.text}
-                </th>
-              ),
-            )}
-            {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
-          </tr>
-          <DataTableFilterRow<T, TFilter>
-            actions={actions}
-            columns={columns}
-            onSearch={onSearch}
-            filterPossible={!!(query || client)}
-            getFilterRefs={getFilterRefs}
-            setFilterRef={setFilterRef}
-            translations={dataTableTranslations}
-            actionsPosition={actionsPosition}
-            predefinedFilter={predefinedFilter}
-          />
-        </thead>
-        <tbody>
-          {queryResult && queryResult.records && queryResult.totalRecords && queryResult.totalRecords > 0 ? (
-            queryResult.records.map((record) => (
-              <DataTableRow
-                record={record}
-                columns={columns}
-                keyField={keyField}
+        <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
+          <thead>
+            <tr>
+              {useDragAndDrop && <th style={{ width: "2%" }}></th>}
+              {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
+              {columns.map((column) =>
+                column.sortable === true ? (
+                  <th
+                    key={column.dataField}
+                    style={{ cursor: "pointer", ...column.headerStyle }}
+                    onClick={() => onOrder(column.sortField ?? column.dataField)}
+                  >
+                    {column.text}{" "}
+                    {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
+                  </th>
+                ) : (
+                  <th style={column.headerStyle} key={column.dataField}>
+                    {column.text}
+                  </th>
+                ),
+              )}
+              {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
+            </tr>
+            {!useDragAndDrop && (
+              <DataTableFilterRow
                 actions={actions}
-                key={getDeepValue(record, keyField)}
-                rowStyle={rowStyle}
-                rowHighlight={rowHighlight}
+                columns={columns}
+                onSearch={onSearch}
+                filterPossible={!!(query || client)}
+                getFilterRefs={getFilterRefs}
+                setFilterRef={setFilterRef}
+                translations={dataTableTranslations}
                 actionsPosition={actionsPosition}
               />
-            ))
-          ) : (
-            <tr>
-              <td colSpan={columns.length + (actions ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
+            )}
+          </thead>
+          <tbody>
+            {queryResult && queryResult.records && queryResult.totalRecords && queryResult.totalRecords > 0 ? (
+              queryResult.records.map((record, index) => (
+                <DataTableRow
+                  record={record}
+                  columns={columns}
+                  keyField={keyField}
+                  actions={actions}
+                  key={getDeepValue(record, keyField)}
+                  rowStyle={rowStyle}
+                  rowHighlight={rowHighlight}
+                  actionsPosition={actionsPosition}
+                  moveRow={moveRow}
+                  setNewOrder={setNewOrder}
+                  id={index}
+                  useDragAndDrop={useDragAndDrop}
+                  initialOut={initialOut}
+                  setInitialOut={setInitialOut}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={columns.length + (actions ? 1 : 0) + (useDragAndDrop ? 1 : 0)}>{dataTableTranslations.noEntries}</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
 
-      {showPaging && (
+      {showPaging && !useDragAndDrop && (
         <Paging
           currentItemsPerPage={filterState.itemsPerPage}
           currentPage={filterState.currentPage}
