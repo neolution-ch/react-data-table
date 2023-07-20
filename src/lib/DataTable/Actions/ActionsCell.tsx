@@ -2,6 +2,7 @@ import { faPlus, faMinus, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DeleteAction } from "@neolution-ch/react-pattern-ui";
 import { DataTableRoutedActions } from "../DataTableInterfaces";
+import React from "react";
 
 interface ActionsCellProps<T, TRouteName> {
   actions?: DataTableRoutedActions<T, TRouteName>;
@@ -24,9 +25,7 @@ const ActionsCell = <T, TRouteName>({ actions, collapsed, setCollapsed, keyValue
         )}
         {actions.view && (
           <actions.view.link route={actions.view.route} params={actions.view.getParams({ keyValue, cell: record })}>
-            <a>
-              <FontAwesomeIcon icon={actions.view.icon ?? faEye} style={{ marginRight: "5px" }} />
-            </a>
+            <FontAwesomeIcon icon={actions.view.icon ?? faEye} style={{ marginRight: "5px" }} />
           </actions.view.link>
         )}
         {actions.delete && (
@@ -37,7 +36,10 @@ const ActionsCell = <T, TRouteName>({ actions, collapsed, setCollapsed, keyValue
             onDelete={() => actions?.delete?.action({ key: keyValue, cell: record })}
           />
         )}
-        {actions.others && actions.others.map((action) => action.formatter({ key: keyValue, row: record }))}
+        {actions.others &&
+          actions.others.map((action, idx) => (
+            <React.Fragment key={idx}>{action.formatter({ key: keyValue, row: record })}</React.Fragment>
+          ))}
       </th>
     )}
   </>
