@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2023-07-26
+
 # Changed
 
 - :boom: `view` default Action does not nest an `<a>` tag anymore.
@@ -143,7 +145,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/2.7.3...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/neolution-ch/react-data-table/compare/2.7.3...3.0.0
 [2.7.3]: https://github.com/neolution-ch/react-data-table/compare/2.7.2...2.7.3
 [2.7.2]: https://github.com/neolution-ch/react-data-table/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/neolution-ch/react-data-table/compare/2.7.0...2.7.1
