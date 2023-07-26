@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # Changed
 
-- `view` default Action does not nest an `<a>` tag anymore.
+- :boom: `view` default Action does not nest an `<a>` tag anymore.
 
 ## [2.7.3] - 2023-06-29
 
