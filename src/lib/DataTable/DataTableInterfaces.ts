@@ -87,6 +87,7 @@ export interface ColumnFilter {
 export interface EnumValue {
   value: number | string | undefined;
   text: string;
+  disabled?: boolean;
 }
 
 export interface DataTableRoutedActions<T, TRouteNames> {

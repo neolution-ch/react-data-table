@@ -61,7 +61,7 @@ export function DataTableFilterRow<T, TFilter>({
                 onChange={() => onSearch()}
               >
                 {column.enumValues.map((item) => (
-                  <option value={item.value ?? "null"} key={`${column.dataField}_filter_${item.value}`}>
+                  <option value={item.value ?? "null"} key={`${column.dataField}_filter_${item.value}`} disabled={item.disabled}>
                     {item.text}
                   </option>
                 ))}

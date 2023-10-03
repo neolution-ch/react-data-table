@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.3.0] - 2023-08-07
 
+### Added
+
+- Added nullable `disabled` prop to `EnumValue` type
+
 ### Changed
 
 - Updated react-pattern-ui to 2.4.0
