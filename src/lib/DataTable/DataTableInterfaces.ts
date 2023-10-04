@@ -35,7 +35,7 @@ export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonData
   /**
    * The data table handlers.
    */
-  handlers?: DataTableHandlers;
+  handlers?: DataTableHandlers<TFilter>;
   asc?: boolean;
   orderBy?: Extract<keyof T, string>;
 }
@@ -55,7 +55,7 @@ export interface DataTableProps<T, TFilter> extends CommonDataTableProps<T> {
   /**
    * The data table handlers.
    */
-  handlers?: DataTableHandlers;
+  handlers?: DataTableHandlers<TFilter>;
   /**
    * The direction of the selected sorting column
    */
@@ -171,16 +171,18 @@ export interface TableQueryClient<T> {
 /**
  * The data table handlers types.
  */
-export type DataTableHandlers = (dataHandlers: DataHandlers) => void;
+export type DataTableHandlers<TFilter = any> = (dataHandlers: DataHandlers<TFilter>) => void;
 
 /**
  * The data handlers.
  */
-export interface DataHandlers {
+export interface DataHandlers<TFilter = any> {
   /**
    * Triggers a table data reload.
    */
+  getFilterState(): FilterState<TFilter>;
   reloadData: () => void;
+  updateFilters: (filter: TFilter) => void;
 }
 
 export interface OrderOption {
@@ -192,14 +194,14 @@ export interface Filters {
   [x: string]: HTMLInputElement;
 }
 
-export interface FilterState {
-  [x: string]: any;
-}
+export type FilterState<TFilter> = {
+  [x in keyof TFilter]: any;
+};
 
-export interface FilterPageState {
+export interface FilterPageState<TFilter> {
   currentPage: number;
   itemsPerPage: number;
-  filter: FilterState;
+  filter: FilterState<TFilter>;
 }
 
 /**
