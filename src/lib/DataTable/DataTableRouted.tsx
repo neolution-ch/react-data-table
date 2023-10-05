@@ -37,9 +37,9 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   enablePredefinedSort = false,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
-  const [filterState, setFilterState] = useState<FilterPageState>({
+  const [filterState, setFilterState] = useState<FilterPageState<TFilter>>({
     currentPage: 1,
-    filter: predefinedFilter ?? {},
+    filter: predefinedFilter ?? ({} as TFilter),
     itemsPerPage: predefinedItemsPerPage ?? 25,
   });
   const [orderState, setOrderState] = useState<OrderOption>({
@@ -71,7 +71,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   }
 
   function onSearch() {
-    const search = predefinedFilter ?? {};
+    const search = predefinedFilter ?? ({} as TFilter);
     Object.entries(filterRefs.current).forEach(([name, ref]) => {
       const column = columns.find((c) => c.dataField === name && c.filter);
       if (column && column.filter && column.filter.filterType === ColumnFilterType.Enum) {
@@ -122,9 +122,30 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
     return orderState.asc ? faSortDown : faSortUp;
   }
 
+  const updateFilterRefs = (filter: TFilter) => {
+    Object.keys(filter as Object)?.map((x, index) => {
+      const value = Object.values(filter as Object)[index];
+      const ref = getFilterRefs()[x];
+      if (ref) {
+        ref.value =
+          value == null || !value.toString().trim()
+            ? ref instanceof HTMLSelectElement
+              ? (null as unknown as string)
+              : ""
+            : value.toString();
+      }
+    });
+  };
+
   if (handlers) {
     handlers({
       reloadData: () => loadPage(filterState.filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc),
+      updateFilters: (filter: TFilter) => {
+        setFilterState({ ...filterState, filter });
+        if (filter instanceof Object) updateFilterRefs(filter);
+        loadPage(filter, filterState.itemsPerPage, filterState.currentPage, orderState.orderBy, orderState.asc);
+      },
+      getFilterState: () => filterState.filter as TFilter,
     });
   }
 
