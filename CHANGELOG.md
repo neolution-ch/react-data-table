@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.6.0] - 2023-10-26
+
 ### Changed
 
 - Updated react-pattern-ui from 2.4.0 to 2.9.0
@@ -187,7 +189,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.5.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.6.0...HEAD
+[3.6.0]: https://github.com/neolution-ch/react-data-table/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/neolution-ch/react-data-table/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/neolution-ch/react-data-table/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/neolution-ch/react-data-table/compare/3.2.0...3.3.0
