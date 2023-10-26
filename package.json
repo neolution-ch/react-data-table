@@ -45,7 +45,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@neolution-ch/react-pattern-ui": "2.4.0"
+    "@neolution-ch/react-pattern-ui": "2.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",

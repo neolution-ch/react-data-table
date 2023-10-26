@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated react-pattern-ui from 2.4.0 to 2.9.0
+
 ## [3.5.0] - 2023-10-05
 
 ### Added
