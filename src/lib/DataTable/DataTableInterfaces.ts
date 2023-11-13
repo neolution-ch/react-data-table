@@ -139,6 +139,8 @@ export interface DataTablePredefinedActionActionParams<T> {
 export interface DeleteAction<T> extends DataTablePredefinedAction<T> {
   title: string;
   text: string;
+  deleteButtonText?: string;
+  cancelButtonText?: string;
 }
 
 export interface DataTablePredefinedActionLink<T, TRouteNames> {
