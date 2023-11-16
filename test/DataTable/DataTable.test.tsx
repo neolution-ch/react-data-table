@@ -328,4 +328,40 @@ describe("DataTable", () => {
     expect(mockQueryFn).toBeCalledTimes(7);
     checkQueryArguments(newFilterValues, pageSize, 1, "count", ListSortDirection.Descending);
   });
+
+  test("renders static without header correctly", () => {
+    const { container } = render(
+      <DataTableStatic<DataInterface>
+        keyField="id"
+        tableTitle="Static Table"
+        columns={columns}
+        data={dataDynamic}
+        tableClassName={tableClassName}
+        tableStyle={tableStyle}
+        withoutHeaders
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  test("renders dynamic without header correctly", () => {
+    const { container } = render(
+      <DataTable<DataInterface, DataFilter>
+        keyField="id"
+        columns={columns}
+        data={fakeQuery({}, 20)}
+        client={dynamicClient}
+        actions={actions}
+        possiblePageItemCounts={[10, 15, 20, 25, 50, 100, 200]}
+        predefinedItemsPerPage={20}
+        tableClassName={tableClassName}
+        tableStyle={tableStyle}
+        predefinedFilter={{ name: "Name 001" }}
+        withoutHeaders
+      />,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });

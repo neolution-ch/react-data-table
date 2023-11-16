@@ -32,6 +32,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
   tableClassName,
   tableStyle,
   enablePredefinedSort = false,
+  withoutHeaders = false,
 }: DataTableStaticRoutedProps<T, TRouteNames>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -52,6 +53,7 @@ export function DataTableStaticRouted<T, TRouteNames>({
         tableClassName={tableClassName}
         tableStyle={tableStyle}
         enablePredefinedSort={enablePredefinedSort}
+        withoutHeaders={withoutHeaders}
       />
     </React.Fragment>
   );
@@ -73,6 +75,7 @@ export function DataTableStatic<T>({
   tableClassName,
   tableStyle,
   enablePredefinedSort = false,
+  withoutHeaders = false,
 }: DataTableStaticProps<T>) {
   if (hideIfEmpty === true && (!data || data.length <= 0)) return <React.Fragment />;
 
@@ -93,6 +96,7 @@ export function DataTableStatic<T>({
         tableClassName={tableClassName}
         tableStyle={tableStyle}
         enablePredefinedSort={enablePredefinedSort}
+        withoutHeaders={withoutHeaders}
       />
     </React.Fragment>
   );
@@ -118,6 +122,7 @@ export function DataTable<T, TFilter>({
   asc,
   orderBy,
   enablePredefinedSort = false,
+  withoutHeaders = false,
 }: DataTableProps<T, TFilter>) {
   return (
     <DataTableRouted<T, TFilter, T>
@@ -140,6 +145,7 @@ export function DataTable<T, TFilter>({
       asc={asc}
       orderBy={orderBy}
       enablePredefinedSort={enablePredefinedSort}
+      withoutHeaders={withoutHeaders}
     />
   );
 }
