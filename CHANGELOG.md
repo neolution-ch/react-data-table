@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.0] - 2023-11-20
+
 - Changed `DeleteAction` to expose `cancelButtonText` and `deleteButtonText` props for translations
 
 ## [3.7.0] - 2023-11-16
@@ -197,7 +199,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.7.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.8.0...HEAD
+[3.8.0]: https://github.com/neolution-ch/react-data-table/compare/3.7.0...3.8.0
 [3.7.0]: https://github.com/neolution-ch/react-data-table/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/neolution-ch/react-data-table/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/neolution-ch/react-data-table/compare/3.4.0...3.5.0
