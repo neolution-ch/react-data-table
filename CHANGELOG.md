@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed `DeleteAction` to expose `cancelButtonText` and `deleteButtonText` props for translations
 
+## [3.7.0] - 2023-11-16
+
+### Added
+
+- Added property `withoutHeaders` to draw the table without any header row (title + filters)
+
 ## [3.6.0] - 2023-10-26
 
 ### Changed
@@ -191,7 +197,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.6.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.7.0...HEAD
+[3.7.0]: https://github.com/neolution-ch/react-data-table/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/neolution-ch/react-data-table/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/neolution-ch/react-data-table/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/neolution-ch/react-data-table/compare/3.3.0...3.4.0

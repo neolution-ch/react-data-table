@@ -1,4 +1,4 @@
-/* eslint max-lines: ["error", 230]  */ // Increased max-lines required due to new implementations.
+/* eslint max-lines: ["error", 240]  */ // Increased max-lines required due to new implementations.
 /* eslint-disable complexity */
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,6 +35,7 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   orderBy,
   rowHighlight,
   enablePredefinedSort = false,
+  withoutHeaders = false,
 }: DataTableRoutedProps<T, TFilter, TRouteNames>) {
   const [queryResult, setQueryResult] = useState<TableQueryResult<T>>(data);
   const [filterState, setFilterState] = useState<FilterPageState<TFilter>>({
@@ -156,38 +157,41 @@ export function DataTableRouted<T, TFilter, TRouteNames>({
   return (
     <React.Fragment>
       <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
-        <thead>
-          <tr>
-            {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
-            {columns.map((column) =>
-              column.sortable === true ? (
-                <th
-                  key={column.dataField}
-                  style={{ cursor: "pointer", ...column.headerStyle }}
-                  onClick={() => onOrder(column.sortField ?? column.dataField)}
-                >
-                  {column.text} {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
-                </th>
-              ) : (
-                <th style={column.headerStyle} key={column.dataField}>
-                  {column.text}
-                </th>
-              ),
-            )}
-            {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
-          </tr>
-          <DataTableFilterRow<T, TFilter>
-            actions={actions}
-            columns={columns}
-            onSearch={onSearch}
-            filterPossible={!!(query || client)}
-            getFilterRefs={getFilterRefs}
-            setFilterRef={setFilterRef}
-            translations={dataTableTranslations}
-            actionsPosition={actionsPosition}
-            predefinedFilter={predefinedFilter}
-          />
-        </thead>
+        {!withoutHeaders && (
+          <thead>
+            <tr>
+              {actionsPosition == ActionsPosition.Left && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
+              {columns.map((column) =>
+                column.sortable === true ? (
+                  <th
+                    key={column.dataField}
+                    style={{ cursor: "pointer", ...column.headerStyle }}
+                    onClick={() => onOrder(column.sortField ?? column.dataField)}
+                  >
+                    {column.text}{" "}
+                    {column.sortable === true && <FontAwesomeIcon icon={getOrderIcon(column.sortField ?? column.dataField)} />}
+                  </th>
+                ) : (
+                  <th style={column.headerStyle} key={column.dataField}>
+                    {column.text}
+                  </th>
+                ),
+              )}
+              {actionsPosition == ActionsPosition.Right && <ActionsHeaderTitleCell<T, TRouteNames> actions={actions} />}
+            </tr>
+            <DataTableFilterRow<T, TFilter>
+              actions={actions}
+              columns={columns}
+              onSearch={onSearch}
+              filterPossible={!!(query || client)}
+              getFilterRefs={getFilterRefs}
+              setFilterRef={setFilterRef}
+              translations={dataTableTranslations}
+              actionsPosition={actionsPosition}
+              predefinedFilter={predefinedFilter}
+            />
+          </thead>
+        )}
         <tbody>
           {queryResult && queryResult.records && queryResult.totalRecords && queryResult.totalRecords > 0 ? (
             queryResult.records.map((record) => (

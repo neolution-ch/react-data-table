@@ -18,6 +18,11 @@ export interface CommonDataTableProps<T> {
   tableStyle?: React.CSSProperties;
   rowHighlight?: RowHighlightInterface<T>;
   enablePredefinedSort?: boolean;
+
+  /**
+   * To draw the table without headers (titles + filters)
+   */
+  withoutHeaders?: boolean;
 }
 
 export interface DataTableRoutedProps<T, TFilter, TRouteName> extends CommonDataTableProps<T> {
