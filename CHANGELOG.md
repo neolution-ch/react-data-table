@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Updated react-pattern-ui from 2.9.0 to 3.1.0
+- Added `dateHandler.ts` as it was removed from react-pattern-ui
+
 ## [3.8.0] - 2023-11-20
 
 - Changed `DeleteAction` to expose `cancelButtonText` and `deleteButtonText` props for translations
