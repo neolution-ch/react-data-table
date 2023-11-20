@@ -1,10 +1,10 @@
 /* eslint-disable complexity */
 import React, { CSSProperties, useState } from "react";
-import { DateHandler } from "@neolution-ch/react-pattern-ui";
 import { DataTableColumnDescription, DataTableRoutedActions, RowHighlightInterface, RowStyleType } from "../DataTable/DataTableInterfaces";
 import { getDeepValue } from "../Utils/DeepValue";
 import { ActionsCell } from "../DataTable/Actions/ActionsCell";
 import { ActionsPosition } from "../DataTable/DataTableTypes";
+import { DateHandler } from "../Utils/dateHandler";
 
 interface DataTableRowProps<T, TRouteNames> {
   keyField: Extract<keyof T, string>;
