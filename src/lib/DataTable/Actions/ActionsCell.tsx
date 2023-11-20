@@ -33,6 +33,8 @@ const ActionsCell = <T, TRouteName>({ actions, collapsed, setCollapsed, keyValue
             title={actions.delete.title}
             text={actions.delete.text}
             iconOnly
+            cancelButtonText={actions.delete.cancelButtonText}
+            deleteButtonText={actions.delete.deleteButtonText}
             onDelete={() => actions?.delete?.action({ key: keyValue, cell: record })}
           />
         )}
