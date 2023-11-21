@@ -1,21 +1,9 @@
 ﻿/* eslint-disable complexity */
-/* eslint-disable max-lines */
-import {
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import { Input, Spinner, Table } from "reactstrap";
-import { Paging } from "@neolution-ch/react-pattern-ui";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faSortDown, faSortUp, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import Skeleton from "react-loading-skeleton";
 import { ReactDataTableProps } from "./ReactDataTableProps";
-import { ExtendedColumnDef } from "./ExtendedColumnDef";
 import { useReactTableState } from "./useReactDataTableState";
+import { ReactDataTableRenderer } from "./ReactDataTableRenderer";
 
 const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
   const {
@@ -26,16 +14,14 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     onPaginationChange,
     reactTableOptions,
     state,
-
-    // not passed to useReactTable hook
-    totalRecords = data.length,
     isLoading,
     rowStyle,
     isFetching,
     tableClassName,
     tableStyle,
-    pageSizes = [5, 10, 25, 50, 100],
     showPaging = true,
+    pageSizes = [5, 10, 25, 50, 100],
+    totalRecords = data.length,
   } = props;
 
   const { columnFilters: columnFiltersProps, sorting: sortingProps, pagination: paginationProps } = state ?? {};
@@ -130,132 +116,18 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
   const effectiveTotalRecords = onFilterChange ? totalRecords : table.getFilteredRowModel().rows.length;
 
   return (
-    <>
-      {!isLoading && isFetching && (
-        <Spinner color="primary" type="grow">
-          Loading...
-        </Spinner>
-      )}
-      <Table striped hover size="sm" className={tableClassName} style={tableStyle}>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <>
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                    style={header.column.getCanSort() ? { cursor: "pointer" } : {}}
-                  >
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-
-                    {header.column.getIsSorted() === "desc" ? (
-                      <FontAwesomeIcon icon={faSortDown} />
-                    ) : header.column.getIsSorted() === "asc" ? (
-                      <FontAwesomeIcon icon={faSortUp} />
-                    ) : (
-                      ""
-                    )}
-                  </th>
-                ))}
-              </tr>
-              <tr key={`${headerGroup.id}-col-filters`}>
-                {headerGroup.headers.map((header) => {
-                  const extendedColumnDef = header.column.columnDef as ExtendedColumnDef<TData>;
-
-                  return (
-                    <>
-                      <th>
-                        {header.index === 0 && (
-                          <>
-                            <FontAwesomeIcon
-                              style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                              icon={faSearch}
-                              onClick={() => {
-                                // onSearch();
-                              }}
-                            />
-
-                            <FontAwesomeIcon
-                              style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                              icon={faTimes}
-                              onClick={() => {
-                                table.resetColumnFilters();
-                              }}
-                            />
-                          </>
-                        )}
-
-                        {header.column.getCanFilter() && (
-                          <>
-                            {extendedColumnDef.columnFilterDropDownConfig ? (
-                              <Input type="select" onChange={(e) => header.column.setFilterValue(e.target.value)} bsSize="sm">
-                                <option value="">All</option>
-                                {extendedColumnDef.columnFilterDropDownConfig.values.map((value) => (
-                                  <option key={value} value={value}>
-                                    {value}
-                                  </option>
-                                ))}
-                              </Input>
-                            ) : (
-                              <Input
-                                type="text"
-                                value={(header.column.getFilterValue() as string) ?? ""}
-                                onChange={(e) => {
-                                  header.column.setFilterValue(e.target.value);
-                                }}
-                                bsSize="sm"
-                              ></Input>
-                            )}
-                          </>
-                        )}
-                      </th>
-                    </>
-                  );
-                })}
-              </tr>
-            </>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} style={rowStyle && rowStyle(row.original)}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.footer, header.getContext())}</th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
-      </Table>
-
-      {showPaging && (
-        <Paging
-          currentItemsPerPage={effectivePagination.pageSize}
-          currentPage={effectivePagination.pageIndex + 1}
-          totalRecords={effectiveTotalRecords}
-          currentRecordCount={table.getRowModel().rows.length}
-          setItemsPerPage={(x) => {
-            table.setPageSize(x);
-          }}
-          setCurrentPage={(x) => table.setPageIndex(x - 1)}
-          possiblePageItemCounts={pageSizes}
-          translations={{
-            itemsPerPageDropdown: "Anzahl pro Seite",
-            showedItemsText: "Zeige {from} bis {to} von insgesamt {total} Resultaten",
-          }}
-          pagingPossible={true}
-        />
-      )}
-    </>
+    <ReactDataTableRenderer
+      table={table}
+      pageSizes={pageSizes}
+      pagination={effectivePagination}
+      totalRecords={effectiveTotalRecords}
+      isFetching={isFetching}
+      isLoading={isLoading}
+      rowStyle={rowStyle}
+      showPaging={showPaging}
+      tableClassName={tableClassName}
+      tableStyle={tableStyle}
+    />
   );
 };
 
