@@ -21,6 +21,11 @@ on:
           - beta
           - rc
 
+      dry_run:
+        type: boolean
+        description: Dry Run?
+        default: false
+
 jobs:
   release-it:
     runs-on: ubuntu-latest
@@ -65,6 +70,10 @@ jobs:
               params+=(--preRelease=${{ github.event.inputs.pre_release }})
               params+=(--plugins.@release-it/keep-a-changelog.keepUnreleased)
               params+=(--no-plugins.@release-it/keep-a-changelog.strictLatest)
+          fi
+
+          if [[ ${{ github.event.inputs.dry_run }} == "true" ]]; then
+              params+=(--dry-run)
           fi
 
           params+=(--ci)
