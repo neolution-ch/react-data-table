@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { PaginationState, Table, flexRender } from "@tanstack/react-table";
 import { Spinner, Table as ReactStrapTable, Input } from "reactstrap";
-import { ExtendedColumnDef } from "./ExtendedColumnDef";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 
 interface ReactDataTableRendererProps<TData>
@@ -49,7 +48,11 @@ const ReactDataTableRenderer = <TData,>(props: ReactDataTableRendererProps<TData
               </tr>
               <tr key={`${headerGroup.id}-col-filters`}>
                 {headerGroup.headers.map((header) => {
-                  const extendedColumnDef = header.column.columnDef as ExtendedColumnDef<TData>;
+                  const {
+                    column: {
+                      columnDef: { meta },
+                    },
+                  } = header;
 
                   return (
                     <>
@@ -76,12 +79,18 @@ const ReactDataTableRenderer = <TData,>(props: ReactDataTableRendererProps<TData
 
                         {header.column.getCanFilter() && (
                           <>
-                            {extendedColumnDef.columnFilterDropDownConfig ? (
-                              <Input type="select" onChange={(e) => header.column.setFilterValue(e.target.value)} bsSize="sm">
+                            {meta?.dropdownFilter ? (
+                              <Input
+                                type="select"
+                                onChange={(e) => {
+                                  header.column.setFilterValue(e.target.value);
+                                }}
+                                bsSize="sm"
+                              >
                                 <option value="">All</option>
-                                {extendedColumnDef.columnFilterDropDownConfig.values.map((value) => (
-                                  <option key={value} value={value}>
-                                    {value}
+                                {meta.dropdownFilter.options.map(({ label, value }, i) => (
+                                  <option key={i} value={value}>
+                                    {label}
                                   </option>
                                 ))}
                               </Input>

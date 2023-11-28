@@ -7,7 +7,7 @@ import { ReactDataTableRenderer } from "./ReactDataTableRenderer";
 
 const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
   const {
-    data,
+    data = [],
     columns,
     onFilterChange,
     onSortingChange,

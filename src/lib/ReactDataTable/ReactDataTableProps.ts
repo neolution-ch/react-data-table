@@ -1,18 +1,18 @@
 ﻿import { CSSProperties } from "react";
-import { ColumnFiltersState, CoreOptions, OnChangeFn, PaginationState, SortingState } from "@tanstack/react-table";
-import { ExtendedColumnDef } from "./ExtendedColumnDef";
+import { ColumnDef, ColumnFiltersState, CoreOptions, OnChangeFn, PaginationState, SortingState } from "@tanstack/react-table";
 
 export interface ReactDataTableProps<TData> {
   /**
    * data to display in the table
    */
-  data: TData[];
+  data?: TData[];
 
   /**
    * columns to display in the table. You can use the createColumnHelper to create the columns
    * ref: https://tanstack.com/table/v8/docs/guide/column-defs#column-helpers
    */
-  columns: ExtendedColumnDef<TData>[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: ColumnDef<TData, any>[];
 
   /**
    * Called when the user changes the filters.
