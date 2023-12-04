@@ -45,7 +45,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@neolution-ch/react-pattern-ui": "2.9.0",
+    "@neolution-ch/react-pattern-ui": "^3.1.0",
     "@tanstack/react-table": "^8.10.7",
     "react-loading-skeleton": "^3.3.1"
   },

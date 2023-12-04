@@ -1,16 +1,13 @@
 ﻿import { useState } from "react";
 import { ColumnFiltersState, PaginationState, SortingState } from "@tanstack/react-table";
+import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
+import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 
-interface useReactTableStateProps<> {
-  initialColumnFilters?: ColumnFiltersState;
-  initialSorting?: SortingState;
-  initialPagination?: Partial<PaginationState>;
-}
 /**
- * A custom hook that will initialize all the state needed for the react table
+ * A custom hook that will initialize all the state needed for the react data table
  * @returns the state and the setters
  */
-const useReactTableState = (props: useReactTableStateProps = {}) => {
+const useReactDataTableState = (props: useReactDataTableStateProps = {}): useReactDataTableStateResult => {
   const { initialColumnFilters, initialSorting, initialPagination } = props;
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(initialColumnFilters ?? []);
@@ -30,4 +27,4 @@ const useReactTableState = (props: useReactTableStateProps = {}) => {
   };
 };
 
-export { useReactTableState };
+export { useReactDataTableState, useReactDataTableStateProps, useReactDataTableStateResult };
