@@ -20,12 +20,11 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     rowStyle,
     pageSizes,
     showPaging,
+    onEnter,
     totalRecords = table.getCoreRowModel().rows.length,
   } = props;
 
   const { pagination } = table.getState();
-
-  console.log(table.getFooterGroups());
 
   return (
     <>
@@ -66,58 +65,72 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                   } = header;
 
                   return (
-                    <>
-                      <th>
-                        {header.index === 0 && (
-                          <>
+                    <th key={header.id}>
+                      {header.index === 0 && (
+                        <>
+                          {onEnter && (
                             <FontAwesomeIcon
                               style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
                               icon={faSearch}
-                              onClick={() => {
-                                // onSearch();
-                              }}
+                              onClick={() => onEnter(table.getState().columnFilters)}
                             />
+                          )}
 
-                            <FontAwesomeIcon
-                              style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                              icon={faTimes}
-                              onClick={() => {
-                                table.resetColumnFilters();
+                          <FontAwesomeIcon
+                            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+                            icon={faTimes}
+                            onClick={() => {
+                              if (onEnter) {
+                                onEnter([]);
+                              }
+
+                              table.resetColumnFilters(true);
+                            }}
+                          />
+                        </>
+                      )}
+
+                      {header.column.getCanFilter() && (
+                        <>
+                          {meta?.customFilter ? (
+                            meta?.customFilter(header.column.getFilterValue(), header.column.setFilterValue)
+                          ) : meta?.dropdownFilter ? (
+                            <Input
+                              type="select"
+                              onChange={(e) => {
+                                header.column.setFilterValue(e.target.value);
                               }}
-                            />
-                          </>
-                        )}
-
-                        {header.column.getCanFilter() && (
-                          <>
-                            {meta?.dropdownFilter ? (
-                              <Input
-                                type="select"
-                                onChange={(e) => {
-                                  header.column.setFilterValue(e.target.value);
-                                }}
-                                bsSize="sm"
-                              >
-                                {meta.dropdownFilter.options.map(({ label, value }, i) => (
-                                  <option key={i} value={value}>
-                                    {label}
-                                  </option>
-                                ))}
-                              </Input>
-                            ) : (
-                              <Input
-                                type="text"
-                                value={(header.column.getFilterValue() as string) ?? ""}
-                                onChange={(e) => {
-                                  header.column.setFilterValue(e.target.value);
-                                }}
-                                bsSize="sm"
-                              ></Input>
-                            )}
-                          </>
-                        )}
-                      </th>
-                    </>
+                              onKeyUp={({ key }) => {
+                                if (key === "Enter" && onEnter) {
+                                  onEnter(table.getState().columnFilters);
+                                }
+                              }}
+                              bsSize="sm"
+                            >
+                              {meta.dropdownFilter.options.map(({ label, value }, i) => (
+                                <option key={i} value={value}>
+                                  {label}
+                                </option>
+                              ))}
+                            </Input>
+                          ) : (
+                            <Input
+                              type="text"
+                              value={(header.column.getFilterValue() as string) ?? ""}
+                              onChange={(e) => {
+                                header.column.setFilterValue(e.target.value);
+                              }}
+                              onKeyUp={({ key }) => {
+                                if (key === "Enter" && onEnter) {
+                                  onEnter(table.getState().columnFilters);
+                                }
+                              }}
+                              bsSize="sm"
+                            ></Input>
+                          )}
+                        </>
+                      )}
+                    </th>
                   );
                 })}
               </tr>

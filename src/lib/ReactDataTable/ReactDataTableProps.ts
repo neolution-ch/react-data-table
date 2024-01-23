@@ -1,4 +1,4 @@
-﻿import { Table } from "@tanstack/react-table";
+﻿import { ColumnFiltersState, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 
 /**
@@ -55,4 +55,9 @@ export interface ReactDataTableProps<TData> {
    * boolean flag to indicate if the paging should be displayed
    */
   showPaging?: boolean;
+
+  /**
+   * callback that gets trigger by pressing enter or clicking the search icon
+   */
+  onEnter?: (columnFilters: ColumnFiltersState) => void;
 }

@@ -21,6 +21,11 @@ export interface useReactDataTableStateResult {
   columnFilters: ColumnFiltersState;
 
   /**
+   * the entered column filters state
+   */
+  enteredColumnFilters: ColumnFiltersState;
+
+  /**
    * the setter for the sorting state
    */
   setSorting: Dispatch<SetStateAction<SortingState>>;
@@ -34,4 +39,9 @@ export interface useReactDataTableStateResult {
    * the setter for the column filters state
    */
   setColumnFilters: Dispatch<SetStateAction<ColumnFiltersState>>;
+
+  /**
+   * the setter for the column entered filters state
+   */
+  setEnteredColumnFilters: Dispatch<SetStateAction<ColumnFiltersState>>;
 }

@@ -1,5 +1,5 @@
 ﻿import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
-import { useReactDataTableState } from "../useReactDataTableState.ts/useReactDataTableState";
+import { useReactDataTableState } from "../useReactDataTableState/useReactDataTableState";
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
 import { useReactDataTableResult } from "./useReactDataTableResult";
@@ -51,13 +51,25 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   }));
   const skeletonData = Array.from({ length: paginationInternal.pageSize }, () => ({} as TData));
 
+  // add this so we dont have local filtering
+  columns.filter((x) => !x.filterFn).forEach((x) => (x.filterFn = () => true));
+
   const table = useReactTable<TData>({
     data: isLoading ? skeletonData : data,
     columns: isLoading ? skeletonColumns : columns,
 
-    onColumnFiltersChange: effectiveOnColumnFiltersChange,
-    onPaginationChange: effectiveOnPaginationChange,
-    onSortingChange: effectiveOnSortingChange,
+    onColumnFiltersChange: (filtersOrUpdaterFn) => {
+      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(effectiveColumnFilters);
+      return effectiveOnColumnFiltersChange(newFilter);
+    },
+    onPaginationChange: (paginationOrUpdaterFn) => {
+      const newFilter = typeof paginationOrUpdaterFn !== "function" ? paginationOrUpdaterFn : paginationOrUpdaterFn(effectivePagination);
+      return effectiveOnPaginationChange(newFilter);
+    },
+    onSortingChange: (sortingOrUpdaterFn) => {
+      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(effectiveSorting);
+      return effectiveOnSortingChange(newFilter);
+    },
 
     state: {
       columnFilters: effectiveColumnFilters,
