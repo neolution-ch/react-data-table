@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { flexRender } from "@tanstack/react-table";
-import { Spinner, Table as ReactStrapTable, Input } from "reactstrap";
+import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 
@@ -26,14 +26,35 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
 
   const { pagination } = table.getState();
 
+  const loadingCss = `  
+  @-webkit-keyframes reloadingAnimation {
+    0%{
+      background-position-x: 200%
+    }
+    100%{
+      background-position-x: 0%
+    }
+  }`;
+
   return (
     <>
-      {!isLoading && isFetching && (
-        <Spinner color="primary" type="grow">
-          Loading...
-        </Spinner>
-      )}
-      <ReactStrapTable striped hover size="sm" className={tableClassName} style={tableStyle}>
+      <style>{loadingCss}</style>
+      <ReactStrapTable
+        striped
+        hover
+        size="sm"
+        className={tableClassName}
+        style={
+          !isLoading && isFetching
+            ? {
+                ...tableStyle,
+                background: "linear-gradient(90deg, #E8E8E8, #ffffff, #E8E8E8)",
+                backgroundSize: "200% 200%",
+                animation: "reloadingAnimation 3s linear infinite",
+              }
+            : tableStyle
+        }
+      >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <>

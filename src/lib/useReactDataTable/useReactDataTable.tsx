@@ -51,9 +51,6 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   }));
   const skeletonData = Array.from({ length: paginationInternal.pageSize }, () => ({} as TData));
 
-  // add this so we dont have local filtering
-  columns.filter((x) => !x.filterFn).forEach((x) => (x.filterFn = () => true));
-
   const table = useReactTable<TData>({
     data: isLoading ? skeletonData : data,
     columns: isLoading ? skeletonColumns : columns,
