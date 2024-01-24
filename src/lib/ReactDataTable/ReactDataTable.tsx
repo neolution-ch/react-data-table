@@ -1,10 +1,11 @@
-﻿import { faSortDown, faSortUp, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+﻿import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
+import { Fragment } from "react";
 
 /**
  * The table renderer for the react data table
@@ -57,8 +58,8 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
       >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <>
-              <tr key={headerGroup.id}>
+            <Fragment key={headerGroup.id}>
+              <tr key={`${headerGroup.id}-col-header`}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
@@ -68,9 +69,11 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 
                     {header.column.getIsSorted() === "desc" ? (
-                      <FontAwesomeIcon icon={faSortDown} />
+                      <FontAwesomeIcon icon={faSortDown} className="ms-1" />
                     ) : header.column.getIsSorted() === "asc" ? (
-                      <FontAwesomeIcon icon={faSortUp} />
+                      <FontAwesomeIcon icon={faSortUp} className="ms-1" />
+                    ) : header.column.getCanSort() ? (
+                      <FontAwesomeIcon icon={faSort} className="ms-1" />
                     ) : (
                       ""
                     )}
@@ -86,7 +89,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                   } = header;
 
                   return (
-                    <th key={header.id}>
+                    <th key={`${header.id}-col-filter`}>
                       {header.index === 0 && (
                         <>
                           {onEnter && (
@@ -155,7 +158,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                   );
                 })}
               </tr>
-            </>
+            </Fragment>
           ))}
         </thead>
         <tbody>
