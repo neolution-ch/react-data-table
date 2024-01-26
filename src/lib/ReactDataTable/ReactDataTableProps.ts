@@ -60,4 +60,9 @@ export interface ReactDataTableProps<TData> {
    * callback that gets trigger by pressing enter or clicking the search icon
    */
   onEnter?: (columnFilters: ColumnFiltersState) => void;
+
+  /**
+   * To draw the table without headers (titles + filters)
+   */
+  withoutHeaders?: boolean;
 }

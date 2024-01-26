@@ -23,6 +23,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     showPaging,
     onEnter,
     totalRecords = table.getCoreRowModel().rows.length,
+    withoutHeaders = false,
   } = props;
 
   const { pagination } = table.getState();
@@ -56,111 +57,113 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
             : tableStyle
         }
       >
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <Fragment key={headerGroup.id}>
-              <tr key={`${headerGroup.id}-col-header`}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                    style={header.column.getCanSort() ? { cursor: "pointer" } : {}}
-                  >
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+        {!withoutHeaders && (
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <Fragment key={headerGroup.id}>
+                <tr key={`${headerGroup.id}-col-header`}>
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      onClick={header.column.getToggleSortingHandler()}
+                      style={header.column.getCanSort() ? { cursor: "pointer" } : {}}
+                    >
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 
-                    {header.column.getIsSorted() === "desc" ? (
-                      <FontAwesomeIcon icon={faSortDown} className="ms-1" />
-                    ) : header.column.getIsSorted() === "asc" ? (
-                      <FontAwesomeIcon icon={faSortUp} className="ms-1" />
-                    ) : header.column.getCanSort() ? (
-                      <FontAwesomeIcon icon={faSort} className="ms-1" />
-                    ) : (
-                      ""
-                    )}
-                  </th>
-                ))}
-              </tr>
-              <tr key={`${headerGroup.id}-col-filters`}>
-                {headerGroup.headers.map((header) => {
-                  const {
-                    column: {
-                      columnDef: { meta },
-                    },
-                  } = header;
-
-                  return (
-                    <th key={`${header.id}-col-filter`}>
-                      {header.index === 0 && (
-                        <>
-                          {onEnter && (
-                            <FontAwesomeIcon
-                              style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                              icon={faSearch}
-                              onClick={() => onEnter(table.getState().columnFilters)}
-                            />
-                          )}
-
-                          <FontAwesomeIcon
-                            style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                            icon={faTimes}
-                            onClick={() => {
-                              if (onEnter) {
-                                onEnter([]);
-                              }
-
-                              table.resetColumnFilters(true);
-                            }}
-                          />
-                        </>
-                      )}
-
-                      {header.column.getCanFilter() && (
-                        <>
-                          {meta?.customFilter ? (
-                            meta?.customFilter(header.column.getFilterValue(), header.column.setFilterValue)
-                          ) : meta?.dropdownFilter ? (
-                            <Input
-                              type="select"
-                              onChange={(e) => {
-                                header.column.setFilterValue(e.target.value);
-                              }}
-                              onKeyUp={({ key }) => {
-                                if (key === "Enter" && onEnter) {
-                                  onEnter(table.getState().columnFilters);
-                                }
-                              }}
-                              bsSize="sm"
-                            >
-                              {meta.dropdownFilter.options.map(({ label, value }, i) => (
-                                <option key={i} value={value}>
-                                  {label}
-                                </option>
-                              ))}
-                            </Input>
-                          ) : (
-                            <Input
-                              type="text"
-                              value={(header.column.getFilterValue() as string) ?? ""}
-                              onChange={(e) => {
-                                header.column.setFilterValue(e.target.value);
-                              }}
-                              onKeyUp={({ key }) => {
-                                if (key === "Enter" && onEnter) {
-                                  onEnter(table.getState().columnFilters);
-                                }
-                              }}
-                              bsSize="sm"
-                            ></Input>
-                          )}
-                        </>
+                      {header.column.getIsSorted() === "desc" ? (
+                        <FontAwesomeIcon icon={faSortDown} className="ms-1" />
+                      ) : header.column.getIsSorted() === "asc" ? (
+                        <FontAwesomeIcon icon={faSortUp} className="ms-1" />
+                      ) : header.column.getCanSort() ? (
+                        <FontAwesomeIcon icon={faSort} className="ms-1" />
+                      ) : (
+                        ""
                       )}
                     </th>
-                  );
-                })}
-              </tr>
-            </Fragment>
-          ))}
-        </thead>
+                  ))}
+                </tr>
+                <tr key={`${headerGroup.id}-col-filters`}>
+                  {headerGroup.headers.map((header) => {
+                    const {
+                      column: {
+                        columnDef: { meta },
+                      },
+                    } = header;
+
+                    return (
+                      <th key={`${header.id}-col-filter`}>
+                        {header.index === 0 && (
+                          <>
+                            {onEnter && (
+                              <FontAwesomeIcon
+                                style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+                                icon={faSearch}
+                                onClick={() => onEnter(table.getState().columnFilters)}
+                              />
+                            )}
+
+                            <FontAwesomeIcon
+                              style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+                              icon={faTimes}
+                              onClick={() => {
+                                if (onEnter) {
+                                  onEnter([]);
+                                }
+
+                                table.resetColumnFilters(true);
+                              }}
+                            />
+                          </>
+                        )}
+
+                        {header.column.getCanFilter() && (
+                          <>
+                            {meta?.customFilter ? (
+                              meta?.customFilter(header.column.getFilterValue(), header.column.setFilterValue)
+                            ) : meta?.dropdownFilter ? (
+                              <Input
+                                type="select"
+                                onChange={(e) => {
+                                  header.column.setFilterValue(e.target.value);
+                                }}
+                                onKeyUp={({ key }) => {
+                                  if (key === "Enter" && onEnter) {
+                                    onEnter(table.getState().columnFilters);
+                                  }
+                                }}
+                                bsSize="sm"
+                              >
+                                {meta.dropdownFilter.options.map(({ label, value, disabled }, i) => (
+                                  <option key={i} value={value} disabled={disabled}>
+                                    {label}
+                                  </option>
+                                ))}
+                              </Input>
+                            ) : (
+                              <Input
+                                type="text"
+                                value={(header.column.getFilterValue() as string) ?? ""}
+                                onChange={(e) => {
+                                  header.column.setFilterValue(e.target.value);
+                                }}
+                                onKeyUp={({ key }) => {
+                                  if (key === "Enter" && onEnter) {
+                                    onEnter(table.getState().columnFilters);
+                                  }
+                                }}
+                                bsSize="sm"
+                              ></Input>
+                            )}
+                          </>
+                        )}
+                      </th>
+                    );
+                  })}
+                </tr>
+              </Fragment>
+            ))}
+          </thead>
+        )}
         <tbody>
           {table.getRowModel().rows.length === 0 && (
             <tr>

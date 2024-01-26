@@ -6,6 +6,7 @@ import { CSSProperties } from "react";
 interface DropdownColumnFilterOption {
   label: string;
   value: string | number;
+  disabled?: boolean;
 }
 
 interface DropdownColumnFilter {
@@ -24,6 +25,6 @@ declare module "@tanstack/table-core" {
     parseValueAs?: "number" | "date";
     cellStyle?: CSSProperties;
     enumValues?: EnumValue[];
-    customFilter?: (filterValue: any, setFilterValue: (filterValue: any) => void) => JSX.Element;
+    customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void) => JSX.Element;
   }
 }
