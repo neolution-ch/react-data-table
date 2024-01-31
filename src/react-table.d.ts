@@ -24,7 +24,6 @@ declare module "@tanstack/table-core" {
     dropdownFilter?: DropdownColumnFilter;
     parseValueAs?: "number" | "date";
     cellStyle?: CSSProperties;
-    enumValues?: EnumValue[];
     customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void) => JSX.Element;
   }
 }
