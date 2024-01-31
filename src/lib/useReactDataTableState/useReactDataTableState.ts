@@ -11,7 +11,7 @@ const useReactDataTableState = (props: useReactDataTableStateProps = {}): useRea
   const { initialColumnFilters, initialSorting, initialPagination } = props;
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(initialColumnFilters ?? []);
-  const [enteredColumnFilters, setEnteredColumnFilters] = useState<ColumnFiltersState>(initialColumnFilters ?? []);
+  const [afterSearchFilter, setAfterSearchFilter] = useState<ColumnFiltersState>(initialColumnFilters ?? []);
   const [sorting, setSorting] = useState<SortingState>(initialSorting ?? []);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: initialPagination?.pageIndex ?? 0,
@@ -22,11 +22,11 @@ const useReactDataTableState = (props: useReactDataTableStateProps = {}): useRea
     sorting,
     pagination,
     columnFilters,
-    enteredColumnFilters,
+    afterSearchFilter,
     setSorting,
     setColumnFilters,
     setPagination,
-    setEnteredColumnFilters,
+    setAfterSearchFilter,
   };
 };
 
