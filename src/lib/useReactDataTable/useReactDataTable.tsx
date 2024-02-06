@@ -45,6 +45,9 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   const effectiveOnPaginationChange = onPaginationChange ?? setPaginationInternal;
   const effectiveOnSortingChange = onSortingChange ?? setSortingInternal;
 
+  // If we active the manual filtering, we have to unset the filterfunction, else it still does automatic filtering
+  if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
+
   const skeletonColumns = columns.map((column) => ({
     ...column,
     cell: () => <Skeleton />,

@@ -124,7 +124,10 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                               <Input
                                 type="select"
                                 onChange={(e) => {
-                                  header.column.setFilterValue(e.target.value);
+                                  header.column.setFilterValue(
+                                    meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
+                                      e.target.value,
+                                  );
                                 }}
                                 onKeyUp={({ key }) => {
                                   if (key === "Enter" && onEnter) {
