@@ -5,5 +5,5 @@ export * from "./lib/ReactDataTable/ReactDataTable";
 export * from "./lib/utils/getStronglyTypedColumnFilter";
 export * from "./lib/useFullyControlledReactDataTable/useFullyControlledReactDataTable";
 export * from "./lib/utils/createReactDataTableColumnHelper";
-export * from "./lib/utils/getModelFromColumFilter";
-export * from "./lib/utils/getColumFilterFromModel";
+export * from "./lib/utils/getModelFromColumnFilter";
+export * from "./lib/utils/getColumnFilterFromModel";
