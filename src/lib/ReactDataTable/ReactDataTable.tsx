@@ -66,7 +66,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                     <th
                       key={header.id}
                       onClick={header.column.getToggleSortingHandler()}
-                      style={header.column.getCanSort() ? { cursor: "pointer" } : {}}
+                      style={{ ...header.column.columnDef.meta?.headerStyle, ...(header.column.getCanSort() ? { cursor: "pointer" } : {}) }}
                     >
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 

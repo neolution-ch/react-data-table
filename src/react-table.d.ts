@@ -22,8 +22,8 @@ export interface EnumValue {
 declare module "@tanstack/table-core" {
   interface ColumnMeta<TData extends RowData, TValue> {
     dropdownFilter?: DropdownColumnFilter;
-    parseValueAs?: "number" | "date";
     cellStyle?: CSSProperties;
+    headerStyle?: CSSProperties;
     customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void) => JSX.Element;
   }
 }
