@@ -65,4 +65,9 @@ export interface ReactDataTableProps<TData> {
    * To draw the table without headers (titles + filters)
    */
   withoutHeaders?: boolean;
+
+  /**
+   * To draw the table without headers filters
+   */
+  withoutHeaderFilters?: boolean;
 }

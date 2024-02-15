@@ -24,6 +24,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     onEnter,
     totalRecords = table.getCoreRowModel().rows.length,
     withoutHeaders = false,
+    withoutHeaderFilters = false,
   } = props;
 
   const { pagination } = table.getState();
@@ -82,87 +83,89 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                     </th>
                   ))}
                 </tr>
-                <tr key={`${headerGroup.id}-col-filters`}>
-                  {headerGroup.headers.map((header) => {
-                    const {
-                      column: {
-                        columnDef: { meta },
-                      },
-                    } = header;
+                {!withoutHeaderFilters && (
+                  <tr key={`${headerGroup.id}-col-filters`}>
+                    {headerGroup.headers.map((header) => {
+                      const {
+                        column: {
+                          columnDef: { meta },
+                        },
+                      } = header;
 
-                    return (
-                      <th key={`${header.id}-col-filter`}>
-                        {header.index === 0 && (
-                          <>
-                            {onEnter && (
+                      return (
+                        <th key={`${header.id}-col-filter`}>
+                          {header.index === 0 && (
+                            <>
+                              {onEnter && (
+                                <FontAwesomeIcon
+                                  style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+                                  icon={faSearch}
+                                  onClick={() => onEnter(table.getState().columnFilters)}
+                                />
+                              )}
+
                               <FontAwesomeIcon
                                 style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                                icon={faSearch}
-                                onClick={() => onEnter(table.getState().columnFilters)}
+                                icon={faTimes}
+                                onClick={() => {
+                                  if (onEnter) {
+                                    onEnter([]);
+                                  }
+
+                                  table.resetColumnFilters(true);
+                                }}
                               />
-                            )}
+                            </>
+                          )}
 
-                            <FontAwesomeIcon
-                              style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                              icon={faTimes}
-                              onClick={() => {
-                                if (onEnter) {
-                                  onEnter([]);
-                                }
-
-                                table.resetColumnFilters(true);
-                              }}
-                            />
-                          </>
-                        )}
-
-                        {header.column.getCanFilter() && (
-                          <>
-                            {meta?.customFilter ? (
-                              meta?.customFilter(header.column.getFilterValue(), header.column.setFilterValue)
-                            ) : meta?.dropdownFilter ? (
-                              <Input
-                                type="select"
-                                onChange={(e) => {
-                                  header.column.setFilterValue(
-                                    meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
-                                      e.target.value,
-                                  );
-                                }}
-                                onKeyUp={({ key }) => {
-                                  if (key === "Enter" && onEnter) {
-                                    onEnter(table.getState().columnFilters);
-                                  }
-                                }}
-                                bsSize="sm"
-                              >
-                                {meta.dropdownFilter.options.map(({ label, value, disabled }, i) => (
-                                  <option key={i} value={value} disabled={disabled}>
-                                    {label}
-                                  </option>
-                                ))}
-                              </Input>
-                            ) : (
-                              <Input
-                                type="text"
-                                value={(header.column.getFilterValue() as string) ?? ""}
-                                onChange={(e) => {
-                                  header.column.setFilterValue(e.target.value);
-                                }}
-                                onKeyUp={({ key }) => {
-                                  if (key === "Enter" && onEnter) {
-                                    onEnter(table.getState().columnFilters);
-                                  }
-                                }}
-                                bsSize="sm"
-                              ></Input>
-                            )}
-                          </>
-                        )}
-                      </th>
-                    );
-                  })}
-                </tr>
+                          {header.column.getCanFilter() && (
+                            <>
+                              {meta?.customFilter ? (
+                                meta?.customFilter(header.column.getFilterValue(), header.column.setFilterValue)
+                              ) : meta?.dropdownFilter ? (
+                                <Input
+                                  type="select"
+                                  onChange={(e) => {
+                                    header.column.setFilterValue(
+                                      meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
+                                        e.target.value,
+                                    );
+                                  }}
+                                  onKeyUp={({ key }) => {
+                                    if (key === "Enter" && onEnter) {
+                                      onEnter(table.getState().columnFilters);
+                                    }
+                                  }}
+                                  bsSize="sm"
+                                >
+                                  {meta.dropdownFilter.options.map(({ label, value, disabled }, i) => (
+                                    <option key={i} value={value} disabled={disabled}>
+                                      {label}
+                                    </option>
+                                  ))}
+                                </Input>
+                              ) : (
+                                <Input
+                                  type="text"
+                                  value={(header.column.getFilterValue() as string) ?? ""}
+                                  onChange={(e) => {
+                                    header.column.setFilterValue(e.target.value);
+                                  }}
+                                  onKeyUp={({ key }) => {
+                                    if (key === "Enter" && onEnter) {
+                                      onEnter(table.getState().columnFilters);
+                                    }
+                                  }}
+                                  bsSize="sm"
+                                ></Input>
+                              )}
+                            </>
+                          )}
+                        </th>
+                      );
+                    })}
+                  </tr>
+                )}
               </Fragment>
             ))}
           </thead>
