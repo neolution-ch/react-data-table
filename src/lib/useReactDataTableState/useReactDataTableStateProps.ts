@@ -1,9 +1,10 @@
-﻿import { ColumnFiltersState, PaginationState, SortingState } from "@tanstack/react-table";
+﻿import { ColumnFiltersState, PaginationState, VisibilityState } from "@tanstack/react-table";
+import { SortingState } from "../types";
 
 /**
  * The props for the useReactDataTableState hook
  */
-export interface useReactDataTableStateProps {
+export interface useReactDataTableStateProps<TData> {
   /**
    * the initial column filters
    */
@@ -12,10 +13,15 @@ export interface useReactDataTableStateProps {
   /**
    * the initial sorting
    */
-  initialSorting?: SortingState;
+  initialSorting?: SortingState<TData>;
 
   /**
    * the initial pagination
    */
   initialPagination?: Partial<PaginationState>;
+
+    /**
+   * the initial visibility
+   */
+  initialVisibility?: VisibilityState;
 }

@@ -1,14 +1,15 @@
 ﻿import { Dispatch, SetStateAction } from "react";
-import { ColumnFiltersState, PaginationState, SortingState } from "@tanstack/react-table";
+import { ColumnFiltersState, PaginationState } from "@tanstack/react-table";
+import { SortingState } from "../types";
 
 /**
  * The props for the useReactDataTableState hook
  */
-export interface useReactDataTableStateResult {
+export interface useReactDataTableStateResult<TData> {
   /**
    * the current sorting state
    */
-  sorting: SortingState;
+  sorting: SortingState<TData>;
 
   /**
    * the current pagination state
@@ -28,7 +29,7 @@ export interface useReactDataTableStateResult {
   /**
    * the setter for the sorting state
    */
-  setSorting: Dispatch<SetStateAction<SortingState>>;
+  setSorting: Dispatch<SetStateAction<SortingState<TData>>>;
 
   /**
    * the setter for the pagination state

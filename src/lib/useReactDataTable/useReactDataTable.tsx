@@ -1,4 +1,4 @@
-﻿import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
+﻿import { SortingState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { useReactDataTableState } from "../useReactDataTableState/useReactDataTableState";
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
@@ -22,7 +22,7 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     onSortingChange,
     reactTableOptions,
   } = props;
-  const { columnFilters: columnFiltersInitial, sorting: sortingInitial, pagination: paginationInitial } = initialState ?? {};
+  const { columnFilters: columnFiltersInitial, sorting: sortingInitial, pagination: paginationInitial, columnVisibility } = initialState ?? {};
   const { columnFilters: columnFiltersExternal, pagination: paginationExternal, sorting: sortingExternal } = state ?? {};
 
   const {
@@ -32,10 +32,11 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     setColumnFilters: setColumnFiltersInternal,
     setPagination: setPaginationInternal,
     setSorting: setSortingInternal,
-  } = useReactDataTableState({
+  } = useReactDataTableState<TData>({
     initialColumnFilters: columnFiltersInitial,
     initialPagination: paginationInitial,
     initialSorting: sortingInitial,
+    initialVisibility: columnVisibility,
   });
 
   const effectiveColumnFilters = columnFiltersExternal ?? columnFiltersInternal;
@@ -67,14 +68,14 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
       return effectiveOnPaginationChange(newFilter);
     },
     onSortingChange: (sortingOrUpdaterFn) => {
-      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(effectiveSorting);
+      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(effectiveSorting as SortingState);
       return effectiveOnSortingChange(newFilter);
     },
 
     state: {
       columnFilters: effectiveColumnFilters,
       pagination: effectivePagination,
-      sorting: effectiveSorting,
+      sorting: effectiveSorting as SortingState,
     },
 
     getCoreRowModel: getCoreRowModel(),

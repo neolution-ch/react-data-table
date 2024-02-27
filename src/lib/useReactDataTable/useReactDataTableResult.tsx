@@ -1,5 +1,6 @@
-﻿import { ColumnFiltersState, PaginationState, SortingState, Table } from "@tanstack/react-table";
+﻿import { ColumnFiltersState, PaginationState, Table } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
+import { SortingState } from "../types";
 
 /**
  * The result of the useReactDataTable hook
@@ -34,10 +35,10 @@ export interface useReactDataTableResult<TData> {
   /**
    * the sorting state. Only makes sense to use this if you are not supplying the `state.sorting` property
    */
-  sorting: SortingState;
+  sorting: SortingState<TData>;
 
   /**
    * the sorting state setter. Only makes sense to use this if you are not using the `onSortingChange` callback
    */
-  setSorting: Dispatch<SetStateAction<SortingState>>;
+  setSorting: Dispatch<SetStateAction<SortingState<TData>>>;
 }
