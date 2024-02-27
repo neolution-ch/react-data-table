@@ -3,7 +3,7 @@ import { useReactDataTableState } from "../useReactDataTableState/useReactDataTa
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
 import { useReactDataTableResult } from "./useReactDataTableResult";
-
+import { SortingState as TypedSortingState } from "../types";
 /**
  * A react hook that returns a react table instance and the state of the table
  */
@@ -69,7 +69,7 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     },
     onSortingChange: (sortingOrUpdaterFn) => {
       const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(effectiveSorting as SortingState);
-      return effectiveOnSortingChange(newFilter);
+      return effectiveOnSortingChange(newFilter as TypedSortingState<TData>);
     },
 
     state: {
