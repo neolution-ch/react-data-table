@@ -30,7 +30,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn copy-definitionfile && rollup -c",
+    "build": "rollup -c && yarn copy-definitionfile",
     "build-storybook": "build-storybook",
     "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
     "prepack": "yarn build",
