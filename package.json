@@ -30,14 +30,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "yarn copy-definitionfile && rollup -c",
     "build-storybook": "build-storybook",
     "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
     "prepack": "yarn build",
     "prepare-pr": "yarn prettier . --write && yarn lint && yarn build && yarn test\"",
     "prettier-check": "prettier --check .",
     "prettier-write": "prettier --write .",
-    "start": "rollup -c -w",
+    "copy-definitionfile":"shx cp -r src/react-table.d.ts dist/react-table.d.ts",
+    "start": "yarn copy-definitionfile && rollup -c -w",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
     "storybook": "start-storybook -p 6006",
