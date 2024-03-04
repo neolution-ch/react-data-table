@@ -48,7 +48,8 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   // If we active the manual filtering, we have to unset the filterfunction, else it still does automatic filtering
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
 
-  const skeletonColumns = columns.map((column) => ({
+  const internalColumns = columns.filter((x) => x.meta?.isHidden !== true);
+  const skeletonColumns = internalColumns.map((column) => ({
     ...column,
     cell: () => <Skeleton />,
   }));
@@ -56,7 +57,7 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
 
   const table = useReactTable<TData>({
     data: isLoading ? skeletonData : data,
-    columns: isLoading ? skeletonColumns : columns,
+    columns: isLoading ? skeletonColumns : internalColumns,
 
     onColumnFiltersChange: (filtersOrUpdaterFn) => {
       const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(effectiveColumnFilters);

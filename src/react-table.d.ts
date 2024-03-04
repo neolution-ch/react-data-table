@@ -25,5 +25,6 @@ declare module "@tanstack/table-core" {
     cellStyle?: CSSProperties;
     headerStyle?: CSSProperties;
     customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void) => JSX.Element;
+    isHidden?: boolean;
   }
 }
