@@ -13,12 +13,6 @@ interface DropdownColumnFilter {
   options: DropdownColumnFilterOption[];
 }
 
-export interface EnumValue {
-  value: number | string | undefined;
-  text: string;
-  disabled?: boolean;
-}
-
 declare module "@tanstack/table-core" {
   interface ColumnMeta<TData extends RowData, TValue> {
     /**
