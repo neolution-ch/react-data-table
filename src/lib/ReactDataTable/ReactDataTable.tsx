@@ -1,4 +1,5 @@
-﻿import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
+﻿/* eslint max-lines: ["error", 250]  */
+import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { flexRender } from "@tanstack/react-table";
@@ -127,6 +128,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                                   type="select"
                                   onChange={(e) => {
                                     header.column.setFilterValue(
+                                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                       meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
                                         e.target.value,
                                     );
