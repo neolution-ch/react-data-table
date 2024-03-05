@@ -21,7 +21,7 @@ describe("DataTable", () => {
     dateCreated: Date;
   }
 
-  let dataDynamic: DataInterface[] = Array.from(Array(100)).map((_, i) => {
+  const dataDynamic: DataInterface[] = Array.from(Array(100)).map((_, i) => {
     const date = new Date(2022, 12, 31);
     date.setDate(date.getDate() - i);
     return {
