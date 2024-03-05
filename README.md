@@ -40,20 +40,6 @@ In this configuration the table is fully static meaning that the data will be so
 
 In this configuration the table is fully dynamic meaning that the consumer of this package has to provide the data and the functions to update the data.
 
-```tsx
-
-## Storybook
-
-The storybook is a visual testing tool that makes it easy to test and tinker with the components.
-
-It can be found at https://neolution-ch.github.io/react-data-table
-
-```
-
-```
-
-```
-
 | use case                                                                                                   | onSorting | sorting |
 | ---------------------------------------------------------------------------------------------------------- | --------- | ------- |
 | you want to manually sort your data (possible server side) but you don't want to manage the state yourself | yes       | no      |
