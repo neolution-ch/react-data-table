@@ -131,7 +131,7 @@ exports[`DataTable renders correctly 1`] = `
           1
         </td>
         <td>
-          Tue Jan 31 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          31.01.2023
         </td>
       </tr>
       <tr>
@@ -145,7 +145,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Mon Jan 30 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          30.01.2023
         </td>
       </tr>
       <tr>
@@ -159,7 +159,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Sun Jan 29 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          29.01.2023
         </td>
       </tr>
       <tr>
@@ -173,7 +173,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Sat Jan 28 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          28.01.2023
         </td>
       </tr>
       <tr>
@@ -187,7 +187,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Fri Jan 27 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          27.01.2023
         </td>
       </tr>
       <tr>
@@ -201,7 +201,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Thu Jan 26 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          26.01.2023
         </td>
       </tr>
       <tr>
@@ -215,7 +215,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Wed Jan 25 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          25.01.2023
         </td>
       </tr>
       <tr>
@@ -229,7 +229,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Tue Jan 24 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          24.01.2023
         </td>
       </tr>
       <tr>
@@ -243,7 +243,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Mon Jan 23 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          23.01.2023
         </td>
       </tr>
       <tr>
@@ -257,7 +257,7 @@ exports[`DataTable renders correctly 1`] = `
           0
         </td>
         <td>
-          Sun Jan 22 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          22.01.2023
         </td>
       </tr>
     </tbody>
@@ -455,7 +455,7 @@ exports[`DataTable renders without header correctly 1`] = `
           1
         </td>
         <td>
-          Tue Jan 31 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          31.01.2023
         </td>
       </tr>
       <tr>
@@ -469,7 +469,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Mon Jan 30 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          30.01.2023
         </td>
       </tr>
       <tr>
@@ -483,7 +483,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Sun Jan 29 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          29.01.2023
         </td>
       </tr>
       <tr>
@@ -497,7 +497,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Sat Jan 28 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          28.01.2023
         </td>
       </tr>
       <tr>
@@ -511,7 +511,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Fri Jan 27 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          27.01.2023
         </td>
       </tr>
       <tr>
@@ -525,7 +525,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Thu Jan 26 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          26.01.2023
         </td>
       </tr>
       <tr>
@@ -539,7 +539,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Wed Jan 25 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          25.01.2023
         </td>
       </tr>
       <tr>
@@ -553,7 +553,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Tue Jan 24 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          24.01.2023
         </td>
       </tr>
       <tr>
@@ -567,7 +567,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Mon Jan 23 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          23.01.2023
         </td>
       </tr>
       <tr>
@@ -581,7 +581,7 @@ exports[`DataTable renders without header correctly 1`] = `
           0
         </td>
         <td>
-          Sun Jan 22 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          22.01.2023
         </td>
       </tr>
     </tbody>
@@ -779,7 +779,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           1
         </td>
         <td>
-          Tue Jan 31 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          31.01.2023
         </td>
       </tr>
       <tr>
@@ -793,7 +793,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Mon Jan 30 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          30.01.2023
         </td>
       </tr>
       <tr>
@@ -807,7 +807,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Sun Jan 29 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          29.01.2023
         </td>
       </tr>
       <tr>
@@ -821,7 +821,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Sat Jan 28 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          28.01.2023
         </td>
       </tr>
       <tr>
@@ -835,7 +835,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Fri Jan 27 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          27.01.2023
         </td>
       </tr>
       <tr>
@@ -849,7 +849,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Thu Jan 26 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          26.01.2023
         </td>
       </tr>
       <tr>
@@ -863,7 +863,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Wed Jan 25 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          25.01.2023
         </td>
       </tr>
       <tr>
@@ -877,7 +877,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Tue Jan 24 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          24.01.2023
         </td>
       </tr>
       <tr>
@@ -891,7 +891,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Mon Jan 23 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          23.01.2023
         </td>
       </tr>
       <tr>
@@ -905,7 +905,7 @@ exports[`DataTable renders without paging correctly 1`] = `
           0
         </td>
         <td>
-          Sun Jan 22 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+          22.01.2023
         </td>
       </tr>
     </tbody>

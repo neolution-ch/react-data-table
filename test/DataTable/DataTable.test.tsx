@@ -7,6 +7,15 @@ import { ReactDataTable, createReactDataTableColumnHelper, useReactDataTable } f
 
 global.React = React; // this also works for other globally available libraries
 
+function padTo2Digits(num: number) {
+  return num.toString().padStart(2, "0");
+}
+
+// 👇️ format as "DD.MM.YYYY"
+function formatDate(date: Date) {
+  return [padTo2Digits(date.getDate()), padTo2Digits(date.getMonth() + 1), date.getFullYear()].join(".");
+}
+
 describe("DataTable", () => {
   enum Status {
     Active = 0,
@@ -54,6 +63,10 @@ describe("DataTable", () => {
       header: "CREATED",
       enableSorting: true,
       enableColumnFilter: true,
+      cell: ({ getValue }) => {
+        const value = getValue();
+        return value ? formatDate(value) : "-";
+      },
       meta: {
         dropdownFilter: {
           options: [
