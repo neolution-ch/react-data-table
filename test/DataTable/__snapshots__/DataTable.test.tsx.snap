@@ -1,1103 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DataTable renders dynamic correctly 1`] = `
-<table
-  class="bg-danger table table-sm table-striped table-hover"
-  style="color: blue;"
->
-  <thead>
-    <tr>
-      <th
-        style="width: 80px;"
-      >
-        Aktionen
-      </th>
-      <th
-        style="cursor: pointer;"
-      >
-        NAME
-         
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-        />
-      </th>
-      <th
-        style="cursor: pointer;"
-      >
-        COUNT
-         
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-        />
-      </th>
-      <th
-        style="cursor: pointer;"
-      >
-        STATUS
-         
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-        />
-      </th>
-      <th
-        style="cursor: pointer;"
-      >
-        CREATED
-         
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-        />
-      </th>
-    </tr>
-    <tr>
-      <th>
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="cursor: pointer; margin-bottom: 4px; margin-right: 5px;"
-          title="Suchen"
-        />
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="cursor: pointer; margin-bottom: 4px; margin-right: 5px;"
-          title="Suche zurücksetzen"
-        />
-      </th>
-      <th>
-        <input
-          class="form-control-sm form-control"
-          id="filter-name"
-          type="text"
-          value="Name 001"
-        />
-      </th>
-      <th>
-        <input
-          class="form-control-sm form-control"
-          id="filter-count"
-          type="text"
-          value=""
-        />
-      </th>
-      <th>
-        <select
-          class="form-control-sm form-control"
-        >
-          <option
-            value="null"
-          >
-            All
-          </option>
-          <option
-            value="0"
-          >
-            Active
-          </option>
-          <option
-            value="1"
-          >
-            Deleted
-          </option>
-        </select>
-      </th>
-      <th>
-        <input
-          class="form-control-sm form-control"
-          id="filter-dateCreated"
-          type="text"
-          value=""
-        />
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 000
-      </td>
-      <td>
-        0
-      </td>
-      <td>
-        Deleted
-      </td>
-      <td>
-        31.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 001
-      </td>
-      <td>
-        1
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        30.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 002
-      </td>
-      <td>
-        2
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        29.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 003
-      </td>
-      <td>
-        3
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        28.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 004
-      </td>
-      <td>
-        4
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        27.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 005
-      </td>
-      <td>
-        5
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        26.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 006
-      </td>
-      <td>
-        6
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        25.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 007
-      </td>
-      <td>
-        7
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        24.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 008
-      </td>
-      <td>
-        8
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        23.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 009
-      </td>
-      <td>
-        9
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        22.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 010
-      </td>
-      <td>
-        10
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        21.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 011
-      </td>
-      <td>
-        11
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        20.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 012
-      </td>
-      <td>
-        12
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        19.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 013
-      </td>
-      <td>
-        13
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        18.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 014
-      </td>
-      <td>
-        14
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        17.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 015
-      </td>
-      <td>
-        15
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        16.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 016
-      </td>
-      <td>
-        16
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        15.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 017
-      </td>
-      <td>
-        17
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        14.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 018
-      </td>
-      <td>
-        18
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        13.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 019
-      </td>
-      <td>
-        19
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        12.01.2023
-      </td>
-    </tr>
-  </tbody>
-</table>
-`;
-
-exports[`DataTable renders dynamic without header correctly 1`] = `
-<table
-  class="bg-danger table table-sm table-striped table-hover"
-  style="color: blue;"
->
-  <tbody>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 000
-      </td>
-      <td>
-        0
-      </td>
-      <td>
-        Deleted
-      </td>
-      <td>
-        31.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 001
-      </td>
-      <td>
-        1
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        30.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 002
-      </td>
-      <td>
-        2
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        29.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 003
-      </td>
-      <td>
-        3
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        28.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 004
-      </td>
-      <td>
-        4
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        27.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 005
-      </td>
-      <td>
-        5
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        26.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 006
-      </td>
-      <td>
-        6
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        25.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 007
-      </td>
-      <td>
-        7
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        24.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 008
-      </td>
-      <td>
-        8
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        23.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 009
-      </td>
-      <td>
-        9
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        22.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 010
-      </td>
-      <td>
-        10
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        21.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 011
-      </td>
-      <td>
-        11
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        20.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 012
-      </td>
-      <td>
-        12
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        19.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 013
-      </td>
-      <td>
-        13
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        18.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 014
-      </td>
-      <td>
-        14
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        17.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 015
-      </td>
-      <td>
-        15
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        16.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 016
-      </td>
-      <td>
-        16
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        15.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 017
-      </td>
-      <td>
-        17
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        14.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 018
-      </td>
-      <td>
-        18
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        13.01.2023
-      </td>
-    </tr>
-    <tr>
-      <th
-        scope="row"
-        style="white-space: nowrap;"
-      >
-        <i
-          class="fa undefined"
-          icon="[object Object]"
-          style="margin-right: 5px; cursor: pointer;"
-        />
-      </th>
-      <td>
-        Name 019
-      </td>
-      <td>
-        19
-      </td>
-      <td>
-        Active
-      </td>
-      <td>
-        12.01.2023
-      </td>
-    </tr>
-  </tbody>
-</table>
-`;
-
-exports[`DataTable renders static correctly 1`] = `
+exports[`DataTable renders correctly 1`] = `
 <div>
-  <h4>
-    Static Table
-  </h4>
+  <style>
+      
+  @-webkit-keyframes reloadingAnimation {
+    0%{
+      background-position-x: 200%
+    }
+    100%{
+      background-position-x: 0%
+    }
+  }
+  </style>
   <table
-    class="bg-danger table table-sm table-striped table-hover"
-    style="color: blue;"
+    class="table table-sm table-striped table-hover"
   >
     <thead>
       <tr>
@@ -1105,9 +22,8 @@ exports[`DataTable renders static correctly 1`] = `
           style="cursor: pointer;"
         >
           NAME
-           
           <i
-            class="fa undefined"
+            class="fa ms-1"
             icon="[object Object]"
           />
         </th>
@@ -1115,9 +31,8 @@ exports[`DataTable renders static correctly 1`] = `
           style="cursor: pointer;"
         >
           COUNT
-           
           <i
-            class="fa undefined"
+            class="fa ms-1"
             icon="[object Object]"
           />
         </th>
@@ -1125,9 +40,8 @@ exports[`DataTable renders static correctly 1`] = `
           style="cursor: pointer;"
         >
           STATUS
-           
           <i
-            class="fa undefined"
+            class="fa ms-1"
             icon="[object Object]"
           />
         </th>
@@ -1135,11 +49,73 @@ exports[`DataTable renders static correctly 1`] = `
           style="cursor: pointer;"
         >
           CREATED
-           
+          <i
+            class="fa ms-1"
+            icon="[object Object]"
+          />
+        </th>
+      </tr>
+      <tr>
+        <th>
           <i
             class="fa undefined"
             icon="[object Object]"
+            style="cursor: pointer; margin-bottom: 4px; margin-right: 5px;"
           />
+          <input
+            class="form-control-sm form-control"
+            type="text"
+            value=""
+          />
+        </th>
+        <th>
+          <input
+            class="form-control-sm form-control"
+            type="text"
+            value=""
+          />
+        </th>
+        <th>
+          <select
+            class="form-control-sm form-control"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="0"
+            >
+              Active
+            </option>
+            <option
+              value="1"
+            >
+              Deleted
+            </option>
+          </select>
+        </th>
+        <th>
+          <select
+            class="form-control-sm form-control"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="0"
+            >
+              Active
+            </option>
+            <option
+              value="1"
+            >
+              Deleted
+            </option>
+          </select>
         </th>
       </tr>
     </thead>
@@ -1152,10 +128,10 @@ exports[`DataTable renders static correctly 1`] = `
           0
         </td>
         <td>
-          Deleted
+          1
         </td>
         <td>
-          31.01.2023
+          Tue Jan 31 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1166,10 +142,10 @@ exports[`DataTable renders static correctly 1`] = `
           1
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          30.01.2023
+          Mon Jan 30 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1180,10 +156,10 @@ exports[`DataTable renders static correctly 1`] = `
           2
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          29.01.2023
+          Sun Jan 29 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1194,10 +170,10 @@ exports[`DataTable renders static correctly 1`] = `
           3
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          28.01.2023
+          Sat Jan 28 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1208,10 +184,10 @@ exports[`DataTable renders static correctly 1`] = `
           4
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          27.01.2023
+          Fri Jan 27 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1222,10 +198,10 @@ exports[`DataTable renders static correctly 1`] = `
           5
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          26.01.2023
+          Thu Jan 26 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1236,10 +212,10 @@ exports[`DataTable renders static correctly 1`] = `
           6
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          25.01.2023
+          Wed Jan 25 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1250,10 +226,10 @@ exports[`DataTable renders static correctly 1`] = `
           7
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          24.01.2023
+          Tue Jan 24 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1264,10 +240,10 @@ exports[`DataTable renders static correctly 1`] = `
           8
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          23.01.2023
+          Mon Jan 23 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -1278,1285 +254,194 @@ exports[`DataTable renders static correctly 1`] = `
           9
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          22.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 010
-        </td>
-        <td>
-          10
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          21.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 011
-        </td>
-        <td>
-          11
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          20.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 012
-        </td>
-        <td>
-          12
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          19.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 013
-        </td>
-        <td>
-          13
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          18.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 014
-        </td>
-        <td>
-          14
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          17.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 015
-        </td>
-        <td>
-          15
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          16.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 016
-        </td>
-        <td>
-          16
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          15.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 017
-        </td>
-        <td>
-          17
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          14.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 018
-        </td>
-        <td>
-          18
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          13.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 019
-        </td>
-        <td>
-          19
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          12.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 020
-        </td>
-        <td>
-          20
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          11.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 021
-        </td>
-        <td>
-          21
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          10.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 022
-        </td>
-        <td>
-          22
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          09.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 023
-        </td>
-        <td>
-          23
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          08.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 024
-        </td>
-        <td>
-          24
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          07.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 025
-        </td>
-        <td>
-          25
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          06.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 026
-        </td>
-        <td>
-          26
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          05.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 027
-        </td>
-        <td>
-          27
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          04.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 028
-        </td>
-        <td>
-          28
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          03.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 029
-        </td>
-        <td>
-          29
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          02.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 030
-        </td>
-        <td>
-          30
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          01.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 031
-        </td>
-        <td>
-          31
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          31.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 032
-        </td>
-        <td>
-          32
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          30.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 033
-        </td>
-        <td>
-          33
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          29.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 034
-        </td>
-        <td>
-          34
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          28.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 035
-        </td>
-        <td>
-          35
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          27.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 036
-        </td>
-        <td>
-          36
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          26.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 037
-        </td>
-        <td>
-          37
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          25.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 038
-        </td>
-        <td>
-          38
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          24.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 039
-        </td>
-        <td>
-          39
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          23.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 040
-        </td>
-        <td>
-          40
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          22.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 041
-        </td>
-        <td>
-          41
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          21.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 042
-        </td>
-        <td>
-          42
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          20.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 043
-        </td>
-        <td>
-          43
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          19.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 044
-        </td>
-        <td>
-          44
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          18.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 045
-        </td>
-        <td>
-          45
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          17.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 046
-        </td>
-        <td>
-          46
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          16.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 047
-        </td>
-        <td>
-          47
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          15.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 048
-        </td>
-        <td>
-          48
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          14.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 049
-        </td>
-        <td>
-          49
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          13.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 050
-        </td>
-        <td>
-          50
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          12.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 051
-        </td>
-        <td>
-          51
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          11.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 052
-        </td>
-        <td>
-          52
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          10.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 053
-        </td>
-        <td>
-          53
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          09.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 054
-        </td>
-        <td>
-          54
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          08.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 055
-        </td>
-        <td>
-          55
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          07.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 056
-        </td>
-        <td>
-          56
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          06.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 057
-        </td>
-        <td>
-          57
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          05.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 058
-        </td>
-        <td>
-          58
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          04.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 059
-        </td>
-        <td>
-          59
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          03.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 060
-        </td>
-        <td>
-          60
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          02.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 061
-        </td>
-        <td>
-          61
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          01.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 062
-        </td>
-        <td>
-          62
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          30.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 063
-        </td>
-        <td>
-          63
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          29.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 064
-        </td>
-        <td>
-          64
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          28.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 065
-        </td>
-        <td>
-          65
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          27.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 066
-        </td>
-        <td>
-          66
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          26.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 067
-        </td>
-        <td>
-          67
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          25.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 068
-        </td>
-        <td>
-          68
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          24.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 069
-        </td>
-        <td>
-          69
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          23.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 070
-        </td>
-        <td>
-          70
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          22.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 071
-        </td>
-        <td>
-          71
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          21.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 072
-        </td>
-        <td>
-          72
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          20.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 073
-        </td>
-        <td>
-          73
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          19.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 074
-        </td>
-        <td>
-          74
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          18.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 075
-        </td>
-        <td>
-          75
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          17.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 076
-        </td>
-        <td>
-          76
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          16.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 077
-        </td>
-        <td>
-          77
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          15.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 078
-        </td>
-        <td>
-          78
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          14.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 079
-        </td>
-        <td>
-          79
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          13.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 080
-        </td>
-        <td>
-          80
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          12.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 081
-        </td>
-        <td>
-          81
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          11.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 082
-        </td>
-        <td>
-          82
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          10.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 083
-        </td>
-        <td>
-          83
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          09.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 084
-        </td>
-        <td>
-          84
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          08.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 085
-        </td>
-        <td>
-          85
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          07.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 086
-        </td>
-        <td>
-          86
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          06.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 087
-        </td>
-        <td>
-          87
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          05.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 088
-        </td>
-        <td>
-          88
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          04.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 089
-        </td>
-        <td>
-          89
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          03.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 090
-        </td>
-        <td>
-          90
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          02.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 091
-        </td>
-        <td>
-          91
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          01.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 092
-        </td>
-        <td>
-          92
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          31.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 093
-        </td>
-        <td>
-          93
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          30.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 094
-        </td>
-        <td>
-          94
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          29.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 095
-        </td>
-        <td>
-          95
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          28.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 096
-        </td>
-        <td>
-          96
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          27.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 097
-        </td>
-        <td>
-          97
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          26.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 098
-        </td>
-        <td>
-          98
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          25.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 099
-        </td>
-        <td>
-          99
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          24.10.2022
+          Sun Jan 22 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
     </tbody>
   </table>
+  <div
+    class="container-fluid paging"
+  >
+    <div
+      class="row"
+      style="margin-bottom: 20px;"
+    >
+      <div
+        class="col-6"
+        style="padding-left: 0px;"
+      >
+        <div
+          class="btn-group"
+        >
+          <button
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="dropdown-toggle btn btn-link btn-sm"
+            type="button"
+          >
+            10
+          </button>
+          <div
+            aria-hidden="true"
+            class="dropdown-menu"
+            role="menu"
+            tabindex="-1"
+          >
+            <h6
+              class="dropdown-header"
+              tabindex="-1"
+            >
+              Anzahl pro Seite
+            </h6>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              10
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              25
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              50
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              100
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              200
+            </button>
+          </div>
+        </div>
+        <span
+          class="small ml-2"
+        >
+          Zeige 1 bis 10 von insgesamt 100 Resultaten
+        </span>
+      </div>
+      <div
+        class="col-6"
+        style="text-align: right; padding-right: 0px;"
+      >
+        <div
+          class="btn-group-sm btn-group"
+          role="group"
+        >
+          <button
+            class="btn btn-outline-secondary disabled"
+            disabled=""
+            type="button"
+          >
+            &lt;&lt;
+          </button>
+          <button
+            class="btn btn-outline-secondary disabled"
+            disabled=""
+            type="button"
+          >
+            &lt;
+          </button>
+          <button
+            class="btn btn-secondary"
+            type="button"
+          >
+            1
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            2
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            3
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            4
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            5
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            6
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            7
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            &gt;
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            &gt;&gt;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;
 
-exports[`DataTable renders static without header correctly 1`] = `
+exports[`DataTable renders without header correctly 1`] = `
 <div>
-  <h4>
-    Static Table
-  </h4>
+  <style>
+      
+  @-webkit-keyframes reloadingAnimation {
+    0%{
+      background-position-x: 200%
+    }
+    100%{
+      background-position-x: 0%
+    }
+  }
+  </style>
   <table
-    class="bg-danger table table-sm table-striped table-hover"
-    style="color: blue;"
+    class="table table-sm table-striped table-hover"
   >
     <tbody>
       <tr>
@@ -2567,10 +452,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           0
         </td>
         <td>
-          Deleted
+          1
         </td>
         <td>
-          31.01.2023
+          Tue Jan 31 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2581,10 +466,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           1
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          30.01.2023
+          Mon Jan 30 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2595,10 +480,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           2
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          29.01.2023
+          Sun Jan 29 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2609,10 +494,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           3
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          28.01.2023
+          Sat Jan 28 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2623,10 +508,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           4
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          27.01.2023
+          Fri Jan 27 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2637,10 +522,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           5
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          26.01.2023
+          Thu Jan 26 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2651,10 +536,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           6
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          25.01.2023
+          Wed Jan 25 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2665,10 +550,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           7
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          24.01.2023
+          Tue Jan 24 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2679,10 +564,10 @@ exports[`DataTable renders static without header correctly 1`] = `
           8
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          23.01.2023
+          Mon Jan 23 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
       <tr>
@@ -2693,1273 +578,499 @@ exports[`DataTable renders static without header correctly 1`] = `
           9
         </td>
         <td>
-          Active
+          0
         </td>
         <td>
-          22.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 010
-        </td>
-        <td>
-          10
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          21.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 011
-        </td>
-        <td>
-          11
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          20.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 012
-        </td>
-        <td>
-          12
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          19.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 013
-        </td>
-        <td>
-          13
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          18.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 014
-        </td>
-        <td>
-          14
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          17.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 015
-        </td>
-        <td>
-          15
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          16.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 016
-        </td>
-        <td>
-          16
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          15.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 017
-        </td>
-        <td>
-          17
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          14.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 018
-        </td>
-        <td>
-          18
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          13.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 019
-        </td>
-        <td>
-          19
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          12.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 020
-        </td>
-        <td>
-          20
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          11.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 021
-        </td>
-        <td>
-          21
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          10.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 022
-        </td>
-        <td>
-          22
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          09.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 023
-        </td>
-        <td>
-          23
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          08.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 024
-        </td>
-        <td>
-          24
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          07.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 025
-        </td>
-        <td>
-          25
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          06.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 026
-        </td>
-        <td>
-          26
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          05.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 027
-        </td>
-        <td>
-          27
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          04.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 028
-        </td>
-        <td>
-          28
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          03.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 029
-        </td>
-        <td>
-          29
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          02.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 030
-        </td>
-        <td>
-          30
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          01.01.2023
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 031
-        </td>
-        <td>
-          31
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          31.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 032
-        </td>
-        <td>
-          32
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          30.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 033
-        </td>
-        <td>
-          33
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          29.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 034
-        </td>
-        <td>
-          34
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          28.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 035
-        </td>
-        <td>
-          35
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          27.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 036
-        </td>
-        <td>
-          36
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          26.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 037
-        </td>
-        <td>
-          37
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          25.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 038
-        </td>
-        <td>
-          38
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          24.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 039
-        </td>
-        <td>
-          39
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          23.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 040
-        </td>
-        <td>
-          40
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          22.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 041
-        </td>
-        <td>
-          41
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          21.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 042
-        </td>
-        <td>
-          42
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          20.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 043
-        </td>
-        <td>
-          43
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          19.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 044
-        </td>
-        <td>
-          44
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          18.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 045
-        </td>
-        <td>
-          45
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          17.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 046
-        </td>
-        <td>
-          46
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          16.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 047
-        </td>
-        <td>
-          47
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          15.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 048
-        </td>
-        <td>
-          48
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          14.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 049
-        </td>
-        <td>
-          49
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          13.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 050
-        </td>
-        <td>
-          50
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          12.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 051
-        </td>
-        <td>
-          51
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          11.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 052
-        </td>
-        <td>
-          52
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          10.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 053
-        </td>
-        <td>
-          53
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          09.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 054
-        </td>
-        <td>
-          54
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          08.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 055
-        </td>
-        <td>
-          55
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          07.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 056
-        </td>
-        <td>
-          56
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          06.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 057
-        </td>
-        <td>
-          57
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          05.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 058
-        </td>
-        <td>
-          58
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          04.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 059
-        </td>
-        <td>
-          59
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          03.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 060
-        </td>
-        <td>
-          60
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          02.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 061
-        </td>
-        <td>
-          61
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          01.12.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 062
-        </td>
-        <td>
-          62
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          30.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 063
-        </td>
-        <td>
-          63
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          29.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 064
-        </td>
-        <td>
-          64
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          28.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 065
-        </td>
-        <td>
-          65
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          27.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 066
-        </td>
-        <td>
-          66
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          26.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 067
-        </td>
-        <td>
-          67
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          25.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 068
-        </td>
-        <td>
-          68
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          24.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 069
-        </td>
-        <td>
-          69
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          23.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 070
-        </td>
-        <td>
-          70
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          22.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 071
-        </td>
-        <td>
-          71
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          21.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 072
-        </td>
-        <td>
-          72
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          20.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 073
-        </td>
-        <td>
-          73
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          19.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 074
-        </td>
-        <td>
-          74
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          18.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 075
-        </td>
-        <td>
-          75
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          17.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 076
-        </td>
-        <td>
-          76
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          16.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 077
-        </td>
-        <td>
-          77
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          15.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 078
-        </td>
-        <td>
-          78
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          14.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 079
-        </td>
-        <td>
-          79
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          13.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 080
-        </td>
-        <td>
-          80
-        </td>
-        <td>
-          Deleted
-        </td>
-        <td>
-          12.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 081
-        </td>
-        <td>
-          81
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          11.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 082
-        </td>
-        <td>
-          82
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          10.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 083
-        </td>
-        <td>
-          83
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          09.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 084
-        </td>
-        <td>
-          84
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          08.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 085
-        </td>
-        <td>
-          85
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          07.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 086
-        </td>
-        <td>
-          86
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          06.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 087
-        </td>
-        <td>
-          87
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          05.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 088
-        </td>
-        <td>
-          88
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          04.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 089
-        </td>
-        <td>
-          89
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          03.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 090
-        </td>
-        <td>
-          90
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          02.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 091
-        </td>
-        <td>
-          91
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          01.11.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 092
-        </td>
-        <td>
-          92
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          31.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 093
-        </td>
-        <td>
-          93
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          30.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 094
-        </td>
-        <td>
-          94
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          29.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 095
-        </td>
-        <td>
-          95
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          28.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 096
-        </td>
-        <td>
-          96
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          27.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 097
-        </td>
-        <td>
-          97
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          26.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 098
-        </td>
-        <td>
-          98
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          25.10.2022
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Name 099
-        </td>
-        <td>
-          99
-        </td>
-        <td>
-          Active
-        </td>
-        <td>
-          24.10.2022
+          Sun Jan 22 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
         </td>
       </tr>
     </tbody>
   </table>
+  <div
+    class="container-fluid paging"
+  >
+    <div
+      class="row"
+      style="margin-bottom: 20px;"
+    >
+      <div
+        class="col-6"
+        style="padding-left: 0px;"
+      >
+        <div
+          class="btn-group"
+        >
+          <button
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="dropdown-toggle btn btn-link btn-sm"
+            type="button"
+          >
+            10
+          </button>
+          <div
+            aria-hidden="true"
+            class="dropdown-menu"
+            role="menu"
+            tabindex="-1"
+          >
+            <h6
+              class="dropdown-header"
+              tabindex="-1"
+            >
+              Anzahl pro Seite
+            </h6>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              10
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              25
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              50
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              100
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              200
+            </button>
+          </div>
+        </div>
+        <span
+          class="small ml-2"
+        >
+          Zeige 1 bis 10 von insgesamt 100 Resultaten
+        </span>
+      </div>
+      <div
+        class="col-6"
+        style="text-align: right; padding-right: 0px;"
+      >
+        <div
+          class="btn-group-sm btn-group"
+          role="group"
+        >
+          <button
+            class="btn btn-outline-secondary disabled"
+            disabled=""
+            type="button"
+          >
+            &lt;&lt;
+          </button>
+          <button
+            class="btn btn-outline-secondary disabled"
+            disabled=""
+            type="button"
+          >
+            &lt;
+          </button>
+          <button
+            class="btn btn-secondary"
+            type="button"
+          >
+            1
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            2
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            3
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            4
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            5
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            6
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            7
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            &gt;
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            &gt;&gt;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DataTable renders without paging correctly 1`] = `
+<div>
+  <style>
+      
+  @-webkit-keyframes reloadingAnimation {
+    0%{
+      background-position-x: 200%
+    }
+    100%{
+      background-position-x: 0%
+    }
+  }
+  </style>
+  <table
+    class="table table-sm table-striped table-hover"
+  >
+    <tbody>
+      <tr>
+        <td>
+          Name 000
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          Tue Jan 31 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 001
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Mon Jan 30 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 002
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Sun Jan 29 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 003
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Sat Jan 28 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 004
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Fri Jan 27 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 005
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Thu Jan 26 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 006
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Wed Jan 25 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 007
+        </td>
+        <td>
+          7
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Tue Jan 24 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 008
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Mon Jan 23 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 009
+        </td>
+        <td>
+          9
+        </td>
+        <td>
+          0
+        </td>
+        <td>
+          Sun Jan 22 2023 00:00:00 GMT+0100 (Mitteleuropäische Normalzeit)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    class="container-fluid paging"
+  >
+    <div
+      class="row"
+      style="margin-bottom: 20px;"
+    >
+      <div
+        class="col-6"
+        style="padding-left: 0px;"
+      >
+        <div
+          class="btn-group"
+        >
+          <button
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="dropdown-toggle btn btn-link btn-sm"
+            type="button"
+          >
+            10
+          </button>
+          <div
+            aria-hidden="true"
+            class="dropdown-menu"
+            role="menu"
+            tabindex="-1"
+          >
+            <h6
+              class="dropdown-header"
+              tabindex="-1"
+            >
+              Anzahl pro Seite
+            </h6>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              10
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              25
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              50
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              100
+            </button>
+            <button
+              class="dropdown-item"
+              role="menuitem"
+              tabindex="0"
+              type="button"
+            >
+              200
+            </button>
+          </div>
+        </div>
+        <span
+          class="small ml-2"
+        >
+          Zeige 1 bis 10 von insgesamt 100 Resultaten
+        </span>
+      </div>
+      <div
+        class="col-6"
+        style="text-align: right; padding-right: 0px;"
+      >
+        <div
+          class="btn-group-sm btn-group"
+          role="group"
+        >
+          <button
+            class="btn btn-outline-secondary disabled"
+            disabled=""
+            type="button"
+          >
+            &lt;&lt;
+          </button>
+          <button
+            class="btn btn-outline-secondary disabled"
+            disabled=""
+            type="button"
+          >
+            &lt;
+          </button>
+          <button
+            class="btn btn-secondary"
+            type="button"
+          >
+            1
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            2
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            3
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            4
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            5
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            6
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            7
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            &gt;
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            &gt;&gt;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;
