@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2024-03-06
+
 ### Added
 
 - Skeletons for when the data is loading
@@ -249,7 +251,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/3.8.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/neolution-ch/react-data-table/compare/3.8.0...4.0.0
 [3.8.0]: https://github.com/neolution-ch/react-data-table/compare/3.7.0...3.8.0
 [3.7.0]: https://github.com/neolution-ch/react-data-table/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/neolution-ch/react-data-table/compare/3.5.0...3.6.0
