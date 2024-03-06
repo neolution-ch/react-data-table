@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Skeletons for when the data is loading
+
+### Changed
+
+- :boom: Fundamentally changed how this package works. The state is now managed by the consumer of this package. This means that the consumer has to provide the data and the functions to update the data. The package only provides the UI components to display the data. This change was necessary to make the package more flexible and to allow the consumer to use the package in a wider range of use cases. Behind the scenes, the package uses the `useTable` hook from the `@tanstack/react-table` package. The consumer can use the `useTable` hook directly if he wants to. The `ReactDataTable` component is just a wrapper around the `useTable` hook. The `ReactDataTable` component is still the recommended way to use this package.
+
+- :boom: renamed `possiblePageItemCounts` to `pageSizes`.
+
+- :boom: `columns` is now of type `ColumnDef<TData, TValue>` from the `@tanstack/react-table` package. Please refer to the documentation of the `@tanstack/react-table` package for more information: https://tanstack.com/table/v8/docs/api/core/table#columns (there are additional custom fields in the column.meta object defined by us: `src/react-table.d.ts`)
+
+### Removed
+
+- :boom: removed `rowHighlight`. Use `rowStyle` instead.
+- :boom: removed `enablePredefinedSort` prop. Use `initialState.sorting` instead. Or `state.sorting` if you want to manage the state yourself.
+- :boom: removed `predefinedFilter` prop. Use `initialState`.
+- :boom: removed `asc` prop. Use `initialState.sorting` instead. Or `state.sorting` if you want to manage the state yourself.
+- :boom: removed `predefinedItemsPerPage` prop. Use `initialState.pagination.pageSize` instead. Or `state.pagination.pageSize` if you want to manage the state yourself.
+- :boom: removed `orderBy` prop. Use `initialState.sorting` instead. Or `state.sorting` if you want to manage the state yourself.
+- :boom: removed `client` prop. Use `data` prop instead and manage the state of the data yourself.
+- :boom: removed `query` prop. Use `data` prop instead and manage the state of the data yourself.
+- :boom: removed `handlers` prop. Since the state is now managed by the user, the user is responsible for updating the data.
+- :boom: removed `actions` props. You can easily define whatever actions you would like to have in the `columns` prop.
+  This is an example of how you could configure the actions column:
+
+```tsx
+import { createColumnHelper } from "@tanstack/react-table";
+
+const columnHelper = createColumnHelper<YourData>();
+columnHelper.display({
+      id: "edit",
+      header: () => <span>Aktionen</span>,
+      cell: (props) => (
+        <>
+          <Link href={{ pathname: "/addresses/[addressId]", query: { addressId: props.row.getValue("addressId") } }}>
+            <FontAwesomeIcon icon={faEye} style={{ marginRight: "5px" }} />
+          </Link>
+          <FontAwesomeIcon
+            icon={faTrash}
+            style={{ marginRight: "5px" }}
+            onClick={async () => {
+                //  do something
+            }}
+          />
+        </>
+      ),
+    }),
+```
+
 ## [3.8.0] - 2023-11-20
 
 - Changed `DeleteAction` to expose `cancelButtonText` and `deleteButtonText` props for translations

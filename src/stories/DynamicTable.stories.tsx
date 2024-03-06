@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-lines */
 import React, { CSSProperties, useRef } from "react";
 import { Story, Meta } from "@storybook/react";

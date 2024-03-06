@@ -3,7 +3,15 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ["eslint:recommended", "plugin:import/recommended", "prettier", "plugin:storybook/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "tsconfig.json",
@@ -57,12 +65,6 @@ module.exports = {
       "error",
       {
         max: 200,
-      },
-    ],
-    complexity: [
-      "error",
-      {
-        max: 12,
       },
     ],
     "prefer-destructuring": "error",

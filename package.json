@@ -30,14 +30,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c && yarn copy-definitionfile",
     "build-storybook": "build-storybook",
     "lint": "eslint \"**/*.{ts,tsx}\" --cache --max-warnings 0",
     "prepack": "yarn build",
     "prepare-pr": "yarn prettier . --write && yarn lint && yarn build && yarn test\"",
     "prettier-check": "prettier --check .",
     "prettier-write": "prettier --write .",
-    "start": "rollup -c -w",
+    "copy-definitionfile": "shx cp -r src/react-table.d.ts dist/react-table.d.ts",
+    "start": "yarn copy-definitionfile && rollup -c -w",
     "start-all": "concurrently \"yarn start\" \"yarn start-yalc\"",
     "start-yalc": "yarn nodemon --watch dist -x \"yarn yalc push\"",
     "storybook": "start-storybook -p 6006",
@@ -45,7 +46,9 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@neolution-ch/react-pattern-ui": "2.9.0"
+    "@neolution-ch/react-pattern-ui": "^3.1.0",
+    "@tanstack/react-table": "^8.10.7",
+    "react-loading-skeleton": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -65,6 +68,7 @@
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.0.4",
     "@types/jest": "^27.4.1",
     "@types/node": "^18.16.3",
@@ -80,6 +84,8 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.12",
     "gh-pages": "^5.0.0",
     "jest": "^27.5.1",
