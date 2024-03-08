@@ -1,5 +1,6 @@
 ﻿import { ColumnFiltersState, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
+import { DraggableOptionsProps } from "./DraggableOptionsProps";
 
 /**
  * The props for the ReactDataTable component
@@ -70,4 +71,9 @@ export interface ReactDataTableProps<TData> {
    * To draw the table without headers filters
    */
   withoutHeaderFilters?: boolean;
+
+  /**
+   * the table drag-and-drop sortable options
+   */
+  draggableOptions?: DraggableOptionsProps<TData>;
 }

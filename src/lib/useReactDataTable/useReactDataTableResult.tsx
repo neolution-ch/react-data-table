@@ -1,5 +1,6 @@
 ﻿import { ColumnFiltersState, PaginationState, SortingState, Table } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
+import { DraggableOptionsProps } from "../ReactDataTable/DraggableOptionsProps";
 
 /**
  * The result of the useReactDataTable hook
@@ -40,4 +41,9 @@ export interface useReactDataTableResult<TData> {
    * the sorting state setter. Only makes sense to use this if you are not using the `onSortingChange` callback
    */
   setSorting: Dispatch<SetStateAction<SortingState>>;
+
+  /**
+   * the draggable options.
+   */
+  draggableOptions?: DraggableOptionsProps<TData>;
 }

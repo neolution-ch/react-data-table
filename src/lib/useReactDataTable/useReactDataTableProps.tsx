@@ -1,4 +1,5 @@
 ﻿import { ColumnDef, ColumnFiltersState, CoreOptions, OnChangeFn, PaginationState, SortingState, TableOptions } from "@tanstack/react-table";
+import { DraggableOptionsProps } from "../ReactDataTable/DraggableOptionsProps";
 
 /**
  * The props for the useReactDataTable hook
@@ -70,4 +71,9 @@ export interface useReactDataTableProps<TData> {
    * ref: https://tanstack.com/table/v8/docs/api/core/table#usereacttable--createsolidtable--usevuetable--createsveltetable
    */
   reactTableOptions?: Partial<Omit<TableOptions<TData>, "state">>;
+
+  /**
+   * the table drag-and-drop sortable options
+   */
+  draggableOptions?: DraggableOptionsProps<TData>;
 }
