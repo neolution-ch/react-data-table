@@ -1,7 +1,9 @@
 ﻿import { useSortable } from "@dnd-kit/sortable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ColumnDef, ColumnHelper, DeepKeys, DisplayColumnDef, RowData, createColumnHelper } from "@tanstack/react-table";
 import { ReactNode } from "react";
 import { DropdownColumnFilterOption } from "src/react-table";
+import { faGripLines } from "@fortawesome/free-solid-svg-icons";
 
 interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper<TData> {
   createEnumColumn: <TEnum extends string | number>(
@@ -12,6 +14,7 @@ interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper
   createDraggableColumn: (
     columnKey: DeepKeys<TData>,
     columndDef: Omit<DisplayColumnDef<TData>, "id" | "cell">,
+    isEnabled?: boolean,
     draggableElement?: ReactNode,
   ) => ColumnDef<TData>;
 }
@@ -24,13 +27,20 @@ const createReactDataTableColumnHelper = <TData extends RowData>(): ReactDataTab
   const createDraggableColumn = (
     columnKey: DeepKeys<TData>,
     columndDef: Omit<DisplayColumnDef<TData>, "id" | "cell">,
+    isEnabled?: boolean,
     draggableElement?: ReactNode,
   ) => {
     const RowDragHandleCell = ({ rowId }: { rowId: string }) => {
-      const { attributes, listeners } = useSortable({ id: rowId });
+      const { attributes, listeners, isDragging } = useSortable({ id: rowId });
+
       return (
-        <span {...attributes} {...listeners}>
-          {draggableElement ?? "🟰"}
+        <span
+          {...attributes}
+          {...listeners}
+          className={isEnabled === false ? "opacity-25" : "opacity-100"}
+          style={{ cursor: isEnabled === false ? "auto" : isDragging ? "grabbing" : "grab" }}
+        >
+          {draggableElement ?? <FontAwesomeIcon icon={faGripLines} />}
         </span>
       );
     };

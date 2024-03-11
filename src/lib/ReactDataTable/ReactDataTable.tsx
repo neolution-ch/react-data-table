@@ -8,16 +8,7 @@ import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { CSSProperties, Fragment } from "react";
-import {
-  DndContext,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  closestCenter,
-  type UniqueIdentifier,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
+import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -40,8 +31,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     totalRecords = table.getCoreRowModel().rows.length,
     withoutHeaders = false,
     withoutHeaderFilters = false,
-    draggableField,
-    handleDragEnd,
+    dragAndDropOptions,
   } = props;
 
   const { pagination } = table.getState();
@@ -58,14 +48,16 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
 
   const TableRows = () => {
     const DraggableRow = ({ row }: { row: Row<TData> }) => {
-      const id = row.original[draggableField as keyof TData] as UniqueIdentifier;
+      if (!table.options.getRowId) {
+        throw new Error("You must provide 'getRowId()' to data-table options in order to use the drag-and-drop feature.");
+      }
 
       const { transform, transition, setNodeRef, isDragging } = useSortable({
-        id: id as UniqueIdentifier,
+        id: row.id,
       });
 
       const draggableStyle: CSSProperties = {
-        transform: CSS.Transform.toString(transform), //let dnd-kit do its thing
+        transform: CSS.Transform.toString(transform),
         transition: transition,
         opacity: isDragging ? 0.8 : 1,
         zIndex: isDragging ? 1 : 0,
@@ -73,7 +65,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
       };
 
       return (
-        <tr key={row.id} ref={setNodeRef} style={draggableStyle}>
+        <tr key={row.id} ref={setNodeRef} style={rowStyle ? { ...rowStyle(row.original), ...draggableStyle } : draggableStyle}>
           {row.getVisibleCells().map((cell) => (
             <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle}>
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -83,11 +75,8 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
       );
     };
 
-    return draggableField ? (
-      <SortableContext
-        items={table.getRowModel().rows.map((row) => row.original[draggableField] as UniqueIdentifier)}
-        strategy={verticalListSortingStrategy}
-      >
+    return dragAndDropOptions?.enableDragAndDrop ? (
+      <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
         {table.getRowModel().rows.map((row, index) => (
           <DraggableRow key={index} row={row} />
         ))}
@@ -111,7 +100,12 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
 
   return (
     <>
-      <DndContext collisionDetection={closestCenter} modifiers={[restrictToVerticalAxis]} onDragEnd={handleDragEnd} sensors={sensors}>
+      <DndContext
+        collisionDetection={closestCenter}
+        modifiers={[restrictToVerticalAxis]}
+        onDragEnd={dragAndDropOptions?.onDragEnd}
+        sensors={sensors}
+      >
         <style>{loadingCss}</style>
         <ReactStrapTable
           striped
