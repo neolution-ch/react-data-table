@@ -49,7 +49,6 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
 
   const internalColumns = columns.filter((x) => x.meta?.isHidden !== true);
-
   const skeletonColumns = internalColumns.map((column) => ({
     ...column,
     cell: () => <Skeleton />,

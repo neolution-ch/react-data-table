@@ -8,8 +8,6 @@ import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { CSSProperties, Fragment } from "react";
-// FIXME
-// needed for table body level scope DnD setup
 import {
   DndContext,
   KeyboardSensor,
@@ -22,7 +20,6 @@ import {
 } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
-// needed for row & cell level scope DnD setup
 import { CSS } from "@dnd-kit/utilities";
 
 /**

@@ -79,8 +79,8 @@ export interface ReactDataTableProps<TData> {
   draggableField?: keyof TData;
 
   /**
-   * TODO
-   * @param event 
+   * the handle drag end method to be called once the row drag has fulfilled
+   * @param event the drag end event
    */
-  handleDragEnd?(event: DragEndEvent): void
+  handleDragEnd?(event: DragEndEvent): void;
 }
