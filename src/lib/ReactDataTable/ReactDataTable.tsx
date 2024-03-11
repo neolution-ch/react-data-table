@@ -1,4 +1,5 @@
-﻿/* eslint max-lines: ["error", 500]  */
+﻿/* eslint-disable react/prop-types */
+/* eslint max-lines: ["error", 500]  */
 import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
@@ -6,7 +7,7 @@ import { Row, flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
-import { CSSProperties, Fragment, useMemo, useState } from "react";
+import { CSSProperties, Fragment } from "react";
 // FIXME
 // needed for table body level scope DnD setup
 import {
@@ -15,13 +16,12 @@ import {
   MouseSensor,
   TouchSensor,
   closestCenter,
-  type DragEndEvent,
   type UniqueIdentifier,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { arrayMove, SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
+import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
 // needed for row & cell level scope DnD setup
 import { CSS } from "@dnd-kit/utilities";
 
@@ -36,14 +36,15 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     table,
     tableClassName,
     tableStyle,
-    // rowStyle,
+    rowStyle,
     pageSizes,
     showPaging,
     onEnter,
     totalRecords = table.getCoreRowModel().rows.length,
     withoutHeaders = false,
     withoutHeaderFilters = false,
-    draggableOptions,
+    draggableField,
+    handleDragEnd,
   } = props;
 
   const { pagination } = table.getState();
@@ -58,62 +59,57 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     }
   }`;
 
-  // FIXME
-  const keyField = draggableOptions?.draggableField;
-  const [data, setData] = useState<Row<TData>[]>(table.getRowModel().rows);
-  const dataIds = useMemo<UniqueIdentifier[]>(
-    () => (keyField ? data?.map((row) => row.original[keyField] as UniqueIdentifier) : []),
-    [data, keyField],
-  );
+  const TableRows = () => {
+    const DraggableRow = ({ row }: { row: Row<TData> }) => {
+      const id = row.original[draggableField as keyof TData] as UniqueIdentifier;
 
-  // FIXME
-  const DraggableRow = ({ row }: { row: Row<TData> }) => {
-    const id = keyField ? row.original[keyField] : "";
-    const { transform, transition, setNodeRef, isDragging } = useSortable({
-      id: id as UniqueIdentifier,
-    });
+      const { transform, transition, setNodeRef, isDragging } = useSortable({
+        id: id as UniqueIdentifier,
+      });
 
-    const draggableStyle: CSSProperties = {
-      transform: CSS.Transform.toString(transform), //let dnd-kit do its thing
-      transition: transition,
-      opacity: isDragging ? 0.8 : 1,
-      zIndex: isDragging ? 1 : 0,
-      position: "relative",
+      const draggableStyle: CSSProperties = {
+        transform: CSS.Transform.toString(transform), //let dnd-kit do its thing
+        transition: transition,
+        opacity: isDragging ? 0.8 : 1,
+        zIndex: isDragging ? 1 : 0,
+        position: "relative",
+      };
+
+      return (
+        <tr key={row.id} ref={setNodeRef} style={draggableStyle}>
+          {row.getVisibleCells().map((cell) => (
+            <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle}>
+              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            </td>
+          ))}
+        </tr>
+      );
     };
 
-    return (
-      // connect row ref to dnd-kit, apply important styles
-      // TODO  ...rowStyle(row.original), ...draggableStyle } : draggableStyle
-      <tr key={row.id} ref={setNodeRef} style={draggableStyle}>
-        {row.getVisibleCells().map((cell) => (
-          <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle}>
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-          </td>
+    return draggableField ? (
+      <SortableContext
+        items={table.getRowModel().rows.map((row) => row.original[draggableField] as UniqueIdentifier)}
+        strategy={verticalListSortingStrategy}
+      >
+        {table.getRowModel().rows.map((row, index) => (
+          <DraggableRow key={index} row={row} />
         ))}
-      </tr>
+      </SortableContext>
+    ) : (
+      <>
+        {table.getRowModel().rows.map((row, index) => (
+          <tr key={index} style={rowStyle && rowStyle(row.original)}>
+            {row.getVisibleCells().map((cell) => (
+              <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle}>
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </>
     );
   };
 
-  // FIXME
-  // reorder rows after drag & drop
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (active && over && active.id !== over.id) {
-      const oldIndex = dataIds.indexOf(active.id);
-      const newIndex = dataIds.indexOf(over.id);
-      // get current elements
-      const activeData = data.at(oldIndex);
-      const overData = data.at(newIndex);
-      // update data
-      setData((prev) => arrayMove(prev, oldIndex, newIndex));
-      // perform action once drag end
-      if (activeData && overData) {
-        draggableOptions?.onDragEnd(activeData.original, overData.original);
-      }
-    }
-  }
-
-  // FIXME
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
   return (
@@ -253,16 +249,13 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
             </thead>
           )}
           <tbody>
-            {table.getRowModel().rows.length === 0 && (
+            {table.getRowModel().rows.length === 0 ? (
               <tr>
                 <td colSpan={table.getVisibleFlatColumns().length}>{reactDataTableTranslations.noEntries}</td>
               </tr>
+            ) : (
+              <TableRows />
             )}
-            <SortableContext items={dataIds} strategy={verticalListSortingStrategy}>
-              {data.map((row) => (
-                <DraggableRow key={row.id} row={row} />
-              ))}
-            </SortableContext>
           </tbody>
           {table.getFooterGroups().length > 0 &&
             table.getFooterGroups().some((x) => x.headers.some((y) => !y.isPlaceholder && y.column.columnDef.footer)) && (
@@ -279,13 +272,6 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
               </tfoot>
             )}
         </ReactStrapTable>
-        <pre>
-          {JSON.stringify(
-            data.map((x) => x.original),
-            null,
-            2,
-          )}
-        </pre>
       </DndContext>
 
       {showPaging && (

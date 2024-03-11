@@ -3,7 +3,6 @@ import { useReactDataTableState } from "../useReactDataTableState/useReactDataTa
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
 import { useReactDataTableResult } from "./useReactDataTableResult";
-import { useSortable } from "@dnd-kit/sortable";
 
 /**
  * A react hook that returns a react table instance and the state of the table
@@ -22,7 +21,6 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     onPaginationChange,
     onSortingChange,
     reactTableOptions,
-    draggableOptions,
   } = props;
   const { columnFilters: columnFiltersInitial, sorting: sortingInitial, pagination: paginationInitial } = initialState ?? {};
   const { columnFilters: columnFiltersExternal, pagination: paginationExternal, sorting: sortingExternal } = state ?? {};
@@ -50,39 +48,13 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   // If we active the manual filtering, we have to unset the filterfunction, else it still does automatic filtering
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
 
-  let internalColumns = columns.filter((x) => x.meta?.isHidden !== true);
-
-  // FIXME
-  if (draggableOptions?.draggableField) {
-    internalColumns = [
-      {
-        id: draggableOptions.draggableField as string,
-        header: draggableOptions.header ?? (draggableOptions.draggableField as string),
-        cell: ({ row }) => <RowDragHandleCell rowId={row.id} />,
-      },
-      ...internalColumns,
-    ];
-  }
+  const internalColumns = columns.filter((x) => x.meta?.isHidden !== true);
 
   const skeletonColumns = internalColumns.map((column) => ({
     ...column,
     cell: () => <Skeleton />,
   }));
   const skeletonData = Array.from({ length: paginationInternal.pageSize }, () => ({} as TData));
-
-  // FIXME
-  // Cell Component
-  const RowDragHandleCell = ({ rowId }: { rowId: string }) => {
-    const { attributes, listeners } = useSortable({
-      id: rowId,
-    });
-    return (
-      // Alternatively, you could set these attributes on the rows themselves
-      <span {...attributes} {...listeners}>
-        🟰
-      </span>
-    );
-  };
 
   const table = useReactTable<TData>({
     data: isLoading ? skeletonData : data,
@@ -131,7 +103,6 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     columnFilters: effectiveColumnFilters,
     pagination: effectivePagination,
     sorting: effectiveSorting,
-    draggableOptions: draggableOptions,
     setColumnFilters: effectiveOnColumnFiltersChange,
     setPagination: effectiveOnPaginationChange,
     setSorting: effectiveOnSortingChange,

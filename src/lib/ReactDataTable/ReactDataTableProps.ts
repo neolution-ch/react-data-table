@@ -1,6 +1,6 @@
 ﻿import { ColumnFiltersState, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
-import { DraggableOptionsProps } from "./DraggableOptionsProps";
+import { DragEndEvent } from "@dnd-kit/core";
 
 /**
  * The props for the ReactDataTable component
@@ -73,7 +73,14 @@ export interface ReactDataTableProps<TData> {
   withoutHeaderFilters?: boolean;
 
   /**
-   * the table drag-and-drop sortable options
+   * the table drag-and-drop sortable key field for which needs the drag-and-drop
+   * if not provided the drag-and-drop is disabled
    */
-  draggableOptions?: DraggableOptionsProps<TData>;
+  draggableField?: keyof TData;
+
+  /**
+   * TODO
+   * @param event 
+   */
+  handleDragEnd?(event: DragEndEvent): void
 }
