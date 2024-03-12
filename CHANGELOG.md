@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Enable drag-and-drop rows via `@dnd-kit` package.
+
 ## [4.0.0] - 2024-03-06
 
 ### Added
