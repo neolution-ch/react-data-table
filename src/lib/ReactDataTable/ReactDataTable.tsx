@@ -22,7 +22,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     rowStyle,
     pageSizes,
     showPaging,
-    withoutPageSizeChange,
+    hidePageSizeChange,
     onEnter,
     totalRecords = table.getCoreRowModel().rows.length,
     withoutHeaders = false,
@@ -219,7 +219,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
             showedItemsText: reactDataTableTranslations.showedItemsText,
           }}
           pagingPossible={true}
-          changePageSizePossible={!withoutPageSizeChange}
+          changePageSizePossible={!hidePageSizeChange}
         />
       )}
     </>

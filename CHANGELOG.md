@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- option `withoutPageSizeChange` added to hide the possibility to change the page size
+- option `hidePageSizeChange` added to hide the possibility to change the page size
 
 ## [4.0.0] - 2024-03-06
 

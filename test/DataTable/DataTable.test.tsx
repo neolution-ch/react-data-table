@@ -171,7 +171,7 @@ describe("DataTable", () => {
         isFetching={false}
         isLoading={false}
         withoutHeaders
-        withoutPageSizeChange
+        hidePageSizeChange
       />,
     );
 
