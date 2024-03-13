@@ -141,7 +141,38 @@ describe("DataTable", () => {
     );
 
     const { container } = render(
-      <ReactDataTable table={table} showPaging totalRecords={dataDynamic?.length} isFetching={false} isLoading={false} withoutHeaders />,
+      <ReactDataTable table={table} totalRecords={dataDynamic?.length} isFetching={false} isLoading={false} withoutHeaders />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  test("renders without page changing correctly", () => {
+    const {
+      result: {
+        current: { table },
+      },
+    } = renderHook(() =>
+      useReactDataTable({
+        data: dataDynamic,
+        isLoading: false,
+        columns,
+        reactTableOptions: {
+          enableSortingRemoval: false,
+        },
+      }),
+    );
+
+    const { container } = render(
+      <ReactDataTable
+        table={table}
+        showPaging
+        totalRecords={dataDynamic?.length}
+        isFetching={false}
+        isLoading={false}
+        withoutHeaders
+        hidePageSizeChange
+      />,
     );
 
     expect(container).toMatchSnapshot();
