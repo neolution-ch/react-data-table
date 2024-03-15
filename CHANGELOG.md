@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- option `cellClassName` added to the column meta to add class names to every cell of a column
+- option `headerClassName` added to the column meta to add class names to every header of a column
+- option `footerStyle` added to the column meta to add styles to every footer of a column
+- option `footerClassName` added to the column meta to add class names to every footer of a column
+
 ## [4.1.0] - 2024-03-13
 
 ### Added

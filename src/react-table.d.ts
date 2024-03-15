@@ -26,9 +26,29 @@ declare module "@tanstack/table-core" {
     cellStyle?: CSSProperties;
 
     /**
+     * Add class name to the every cell in this column
+     */
+    cellClassName?: string;
+
+    /**
      * Add a style to the header cell of this column
      */
     headerStyle?: CSSProperties;
+
+    /**
+     * Add class name to the every header in this column
+     */
+    headerClassName?: string;
+
+    /**
+     * Add a style to the footer cell of this column
+     */
+    footerStyle?: CSSProperties;
+
+    /**
+     * Add class name to the every footer in this column
+     */
+    footerClassName?: string;
 
     /**
      * Define a custom filter
