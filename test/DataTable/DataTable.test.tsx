@@ -47,6 +47,7 @@ describe("DataTable", () => {
     columnHelper.accessor("count", { header: "COUNT", enableSorting: true, enableColumnFilter: true }),
     columnHelper.accessor("status", {
       header: "STATUS",
+      footer: "STATUS-FOOTER",
       enableSorting: true,
       enableColumnFilter: true,
       meta: {
@@ -57,6 +58,12 @@ describe("DataTable", () => {
             { value: Status.Deleted, label: "Deleted" },
           ],
         },
+        headerStyle: { backgroundColor: "blue" },
+        headerClassName: "header-class",
+        cellStyle: { backgroundColor: "yellow" },
+        cellClassName: "cell-class",
+        footerStyle: { backgroundColor: "red" },
+        footerClassName: "footer-class",
       },
     }),
     columnHelper.accessor("dateCreated", {
