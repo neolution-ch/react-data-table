@@ -58,6 +58,11 @@ export interface ReactDataTableProps<TData> {
   showPaging?: boolean;
 
   /**
+   * boolean flag to hide the possibility to change the page size
+   */
+  hidePageSizeChange?: boolean;
+
+  /**
    * callback that gets trigger by pressing enter or clicking the search icon
    */
   onEnter?: (columnFilters: ColumnFiltersState) => void;

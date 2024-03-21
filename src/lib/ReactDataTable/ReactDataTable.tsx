@@ -27,6 +27,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
     rowStyle,
     pageSizes,
     showPaging,
+    hidePageSizeChange,
     onEnter,
     totalRecords = table.getCoreRowModel().rows.length,
     withoutHeaders = false,
@@ -83,10 +84,10 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
       </SortableContext>
     ) : (
       <>
-        {table.getRowModel().rows.map((row, index) => (
-          <tr key={index} style={rowStyle && rowStyle(row.original)}>
+        {table.getRowModel().rows.map((row) => (
+          <tr key={row.id} style={rowStyle && rowStyle(row.original)}>
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle}>
+              <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle} className={cell.column.columnDef.meta?.cellClassName}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
@@ -135,6 +136,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                           ...header.column.columnDef.meta?.headerStyle,
                           ...(header.column.getCanSort() ? { cursor: "pointer" } : {}),
                         }}
+                        className={header.column.columnDef.meta?.headerClassName}
                       >
                         {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 
@@ -253,7 +255,11 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                 {table.getFooterGroups().map((footerGroup) => (
                   <tr key={footerGroup.id}>
                     {footerGroup.headers.map((header) => (
-                      <th key={header.id}>
+                      <th
+                        key={header.id}
+                        style={header.column.columnDef.meta?.footerStyle}
+                        className={header.column.columnDef.meta?.footerClassName}
+                      >
                         {header.isPlaceholder ? null : flexRender(header.column.columnDef.footer, header.getContext())}
                       </th>
                     ))}
@@ -280,6 +286,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
             showedItemsText: reactDataTableTranslations.showedItemsText,
           }}
           pagingPossible={true}
+          changePageSizePossible={!hidePageSizeChange}
         />
       )}
     </>

@@ -47,6 +47,7 @@ describe("DataTable", () => {
     columnHelper.accessor("count", { header: "COUNT", enableSorting: true, enableColumnFilter: true }),
     columnHelper.accessor("status", {
       header: "STATUS",
+      footer: "STATUS-FOOTER",
       enableSorting: true,
       enableColumnFilter: true,
       meta: {
@@ -57,6 +58,12 @@ describe("DataTable", () => {
             { value: Status.Deleted, label: "Deleted" },
           ],
         },
+        headerStyle: { backgroundColor: "blue" },
+        headerClassName: "header-class",
+        cellStyle: { backgroundColor: "yellow" },
+        cellClassName: "cell-class",
+        footerStyle: { backgroundColor: "red" },
+        footerClassName: "footer-class",
       },
     }),
     columnHelper.accessor("dateCreated", {
@@ -141,7 +148,38 @@ describe("DataTable", () => {
     );
 
     const { container } = render(
-      <ReactDataTable table={table} showPaging totalRecords={dataDynamic?.length} isFetching={false} isLoading={false} withoutHeaders />,
+      <ReactDataTable table={table} totalRecords={dataDynamic?.length} isFetching={false} isLoading={false} withoutHeaders />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  test("renders without page changing correctly", () => {
+    const {
+      result: {
+        current: { table },
+      },
+    } = renderHook(() =>
+      useReactDataTable({
+        data: dataDynamic,
+        isLoading: false,
+        columns,
+        reactTableOptions: {
+          enableSortingRemoval: false,
+        },
+      }),
+    );
+
+    const { container } = render(
+      <ReactDataTable
+        table={table}
+        showPaging
+        totalRecords={dataDynamic?.length}
+        isFetching={false}
+        isLoading={false}
+        withoutHeaders
+        hidePageSizeChange
+      />,
     );
 
     expect(container).toMatchSnapshot();

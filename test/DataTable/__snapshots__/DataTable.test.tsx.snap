@@ -37,7 +37,8 @@ exports[`DataTable renders correctly 1`] = `
           />
         </th>
         <th
-          style="cursor: pointer;"
+          class="header-class"
+          style="background-color: blue; cursor: pointer;"
         >
           STATUS
           <i
@@ -127,7 +128,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           0
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           1
         </td>
         <td>
@@ -141,7 +145,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           1
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -155,7 +162,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           2
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -169,7 +179,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           3
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -183,7 +196,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           4
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -197,7 +213,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           5
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -211,7 +230,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           6
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -225,7 +247,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           7
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -239,7 +264,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           8
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -253,7 +281,10 @@ exports[`DataTable renders correctly 1`] = `
         <td>
           9
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -261,6 +292,19 @@ exports[`DataTable renders correctly 1`] = `
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th />
+        <th />
+        <th
+          class="footer-class"
+          style="background-color: red;"
+        >
+          STATUS-FOOTER
+        </th>
+        <th />
+      </tr>
+    </tfoot>
   </table>
   <div
     id="DndDescribedBy-0"
@@ -932,7 +976,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           0
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           1
         </td>
         <td>
@@ -946,7 +993,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           1
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -960,7 +1010,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           2
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -974,7 +1027,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           3
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -988,7 +1044,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           4
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1002,7 +1061,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           5
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1016,7 +1078,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           6
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1030,7 +1095,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           7
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1044,7 +1112,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           8
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1058,7 +1129,10 @@ exports[`DataTable renders without header correctly 1`] = `
         <td>
           9
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1066,6 +1140,19 @@ exports[`DataTable renders without header correctly 1`] = `
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th />
+        <th />
+        <th
+          class="footer-class"
+          style="background-color: red;"
+        >
+          STATUS-FOOTER
+        </th>
+        <th />
+      </tr>
+    </tfoot>
   </table>
   <div
     id="DndDescribedBy-1"
@@ -1249,7 +1336,7 @@ exports[`DataTable renders without header correctly 1`] = `
 </div>
 `;
 
-exports[`DataTable renders without paging correctly 1`] = `
+exports[`DataTable renders without page changing correctly 1`] = `
 <div>
   <style>
       
@@ -1273,7 +1360,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           0
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           1
         </td>
         <td>
@@ -1287,7 +1377,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           1
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1301,7 +1394,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           2
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1315,7 +1411,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           3
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1329,7 +1428,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           4
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1343,7 +1445,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           5
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1357,7 +1462,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           6
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1371,7 +1479,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           7
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1385,7 +1496,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           8
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1399,7 +1513,10 @@ exports[`DataTable renders without paging correctly 1`] = `
         <td>
           9
         </td>
-        <td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
           0
         </td>
         <td>
@@ -1407,6 +1524,19 @@ exports[`DataTable renders without paging correctly 1`] = `
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th />
+        <th />
+        <th
+          class="footer-class"
+          style="background-color: red;"
+        >
+          STATUS-FOOTER
+        </th>
+        <th />
+      </tr>
+    </tfoot>
   </table>
   <div
     id="DndDescribedBy-2"
@@ -1436,71 +1566,6 @@ exports[`DataTable renders without paging correctly 1`] = `
         class="col-6"
         style="padding-left: 0px;"
       >
-        <div
-          class="btn-group"
-        >
-          <button
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="dropdown-toggle btn btn-link btn-sm"
-            type="button"
-          >
-            10
-          </button>
-          <div
-            aria-hidden="true"
-            class="dropdown-menu"
-            role="menu"
-            tabindex="-1"
-          >
-            <h6
-              class="dropdown-header"
-              tabindex="-1"
-            >
-              Anzahl pro Seite
-            </h6>
-            <button
-              class="dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              10
-            </button>
-            <button
-              class="dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              25
-            </button>
-            <button
-              class="dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              50
-            </button>
-            <button
-              class="dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              100
-            </button>
-            <button
-              class="dropdown-item"
-              role="menuitem"
-              tabindex="0"
-              type="button"
-            >
-              200
-            </button>
-          </div>
-        </div>
         <span
           class="small ml-2"
         >
@@ -1587,5 +1652,210 @@ exports[`DataTable renders without paging correctly 1`] = `
       </div>
     </div>
   </div>
+</div>
+`;
+
+exports[`DataTable renders without paging correctly 1`] = `
+<div>
+  <style>
+      
+  @-webkit-keyframes reloadingAnimation {
+    0%{
+      background-position-x: 200%
+    }
+    100%{
+      background-position-x: 0%
+    }
+  }
+  </style>
+  <table
+    class="table table-sm table-striped table-hover"
+  >
+    <tbody>
+      <tr>
+        <td>
+          Name 000
+        </td>
+        <td>
+          0
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          1
+        </td>
+        <td>
+          31.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 001
+        </td>
+        <td>
+          1
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          30.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 002
+        </td>
+        <td>
+          2
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          29.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 003
+        </td>
+        <td>
+          3
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          28.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 004
+        </td>
+        <td>
+          4
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          27.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 005
+        </td>
+        <td>
+          5
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          26.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 006
+        </td>
+        <td>
+          6
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          25.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 007
+        </td>
+        <td>
+          7
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          24.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 008
+        </td>
+        <td>
+          8
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          23.01.2023
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name 009
+        </td>
+        <td>
+          9
+        </td>
+        <td
+          class="cell-class"
+          style="background-color: yellow;"
+        >
+          0
+        </td>
+        <td>
+          22.01.2023
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th />
+        <th />
+        <th
+          class="footer-class"
+          style="background-color: red;"
+        >
+          STATUS-FOOTER
+        </th>
+        <th />
+      </tr>
+    </tfoot>
+  </table>
 </div>
 `;
