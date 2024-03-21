@@ -3,11 +3,16 @@ import { useReactDataTableState } from "../useReactDataTableState/useReactDataTa
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
 import { useReactDataTableResult } from "./useReactDataTableResult";
+import { getColumnFilterFromModel } from "../utils/getColumnFilterFromModel";
+import { FilterModel } from "../types/TableState";
+import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
+import { getSortingStateFromModel } from "../utils/getSortingStateFromModel";
+import { getModelFromSortingState } from "../utils/getModelFromSortingState";
 
 /**
  * A react hook that returns a react table instance and the state of the table
  */
-const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useReactDataTableResult<TData> => {
+const useReactDataTable = <TData, TFilter extends FilterModel>(props: useReactDataTableProps<TData, TFilter>): useReactDataTableResult<TData, TFilter> => {
   const {
     data = [],
     columns,
@@ -60,22 +65,22 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     columns: isLoading ? skeletonColumns : internalColumns,
 
     onColumnFiltersChange: (filtersOrUpdaterFn) => {
-      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(effectiveColumnFilters);
-      return effectiveOnColumnFiltersChange(newFilter);
+      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(getColumnFilterFromModel(effectiveColumnFilters));
+      return effectiveOnColumnFiltersChange(getModelFromColumnFilter(newFilter));
     },
     onPaginationChange: (paginationOrUpdaterFn) => {
       const newFilter = typeof paginationOrUpdaterFn !== "function" ? paginationOrUpdaterFn : paginationOrUpdaterFn(effectivePagination);
       return effectiveOnPaginationChange(newFilter);
     },
     onSortingChange: (sortingOrUpdaterFn) => {
-      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(effectiveSorting);
-      return effectiveOnSortingChange(newFilter);
+      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(getSortingStateFromModel(effectiveSorting));
+      return effectiveOnSortingChange(getModelFromSortingState(newFilter));
     },
 
     state: {
-      columnFilters: effectiveColumnFilters,
+      columnFilters: getColumnFilterFromModel(effectiveColumnFilters),
       pagination: effectivePagination,
-      sorting: effectiveSorting,
+      sorting: getSortingStateFromModel(effectiveSorting),
     },
 
     getCoreRowModel: getCoreRowModel(),

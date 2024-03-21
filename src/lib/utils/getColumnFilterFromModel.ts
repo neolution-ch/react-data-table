@@ -1,7 +1,8 @@
 ﻿import { ColumnFiltersState } from "@tanstack/react-table";
+import { FilterModel } from "../types/TableState";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getColumnFilterFromModel = <TFilter extends { [k: string]: any }>(filter: TFilter): ColumnFiltersState =>
+
+const getColumnFilterFromModel = <TFilter extends FilterModel>(filter: TFilter): ColumnFiltersState =>
   Object.entries(filter).map(([id, value]) => ({ id, value }));
 
 export { getColumnFilterFromModel };
