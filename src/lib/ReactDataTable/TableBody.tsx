@@ -1,4 +1,5 @@
-﻿import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
+﻿import { useMemo } from "react";
+import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
 import { Row, Table, flexRender } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 import { CSS } from "@dnd-kit/utilities";
@@ -22,7 +23,7 @@ const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
   );
 };
 
-const DraggableRow = <TData,>(props: Omit<TableRowProps<TData>, "setNodeRef">) => {
+const DraggableRow = <TData,>(props: TableRowProps<TData>) => {
   const { row, rowStyle } = props;
   const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.id });
   const draggableStyle: CSSProperties = {
@@ -32,7 +33,7 @@ const DraggableRow = <TData,>(props: Omit<TableRowProps<TData>, "setNodeRef">) =
     zIndex: isDragging ? 1 : 0,
     position: "relative",
   };
-
+  console.log(row.id, "->", transform);
   return <InternalTableRow row={row} setNodeRef={setNodeRef} rowStyle={rowStyle ? { ...rowStyle, ...draggableStyle } : draggableStyle} />;
 };
 
@@ -49,16 +50,18 @@ const TableBody = <TData,>(props: TableRowsProps<TData>) => {
     throw new Error("You must provide 'getRowId()' to data-table options in order to use the drag-and-drop feature.");
   }
 
-  return enableDragAndDrop === true ? (
-    <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
-      {table.getRowModel().rows.map((row) => (
-        <DraggableRow<TData> key={row.id} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
+  const items = useMemo(() => table.getRowModel().rows.map((row) => row.id), [table]);
+
+  return enableDragAndDrop ? (
+    <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      {table.getRowModel().rows.map((row, index) => (
+        <DraggableRow<TData> key={index} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
       ))}
     </SortableContext>
   ) : (
     <>
-      {table.getRowModel().rows.map((row) => (
-        <InternalTableRow<TData> key={row.id} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
+      {table.getRowModel().rows.map((row, index) => (
+        <InternalTableRow<TData> key={index} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
       ))}
     </>
   );
