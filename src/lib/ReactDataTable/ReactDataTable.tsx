@@ -1,15 +1,22 @@
-﻿/* eslint max-lines: ["error", 250] */
+﻿/* eslint max-lines: ["error", 300] */
 import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
-import { flexRender } from "@tanstack/react-table";
+import { Table, flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
-import { Fragment } from "react";
+import { CSSProperties, Fragment } from "react";
 import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { TableBody } from "./TableBody";
+import { DraggableRow, InternalTableRow } from "./TableRows";
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+
+interface TableBodyProps<TData> {
+  enableDragAndDrop: boolean;
+  table: Table<TData>;
+  rowStyle?: (row: TData) => CSSProperties;
+}
 
 /**
  * The table renderer for the react data table
@@ -44,6 +51,28 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
       background-position-x: 0%
     }
   }`;
+
+  const TableBody = <TData,>(props: TableBodyProps<TData>) => {
+    const { enableDragAndDrop, table, rowStyle } = props;
+
+    if (enableDragAndDrop && !table.options.getRowId) {
+      throw new Error("You must provide 'getRowId()' to data-table options in order to use the drag-and-drop feature.");
+    }
+
+    return enableDragAndDrop ? (
+      <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
+        {table.getRowModel().rows.map((row, index) => (
+          <DraggableRow<TData> key={index} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
+        ))}
+      </SortableContext>
+    ) : (
+      <>
+        {table.getRowModel().rows.map((row, index) => (
+          <InternalTableRow<TData> key={index} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
+        ))}
+      </>
+    );
+  };
 
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
