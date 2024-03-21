@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- option `dragAndDropOptions` to enable drag-and-drop rows via `@dnd-kit` package.  
+- option `dragAndDropOptions` to enable drag-and-drop rows via `@dnd-kit` package.
 
 ### Added
 

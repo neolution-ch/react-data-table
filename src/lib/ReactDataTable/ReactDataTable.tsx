@@ -1,17 +1,15 @@
-﻿/* eslint max-lines: ["error", 300] */
+﻿/* eslint max-lines: ["error", 250] */
 import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
-import { Row, Table, flexRender } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
-import { CSSProperties, Fragment } from "react";
+import { Fragment } from "react";
 import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { DragAndDropOptions } from "./DragAndDropOptions";
+import { TableBody } from "./TableBody";
 
 /**
  * The table renderer for the react data table
@@ -46,55 +44,6 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
       background-position-x: 0%
     }
   }`;
-
-  const DraggableRow = ({ row, table }: { row: Row<TData>; table: Table<TData> }) => {
-    if (!table.options.getRowId) {
-      throw new Error("You must provide 'getRowId()' to data-table options in order to use the drag-and-drop feature.");
-    }
-
-    const { transform, transition, setNodeRef, isDragging } = useSortable({
-      id: row.id,
-    });
-
-    const draggableStyle: CSSProperties = {
-      transform: CSS.Transform.toString(transform),
-      transition: transition,
-      opacity: isDragging ? 0.8 : 1,
-      zIndex: isDragging ? 1 : 0,
-      position: "relative",
-    };
-
-    return (
-      <tr key={row.id} ref={setNodeRef} style={rowStyle ? { ...rowStyle(row.original), ...draggableStyle } : draggableStyle}>
-        {row.getVisibleCells().map((cell) => (
-          <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle}>
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-          </td>
-        ))}
-      </tr>
-    );
-  };
-
-  const TableRows = ({ table, dragAndDropOptions }: { table: Table<TData>; dragAndDropOptions?: DragAndDropOptions }) =>
-    dragAndDropOptions?.enableDragAndDrop ? (
-      <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
-        {table.getRowModel().rows.map((row, index) => (
-          <DraggableRow key={index} row={row} table={table} />
-        ))}
-      </SortableContext>
-    ) : (
-      <>
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id} style={rowStyle && rowStyle(row.original)}>
-            {row.getVisibleCells().map((cell) => (
-              <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle} className={cell.column.columnDef.meta?.cellClassName}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </>
-    );
 
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
@@ -246,7 +195,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                 <td colSpan={table.getVisibleFlatColumns().length}>{reactDataTableTranslations.noEntries}</td>
               </tr>
             ) : (
-              <TableRows table={table} dragAndDropOptions={dragAndDropOptions} />
+              <TableBody<TData> table={table} enableDragAndDrop={!!dragAndDropOptions?.enableDragAndDrop} rowStyle={rowStyle} />
             )}
           </tbody>
           {table.getFooterGroups().length > 0 &&
