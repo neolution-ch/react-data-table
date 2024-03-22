@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- option `dragAndDropOptions` to enable drag-and-drop rows via `@dnd-kit` package.
+
+### Added
+
 - option `cellClassName` added to the column meta to add class names to every cell of a column
 - option `headerClassName` added to the column meta to add class names to every header of a column
 - option `footerStyle` added to the column meta to add styles to every footer of a column

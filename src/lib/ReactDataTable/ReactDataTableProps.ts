@@ -1,5 +1,6 @@
 ﻿import { ColumnFiltersState, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
+import { DragAndDropOptions } from "./DragAndDropOptions";
 
 /**
  * The props for the ReactDataTable component
@@ -72,7 +73,12 @@ export interface ReactDataTableProps<TData> {
   withoutHeaders?: boolean;
 
   /**
-   * To draw the table without headers filters
+   * to draw the table without headers filters
    */
   withoutHeaderFilters?: boolean;
+
+  /**
+   * to define drag-and-drop options
+   */
+  dragAndDropOptions?: DragAndDropOptions;
 }
