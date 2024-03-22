@@ -64,7 +64,7 @@ export interface useReactDataTableProps<TData, TFilter extends FilterModel> {
   /**
    * event handler for when the sorting changes
    */
-  onSortingChange?: OnChangeFn<SortingState<TData>>;
+  onSortingChange?: OnChangeFn<SortingState<TData> | undefined>;
 
   /**
    * the react table options that will be passed to the `useReactTable` hook.

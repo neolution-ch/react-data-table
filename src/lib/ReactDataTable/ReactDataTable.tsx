@@ -7,12 +7,14 @@ import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { Fragment } from "react";
+import { FilterModel } from "../types/TableState";
+import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
 
-/**
+/**b
  * The table renderer for the react data table
  * @param props according to {@link ReactDataTableProps}
  */
-const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
+const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(props: ReactDataTableProps<TData, TFilter>) => {
   const {
     isLoading,
     isFetching,
@@ -103,7 +105,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                                 <FontAwesomeIcon
                                   style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
                                   icon={faSearch}
-                                  onClick={() => onEnter(table.getState().columnFilters)}
+                                  onClick={() => onEnter(getModelFromColumnFilter(table.getState().columnFilters))}
                                 />
                               )}
 
@@ -112,10 +114,10 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                                 icon={faTimes}
                                 onClick={() => {
                                   if (onEnter) {
-                                    onEnter([]);
+                                    onEnter(getModelFromColumnFilter(table.initialState.columnFilters));
                                   }
 
-                                  table.resetColumnFilters(true);
+                                  table.setColumnFilters(table.initialState.columnFilters);
                                 }}
                               />
                             </>
@@ -137,7 +139,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                                   }}
                                   onKeyUp={({ key }) => {
                                     if (key === "Enter" && onEnter) {
-                                      onEnter(table.getState().columnFilters);
+                                      onEnter(getModelFromColumnFilter(table.getState().columnFilters));
                                     }
                                   }}
                                   bsSize="sm"
@@ -157,7 +159,7 @@ const ReactDataTable = <TData,>(props: ReactDataTableProps<TData>) => {
                                   }}
                                   onKeyUp={({ key }) => {
                                     if (key === "Enter" && onEnter) {
-                                      onEnter(table.getState().columnFilters);
+                                      onEnter(getModelFromColumnFilter(table.getState().columnFilters));
                                     }
                                   }}
                                   bsSize="sm"

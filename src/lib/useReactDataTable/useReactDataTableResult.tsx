@@ -36,10 +36,10 @@ export interface useReactDataTableResult<TData, TFilter extends FilterModel> {
   /**
    * the sorting state. Only makes sense to use this if you are not supplying the `state.sorting` property
    */
-  sorting: SortingState<TData>;
+  sorting: SortingState<TData> | undefined;
 
   /**
    * the sorting state setter. Only makes sense to use this if you are not using the `onSortingChange` callback
    */
-  setSorting: Dispatch<SetStateAction<SortingState<TData>>>;
+  setSorting: Dispatch<SetStateAction<SortingState<TData | undefined>>>;
 }

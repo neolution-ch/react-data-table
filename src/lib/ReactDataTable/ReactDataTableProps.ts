@@ -1,10 +1,11 @@
-﻿import { ColumnFiltersState, Table } from "@tanstack/react-table";
+﻿import { Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
+import { FilterModel } from "../types/TableState";
 
 /**
  * The props for the ReactDataTable component
  */
-export interface ReactDataTableProps<TData> {
+export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
   /**
    * the table instance returned from useReactDataTable or useReactTable
    */
@@ -64,7 +65,7 @@ export interface ReactDataTableProps<TData> {
   /**
    * callback that gets trigger by pressing enter or clicking the search icon
    */
-  onEnter?: (columnFilters: ColumnFiltersState) => void;
+  onEnter?: (columnFilters: TFilter) => void;
 
   /**
    * To draw the table without headers (titles + filters)

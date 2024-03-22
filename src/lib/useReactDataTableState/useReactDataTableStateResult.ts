@@ -9,7 +9,7 @@ export interface useReactDataTableStateResult<TData, TFilter> {
   /**
    * the current sorting state
    */
-  sorting: SortingState<TData>;
+  sorting: SortingState<TData> | undefined;
 
   /**
    * the current pagination state
@@ -29,7 +29,7 @@ export interface useReactDataTableStateResult<TData, TFilter> {
   /**
    * the setter for the sorting state
    */
-  setSorting: Dispatch<SetStateAction<SortingState<TData>>>;
+  setSorting: Dispatch<SetStateAction<SortingState<TData> | undefined>>;
 
   /**
    * the setter for the pagination state
