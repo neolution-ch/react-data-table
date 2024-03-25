@@ -184,4 +184,37 @@ describe("DataTable", () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  test("renders with draggable-column correctly", () => {
+    const {
+      result: {
+        current: { table },
+      },
+    } = renderHook(() =>
+      useReactDataTable({
+        data: dataDynamic,
+        isLoading: false,
+        columns,
+        reactTableOptions: {
+          enableSortingRemoval: false,
+          getRowId: (row) => row.id,
+        },
+      }),
+    );
+    const { container } = render(
+      <ReactDataTable
+        table={table}
+        showPaging
+        totalRecords={dataDynamic?.length}
+        isFetching={false}
+        isLoading={false}
+        dragAndDropOptions={{
+          enableDragAndDrop: true,
+          onDragEnd: () => true,
+        }}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
 });
