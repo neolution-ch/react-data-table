@@ -13,7 +13,9 @@ import { OptionalNullable } from "../types/NullableTypes";
 /**
  * A react hook that returns a react table instance and the state of the table
  */
-const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(props: useReactDataTableProps<TData, TFilter>): useReactDataTableResult<TData, TFilter> => {
+const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(
+  props: useReactDataTableProps<TData, TFilter>,
+): useReactDataTableResult<TData, TFilter> => {
   const {
     data = [],
     columns,
@@ -38,7 +40,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     setColumnFilters: setColumnFiltersInternal,
     setPagination: setPaginationInternal,
     setSorting: setSortingInternal,
-  } = useReactDataTableState<TData, TFilter>({ 
+  } = useReactDataTableState<TData, TFilter>({
     initialColumnFilters: columnFiltersInitial as TFilter,
     initialPagination: paginationInitial,
     initialSorting: sortingInitial,
@@ -66,7 +68,10 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     columns: isLoading ? skeletonColumns : internalColumns,
 
     onColumnFiltersChange: (filtersOrUpdaterFn) => {
-      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(getColumnFilterFromModel(effectiveColumnFilters));
+      const newFilter =
+        typeof filtersOrUpdaterFn !== "function"
+          ? filtersOrUpdaterFn
+          : filtersOrUpdaterFn(getColumnFilterFromModel(effectiveColumnFilters));
       return effectiveOnColumnFiltersChange(getModelFromColumnFilter(newFilter));
     },
     onPaginationChange: (paginationOrUpdaterFn) => {
@@ -74,7 +79,8 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       return effectiveOnPaginationChange(newFilter);
     },
     onSortingChange: (sortingOrUpdaterFn) => {
-      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(getSortingStateFromModel(effectiveSorting));
+      const newFilter =
+        typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(getSortingStateFromModel(effectiveSorting));
       return effectiveOnSortingChange(getModelFromSortingState(newFilter));
     },
 

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- the `reset icon` will now reset the table to the initialState if provided, otherwise to the first value of the state
+- :boom: the `sorting` accepts now an strongly typed object instead of a list
+- :boom: the `columnFilters` can be used only defining a `filter type` to datatable hooks
+
+### Removed
+
+- :boom: utilities `getColumnFilterFromModel` and `getModelFromColumnFilter` are not exposed anymore
+
 ## [4.2.0] - 2024-03-22
 
 ### Added
