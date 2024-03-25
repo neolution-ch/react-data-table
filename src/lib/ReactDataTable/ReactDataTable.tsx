@@ -6,7 +6,6 @@ import { Table, flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
-import { Fragment } from "react";
 import { FilterModel } from "../types/TableState";
 import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
 import { CSSProperties, Fragment } from "react";
@@ -150,30 +149,23 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                   <FontAwesomeIcon
                                     style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
                                     icon={faSearch}
-                                    onClick={() => onEnter(table.getState().columnFilters)}
+                                    onClick={() => onEnter(getModelFromColumnFilter(table.getState().columnFilters))}
                                   />
                                 )}
 
                                 <FontAwesomeIcon
                                   style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                                  icon={faSearch}
-                                  onClick={() => onEnter(getModelFromColumnFilter(table.getState().columnFilters))}
+                                  icon={faTimes}
+                                  onClick={() => {
+                                    if (onEnter) {
+                                      onEnter(getModelFromColumnFilter(table.initialState.columnFilters));
+                                    }
+
+                                    table.setColumnFilters(table.initialState.columnFilters);
+                                  }}
                                 />
-                              )}
-
-                              <FontAwesomeIcon
-                                style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                                icon={faTimes}
-                                onClick={() => {
-                                  if (onEnter) {
-                                    onEnter(getModelFromColumnFilter(table.initialState.columnFilters));
-                                  }
-
-                                  table.setColumnFilters(table.initialState.columnFilters);
-                                }}
-                              />
-                            </>
-                          )}
+                              </>
+                            )}
                             {header.column.getCanFilter() && (
                               <>
                                 {meta?.customFilter ? (
@@ -190,7 +182,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                     }}
                                     onKeyUp={({ key }) => {
                                       if (key === "Enter" && onEnter) {
-                                        onEnter(table.getState().columnFilters);
+                                        onEnter(getModelFromColumnFilter(table.getState().columnFilters));
                                       }
                                     }}
                                     bsSize="sm"
@@ -210,7 +202,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                     }}
                                     onKeyUp={({ key }) => {
                                       if (key === "Enter" && onEnter) {
-                                        onEnter(table.getState().columnFilters);
+                                        onEnter(getModelFromColumnFilter(table.getState().columnFilters));
                                       }
                                     }}
                                     bsSize="sm"
