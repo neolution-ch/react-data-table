@@ -1,13 +1,21 @@
 ﻿import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
-import { useReactDataTableState } from "../useReactDataTableState/useReactDataTableState";
+import { useReactDataTableState, useReactDataTableStateProps } from "../useReactDataTableState/useReactDataTableState";
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
 import { useReactDataTableResult } from "./useReactDataTableResult";
+import { getColumnFilterFromModel } from "../utils/getColumnFilterFromModel";
+import { FilterModel } from "../types/TableState";
+import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
+import { getSortingStateFromModel } from "../utils/getSortingStateFromModel";
+import { getModelFromSortingState } from "../utils/getModelFromSortingState";
+import { OptionalNullable } from "../types/NullableTypes";
 
 /**
  * A react hook that returns a react table instance and the state of the table
  */
-const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useReactDataTableResult<TData> => {
+const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(
+  props: useReactDataTableProps<TData, TFilter>,
+): useReactDataTableResult<TData, TFilter> => {
   const {
     data = [],
     columns,
@@ -32,11 +40,11 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     setColumnFilters: setColumnFiltersInternal,
     setPagination: setPaginationInternal,
     setSorting: setSortingInternal,
-  } = useReactDataTableState({
-    initialColumnFilters: columnFiltersInitial,
+  } = useReactDataTableState<TData, TFilter>({
+    initialColumnFilters: columnFiltersInitial as TFilter,
     initialPagination: paginationInitial,
     initialSorting: sortingInitial,
-  });
+  } as unknown as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
   const effectiveColumnFilters = columnFiltersExternal ?? columnFiltersInternal;
   const effectivePagination = paginationExternal ?? paginationInternal;
@@ -45,7 +53,7 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
   const effectiveOnPaginationChange = onPaginationChange ?? setPaginationInternal;
   const effectiveOnSortingChange = onSortingChange ?? setSortingInternal;
 
-  // If we active the manual filtering, we have to unset the filterfunction, else it still does automatic filtering
+  // If we active the manual filtering, we have to unset the filter function, else it still does automatic filtering
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
 
   const internalColumns = columns.filter((x) => x.meta?.isHidden !== true);
@@ -60,22 +68,32 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
     columns: isLoading ? skeletonColumns : internalColumns,
 
     onColumnFiltersChange: (filtersOrUpdaterFn) => {
-      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(effectiveColumnFilters);
-      return effectiveOnColumnFiltersChange(newFilter);
+      const newFilter =
+        typeof filtersOrUpdaterFn !== "function"
+          ? filtersOrUpdaterFn
+          : filtersOrUpdaterFn(getColumnFilterFromModel(effectiveColumnFilters));
+      return effectiveOnColumnFiltersChange(getModelFromColumnFilter(newFilter));
     },
     onPaginationChange: (paginationOrUpdaterFn) => {
       const newFilter = typeof paginationOrUpdaterFn !== "function" ? paginationOrUpdaterFn : paginationOrUpdaterFn(effectivePagination);
       return effectiveOnPaginationChange(newFilter);
     },
     onSortingChange: (sortingOrUpdaterFn) => {
-      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(effectiveSorting);
-      return effectiveOnSortingChange(newFilter);
+      const newFilter =
+        typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(getSortingStateFromModel(effectiveSorting));
+      return effectiveOnSortingChange(getModelFromSortingState(newFilter));
     },
 
     state: {
-      columnFilters: effectiveColumnFilters,
+      columnFilters: getColumnFilterFromModel(effectiveColumnFilters),
       pagination: effectivePagination,
-      sorting: effectiveSorting,
+      sorting: getSortingStateFromModel(effectiveSorting),
+    },
+
+    initialState: {
+      columnFilters: getColumnFilterFromModel(columnFiltersInitial ?? columnFiltersExternal ?? {}),
+      pagination: paginationInitial ?? paginationExternal,
+      sorting: getSortingStateFromModel(sortingInitial ?? sortingExternal),
     },
 
     getCoreRowModel: getCoreRowModel(),
@@ -99,7 +117,7 @@ const useReactDataTable = <TData,>(props: useReactDataTableProps<TData>): useRea
 
   return {
     table,
-    columnFilters: effectiveColumnFilters,
+    columnFilters: effectiveColumnFilters as TFilter,
     pagination: effectivePagination,
     sorting: effectiveSorting,
     setColumnFilters: effectiveOnColumnFiltersChange,

@@ -1,9 +1,11 @@
-﻿import { ColumnDef, ColumnFiltersState, CoreOptions, OnChangeFn, PaginationState, SortingState, TableOptions } from "@tanstack/react-table";
+﻿import { ColumnDef, OnChangeFn, PaginationState, TableOptions } from "@tanstack/react-table";
+import { FilterModel, TableState } from "../types/TableState";
+import { SortingState } from "../types/SortingState";
 
 /**
  * The props for the useReactDataTable hook
  */
-export interface useReactDataTableProps<TData> {
+export interface useReactDataTableProps<TData, TFilter extends FilterModel> {
   /**
    * data to display in the table
    */
@@ -27,12 +29,12 @@ export interface useReactDataTableProps<TData> {
    * will only be used if the corresponding state property is not supplied.
    * So for example, if you supply the `state.columnFilters` property, the `initialState.columnFilters` property will be ignored.
    */
-  initialState?: Pick<CoreOptions<TData>["state"], "columnFilters" | "sorting" | "pagination">;
+  initialState?: TableState<TData, TFilter>;
 
   /**
    * the state of the table for column filters, global filter, sorting and pagination
    */
-  state?: Pick<CoreOptions<TData>["state"], "columnFilters" | "sorting" | "pagination">;
+  state?: TableState<TData, TFilter>;
 
   /**
    * indicates if the table should be manually filtered
@@ -52,7 +54,7 @@ export interface useReactDataTableProps<TData> {
   /**
    * event handler for when the column filters change
    */
-  onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>;
+  onColumnFiltersChange?: OnChangeFn<TFilter>;
 
   /**
    * event handler for when the pagination changes
@@ -62,7 +64,7 @@ export interface useReactDataTableProps<TData> {
   /**
    * event handler for when the sorting changes
    */
-  onSortingChange?: OnChangeFn<SortingState>;
+  onSortingChange?: OnChangeFn<SortingState<TData> | undefined>;
 
   /**
    * the react table options that will be passed to the `useReactTable` hook.

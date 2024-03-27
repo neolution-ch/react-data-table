@@ -1,14 +1,15 @@
 ﻿import { Dispatch, SetStateAction } from "react";
-import { ColumnFiltersState, PaginationState, SortingState } from "@tanstack/react-table";
+import { PaginationState } from "@tanstack/react-table";
+import { SortingState } from "../types/SortingState";
 
 /**
  * The props for the useReactDataTableState hook
  */
-export interface useReactDataTableStateResult {
+export interface useReactDataTableStateResult<TData, TFilter> {
   /**
    * the current sorting state
    */
-  sorting: SortingState;
+  sorting: SortingState<TData> | undefined;
 
   /**
    * the current pagination state
@@ -18,17 +19,17 @@ export interface useReactDataTableStateResult {
   /**
    * the current column filters state
    */
-  columnFilters: ColumnFiltersState;
+  columnFilters: TFilter;
 
   /**
    * the column filters state after search was triggered
    */
-  afterSearchFilter: ColumnFiltersState;
+  afterSearchFilter: TFilter;
 
   /**
    * the setter for the sorting state
    */
-  setSorting: Dispatch<SetStateAction<SortingState>>;
+  setSorting: Dispatch<SetStateAction<SortingState<TData> | undefined>>;
 
   /**
    * the setter for the pagination state
@@ -38,10 +39,10 @@ export interface useReactDataTableStateResult {
   /**
    * the setter for the column filters state
    */
-  setColumnFilters: Dispatch<SetStateAction<ColumnFiltersState>>;
+  setColumnFilters: Dispatch<SetStateAction<TFilter>>;
 
   /**
    * the setter for the column filters state after search was triggered
    */
-  setAfterSearchFilter: Dispatch<SetStateAction<ColumnFiltersState>>;
+  setAfterSearchFilter: Dispatch<SetStateAction<TFilter>>;
 }
