@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.1] - 2024-03-27
+
 ### Fixed
 
 - `sorting` and `columnFilters` can be possibly undefined for not `useReactDataTable` hook
@@ -286,7 +288,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.0.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.0.1...HEAD
+[5.0.1]: https://github.com/neolution-ch/react-data-table/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/neolution-ch/react-data-table/compare/4.2.0...5.0.0
 [4.2.0]: https://github.com/neolution-ch/react-data-table/compare/4.1.0...4.2.0
 [4.1.0]: https://github.com/neolution-ch/react-data-table/compare/4.0.0...4.1.0
