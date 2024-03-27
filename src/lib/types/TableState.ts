@@ -14,11 +14,11 @@ interface TableState<TData, TFilter extends FilterModel> extends Pick<CoreOption
   /**
    * The column filters state
    */
-  columnFilters: TFilter;
+  columnFilters?: TFilter;
   /**
    * The sorting state
    */
-  sorting: SortingState<TData> | undefined;
+  sorting?: SortingState<TData>;
 }
 
 export { TableState, FilterModel };
