@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.1.0] - 2024-04-05
+
 ## Fixed
 
 - endless loop on `pagination` state when paginating client-side
@@ -296,7 +298,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.0.1...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.1.0...HEAD
+[5.1.0]: https://github.com/neolution-ch/react-data-table/compare/5.0.1...5.1.0
 [5.0.1]: https://github.com/neolution-ch/react-data-table/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/neolution-ch/react-data-table/compare/4.2.0...5.0.0
 [4.2.0]: https://github.com/neolution-ch/react-data-table/compare/4.1.0...4.2.0
