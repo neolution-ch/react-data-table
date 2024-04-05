@@ -43,6 +43,10 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
   } = props;
 
   const { pagination } = table.getState();
+  const {
+    options: { manualPagination },
+    resetPageIndex,
+  } = table;
 
   const loadingCss = `  
   @-webkit-keyframes reloadingAnimation {
@@ -149,7 +153,12 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                   <FontAwesomeIcon
                                     style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
                                     icon={faSearch}
-                                    onClick={() => onEnter(getModelFromColumnFilter(table.getState().columnFilters))}
+                                    onClick={() => {
+                                      if (manualPagination) {
+                                        resetPageIndex(true);
+                                      }
+                                      onEnter(getModelFromColumnFilter(table.getState().columnFilters));
+                                    }}
                                   />
                                 )}
 
@@ -162,6 +171,9 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                     }
 
                                     table.setColumnFilters(table.initialState.columnFilters);
+                                    if (manualPagination) {
+                                      resetPageIndex(true);
+                                    }
                                   }}
                                 />
                               </>
@@ -179,9 +191,15 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                         meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
                                           e.target.value,
                                       );
+                                      if (!onEnter && manualPagination) {
+                                        resetPageIndex(true);
+                                      }
                                     }}
                                     onKeyUp={({ key }) => {
                                       if (key === "Enter" && onEnter) {
+                                        if (manualPagination) {
+                                          resetPageIndex(true);
+                                        }
                                         onEnter(getModelFromColumnFilter(table.getState().columnFilters));
                                       }
                                     }}
@@ -199,9 +217,15 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                     value={(header.column.getFilterValue() as string) ?? ""}
                                     onChange={(e) => {
                                       header.column.setFilterValue(e.target.value);
+                                      if (!onEnter && manualPagination) {
+                                        resetPageIndex(true);
+                                      }
                                     }}
                                     onKeyUp={({ key }) => {
                                       if (key === "Enter" && onEnter) {
+                                        if (manualPagination) {
+                                          resetPageIndex(true);
+                                        }
                                         onEnter(getModelFromColumnFilter(table.getState().columnFilters));
                                       }
                                     }}
