@@ -46,3 +46,29 @@ In this configuration the table is fully dynamic meaning that the consumer of th
 | you want the data table to handle the sorting but would like to influence the sorting from the outside     | no        | yes     |
 | you want to manually sort your data AND you want to mange the state yourself                               | yes       | yes     |
 | you want the data table to handle the sorting and you don't want to manually influence the state           | no        | no      |
+
+### How to avoid infinite loops
+
+#### Wrap columns in a useMemo hook
+
+Columns must be wrapped in a useMemo, avoiding that they change on every render.
+
+```tsx
+const columns = useMemo(() => [
+      columnHelper.display(),
+      columnHelper.accessor(),
+...
+], [deps]);
+```
+
+#### ColumnHelper must be stale
+
+Be sure that columnHelper utility does not change on every render. For this reason, you have to declare columnHelper outside of the component.
+
+```tsx
+const columnHelper = createReactDataTableColumnHelper<T>();
+
+const MyComponent = () => {
+ ...
+}
+```

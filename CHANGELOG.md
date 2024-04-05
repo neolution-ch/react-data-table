@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Fixed
+
+- endless loop on `pagination` state when paginating client-side
+
+## Added
+
+- auto `pageIndex reset` when paginating server side
+
 ## [5.0.1] - 2024-03-27
 
 ### Fixed

@@ -9,6 +9,7 @@ import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
 import { getSortingStateFromModel } from "../utils/getSortingStateFromModel";
 import { getModelFromSortingState } from "../utils/getModelFromSortingState";
 import { OptionalNullable } from "../types/NullableTypes";
+import { useMemo } from "react";
 
 /**
  * A react hook that returns a react table instance and the state of the table
@@ -63,15 +64,15 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
   }));
   const skeletonData = Array.from({ length: paginationInternal.pageSize }, () => ({} as TData));
 
+  const columnFilters = useMemo(() => getColumnFilterFromModel(effectiveColumnFilters), [effectiveColumnFilters]);
+  const sorting = useMemo(() => getSortingStateFromModel(effectiveSorting), [effectiveSorting]);
+
   const table = useReactTable<TData>({
     data: isLoading ? skeletonData : data,
     columns: isLoading ? skeletonColumns : internalColumns,
 
     onColumnFiltersChange: (filtersOrUpdaterFn) => {
-      const newFilter =
-        typeof filtersOrUpdaterFn !== "function"
-          ? filtersOrUpdaterFn
-          : filtersOrUpdaterFn(getColumnFilterFromModel(effectiveColumnFilters));
+      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(columnFilters);
       return effectiveOnColumnFiltersChange(getModelFromColumnFilter(newFilter));
     },
     onPaginationChange: (paginationOrUpdaterFn) => {
@@ -79,15 +80,14 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       return effectiveOnPaginationChange(newFilter);
     },
     onSortingChange: (sortingOrUpdaterFn) => {
-      const newFilter =
-        typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(getSortingStateFromModel(effectiveSorting));
+      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(sorting);
       return effectiveOnSortingChange(getModelFromSortingState(newFilter));
     },
 
     state: {
-      columnFilters: getColumnFilterFromModel(effectiveColumnFilters),
+      columnFilters,
       pagination: effectivePagination,
-      sorting: getSortingStateFromModel(effectiveSorting),
+      sorting,
     },
 
     initialState: {
