@@ -69,7 +69,7 @@ export interface useReactDataTableProps<TData, TFilter extends FilterModel> {
   /**
    * event handler for when the row selection changes
    */
-  onRowSelectionChange?: OnChangeFn<RowSelectionState | undefined>;
+  onRowSelectionChange?: OnChangeFn<RowSelectionState>;
 
   /**
    * the react table options that will be passed to the `useReactTable` hook.
