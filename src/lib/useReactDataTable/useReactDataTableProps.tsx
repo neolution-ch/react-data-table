@@ -1,4 +1,4 @@
-﻿import { ColumnDef, OnChangeFn, PaginationState, TableOptions } from "@tanstack/react-table";
+﻿import { ColumnDef, OnChangeFn, PaginationState, RowSelectionState, TableOptions } from "@tanstack/react-table";
 import { FilterModel, TableState } from "../types/TableState";
 import { SortingState } from "../types/SortingState";
 
@@ -65,6 +65,11 @@ export interface useReactDataTableProps<TData, TFilter extends FilterModel> {
    * event handler for when the sorting changes
    */
   onSortingChange?: OnChangeFn<SortingState<TData> | undefined>;
+
+  /**
+   * event handler for when the row selection changes
+   */
+  onRowSelectionChange?: OnChangeFn<RowSelectionState | undefined>;
 
   /**
    * the react table options that will be passed to the `useReactTable` hook.

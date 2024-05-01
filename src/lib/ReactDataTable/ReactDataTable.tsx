@@ -1,8 +1,8 @@
-﻿/* eslint max-lines: ["error", 300] */
+﻿/* eslint max-lines: ["error", 350] */
 import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
-import { Table, flexRender } from "@tanstack/react-table";
+import { Row, Table, flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
@@ -44,7 +44,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
   const { pagination } = table.getState();
   const {
-    options: { manualPagination },
+    options: { manualPagination, enableRowSelection },
     resetPageIndex,
   } = table;
 
@@ -68,13 +68,23 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     return enableDragAndDrop ? (
       <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
         {table.getRowModel().rows.map((row, index) => (
-          <DraggableRow<TData> key={index} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
+          <DraggableRow<TData>
+            key={index}
+            row={row}
+            enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
+            rowStyle={rowStyle && rowStyle(row.original)}
+          />
         ))}
       </SortableContext>
     ) : (
       <>
         {table.getRowModel().rows.map((row, index) => (
-          <InternalTableRow<TData> key={index} row={row} rowStyle={rowStyle && rowStyle(row.original)} />
+          <InternalTableRow<TData>
+            key={index}
+            row={row}
+            enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
+            rowStyle={rowStyle && rowStyle(row.original)}
+          />
         ))}
       </>
     );
