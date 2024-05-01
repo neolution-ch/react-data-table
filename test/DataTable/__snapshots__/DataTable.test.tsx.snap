@@ -610,6 +610,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
     </thead>
     <tbody>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -629,6 +630,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -648,6 +650,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -667,6 +670,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -686,6 +690,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -705,6 +710,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -724,6 +730,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -743,6 +750,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -762,6 +770,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>
@@ -781,6 +790,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </td>
       </tr>
       <tr
+        class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
         <td>

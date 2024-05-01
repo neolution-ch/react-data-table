@@ -197,6 +197,7 @@ describe("DataTable", () => {
         columns,
         reactTableOptions: {
           enableSortingRemoval: false,
+          enableRowSelection: true,
           getRowId: (row) => row.id,
         },
       }),

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- the `wiki` documentation is now lined in the readme
+- the `wiki` documentation is now linked in the readme
 
 ## [5.1.0] - 2024-04-05
 
