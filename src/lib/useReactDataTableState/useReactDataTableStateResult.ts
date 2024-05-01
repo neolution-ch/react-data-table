@@ -1,5 +1,5 @@
 ﻿import { Dispatch, SetStateAction } from "react";
-import { PaginationState } from "@tanstack/react-table";
+import { PaginationState, RowSelectionState } from "@tanstack/react-table";
 import { SortingState } from "../types/SortingState";
 
 /**
@@ -27,6 +27,11 @@ export interface useReactDataTableStateResult<TData, TFilter> {
   afterSearchFilter: TFilter;
 
   /**
+   * the current row selection state
+   */
+  rowSelection: RowSelectionState;
+
+  /**
    * the setter for the sorting state
    */
   setSorting: Dispatch<SetStateAction<SortingState<TData> | undefined>>;
@@ -45,4 +50,9 @@ export interface useReactDataTableStateResult<TData, TFilter> {
    * the setter for the column filters state after search was triggered
    */
   setAfterSearchFilter: Dispatch<SetStateAction<TFilter>>;
+
+  /**
+   * the setter for the row selection state
+   */
+  setRowSelection: Dispatch<SetStateAction<RowSelectionState>>;
 }

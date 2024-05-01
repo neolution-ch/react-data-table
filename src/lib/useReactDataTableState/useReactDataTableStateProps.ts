@@ -1,4 +1,4 @@
-﻿import { PaginationState } from "@tanstack/react-table";
+﻿import { PaginationState, RowSelectionState } from "@tanstack/react-table";
 import { SortingState } from "../types/SortingState";
 import { FilterModel } from "../types/TableState";
 import { ColumnFilterState } from "../types/ColumnFilterState";
@@ -21,4 +21,9 @@ export interface useReactDataTableStateProps<TData, TFilter extends FilterModel>
    * the initial pagination
    */
   initialPagination?: Partial<PaginationState>;
+
+  /**
+   * the initial row selection
+   */
+  initialRowSelection?: RowSelectionState;
 }

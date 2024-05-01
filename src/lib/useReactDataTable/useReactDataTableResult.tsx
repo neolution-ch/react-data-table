@@ -1,4 +1,4 @@
-﻿import { PaginationState, Table } from "@tanstack/react-table";
+﻿import { PaginationState, RowSelectionState, Table } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 import { FilterModel } from "../types/TableState";
 import { SortingState } from "../types/SortingState";
@@ -29,6 +29,11 @@ export interface useReactDataTableResult<TData, TFilter extends FilterModel> {
   columnFilters: TFilter;
 
   /**
+   * the row selection state. Only makes sense to use this if you are not supplying the `state.rowSelection` property
+   */
+  rowSelection: RowSelectionState;
+
+  /**
    * the column filters state setter. Only makes sense to use this if you are not using the `onColumnFiltersChange` callback
    */
   setColumnFilters: Dispatch<SetStateAction<TFilter>>;
@@ -37,6 +42,11 @@ export interface useReactDataTableResult<TData, TFilter extends FilterModel> {
    * the sorting state. Only makes sense to use this if you are not supplying the `state.sorting` property
    */
   sorting: SortingState<TData> | undefined;
+
+  /**
+   * the row selection state setter. Only makes sense to use this if you are not supplying the `state.rowSelection` property
+   */
+  setRowSelection: Dispatch<SetStateAction<RowSelectionState>>;
 
   /**
    * the sorting state setter. Only makes sense to use this if you are not using the `onSortingChange` callback

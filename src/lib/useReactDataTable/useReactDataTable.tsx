@@ -29,30 +29,47 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     onColumnFiltersChange,
     onPaginationChange,
     onSortingChange,
+    onRowSelectionChange,
     reactTableOptions,
   } = props;
-  const { columnFilters: columnFiltersInitial, sorting: sortingInitial, pagination: paginationInitial } = initialState ?? {};
-  const { columnFilters: columnFiltersExternal, pagination: paginationExternal, sorting: sortingExternal } = state ?? {};
+
+  const {
+    columnFilters: columnFiltersInitial,
+    sorting: sortingInitial,
+    pagination: paginationInitial,
+    rowSelection: rowSelectionInitial,
+  } = initialState ?? {};
+  const {
+    columnFilters: columnFiltersExternal,
+    pagination: paginationExternal,
+    sorting: sortingExternal,
+    rowSelection: rowSelectionExternal,
+  } = state ?? {};
 
   const {
     columnFilters: columnFiltersInternal,
     pagination: paginationInternal,
     sorting: sortingInternal,
+    rowSelection: rowSelectionInteral,
     setColumnFilters: setColumnFiltersInternal,
     setPagination: setPaginationInternal,
     setSorting: setSortingInternal,
+    setRowSelection: setRowSelectionInternal,
   } = useReactDataTableState<TData, TFilter>({
     initialColumnFilters: columnFiltersInitial as TFilter,
     initialPagination: paginationInitial,
     initialSorting: sortingInitial,
+    rowSelection: rowSelectionInitial,
   } as unknown as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
   const effectiveColumnFilters = columnFiltersExternal ?? columnFiltersInternal;
   const effectivePagination = paginationExternal ?? paginationInternal;
   const effectiveSorting = sortingExternal ?? sortingInternal;
+  const effectiveRowSelection = rowSelectionExternal ?? rowSelectionInteral;
   const effectiveOnColumnFiltersChange = onColumnFiltersChange ?? setColumnFiltersInternal;
   const effectiveOnPaginationChange = onPaginationChange ?? setPaginationInternal;
   const effectiveOnSortingChange = onSortingChange ?? setSortingInternal;
+  const effectiveOnRowSelectionChange = onRowSelectionChange ?? setRowSelectionInternal;
 
   // If we active the manual filtering, we have to unset the filter function, else it still does automatic filtering
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
@@ -83,11 +100,17 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(sorting);
       return effectiveOnSortingChange(getModelFromSortingState(newFilter));
     },
+    onRowSelectionChange: (rowSelectionOrUpdaterFn) => {
+      const newRowSelection =
+        typeof rowSelectionOrUpdaterFn !== "function" ? rowSelectionOrUpdaterFn : rowSelectionOrUpdaterFn(effectiveRowSelection);
+      return effectiveOnRowSelectionChange(newRowSelection);
+    },
 
     state: {
       columnFilters,
       pagination: effectivePagination,
       sorting,
+      rowSelection: effectiveRowSelection,
     },
 
     initialState: {
@@ -106,7 +129,11 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     manualSorting,
 
     enableMultiSort: false,
+    enableMultiRowSelection: false,
+    enableSubRowSelection: false,
 
+    // The row selection is enabled by default in Tanstack API. We don't want it per default
+    enableRowSelection: reactTableOptions?.enableRowSelection ?? false,
     defaultColumn: {
       enableColumnFilter: false,
       enableSorting: false,
@@ -120,9 +147,11 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     columnFilters: effectiveColumnFilters as TFilter,
     pagination: effectivePagination,
     sorting: effectiveSorting,
+    rowSelection: effectiveRowSelection,
     setColumnFilters: effectiveOnColumnFiltersChange,
     setPagination: effectiveOnPaginationChange,
     setSorting: effectiveOnSortingChange,
+    setRowSelection: effectiveOnRowSelectionChange,
   };
 };
 

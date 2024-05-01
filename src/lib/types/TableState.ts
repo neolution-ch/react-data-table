@@ -10,7 +10,7 @@ type FilterModel = { [k: string]: any };
 /**
  * The table sorting state
  */
-interface TableState<TData, TFilter extends FilterModel> extends Pick<CoreOptions<TData>["state"], "pagination"> {
+interface TableState<TData, TFilter extends FilterModel> extends Pick<CoreOptions<TData>["state"], "pagination" | "rowSelection"> {
   /**
    * The column filters state
    */
