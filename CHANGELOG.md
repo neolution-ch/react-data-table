@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.3.0] - 2024-06-03
+
 ## Added
 
 - possibility to override the default `noEntries` message in a singular case
@@ -312,7 +314,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.2.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.3.0...HEAD
+[5.3.0]: https://github.com/neolution-ch/react-data-table/compare/5.2.0...5.3.0
 [5.2.0]: https://github.com/neolution-ch/react-data-table/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/neolution-ch/react-data-table/compare/5.0.1...5.1.0
 [5.0.1]: https://github.com/neolution-ch/react-data-table/compare/5.0.0...5.0.1
