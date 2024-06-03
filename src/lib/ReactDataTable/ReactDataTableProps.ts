@@ -82,4 +82,9 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
    * to define drag-and-drop options
    */
   dragAndDropOptions?: DragAndDropOptions;
+
+  /**
+   * to override the default message in case no entries is found
+   */
+  noEntriesMessage?: string;
 }

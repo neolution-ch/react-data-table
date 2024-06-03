@@ -40,6 +40,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     withoutHeaders = false,
     withoutHeaderFilters = false,
     dragAndDropOptions,
+    noEntriesMessage,
   } = props;
 
   const { pagination } = table.getState();
@@ -256,7 +257,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
           <tbody>
             {table.getRowModel().rows.length === 0 ? (
               <tr>
-                <td colSpan={table.getVisibleFlatColumns().length}>{reactDataTableTranslations.noEntries}</td>
+                <td colSpan={table.getVisibleFlatColumns().length}>{noEntriesMessage ?? reactDataTableTranslations.noEntries}</td>
               </tr>
             ) : (
               <TableBody<TData> table={table} enableDragAndDrop={!!dragAndDropOptions?.enableDragAndDrop} rowStyle={rowStyle} />
