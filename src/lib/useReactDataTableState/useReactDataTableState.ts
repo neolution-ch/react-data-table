@@ -13,10 +13,8 @@ import { OptionalNullable } from "../types/NullableTypes";
 const useReactDataTableState = <TData, TFilter extends FilterModel = Record<string, never>>(
   props: OptionalNullable<useReactDataTableStateProps<TData, TFilter>>,
 ): useReactDataTableStateResult<TData, TFilter> => {
-  const { initialColumnFilters, initialSorting, initialPagination, initialRowSelection, initialExpanded } = props as useReactDataTableStateProps<
-    TData,
-    TFilter
-  >;
+  const { initialColumnFilters, initialSorting, initialPagination, initialRowSelection, initialExpanded } =
+    props as useReactDataTableStateProps<TData, TFilter>;
 
   const [columnFilters, setColumnFilters] = useState<TFilter>((initialColumnFilters ?? {}) as TFilter);
   const [afterSearchFilter, setAfterSearchFilter] = useState<TFilter>((initialColumnFilters ?? {}) as TFilter);
