@@ -1,4 +1,11 @@
-﻿import { getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
+﻿import {
+  getCoreRowModel,
+  getExpandedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { useReactDataTableState, useReactDataTableStateProps } from "../useReactDataTableState/useReactDataTableState";
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
@@ -30,6 +37,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     onPaginationChange,
     onSortingChange,
     onRowSelectionChange,
+    onExpandedChange,
     reactTableOptions,
   } = props;
 
@@ -38,12 +46,14 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     sorting: sortingInitial,
     pagination: paginationInitial,
     rowSelection: rowSelectionInitial,
+    expanded: expandedInitial,
   } = initialState ?? {};
   const {
     columnFilters: columnFiltersExternal,
     pagination: paginationExternal,
     sorting: sortingExternal,
     rowSelection: rowSelectionExternal,
+    expanded: expandedExternal,
   } = state ?? {};
 
   const {
@@ -51,25 +61,30 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     pagination: paginationInternal,
     sorting: sortingInternal,
     rowSelection: rowSelectionInteral,
+    expanded: expandedInternal,
     setColumnFilters: setColumnFiltersInternal,
     setPagination: setPaginationInternal,
     setSorting: setSortingInternal,
     setRowSelection: setRowSelectionInternal,
+    setExpanded: setExpandedInternal,
   } = useReactDataTableState<TData, TFilter>({
     initialColumnFilters: columnFiltersInitial as TFilter,
     initialPagination: paginationInitial,
     initialSorting: sortingInitial,
     rowSelection: rowSelectionInitial,
+    expanded: expandedInitial,
   } as unknown as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
   const effectiveColumnFilters = columnFiltersExternal ?? columnFiltersInternal;
   const effectivePagination = paginationExternal ?? paginationInternal;
   const effectiveSorting = sortingExternal ?? sortingInternal;
   const effectiveRowSelection = rowSelectionExternal ?? rowSelectionInteral;
+  const effectiveExpanded = expandedExternal ?? expandedInternal;
   const effectiveOnColumnFiltersChange = onColumnFiltersChange ?? setColumnFiltersInternal;
   const effectiveOnPaginationChange = onPaginationChange ?? setPaginationInternal;
   const effectiveOnSortingChange = onSortingChange ?? setSortingInternal;
   const effectiveOnRowSelectionChange = onRowSelectionChange ?? setRowSelectionInternal;
+  const effectiveOnExpandedChange = onExpandedChange ?? setExpandedInternal;
 
   // If we active the manual filtering, we have to unset the filter function, else it still does automatic filtering
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
@@ -105,24 +120,31 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
         typeof rowSelectionOrUpdaterFn !== "function" ? rowSelectionOrUpdaterFn : rowSelectionOrUpdaterFn(effectiveRowSelection);
       return effectiveOnRowSelectionChange(newRowSelection);
     },
+    onExpandedChange: (expandedOrUpdaterFn) => {
+      const newExpanded = typeof expandedOrUpdaterFn !== "function" ? expandedOrUpdaterFn : expandedOrUpdaterFn(effectiveExpanded);
+      return effectiveOnExpandedChange(newExpanded);
+    },
 
     state: {
       columnFilters,
       pagination: effectivePagination,
       sorting,
       rowSelection: effectiveRowSelection,
+      expanded: effectiveExpanded,
     },
 
     initialState: {
       columnFilters: getColumnFilterFromModel(columnFiltersInitial ?? columnFiltersExternal ?? {}),
       pagination: paginationInitial ?? paginationExternal,
       sorting: getSortingStateFromModel(sortingInitial ?? sortingExternal),
+      expanded: expandedInitial ?? expandedExternal,
     },
 
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
 
     manualFiltering,
     manualPagination,
@@ -139,6 +161,8 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       enableSorting: false,
     },
 
+    enableExpanding: reactTableOptions?.enableExpanding ?? false,
+
     ...reactTableOptions,
   });
 
@@ -148,10 +172,12 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     pagination: effectivePagination,
     sorting: effectiveSorting,
     rowSelection: effectiveRowSelection,
+    expanded: effectiveExpanded,
     setColumnFilters: effectiveOnColumnFiltersChange,
     setPagination: effectiveOnPaginationChange,
     setSorting: effectiveOnSortingChange,
     setRowSelection: effectiveOnRowSelectionChange,
+    setExpanded: effectiveOnExpandedChange,
   };
 };
 

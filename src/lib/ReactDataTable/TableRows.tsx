@@ -6,14 +6,17 @@ import { CSS } from "@dnd-kit/utilities";
 interface TableRowProps<TData> {
   row: Row<TData>;
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
+  enableExpanding?: boolean | ((row: Row<TData>) => boolean);
   rowStyle?: CSSProperties;
   setNodeRef?: (node: HTMLElement | null) => void;
 }
 
 const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
   const { row, rowStyle, setNodeRef, enableRowSelection = false } = props;
+  //const { row, rowStyle, setNodeRef, enableRowSelection = false, enableExpanding = false } = props;
   row.original;
   const isRowSelectionEnabled = typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection;
+  //const isExpandingEnabled = typeof enableExpanding === "function" ? enableExpanding(row) : enableExpanding;
   return (
     <tr
       key={row.id}
@@ -36,7 +39,7 @@ const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
 };
 
 const DraggableRow = <TData,>(props: TableRowProps<TData>) => {
-  const { row, rowStyle, enableRowSelection } = props;
+  const { row, rowStyle, enableRowSelection, enableExpanding } = props;
   const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.id });
   const draggableStyle: CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -49,6 +52,7 @@ const DraggableRow = <TData,>(props: TableRowProps<TData>) => {
     <InternalTableRow
       row={row}
       enableRowSelection={enableRowSelection}
+      enableExpanding={enableExpanding}
       setNodeRef={setNodeRef}
       rowStyle={rowStyle ? { ...rowStyle, ...draggableStyle } : draggableStyle}
     />
