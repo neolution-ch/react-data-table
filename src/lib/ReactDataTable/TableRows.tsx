@@ -13,10 +13,8 @@ interface TableRowProps<TData> {
 
 const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
   const { row, rowStyle, setNodeRef, enableRowSelection = false } = props;
-  //const { row, rowStyle, setNodeRef, enableRowSelection = false, enableExpanding = false } = props;
-  row.original;
   const isRowSelectionEnabled = typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection;
-  //const isExpandingEnabled = typeof enableExpanding === "function" ? enableExpanding(row) : enableExpanding;
+
   return (
     <tr
       key={row.id}
