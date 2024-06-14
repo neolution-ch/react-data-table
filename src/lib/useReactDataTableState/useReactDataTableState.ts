@@ -1,5 +1,5 @@
 ﻿import { useState } from "react";
-import { PaginationState, RowSelectionState } from "@tanstack/react-table";
+import { ExpandedState, PaginationState, RowSelectionState } from "@tanstack/react-table";
 import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { FilterModel } from "../types/TableState";
@@ -13,15 +13,14 @@ import { OptionalNullable } from "../types/NullableTypes";
 const useReactDataTableState = <TData, TFilter extends FilterModel = Record<string, never>>(
   props: OptionalNullable<useReactDataTableStateProps<TData, TFilter>>,
 ): useReactDataTableStateResult<TData, TFilter> => {
-  const { initialColumnFilters, initialSorting, initialPagination, initialRowSelection } = props as useReactDataTableStateProps<
-    TData,
-    TFilter
-  >;
+  const { initialColumnFilters, initialSorting, initialPagination, initialRowSelection, initialExpanded } =
+    props as useReactDataTableStateProps<TData, TFilter>;
 
   const [columnFilters, setColumnFilters] = useState<TFilter>((initialColumnFilters ?? {}) as TFilter);
   const [afterSearchFilter, setAfterSearchFilter] = useState<TFilter>((initialColumnFilters ?? {}) as TFilter);
   const [sorting, setSorting] = useState<SortingState<TData> | undefined>(initialSorting);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>(initialRowSelection ?? ({} as RowSelectionState));
+  const [expanded, setExpanded] = useState<ExpandedState>(initialExpanded ?? ({} as ExpandedState));
 
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: initialPagination?.pageIndex ?? 0,
@@ -34,11 +33,13 @@ const useReactDataTableState = <TData, TFilter extends FilterModel = Record<stri
     columnFilters,
     afterSearchFilter,
     rowSelection,
+    expanded,
     setSorting,
     setColumnFilters,
     setPagination,
     setAfterSearchFilter,
     setRowSelection,
+    setExpanded,
   };
 };
 

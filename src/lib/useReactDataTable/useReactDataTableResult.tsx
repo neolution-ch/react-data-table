@@ -1,4 +1,4 @@
-﻿import { PaginationState, RowSelectionState, Table } from "@tanstack/react-table";
+﻿import { ExpandedState, PaginationState, RowSelectionState, Table } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 import { FilterModel } from "../types/TableState";
 import { SortingState } from "../types/SortingState";
@@ -52,4 +52,14 @@ export interface useReactDataTableResult<TData, TFilter extends FilterModel> {
    * the sorting state setter. Only makes sense to use this if you are not using the `onSortingChange` callback
    */
   setSorting: Dispatch<SetStateAction<SortingState<TData | undefined>>>;
+
+  /**
+   * the expanded state. Only makes sense to use this if you are not supplying the `state.expanded` property
+   */
+  expanded: ExpandedState;
+
+  /**
+   * the expanded state setter. Only makes sense to use this if you are not supplying the `state.expanded` property
+   */
+  setExpanded: Dispatch<SetStateAction<ExpandedState>>;
 }

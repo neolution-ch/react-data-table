@@ -1,4 +1,4 @@
-﻿import { ColumnDef, OnChangeFn, PaginationState, RowSelectionState, TableOptions } from "@tanstack/react-table";
+﻿import { ColumnDef, ExpandedState, OnChangeFn, PaginationState, RowSelectionState, TableOptions } from "@tanstack/react-table";
 import { FilterModel, TableState } from "../types/TableState";
 import { SortingState } from "../types/SortingState";
 
@@ -70,6 +70,11 @@ export interface useReactDataTableProps<TData, TFilter extends FilterModel> {
    * event handler for when the row selection changes
    */
   onRowSelectionChange?: OnChangeFn<RowSelectionState>;
+
+  /**
+   * event handler for when the expanded changes
+   */
+  onExpandedChange?: OnChangeFn<ExpandedState>;
 
   /**
    * the react table options that will be passed to the `useReactTable` hook.

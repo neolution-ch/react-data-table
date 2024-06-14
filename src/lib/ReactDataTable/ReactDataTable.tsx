@@ -45,7 +45,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
   const { pagination } = table.getState();
   const {
-    options: { manualPagination, enableRowSelection },
+    options: { manualPagination, enableRowSelection, enableExpanding },
     resetPageIndex,
   } = table;
 
@@ -73,6 +73,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             key={index}
             row={row}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
+            enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
           />
         ))}
@@ -84,6 +85,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             key={index}
             row={row}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
+            enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
           />
         ))}

@@ -1,5 +1,5 @@
 ﻿import { Dispatch, SetStateAction } from "react";
-import { PaginationState, RowSelectionState } from "@tanstack/react-table";
+import { ExpandedState, PaginationState, RowSelectionState } from "@tanstack/react-table";
 import { SortingState } from "../types/SortingState";
 
 /**
@@ -32,6 +32,11 @@ export interface useReactDataTableStateResult<TData, TFilter> {
   rowSelection: RowSelectionState;
 
   /**
+   * the expanded state
+   */
+  expanded: ExpandedState;
+
+  /**
    * the setter for the sorting state
    */
   setSorting: Dispatch<SetStateAction<SortingState<TData> | undefined>>;
@@ -55,4 +60,9 @@ export interface useReactDataTableStateResult<TData, TFilter> {
    * the setter for the row selection state
    */
   setRowSelection: Dispatch<SetStateAction<RowSelectionState>>;
+
+  /**
+   * the setter for the expanded state
+   */
+  setExpanded: Dispatch<SetStateAction<ExpandedState>>;
 }
