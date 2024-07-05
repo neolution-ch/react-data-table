@@ -149,7 +149,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     manualFiltering,
     manualPagination,
     manualSorting,
-    
+
     enableMultiSort: false,
     enableMultiRowSelection: false,
     enableSubRowSelection: false,
