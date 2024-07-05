@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- optional `rowSelection` state in Fully controlled hook
+
 ## [5.4.0] - 2024-06-14
 
 ### Added
