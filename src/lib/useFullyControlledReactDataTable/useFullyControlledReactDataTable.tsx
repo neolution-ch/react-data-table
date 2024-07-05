@@ -15,6 +15,7 @@ interface useFullyControlledReactDataTableProps<TData, TFilter extends FilterMod
     pagination: TableState<TData, TFilter>["pagination"];
     sorting: TableState<TData, TFilter>["sorting"];
     expanded: TableState<TData, TFilter>["expanded"];
+    rowSelection?: TableState<TData, TFilter>["rowSelection"];
   };
 }
 
