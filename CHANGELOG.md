@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.5.0] - 2024-09-25
+
 ### Added
 
 - added missing col span property for `grouped columns` feature
@@ -330,7 +332,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.5.0...HEAD
+[5.5.0]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...5.5.0
 [5.4.1]: https://github.com/neolution-ch/react-data-table/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/neolution-ch/react-data-table/compare/5.3.0...5.4.0
 [5.3.0]: https://github.com/neolution-ch/react-data-table/compare/5.2.0...5.3.0
