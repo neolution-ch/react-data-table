@@ -1,4 +1,4 @@
-import { CoreOptions } from "@tanstack/react-table";
+import { ColumnPinningState, CoreOptions } from "@tanstack/react-table";
 import { SortingState } from "./SortingState";
 
 /**
@@ -20,6 +20,10 @@ interface TableState<TData, TFilter extends FilterModel>
    * The sorting state
    */
   sorting?: SortingState<TData>;
+  /**
+   * The column pinning state
+   */
+  columnPinning?: ColumnPinningState;
 }
 
 export { TableState, FilterModel };
