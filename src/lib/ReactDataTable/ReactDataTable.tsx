@@ -134,6 +134,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                           ...(header.column.getCanSort() ? { cursor: "pointer" } : {}),
                         }}
                         className={header.column.columnDef.meta?.headerClassName}
+                        colSpan={header.colSpan}
                       >
                         {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 

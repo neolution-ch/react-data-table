@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- added missing col span property for `grouped columns` feature
+
 ## [5.4.1] - 2024-07-05
 
 ### Fixed
