@@ -6,14 +6,16 @@ import { CSS } from "@dnd-kit/utilities";
 interface TableRowProps<TData> {
   row: Row<TData>;
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
+  fullRowSelectable?: boolean;
   enableExpanding?: boolean | ((row: Row<TData>) => boolean);
   rowStyle?: CSSProperties;
   setNodeRef?: (node: HTMLElement | null) => void;
 }
 
 const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
-  const { row, rowStyle, setNodeRef, enableRowSelection = false } = props;
-  const isRowSelectionEnabled = typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection;
+  const { row, rowStyle, setNodeRef, enableRowSelection = false, fullRowSelectable = true } = props;
+  const isRowSelectionEnabled =
+    (typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection) && fullRowSelectable;
 
   return (
     <tr
@@ -37,7 +39,7 @@ const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
 };
 
 const DraggableRow = <TData,>(props: TableRowProps<TData>) => {
-  const { row, rowStyle, enableRowSelection, enableExpanding } = props;
+  const { row, rowStyle, enableRowSelection, fullRowSelectable, enableExpanding } = props;
   const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.id });
   const draggableStyle: CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -51,6 +53,7 @@ const DraggableRow = <TData,>(props: TableRowProps<TData>) => {
       row={row}
       enableRowSelection={enableRowSelection}
       enableExpanding={enableExpanding}
+      fullRowSelectable={fullRowSelectable}
       setNodeRef={setNodeRef}
       rowStyle={rowStyle ? { ...rowStyle, ...draggableStyle } : draggableStyle}
     />

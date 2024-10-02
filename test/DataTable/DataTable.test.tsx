@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks/server";
 import "@testing-library/jest-dom";
 import React from "react";
@@ -217,5 +217,30 @@ describe("DataTable", () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+
+  test("fullRowSelectable is working: clicking on the rows it does not select them", () => {
+    const {
+      result: {
+        current: { table },
+      },
+    } = renderHook(() =>
+      useReactDataTable({
+        data: dataDynamic,
+        isLoading: false,
+        columns,
+        reactTableOptions: {
+          fullRowSelectable: false,
+          enableRowSelection: true,
+          enableMultiRowSelection: true,
+          getRowId: (row) => row.id,
+        },
+      }),
+    );
+    render(<ReactDataTable table={table} showPaging totalRecords={dataDynamic?.length} isFetching={false} isLoading={false} />);
+
+    const rows = document.querySelectorAll("tr");
+    rows.forEach(row => fireEvent.click(row))
+    expect(table.getSelectedRowModel().rows.length).toBe(0);
   });
 });
