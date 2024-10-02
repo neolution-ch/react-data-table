@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.6.0] - 2024-10-02
+
 ### Added
 
 - property `fullRowSelectable` in the `reactTableOptions` to manually disable the selection once `enableRowSelection` is enabled and the row is anywhere clicked
@@ -336,7 +338,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.5.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.6.0...HEAD
+[5.6.0]: https://github.com/neolution-ch/react-data-table/compare/5.5.0...5.6.0
 [5.5.0]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...5.5.0
 [5.4.1]: https://github.com/neolution-ch/react-data-table/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/neolution-ch/react-data-table/compare/5.3.0...5.4.0
