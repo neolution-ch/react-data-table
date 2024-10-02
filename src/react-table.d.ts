@@ -63,4 +63,8 @@ declare module "@tanstack/table-core" {
      */
     isHidden?: boolean;
   }
+
+  interface RowSelectionOptions<TData extends RowData> {
+    fullRowSelectable?: boolean;
+  }
 }

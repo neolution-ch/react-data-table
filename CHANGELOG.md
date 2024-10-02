@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- property `fullRowSelectable` in the `reactTableOptions` to manually disable the selection once `enableRowSelection` is enabled and the row is anywhere clicked
+
 ## [5.5.0] - 2024-09-25
 
 ### Added
