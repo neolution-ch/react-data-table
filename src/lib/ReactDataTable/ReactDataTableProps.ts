@@ -1,4 +1,4 @@
-﻿import { Table } from "@tanstack/react-table";
+﻿import { Row, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 import { FilterModel } from "../types/TableState";
 import { DragAndDropOptions } from "./DragAndDropOptions";
@@ -52,6 +52,20 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
    * @returns the style
    */
   rowStyle?: (row: TData) => CSSProperties;
+
+  /**
+   * boolean indicating whether to enable click for specific row
+   * Notice that this is ignored in case of rowSelection feature is enabled and fullRowSelectable is not provided as false
+   * @param row the row model
+   */
+  enableRowClick?: boolean | ((row: Row<TData>) => boolean);
+
+  /**
+   * callback which gets triggered when the row is clicked
+   * Notice that this is ignored in case of rowSelection feature is enabled and fullRowSelectable is not provided as false
+   * @param row the row model
+   */
+  onRowClick?: (row: Row<TData>) => void | Promise<void>;
 
   /**
    * boolean flag to indicate if the paging should be displayed
