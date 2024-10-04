@@ -41,6 +41,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     withoutHeaderFilters = false,
     dragAndDropOptions,
     noEntriesMessage,
+    onRowClick,
+    enableRowClick,
   } = props;
 
   const { pagination } = table.getState();
@@ -69,9 +71,11 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     return enableDragAndDrop ? (
       <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
         {table.getRowModel().rows.map((row, index) => (
-          <DraggableRow<TData>
+          <DraggableRow<TData, TFilter>
             key={index}
             row={row}
+            enableRowClick={enableRowClick as ReactDataTableProps<TData, TFilter>["enableRowClick"]}
+            onRowClick={onRowClick as ReactDataTableProps<TData, TFilter>["onRowClick"]}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
@@ -82,9 +86,11 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     ) : (
       <>
         {table.getRowModel().rows.map((row, index) => (
-          <InternalTableRow<TData>
+          <InternalTableRow<TData, TFilter>
             key={index}
             row={row}
+            enableRowClick={enableRowClick as ReactDataTableProps<TData, TFilter>["enableRowClick"]}
+            onRowClick={onRowClick as ReactDataTableProps<TData, TFilter>["onRowClick"]}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}

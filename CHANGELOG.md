@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- property `onRowClick` in `ReactDataTable` in order to define a custom function to execute the row is clicked
+- property `enableRowClick` in `ReactDataTable` in order to define if a row should be clickable or not
+
 ## [5.6.0] - 2024-10-02
 
 ### Added
