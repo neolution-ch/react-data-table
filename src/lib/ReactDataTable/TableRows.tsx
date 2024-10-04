@@ -47,7 +47,7 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
 
 const DraggableRow = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableRowProps<TData, TFilter>) => {
   const { row, rowStyle } = props;
-  const { transform, transition, isDragging } = useSortable({ id: row.id });
+  const { transform, transition, setNodeRef, isDragging } = useSortable({ id: row.id });
   const draggableStyle: CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition: transition,
@@ -55,7 +55,13 @@ const DraggableRow = <TData, TFilter extends FilterModel = Record<string, never>
     zIndex: isDragging ? 1 : 0,
     position: "relative",
   };
-  return <InternalTableRow<TData, TFilter> {...props} rowStyle={rowStyle ? { ...rowStyle, ...draggableStyle } : draggableStyle} />;
+  return (
+    <InternalTableRow<TData, TFilter>
+      {...props}
+      setNodeRef={setNodeRef}
+      rowStyle={rowStyle ? { ...rowStyle, ...draggableStyle } : draggableStyle}
+    />
+  );
 };
 
 export { InternalTableRow, DraggableRow };
