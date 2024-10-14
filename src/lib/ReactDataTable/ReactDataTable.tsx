@@ -2,7 +2,7 @@
 import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
-import { Column, Row, Table, flexRender } from "@tanstack/react-table";
+import { Row, Table, flexRender } from "@tanstack/react-table";
 import { Table as ReactStrapTable, Input } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
@@ -13,6 +13,7 @@ import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, us
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { DraggableRow, InternalTableRow } from "./TableRows";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 
 interface TableBodyProps<TData> {
   enableDragAndDrop: boolean;
@@ -94,25 +95,6 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
   };
 
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
-
-  //These are the important styles to make sticky column pinning work!
-  //Apply styles like this using your CSS strategy of choice with this kind of logic to head cells, data cells, footer cells, etc.
-  //View the index.css file for more needed styles such as border-collapse: separate
-  const getCommonPinningStyles = (column: Column<TData>): CSSProperties => {
-    const isPinned = column.getIsPinned();
-    const isLastLeftPinnedColumn = isPinned === "left" && column.getIsLastColumn("left");
-    const isFirstRightPinnedColumn = isPinned === "right" && column.getIsFirstColumn("right");
-
-    return {
-      boxShadow: isLastLeftPinnedColumn ? "-4px 0 4px -4px gray inset" : isFirstRightPinnedColumn ? "4px 0 4px -4px gray inset" : undefined,
-      left: isPinned === "left" ? `${column.getStart("left")}px` : undefined,
-      right: isPinned === "right" ? `${column.getAfter("right")}px` : undefined,
-      opacity: isPinned ? 0.95 : 1,
-      position: isPinned ? "sticky" : "relative",
-      width: column.getSize(),
-      zIndex: isPinned ? 1 : 0,
-    };
-  };
 
   return (
     <>

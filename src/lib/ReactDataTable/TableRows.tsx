@@ -2,6 +2,7 @@
 import { Row, flexRender } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 import { CSS } from "@dnd-kit/utilities";
+import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 
 interface TableRowProps<TData> {
   row: Row<TData>;
@@ -28,7 +29,11 @@ const InternalTableRow = <TData,>(props: TableRowProps<TData>) => {
       style={rowStyle}
     >
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle} className={cell.column.columnDef.meta?.cellClassName}>
+        <td key={cell.id} style={{
+          ...cell.column.columnDef.meta?.cellStyle,
+          ...getCommonPinningStyles(cell.column)
+        }}
+        className={cell.column.columnDef.meta?.cellClassName}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
       ))}
