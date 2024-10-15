@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `pkg.pr.new` workflow in order to prevent caching issues
+
+## [5.7.0] - 2024-10-04
+
 ### Added
 
 - property `onRowClick` in `ReactDataTable` in order to define a custom function to execute the row is clicked
@@ -343,7 +349,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.6.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.7.0...HEAD
+[5.7.0]: https://github.com/neolution-ch/react-data-table/compare/5.6.0...5.7.0
 [5.6.0]: https://github.com/neolution-ch/react-data-table/compare/5.5.0...5.6.0
 [5.5.0]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...5.5.0
 [5.4.1]: https://github.com/neolution-ch/react-data-table/compare/5.4.0...5.4.1
