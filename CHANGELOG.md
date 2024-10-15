@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `pkg.pr.new` workflow in order to prevent caching issues
+
 ## [5.7.0] - 2024-10-04
 
 ### Added
