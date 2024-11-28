@@ -42,11 +42,13 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     withoutHeaderFilters = false,
     dragAndDropOptions,
     noEntriesMessage,
+    onRowClick,
+    enableRowClick,
   } = props;
 
   const { pagination } = table.getState();
   const {
-    options: { manualPagination, enableRowSelection, enableExpanding },
+    options: { manualPagination, enableRowSelection, enableExpanding, fullRowSelectable },
     resetPageIndex,
   } = table;
 
@@ -70,24 +72,30 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     return enableDragAndDrop ? (
       <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
         {table.getRowModel().rows.map((row, index) => (
-          <DraggableRow<TData>
+          <DraggableRow<TData, TFilter>
             key={index}
             row={row}
+            enableRowClick={enableRowClick as ReactDataTableProps<TData, TFilter>["enableRowClick"]}
+            onRowClick={onRowClick as ReactDataTableProps<TData, TFilter>["onRowClick"]}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
+            fullRowSelectable={fullRowSelectable}
           />
         ))}
       </SortableContext>
     ) : (
       <>
         {table.getRowModel().rows.map((row, index) => (
-          <InternalTableRow<TData>
+          <InternalTableRow<TData, TFilter>
             key={index}
             row={row}
+            enableRowClick={enableRowClick as ReactDataTableProps<TData, TFilter>["enableRowClick"]}
+            onRowClick={onRowClick as ReactDataTableProps<TData, TFilter>["onRowClick"]}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
+            fullRowSelectable={fullRowSelectable}
           />
         ))}
       </>
@@ -136,6 +144,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                           ...getCommonPinningStyles(header.column),
                         }}
                         className={header.column.columnDef.meta?.headerClassName}
+                        colSpan={header.colSpan}
                       >
                         {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 

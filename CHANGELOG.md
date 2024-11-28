@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.7.0] - 2024-10-04
+
+### Added
+
+- property `onRowClick` in `ReactDataTable` in order to define a custom function to execute the row is clicked
+- property `enableRowClick` in `ReactDataTable` in order to define if a row should be clickable or not
+
+## [5.6.0] - 2024-10-02
+
+### Added
+
+- property `fullRowSelectable` in the `reactTableOptions` to manually disable the selection once `enableRowSelection` is enabled and the row is anywhere clicked
+
+## [5.5.0] - 2024-09-25
+
+### Added
+
+- added missing col span property for `grouped columns` feature
+
 ## [5.4.1] - 2024-07-05
 
 ### Fixed
@@ -326,7 +345,10 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.7.0...HEAD
+[5.7.0]: https://github.com/neolution-ch/react-data-table/compare/5.6.0...5.7.0
+[5.6.0]: https://github.com/neolution-ch/react-data-table/compare/5.5.0...5.6.0
+[5.5.0]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...5.5.0
 [5.4.1]: https://github.com/neolution-ch/react-data-table/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/neolution-ch/react-data-table/compare/5.3.0...5.4.0
 [5.3.0]: https://github.com/neolution-ch/react-data-table/compare/5.2.0...5.3.0
