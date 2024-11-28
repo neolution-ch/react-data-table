@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- option `hideHeaderFilters` added to the column meta to hide the header filter (needs to be set to true for all columns)
+- option `headerFilterStyle` added to the column meta to be able to style the header filter
+- option `customFilterName` added to the column meta to be able to use different mappings than the `accessor` of the column description
+
 ## [5.7.0] - 2024-10-04
 
 ### Added
