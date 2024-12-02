@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - option `headerFilterStyle` added to the column meta to be able to style the header filter
 - option `customFilterName` added to the column meta to be able to use different mappings than the `accessor` of the column description
 
+### Fixed
+
+- `pkg.pr.new` workflow in order to prevent caching issues
+
 ## [5.7.0] - 2024-10-04
 
 ### Added
