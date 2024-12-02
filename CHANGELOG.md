@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.8.0] - 2024-12-02
+
 ### Added
 
 - option `hideHeaderFilters` added to the column meta to hide the header filter (needs to be set to true for all columns)
@@ -355,7 +357,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.7.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.8.0...HEAD
+[5.8.0]: https://github.com/neolution-ch/react-data-table/compare/5.7.0...5.8.0
 [5.7.0]: https://github.com/neolution-ch/react-data-table/compare/5.6.0...5.7.0
 [5.6.0]: https://github.com/neolution-ch/react-data-table/compare/5.5.0...5.6.0
 [5.5.0]: https://github.com/neolution-ch/react-data-table/compare/5.4.1...5.5.0
