@@ -62,6 +62,21 @@ declare module "@tanstack/table-core" {
      * Prevents the column from being drawn
      */
     isHidden?: boolean;
+
+    /**
+     * Set to true to hide the header filters
+     */
+    hideHeaderFilters?: boolean;
+
+    /**
+     * Sets the header filter style
+     */
+    headerFilterStyle?: CSSProperties;
+
+    /**
+     * Custom filter name to use instead of the default used accessor name
+     */
+    customFilterName?: string;
   }
 
   interface RowSelectionOptions<TData extends RowData> {

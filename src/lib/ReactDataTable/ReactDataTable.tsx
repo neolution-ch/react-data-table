@@ -14,6 +14,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { DraggableRow, InternalTableRow } from "./TableRows";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
+import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 
 interface TableBodyProps<TData> {
   enableDragAndDrop: boolean;
@@ -160,7 +161,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                       </th>
                     ))}
                   </tr>
-                  {!withoutHeaderFilters && (
+                  {!withoutHeaderFilters && !headerGroup.headers.every((x) => !!x.column.columnDef.meta?.hideHeaderFilters) && (
                     <tr key={`${headerGroup.id}-col-filters`}>
                       {headerGroup.headers.map((header) => {
                         const {
@@ -170,7 +171,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                         } = header;
 
                         return (
-                          <th key={`${header.id}-col-filter`}>
+                          <th key={`${header.id}-col-filter`} style={header.column.columnDef.meta?.headerFilterStyle}>
                             {header.index === 0 && (
                               <>
                                 {onEnter && (
@@ -205,12 +206,16 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                             {header.column.getCanFilter() && (
                               <>
                                 {meta?.customFilter ? (
-                                  meta?.customFilter(header.column.getFilterValue(), header.column.setFilterValue)
+                                  meta?.customFilter(getFilterValue(header.column, table), (value) =>
+                                    setFilterValue(header.column, table, value),
+                                  )
                                 ) : meta?.dropdownFilter ? (
                                   <Input
                                     type="select"
                                     onChange={(e) => {
-                                      header.column.setFilterValue(
+                                      setFilterValue(
+                                        header.column,
+                                        table,
                                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                         meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
                                           e.target.value,
@@ -238,9 +243,9 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                 ) : (
                                   <Input
                                     type="text"
-                                    value={(header.column.getFilterValue() as string) ?? ""}
+                                    value={(getFilterValue(header.column, table) as string) ?? ""}
                                     onChange={(e) => {
-                                      header.column.setFilterValue(e.target.value);
+                                      setFilterValue(header.column, table, e.target.value);
                                       if (!onEnter && manualPagination) {
                                         resetPageIndex(true);
                                       }
