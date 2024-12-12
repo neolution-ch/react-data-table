@@ -1,4 +1,4 @@
-﻿import { ExpandedState, PaginationState, RowSelectionState, Table } from "@tanstack/react-table";
+﻿import { ColumnPinningState, ExpandedState, PaginationState, RowSelectionState, Table } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 import { FilterModel } from "../types/TableState";
 import { SortingState } from "../types/SortingState";
@@ -62,4 +62,14 @@ export interface useReactDataTableResult<TData, TFilter extends FilterModel> {
    * the expanded state setter. Only makes sense to use this if you are not supplying the `state.expanded` property
    */
   setExpanded: Dispatch<SetStateAction<ExpandedState>>;
+
+  /**
+   * the column pinning state. Only makes sense to use this if you are not supplying the `state.columnPinning` property
+   */
+  columnPinning: ColumnPinningState;
+
+  /**
+   * the column pinning state setter. Only makes sense to use this if you are not supplying the `state.columnPinning` property
+   */
+  setColumnPinning: Dispatch<SetStateAction<ColumnPinningState>>;
 }

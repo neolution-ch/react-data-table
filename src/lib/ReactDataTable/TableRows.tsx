@@ -2,6 +2,7 @@
 import { Row, flexRender } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 import { CSS } from "@dnd-kit/utilities";
+import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { FilterModel } from "../types/TableState";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 
@@ -37,7 +38,11 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
       style={rowStyle}
     >
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle} className={cell.column.columnDef.meta?.cellClassName}>
+        <td key={cell.id} style={{
+          ...cell.column.columnDef.meta?.cellStyle,
+          ...getCommonPinningStyles(cell.column)
+        }}
+        className={cell.column.columnDef.meta?.cellClassName}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
       ))}

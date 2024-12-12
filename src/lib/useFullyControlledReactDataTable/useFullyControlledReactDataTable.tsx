@@ -16,6 +16,7 @@ interface useFullyControlledReactDataTableProps<TData, TFilter extends FilterMod
     sorting: TableState<TData, TFilter>["sorting"];
     expanded: TableState<TData, TFilter>["expanded"];
     rowSelection?: TableState<TData, TFilter>["rowSelection"];
+    columnPinning: TableState<TData, TFilter>["columnPinning"];
   };
 }
 

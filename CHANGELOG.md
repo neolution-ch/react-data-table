@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `columnPinning` feature. Allows the pinning of columns.
+
 ## [5.8.0] - 2024-12-02
 
 ### Added
