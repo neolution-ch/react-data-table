@@ -134,7 +134,8 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       return effectiveOnExpandedChange(newExpanded);
     },
     onColumnPinningChange: (columnPinningOrUpdaterFn) => {
-      const newColumnPinning= typeof columnPinningOrUpdaterFn !== "function" ? columnPinningOrUpdaterFn : columnPinningOrUpdaterFn(effectiveColumnPinning);
+      const newColumnPinning =
+        typeof columnPinningOrUpdaterFn !== "function" ? columnPinningOrUpdaterFn : columnPinningOrUpdaterFn(effectiveColumnPinning);
       return effectiveOnColumnPinningChange(newColumnPinning);
     },
 

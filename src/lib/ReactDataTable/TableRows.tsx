@@ -38,11 +38,14 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
       style={rowStyle}
     >
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id} style={{
-          ...cell.column.columnDef.meta?.cellStyle,
-          ...getCommonPinningStyles(cell.column)
-        }}
-        className={cell.column.columnDef.meta?.cellClassName}>
+        <td
+          key={cell.id}
+          style={{
+            ...cell.column.columnDef.meta?.cellStyle,
+            ...getCommonPinningStyles(cell.column),
+          }}
+          className={cell.column.columnDef.meta?.cellClassName}
+        >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
       ))}

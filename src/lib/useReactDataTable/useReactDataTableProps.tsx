@@ -1,4 +1,12 @@
-﻿import { ColumnDef, ColumnPinningState, ExpandedState, OnChangeFn, PaginationState, RowSelectionState, TableOptions } from "@tanstack/react-table";
+﻿import {
+  ColumnDef,
+  ColumnPinningState,
+  ExpandedState,
+  OnChangeFn,
+  PaginationState,
+  RowSelectionState,
+  TableOptions,
+} from "@tanstack/react-table";
 import { FilterModel, TableState } from "../types/TableState";
 import { SortingState } from "../types/SortingState";
 
@@ -79,7 +87,7 @@ export interface useReactDataTableProps<TData, TFilter extends FilterModel> {
   /**
    * event handler for when the column pinning changes
    */
-  onColumnPinningChange?:OnChangeFn<ColumnPinningState>;
+  onColumnPinningChange?: OnChangeFn<ColumnPinningState>;
 
   /**
    * the react table options that will be passed to the `useReactTable` hook.
