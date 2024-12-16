@@ -97,6 +97,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
             fullRowSelectable={fullRowSelectable}
+            hasPinnedColumns={table.getIsSomeColumnsPinned()}
           />
         ))}
       </>
@@ -142,7 +143,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                         style={{
                           ...header.column.columnDef.meta?.headerStyle,
                           ...(header.column.getCanSort() ? { cursor: "pointer" } : {}),
-                          ...(header.column.getIsPinned()
+                          ...(table.getIsSomeColumnsPinned()
                             ? getCommonPinningStyles(header.subHeaders.length > 0 ? header.subHeaders[0].column : header.column)
                             : {}),
                         }}
@@ -177,7 +178,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                             key={`${header.id}-col-filter`}
                             style={{
                               ...header.column.columnDef.meta?.headerFilterStyle,
-                              ...(header.column.getIsPinned() ? getCommonPinningStyles(header.column) : {}),
+                              ...(table.getIsSomeColumnsPinned() ? getCommonPinningStyles(header.column) : {}),
                             }}
                           >
                             {header.index === 0 && (

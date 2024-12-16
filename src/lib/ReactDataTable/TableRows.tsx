@@ -14,10 +14,11 @@ interface TableRowProps<TData, TFilter extends FilterModel = Record<string, neve
   enableExpanding?: boolean | ((row: Row<TData>) => boolean);
   rowStyle?: CSSProperties;
   setNodeRef?: (node: HTMLElement | null) => void;
+  hasPinnedColumns?: boolean;
 }
 
 const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableRowProps<TData, TFilter>) => {
-  const { row, rowStyle, setNodeRef, enableRowSelection = false, fullRowSelectable = true, onRowClick, enableRowClick } = props;
+  const { row, rowStyle, setNodeRef, enableRowSelection = false, fullRowSelectable = true, onRowClick, enableRowClick, hasPinnedColumns } = props;
   const isRowSelectionEnabled =
     (typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection) && fullRowSelectable;
   const isRowClickable = typeof enableRowClick === "function" ? enableRowClick(row) : enableRowClick;
@@ -42,7 +43,7 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
           key={cell.id}
           style={{
             ...cell.column.columnDef.meta?.cellStyle,
-            ...(cell.column.getIsPinned() ? getCommonPinningStyles(cell.column) : {}),
+            ...(hasPinnedColumns ? getCommonPinningStyles(cell.column) : {}),
           }}
           className={cell.column.columnDef.meta?.cellClassName}
         >
