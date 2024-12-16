@@ -42,7 +42,7 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
           key={cell.id}
           style={{
             ...cell.column.columnDef.meta?.cellStyle,
-            ...getCommonPinningStyles(cell.column),
+            ...(cell.column.getIsPinned() ? getCommonPinningStyles(cell.column) : {}),
           }}
           className={cell.column.columnDef.meta?.cellClassName}
         >

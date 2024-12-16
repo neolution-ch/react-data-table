@@ -178,7 +178,6 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     },
 
     enableExpanding: reactTableOptions?.enableExpanding ?? false,
-    enableColumnPinning: reactTableOptions?.enableColumnPinning ?? false,
 
     ...reactTableOptions,
   });

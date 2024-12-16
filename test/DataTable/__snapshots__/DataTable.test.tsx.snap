@@ -20,7 +20,7 @@ exports[`DataTable renders correctly 1`] = `
       <tr>
         <th
           colspan="1"
-          style="cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="cursor: pointer;"
         >
           NAME
           <i
@@ -30,7 +30,7 @@ exports[`DataTable renders correctly 1`] = `
         </th>
         <th
           colspan="1"
-          style="cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="cursor: pointer;"
         >
           COUNT
           <i
@@ -41,7 +41,7 @@ exports[`DataTable renders correctly 1`] = `
         <th
           class="header-class"
           colspan="1"
-          style="background-color: blue; cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: blue; cursor: pointer;"
         >
           STATUS
           <i
@@ -51,7 +51,7 @@ exports[`DataTable renders correctly 1`] = `
         </th>
         <th
           colspan="1"
-          style="cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="cursor: pointer;"
         >
           CREATED
           <i
@@ -61,9 +61,7 @@ exports[`DataTable renders correctly 1`] = `
         </th>
       </tr>
       <tr>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <i
             class="fa undefined"
             icon="[object Object]"
@@ -75,18 +73,14 @@ exports[`DataTable renders correctly 1`] = `
             value=""
           />
         </th>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <input
             class="form-control-sm form-control"
             type="text"
             value=""
           />
         </th>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <select
             class="form-control-sm form-control"
           >
@@ -107,9 +101,7 @@ exports[`DataTable renders correctly 1`] = `
             </option>
           </select>
         </th>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <select
             class="form-control-sm form-control"
           >
@@ -134,232 +126,172 @@ exports[`DataTable renders correctly 1`] = `
     </thead>
     <tbody>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 000
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           0
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           1
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           31.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 001
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           1
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           30.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 002
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           2
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           29.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 003
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           3
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           28.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 004
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           4
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           27.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 005
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           5
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           26.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 006
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           6
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           25.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 007
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           7
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           24.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 008
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           8
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           23.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 009
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           9
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           22.01.2023
         </td>
       </tr>
@@ -580,7 +512,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
       <tr>
         <th
           colspan="1"
-          style="cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="cursor: pointer;"
         >
           NAME
           <i
@@ -590,7 +522,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </th>
         <th
           colspan="1"
-          style="cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="cursor: pointer;"
         >
           COUNT
           <i
@@ -601,7 +533,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         <th
           class="header-class"
           colspan="1"
-          style="background-color: blue; cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: blue; cursor: pointer;"
         >
           STATUS
           <i
@@ -611,7 +543,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </th>
         <th
           colspan="1"
-          style="cursor: pointer; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="cursor: pointer;"
         >
           CREATED
           <i
@@ -621,9 +553,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </th>
       </tr>
       <tr>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <i
             class="fa undefined"
             icon="[object Object]"
@@ -635,18 +565,14 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
             value=""
           />
         </th>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <input
             class="form-control-sm form-control"
             type="text"
             value=""
           />
         </th>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <select
             class="form-control-sm form-control"
           >
@@ -667,9 +593,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
             </option>
           </select>
         </th>
-        <th
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <th>
           <select
             class="form-control-sm form-control"
           >
@@ -697,25 +621,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 000
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           0
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           1
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           31.01.2023
         </td>
       </tr>
@@ -723,25 +641,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 001
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           1
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           30.01.2023
         </td>
       </tr>
@@ -749,25 +661,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 002
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           2
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           29.01.2023
         </td>
       </tr>
@@ -775,25 +681,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 003
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           3
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           28.01.2023
         </td>
       </tr>
@@ -801,25 +701,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 004
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           4
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           27.01.2023
         </td>
       </tr>
@@ -827,25 +721,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 005
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           5
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           26.01.2023
         </td>
       </tr>
@@ -853,25 +741,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 006
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           6
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           25.01.2023
         </td>
       </tr>
@@ -879,25 +761,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 007
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           7
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           24.01.2023
         </td>
       </tr>
@@ -905,25 +781,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 008
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           8
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           23.01.2023
         </td>
       </tr>
@@ -931,25 +801,19 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         class="cursor-pointer"
         style="opacity: 1; z-index: 0; position: relative;"
       >
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 009
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           9
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           22.01.2023
         </td>
       </tr>
@@ -1168,232 +1032,172 @@ exports[`DataTable renders without header correctly 1`] = `
   >
     <tbody>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 000
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           0
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           1
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           31.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 001
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           1
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           30.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 002
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           2
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           29.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 003
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           3
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           28.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 004
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           4
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           27.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 005
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           5
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           26.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 006
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           6
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           25.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 007
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           7
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           24.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 008
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           8
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           23.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 009
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           9
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           22.01.2023
         </td>
       </tr>
@@ -1612,232 +1416,172 @@ exports[`DataTable renders without page changing correctly 1`] = `
   >
     <tbody>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 000
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           0
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           1
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           31.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 001
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           1
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           30.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 002
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           2
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           29.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 003
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           3
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           28.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 004
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           4
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           27.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 005
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           5
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           26.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 006
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           6
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           25.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 007
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           7
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           24.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 008
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           8
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           23.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 009
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           9
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           22.01.2023
         </td>
       </tr>
@@ -1991,232 +1735,172 @@ exports[`DataTable renders without paging correctly 1`] = `
   >
     <tbody>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 000
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           0
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           1
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           31.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 001
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           1
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           30.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 002
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           2
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           29.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 003
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           3
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           28.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 004
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           4
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           27.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 005
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           5
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           26.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 006
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           6
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           25.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 007
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           7
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           24.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 008
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           8
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           23.01.2023
         </td>
       </tr>
       <tr>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           Name 009
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           9
         </td>
         <td
           class="cell-class"
-          style="background-color: yellow; opacity: 1; position: relative; width: 150px; z-index: 0;"
+          style="background-color: yellow;"
         >
           0
         </td>
-        <td
-          style="opacity: 1; position: relative; width: 150px; z-index: 0;"
-        >
+        <td>
           22.01.2023
         </td>
       </tr>

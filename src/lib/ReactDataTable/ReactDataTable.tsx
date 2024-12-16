@@ -142,7 +142,9 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                         style={{
                           ...header.column.columnDef.meta?.headerStyle,
                           ...(header.column.getCanSort() ? { cursor: "pointer" } : {}),
-                          ...getCommonPinningStyles(header.subHeaders.length > 0 ? header.subHeaders[0].column : header.column),
+                          ...(header.column.getIsPinned()
+                            ? getCommonPinningStyles(header.subHeaders.length > 0 ? header.subHeaders[0].column : header.column)
+                            : {}),
                         }}
                         className={header.column.columnDef.meta?.headerClassName}
                         colSpan={header.colSpan}
@@ -175,7 +177,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                             key={`${header.id}-col-filter`}
                             style={{
                               ...header.column.columnDef.meta?.headerFilterStyle,
-                              ...getCommonPinningStyles(header.column),
+                              ...(header.column.getIsPinned() ? getCommonPinningStyles(header.column) : {}),
                             }}
                           >
                             {header.index === 0 && (
