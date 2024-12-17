@@ -18,7 +18,16 @@ interface TableRowProps<TData, TFilter extends FilterModel = Record<string, neve
 }
 
 const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableRowProps<TData, TFilter>) => {
-  const { row, rowStyle, setNodeRef, enableRowSelection = false, fullRowSelectable = true, onRowClick, enableRowClick, hasPinnedColumns } = props;
+  const {
+    row,
+    rowStyle,
+    setNodeRef,
+    enableRowSelection = false,
+    fullRowSelectable = true,
+    onRowClick,
+    enableRowClick,
+    hasPinnedColumns,
+  } = props;
   const isRowSelectionEnabled =
     (typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection) && fullRowSelectable;
   const isRowClickable = typeof enableRowClick === "function" ? enableRowClick(row) : enableRowClick;
