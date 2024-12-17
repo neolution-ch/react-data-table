@@ -13,6 +13,7 @@ import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, us
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { DraggableRow, InternalTableRow } from "./TableRows";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 
 interface TableBodyProps<TData> {
@@ -96,6 +97,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
             fullRowSelectable={fullRowSelectable}
+            hasPinnedColumns={table.getIsSomeColumnsPinned()}
           />
         ))}
       </>
@@ -141,6 +143,9 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                         style={{
                           ...header.column.columnDef.meta?.headerStyle,
                           ...(header.column.getCanSort() ? { cursor: "pointer" } : {}),
+                          ...(table.getIsSomeColumnsPinned()
+                            ? getCommonPinningStyles(header.subHeaders.length > 0 ? header.subHeaders[0].column : header.column)
+                            : {}),
                         }}
                         className={header.column.columnDef.meta?.headerClassName}
                         colSpan={header.colSpan}
@@ -169,7 +174,13 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                         } = header;
 
                         return (
-                          <th key={`${header.id}-col-filter`} style={header.column.columnDef.meta?.headerFilterStyle}>
+                          <th
+                            key={`${header.id}-col-filter`}
+                            style={{
+                              ...header.column.columnDef.meta?.headerFilterStyle,
+                              ...(table.getIsSomeColumnsPinned() ? getCommonPinningStyles(header.column) : {}),
+                            }}
+                          >
                             {header.index === 0 && (
                               <>
                                 {onEnter && (

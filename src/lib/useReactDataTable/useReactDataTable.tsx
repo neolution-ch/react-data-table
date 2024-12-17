@@ -1,4 +1,5 @@
-﻿import {
+﻿/* eslint-disable max-lines */
+import {
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
@@ -38,6 +39,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     onSortingChange,
     onRowSelectionChange,
     onExpandedChange,
+    onColumnPinningChange,
     reactTableOptions,
   } = props;
 
@@ -47,6 +49,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     pagination: paginationInitial,
     rowSelection: rowSelectionInitial,
     expanded: expandedInitial,
+    columnPinning: columnPinningInitial,
   } = initialState ?? {};
   const {
     columnFilters: columnFiltersExternal,
@@ -54,6 +57,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     sorting: sortingExternal,
     rowSelection: rowSelectionExternal,
     expanded: expandedExternal,
+    columnPinning: columnPinningExternal,
   } = state ?? {};
 
   const {
@@ -62,17 +66,20 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     sorting: sortingInternal,
     rowSelection: rowSelectionInteral,
     expanded: expandedInternal,
+    columnPinning: columnPinningInternal,
     setColumnFilters: setColumnFiltersInternal,
     setPagination: setPaginationInternal,
     setSorting: setSortingInternal,
     setRowSelection: setRowSelectionInternal,
     setExpanded: setExpandedInternal,
+    setColumnPinning: setColumnPinningInternal,
   } = useReactDataTableState<TData, TFilter>({
     initialColumnFilters: columnFiltersInitial as TFilter,
     initialPagination: paginationInitial,
     initialSorting: sortingInitial,
     rowSelection: rowSelectionInitial,
     expanded: expandedInitial,
+    columnPinning: columnPinningInitial,
   } as unknown as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
   const effectiveColumnFilters = columnFiltersExternal ?? columnFiltersInternal;
@@ -80,11 +87,13 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
   const effectiveSorting = sortingExternal ?? sortingInternal;
   const effectiveRowSelection = rowSelectionExternal ?? rowSelectionInteral;
   const effectiveExpanded = expandedExternal ?? expandedInternal;
+  const effectiveColumnPinning = columnPinningExternal ?? columnPinningInternal;
   const effectiveOnColumnFiltersChange = onColumnFiltersChange ?? setColumnFiltersInternal;
   const effectiveOnPaginationChange = onPaginationChange ?? setPaginationInternal;
   const effectiveOnSortingChange = onSortingChange ?? setSortingInternal;
   const effectiveOnRowSelectionChange = onRowSelectionChange ?? setRowSelectionInternal;
   const effectiveOnExpandedChange = onExpandedChange ?? setExpandedInternal;
+  const effectiveOnColumnPinningChange = onColumnPinningChange ?? setColumnPinningInternal;
 
   // If we active the manual filtering, we have to unset the filter function, else it still does automatic filtering
   if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
@@ -124,6 +133,11 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       const newExpanded = typeof expandedOrUpdaterFn !== "function" ? expandedOrUpdaterFn : expandedOrUpdaterFn(effectiveExpanded);
       return effectiveOnExpandedChange(newExpanded);
     },
+    onColumnPinningChange: (columnPinningOrUpdaterFn) => {
+      const newColumnPinning =
+        typeof columnPinningOrUpdaterFn !== "function" ? columnPinningOrUpdaterFn : columnPinningOrUpdaterFn(effectiveColumnPinning);
+      return effectiveOnColumnPinningChange(newColumnPinning);
+    },
 
     state: {
       columnFilters,
@@ -131,6 +145,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       sorting,
       rowSelection: effectiveRowSelection,
       expanded: effectiveExpanded,
+      columnPinning: effectiveColumnPinning,
     },
 
     initialState: {
@@ -138,6 +153,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       pagination: paginationInitial ?? paginationExternal,
       sorting: getSortingStateFromModel(sortingInitial ?? sortingExternal),
       expanded: expandedInitial ?? expandedExternal,
+      columnPinning: columnPinningInitial ?? columnPinningExternal,
     },
 
     getCoreRowModel: getCoreRowModel(),
@@ -173,11 +189,13 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     sorting: effectiveSorting,
     rowSelection: effectiveRowSelection,
     expanded: effectiveExpanded,
+    columnPinning: effectiveColumnPinning,
     setColumnFilters: effectiveOnColumnFiltersChange,
     setPagination: effectiveOnPaginationChange,
     setSorting: effectiveOnSortingChange,
     setRowSelection: effectiveOnRowSelectionChange,
     setExpanded: effectiveOnExpandedChange,
+    setColumnPinning: effectiveOnColumnPinningChange,
   };
 };
 

@@ -2,6 +2,7 @@
 import { Row, flexRender } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 import { CSS } from "@dnd-kit/utilities";
+import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { FilterModel } from "../types/TableState";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 
@@ -13,10 +14,20 @@ interface TableRowProps<TData, TFilter extends FilterModel = Record<string, neve
   enableExpanding?: boolean | ((row: Row<TData>) => boolean);
   rowStyle?: CSSProperties;
   setNodeRef?: (node: HTMLElement | null) => void;
+  hasPinnedColumns?: boolean;
 }
 
 const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableRowProps<TData, TFilter>) => {
-  const { row, rowStyle, setNodeRef, enableRowSelection = false, fullRowSelectable = true, onRowClick, enableRowClick } = props;
+  const {
+    row,
+    rowStyle,
+    setNodeRef,
+    enableRowSelection = false,
+    fullRowSelectable = true,
+    onRowClick,
+    enableRowClick,
+    hasPinnedColumns,
+  } = props;
   const isRowSelectionEnabled =
     (typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection) && fullRowSelectable;
   const isRowClickable = typeof enableRowClick === "function" ? enableRowClick(row) : enableRowClick;
@@ -37,7 +48,14 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
       style={rowStyle}
     >
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id} style={cell.column.columnDef.meta?.cellStyle} className={cell.column.columnDef.meta?.cellClassName}>
+        <td
+          key={cell.id}
+          style={{
+            ...cell.column.columnDef.meta?.cellStyle,
+            ...(hasPinnedColumns ? getCommonPinningStyles(cell.column) : {}),
+          }}
+          className={cell.column.columnDef.meta?.cellClassName}
+        >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
       ))}
