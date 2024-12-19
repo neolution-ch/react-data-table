@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.9.1] - 2024-12-19
+
 ### Fixed
 
 - `meta dropdownFilter` in order to be controlled.
@@ -367,7 +369,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.9.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.9.1...HEAD
+[5.9.1]: https://github.com/neolution-ch/react-data-table/compare/5.9.0...5.9.1
 [5.9.0]: https://github.com/neolution-ch/react-data-table/compare/5.8.0...5.9.0
 [5.8.0]: https://github.com/neolution-ch/react-data-table/compare/5.7.0...5.8.0
 [5.7.0]: https://github.com/neolution-ch/react-data-table/compare/5.6.0...5.7.0
