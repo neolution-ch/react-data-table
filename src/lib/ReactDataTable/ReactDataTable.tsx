@@ -221,6 +221,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                 ) : meta?.dropdownFilter ? (
                                   <Input
                                     type="select"
+                                    value={(getFilterValue(header.column, table) as string) ?? ""}
                                     onChange={(e) => {
                                       setFilterValue(
                                         header.column,

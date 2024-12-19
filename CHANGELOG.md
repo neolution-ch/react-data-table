@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `meta dropdownFilter` in order to be controlled.
+
 ## [5.9.0] - 2024-12-17
 
 ### Added
