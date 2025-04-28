@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `table` as `customFilter` parameter.
+- export for `getModelFromColumnFilter` and `getColumnFilterFromModel` utility functions.
 
 ## [5.9.1] - 2024-12-19
 
