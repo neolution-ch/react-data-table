@@ -11,6 +11,7 @@ export interface ReactDataTableTranslations {
   clearSearchToolTip: string;
   itemsPerPageDropdown: string;
   noEntries: string;
+  invalidInput?: string;
 }
 
 export let reactDataTableTranslations: ReactDataTableTranslations = {
@@ -20,6 +21,7 @@ export let reactDataTableTranslations: ReactDataTableTranslations = {
   showedItemsText: "Zeige {from} bis {to} von insgesamt {total} Resultaten",
   itemsPerPageDropdown: "Anzahl pro Seite",
   noEntries: "Keine Einträge vorhanden",
+  invalidInput: "Ungültige Wert",
 };
 
 export function setDataTableTranslations(translations: ReactDataTableTranslations) {

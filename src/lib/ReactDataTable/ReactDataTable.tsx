@@ -1,9 +1,9 @@
-﻿/* eslint max-lines: ["error", 350] */
+﻿/* eslint max-lines: ["error", 300] */
 import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { Row, Table, flexRender } from "@tanstack/react-table";
-import { Table as ReactStrapTable, Input } from "reactstrap";
+import { Table as ReactStrapTable } from "reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { FilterModel } from "../types/TableState";
@@ -14,7 +14,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { DraggableRow, InternalTableRow } from "./TableRows";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
-import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
+import { DataTableFilter } from "./DataTableFilter";
 
 interface TableBodyProps<TData> {
   enableDragAndDrop: boolean;
@@ -166,14 +166,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                   </tr>
                   {!withoutHeaderFilters && !headerGroup.headers.every((x) => !!x.column.columnDef.meta?.hideHeaderFilters) && (
                     <tr key={`${headerGroup.id}-col-filters`}>
-                      {headerGroup.headers.map((header) => {
-                        const {
-                          column: {
-                            columnDef: { meta },
-                          },
-                        } = header;
-
-                        return (
+                      {headerGroup.headers.map((header) => (
                           <th
                             key={`${header.id}-col-filter`}
                             style={{
@@ -213,69 +206,10 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                               </>
                             )}
                             {header.column.getCanFilter() && (
-                              <>
-                                {meta?.customFilter ? (
-                                  meta?.customFilter(getFilterValue(header.column, table), (value) =>
-                                    setFilterValue(header.column, table, value),
-                                  )
-                                ) : meta?.dropdownFilter ? (
-                                  <Input
-                                    type="select"
-                                    value={(getFilterValue(header.column, table) as string) ?? ""}
-                                    onChange={(e) => {
-                                      setFilterValue(
-                                        header.column,
-                                        table,
-                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                        meta.dropdownFilter?.options[(e.target as any as HTMLSelectElement).selectedIndex]?.value ??
-                                          e.target.value,
-                                      );
-                                      if (!onEnter && manualPagination) {
-                                        resetPageIndex(true);
-                                      }
-                                    }}
-                                    onKeyUp={({ key }) => {
-                                      if (key === "Enter" && onEnter) {
-                                        if (manualPagination) {
-                                          resetPageIndex(true);
-                                        }
-                                        onEnter(getModelFromColumnFilter(table.getState().columnFilters));
-                                      }
-                                    }}
-                                    bsSize="sm"
-                                  >
-                                    {meta.dropdownFilter.options.map(({ label, value, disabled }, i) => (
-                                      <option key={i} value={value} disabled={disabled}>
-                                        {label}
-                                      </option>
-                                    ))}
-                                  </Input>
-                                ) : (
-                                  <Input
-                                    type="text"
-                                    value={(getFilterValue(header.column, table) as string) ?? ""}
-                                    onChange={(e) => {
-                                      setFilterValue(header.column, table, e.target.value);
-                                      if (!onEnter && manualPagination) {
-                                        resetPageIndex(true);
-                                      }
-                                    }}
-                                    onKeyUp={({ key }) => {
-                                      if (key === "Enter" && onEnter) {
-                                        if (manualPagination) {
-                                          resetPageIndex(true);
-                                        }
-                                        onEnter(getModelFromColumnFilter(table.getState().columnFilters));
-                                      }
-                                    }}
-                                    bsSize="sm"
-                                  ></Input>
-                                )}
-                              </>
+                              <DataTableFilter<TData, TFilter> header={header} onEnter={onEnter} table={table} />
                             )}
                           </th>
-                        );
-                      })}
+                        ))}
                     </tr>
                   )}
                 </Fragment>

@@ -59,6 +59,14 @@ declare module "@tanstack/table-core" {
     customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void) => JSX.Element;
 
     /**
+     * Define a function which validate the filter input
+     * If the filter is not valid, it will not be applied to columnFilters
+     * @param value The current value of the filter
+     * @returns The filter input state
+     */
+    isInputValid?: (value: string) => FilterInputState;
+
+    /**
      * Prevents the column from being drawn
      */
     isHidden?: boolean;
@@ -81,5 +89,14 @@ declare module "@tanstack/table-core" {
 
   interface RowSelectionOptions<TData extends RowData> {
     fullRowSelectable?: boolean;
+  }
+
+  interface FilterInputState {
+    isValid: boolean;
+
+    /**
+     * Add the possibility to show a custom error message different from the default one
+     */
+    errorMessage?: string;
   }
 }
