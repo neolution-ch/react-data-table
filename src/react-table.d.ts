@@ -1,6 +1,6 @@
 ﻿/* eslint-disable @typescript-eslint/no-unused-vars */
 import "@tanstack/react-table";
-import { RowData } from "@tanstack/react-table";
+import { RowData, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 
 interface DropdownColumnFilterOption {
@@ -54,9 +54,10 @@ declare module "@tanstack/table-core" {
      * Define a custom filter
      * @param filterValue The current value of the filter
      * @param setFilterValue The callback to update the filter state
+     * @param table The table object
      * @returns The custom filter component
      */
-    customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void) => JSX.Element;
+    customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void, table: Table<TData>) => JSX.Element;
 
     /**
      * Prevents the column from being drawn
