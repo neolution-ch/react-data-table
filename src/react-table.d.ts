@@ -59,7 +59,7 @@ declare module "@tanstack/table-core" {
     customFilter?: <T>(
       filterValue: T,
       setFilterValue: (filterValue: T) => void,
-      resetPageIndex: Table<TData>["resetPageIndex"],
+      table: Table<TData>,
     ) => JSX.Element;
 
     /**
