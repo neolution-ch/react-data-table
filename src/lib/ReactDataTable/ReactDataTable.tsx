@@ -215,8 +215,10 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                             {header.column.getCanFilter() && (
                               <>
                                 {meta?.customFilter ? (
-                                  meta?.customFilter(getFilterValue(header.column, table), (value) =>
-                                    setFilterValue(header.column, table, value),
+                                  meta?.customFilter(
+                                    getFilterValue(header.column, table),
+                                    (value) => setFilterValue(header.column, table, value),
+                                    resetPageIndex,
                                   )
                                 ) : meta?.dropdownFilter ? (
                                   <Input
