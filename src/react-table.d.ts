@@ -56,11 +56,7 @@ declare module "@tanstack/table-core" {
      * @param setFilterValue The callback to update the filter state
      * @returns The custom filter component
      */
-    customFilter?: <T>(
-      filterValue: T,
-      setFilterValue: (filterValue: T) => void,
-      table: Table<TData>,
-    ) => JSX.Element;
+    customFilter?: <T>(filterValue: T, setFilterValue: (filterValue: T) => void, table: Table<TData>) => JSX.Element;
 
     /**
      * Prevents the column from being drawn
