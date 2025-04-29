@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.10.0] - 2025-04-29
+
 ### Added
 
 - `table` as `customFilter` parameter.
@@ -374,7 +376,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.9.1...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...HEAD
+[5.10.0]: https://github.com/neolution-ch/react-data-table/compare/5.9.1...5.10.0
 [5.9.1]: https://github.com/neolution-ch/react-data-table/compare/5.9.0...5.9.1
 [5.9.0]: https://github.com/neolution-ch/react-data-table/compare/5.8.0...5.9.0
 [5.8.0]: https://github.com/neolution-ch/react-data-table/compare/5.7.0...5.8.0
