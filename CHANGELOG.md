@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- added a flag `isStriped` to the `ReactDataTable` component to enable/disable striped rows
+- added a flag `showClearSearchButton` to the `ReactDataTable` component to show/hide the clear search button
+
 ## [5.10.0] - 2025-04-29
 
 ### Added

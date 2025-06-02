@@ -45,6 +45,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     noEntriesMessage,
     onRowClick,
     enableRowClick,
+    isStriped = true,
+    showClearSearchButton = true,
   } = props;
 
   const { pagination } = table.getState();
@@ -116,7 +118,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
       >
         <style>{loadingCss}</style>
         <ReactStrapTable
-          striped
+          striped={isStriped}
           hover
           size="sm"
           className={tableClassName}
@@ -196,20 +198,22 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
                                   />
                                 )}
 
-                                <FontAwesomeIcon
-                                  style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
-                                  icon={faTimes}
-                                  onClick={() => {
-                                    if (onEnter) {
-                                      onEnter(getModelFromColumnFilter(table.initialState.columnFilters));
-                                    }
+                                {showClearSearchButton && (
+                                  <FontAwesomeIcon
+                                    style={{ cursor: "pointer", marginBottom: "4px", marginRight: "5px" }}
+                                    icon={faTimes}
+                                    onClick={() => {
+                                      if (onEnter) {
+                                        onEnter(getModelFromColumnFilter(table.initialState.columnFilters));
+                                      }
 
-                                    table.setColumnFilters(table.initialState.columnFilters);
-                                    if (manualPagination) {
-                                      resetPageIndex(true);
-                                    }
-                                  }}
-                                />
+                                      table.setColumnFilters(table.initialState.columnFilters);
+                                      if (manualPagination) {
+                                        resetPageIndex(true);
+                                      }
+                                    }}
+                                  />
+                                )}
                               </>
                             )}
                             {header.column.getCanFilter() && (
