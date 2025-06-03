@@ -29,6 +29,9 @@ on:
 jobs:
   release-it:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - uses: tibdex/github-app-token@v1
         id: generate-token
@@ -55,8 +58,10 @@ jobs:
       - name: set NPM Token
         run: |
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_NEOLUTION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: run release-it
         run: |
@@ -81,3 +86,6 @@ jobs:
           yarn release-it "${params[@]}"
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: publish to github packages
+        run: npm publish --registry=https://npm.pkg.github.com/
