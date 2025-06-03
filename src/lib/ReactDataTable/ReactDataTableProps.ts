@@ -101,4 +101,16 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
    * to override the default message in case no entries is found
    */
   noEntriesMessage?: string;
+
+  /**
+   * boolean flag to indicate if the table should be striped
+   * @default true
+   */
+  isStriped?: boolean;
+
+  /**
+   * boolean flag to indicate if the table should have hover effect
+   * @default true
+   */
+  showClearSearchButton?: boolean;
 }
