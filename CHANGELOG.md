@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.11.0] - 2025-06-03
+
 ### Added
 
 - added a flag `isStriped` to the `ReactDataTable` component to enable/disable striped rows
@@ -381,7 +383,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.11.0...HEAD
+[5.11.0]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...5.11.0
 [5.10.0]: https://github.com/neolution-ch/react-data-table/compare/5.9.1...5.10.0
 [5.9.1]: https://github.com/neolution-ch/react-data-table/compare/5.9.0...5.9.1
 [5.9.0]: https://github.com/neolution-ch/react-data-table/compare/5.8.0...5.9.0
