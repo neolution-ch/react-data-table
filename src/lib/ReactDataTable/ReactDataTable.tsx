@@ -85,7 +85,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
             fullRowSelectable={fullRowSelectable}
-            subRowComponent={subRowComponent}
+            subRowComponent={subRowComponent as ReactDataTableProps<TData, TFilter>["subRowComponent"]}
           />
         ))}
       </SortableContext>
@@ -102,7 +102,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             rowStyle={rowStyle && rowStyle(row.original)}
             fullRowSelectable={fullRowSelectable}
             hasPinnedColumns={table.getIsSomeColumnsPinned()}
-            subRowComponent={subRowComponent}
+            subRowComponent={subRowComponent as ReactDataTableProps<TData, TFilter>["subRowComponent"]}
           />
         ))}
       </>
