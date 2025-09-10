@@ -66,6 +66,12 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     }
   }`;
 
+  console.log("subRowComponent:", subRowComponent);
+
+  if (subRowComponent && !enableExpanding) {
+    throw new Error("You must enable expanding in the table options in order to use the sub-row feature.");
+  }
+
   const TableBody = <TData,>(props: TableBodyProps<TData>) => {
     const { enableDragAndDrop, table, rowStyle } = props;
 
