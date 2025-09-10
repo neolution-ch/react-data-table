@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- option `subRowComponent` to pass a render-function for a subrow
+
 ## [5.11.0] - 2025-06-03
 
 ### Added
