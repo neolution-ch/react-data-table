@@ -47,6 +47,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     enableRowClick,
     isStriped = true,
     showClearSearchButton = true,
+    subRowComponent,
   } = props;
 
   const { pagination } = table.getState();
@@ -84,6 +85,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={rowStyle && rowStyle(row.original)}
             fullRowSelectable={fullRowSelectable}
+            subRowComponent={subRowComponent}
           />
         ))}
       </SortableContext>
@@ -100,6 +102,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
             rowStyle={rowStyle && rowStyle(row.original)}
             fullRowSelectable={fullRowSelectable}
             hasPinnedColumns={table.getIsSomeColumnsPinned()}
+            subRowComponent={subRowComponent}
           />
         ))}
       </>
