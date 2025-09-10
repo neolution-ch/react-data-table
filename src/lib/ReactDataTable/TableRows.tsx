@@ -63,7 +63,6 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
         ))}
       </tr>
       {subRowComponent && row.getIsExpanded() && subRowComponent(row)}
-      <div>TESTEST</div>
     </>
   );
 };
