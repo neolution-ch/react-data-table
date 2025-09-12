@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- option `subRowComponent` to pass a render-function for a subrow. This will be rendered additionally to the subrows and if not wanted, make sure the subrows are passed as empty arrayd [], following an example:
+
+```tsx
+const { table } = useReactDataTable<T>({
+  data,
+  columns,
+  reactTableOptions: {
+    enableExpanding: true,
+    getSubRows: (_) => [],
+    getRowCanExpand: (row) => row.shouldRenderSubRow,
+  },
+});
+```
+
 ## [5.11.0] - 2025-06-03
 
 ### Added
