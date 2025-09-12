@@ -115,7 +115,7 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
   showClearSearchButton?: boolean;
 
   /**
-   * A component to render as a sub-row for a specific row
+   * A component to render as a sub-row for a specific row, this will be rendered additionally to the subrows.
    */
   subRowComponent?: (row: Row<TData>) => React.ReactNode;
 }
