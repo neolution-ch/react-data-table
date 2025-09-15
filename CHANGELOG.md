@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.12.0] - 2025-09-15
+
 ### Added
 
 - option `subRowComponent` to pass a render-function for a subrow. This will be rendered additionally to the subrows and if not wanted, make sure the subrows are passed as empty arrayd [], following an example:
@@ -399,7 +401,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.11.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.12.0...HEAD
+[5.12.0]: https://github.com/neolution-ch/react-data-table/compare/5.11.0...5.12.0
 [5.11.0]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...5.11.0
 [5.10.0]: https://github.com/neolution-ch/react-data-table/compare/5.9.1...5.10.0
 [5.9.1]: https://github.com/neolution-ch/react-data-table/compare/5.9.0...5.9.1
