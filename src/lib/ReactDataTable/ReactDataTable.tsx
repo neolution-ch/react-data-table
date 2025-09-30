@@ -47,6 +47,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     enableRowClick,
     isStriped = true,
     showClearSearchButton = true,
+    pagingNavigationComponents,
     subRowComponent,
   } = props;
 
@@ -338,6 +339,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
           }}
           pagingPossible={true}
           changePageSizePossible={!hidePageSizeChange}
+          navigationComponents={pagingNavigationComponents}
         />
       )}
     </>
