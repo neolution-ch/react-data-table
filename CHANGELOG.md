@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated `react-pattern-ui` from 3.4.0 to 5.3.0
+
+### Added
+
+- `pagingNavigationComponents` property to customize the paging navigation components
+
 ## [5.12.0] - 2025-09-15
 
 ### Added

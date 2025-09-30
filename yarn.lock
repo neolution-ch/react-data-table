@@ -1778,10 +1778,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@neolution-ch/react-pattern-ui@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@neolution-ch/react-pattern-ui/-/react-pattern-ui-3.4.0.tgz#5bde72a20b189ebe6e67e88d43ee597f23acdea7"
-  integrity sha512-HLfXCIPJjslo6gsBJ5lBeX2BuUIF/dzITuW5+QvYg5RAANaHsSl4+5p2wDtr61xvVQUptc6Ybrp+DeIKAnWDlA==
+"@neolution-ch/react-pattern-ui@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@neolution-ch/react-pattern-ui/-/react-pattern-ui-5.3.0.tgz#c900bdfc6947cfbe108910425b4dcb4027cdf34f"
+  integrity sha512-JO00BhUZNFOxSfzmcH32WoDf+ZgUwx8u83p9VhmMnTwC3dxtE9kOuILqRmRf/+x6HrZWRyNHFgNa0bY2ddPO8Q==
   dependencies:
     classnames "^2.3.2"
 
