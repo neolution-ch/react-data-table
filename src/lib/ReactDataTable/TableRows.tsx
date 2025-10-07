@@ -7,7 +7,7 @@ import { FilterModel } from "../types/TableState";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 
 interface TableRowProps<TData, TFilter extends FilterModel = Record<string, never>>
-  extends Pick<ReactDataTableProps<TData, TFilter>, "onRowClick" | "enableRowClick" | "subRowComponent"> {
+  extends Pick<ReactDataTableProps<TData, TFilter>, "onRowClick" | "enableRowClick"> {
   row: Row<TData>;
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
   fullRowSelectable?: boolean;
@@ -27,43 +27,39 @@ const InternalTableRow = <TData, TFilter extends FilterModel = Record<string, ne
     onRowClick,
     enableRowClick,
     hasPinnedColumns,
-    subRowComponent,
   } = props;
   const isRowSelectionEnabled =
     (typeof enableRowSelection === "function" ? enableRowSelection(row) : enableRowSelection) && fullRowSelectable;
   const isRowClickable = typeof enableRowClick === "function" ? enableRowClick(row) : enableRowClick;
   return (
-    <>
-      <tr
-        key={row.id}
-        ref={setNodeRef}
-        onClick={async () => {
-          if (isRowSelectionEnabled) {
-            row.toggleSelected();
-          } else if (isRowClickable && onRowClick) {
-            await onRowClick(row);
-          } else {
-            // Nothing to execute
-          }
-        }}
-        className={isRowSelectionEnabled || isRowClickable ? "cursor-pointer" : undefined}
-        style={rowStyle}
-      >
-        {row.getVisibleCells().map((cell) => (
-          <td
-            key={cell.id}
-            style={{
-              ...cell.column.columnDef.meta?.cellStyle,
-              ...(hasPinnedColumns ? getCommonPinningStyles(cell.column) : {}),
-            }}
-            className={cell.column.columnDef.meta?.cellClassName}
-          >
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-          </td>
-        ))}
-      </tr>
-      {subRowComponent && row.getIsExpanded() && subRowComponent(row)}
-    </>
+    <tr
+      key={row.id}
+      ref={setNodeRef}
+      onClick={async () => {
+        if (isRowSelectionEnabled) {
+          row.toggleSelected();
+        } else if (isRowClickable && onRowClick) {
+          await onRowClick(row);
+        } else {
+          // Nothing to execute
+        }
+      }}
+      className={isRowSelectionEnabled || isRowClickable ? "cursor-pointer" : undefined}
+      style={rowStyle}
+    >
+      {row.getVisibleCells().map((cell) => (
+        <td
+          key={cell.id}
+          style={{
+            ...cell.column.columnDef.meta?.cellStyle,
+            ...(hasPinnedColumns ? getCommonPinningStyles(cell.column) : {}),
+          }}
+          className={cell.column.columnDef.meta?.cellClassName}
+        >
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </td>
+      ))}
+    </tr>
   );
 };
 

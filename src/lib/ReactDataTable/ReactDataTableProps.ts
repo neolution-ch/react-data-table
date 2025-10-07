@@ -2,7 +2,7 @@
 import { CSSProperties } from "react";
 import { FilterModel } from "../types/TableState";
 import { DragAndDropOptions } from "./DragAndDropOptions";
-import { PagingNavigationComponents } from "@neolution-ch/react-pattern-ui";
+import { VirtualizationsOptions } from "./VirtualizationOptions";
 
 /**
  * The props for the ReactDataTable component
@@ -99,6 +99,11 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
   dragAndDropOptions?: DragAndDropOptions;
 
   /**
+   * to define virtualizer options
+   */
+  virtualizerOptions?: VirtualizationsOptions;
+
+  /**
    * to override the default message in case no entries is found
    */
   noEntriesMessage?: string;
@@ -114,14 +119,4 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
    * @default true
    */
   showClearSearchButton?: boolean;
-
-  /**
-   * A component to render as a sub-row for a specific row, this will be rendered additionally to the subrows.
-   */
-  subRowComponent?: (row: Row<TData>) => React.ReactNode;
-
-  /**
-   * Custom navigation components for the paging controls
-   */
-  pagingNavigationComponents?: PagingNavigationComponents;
 }
