@@ -2,7 +2,7 @@
 import { CSSProperties } from "react";
 import { FilterModel } from "../types/TableState";
 import { DragAndDropOptions } from "./DragAndDropOptions";
-import { VirtualizationsOptions } from "./VirtualizationOptions";
+import { VirtualizationOptions } from "./VirtualizationOptions";
 
 /**
  * The props for the ReactDataTable component
@@ -101,7 +101,7 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
   /**
    * to define virtualizer options
    */
-  virtualizerOptions?: VirtualizationsOptions;
+  virtualizerOptions?: VirtualizationOptions;
 
   /**
    * to override the default message in case no entries is found

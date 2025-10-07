@@ -32,10 +32,12 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
 
   const { rows } = table.getRowModel();
 
+  const virtualizerRows = virtualizer?.getVirtualItems();
+
   const rowsToRender: InternalRow<TData>[] = useMemo(
     () =>
-      virtualizer
-        ? virtualizer.getVirtualItems().map((virtualRow, index) => ({
+      virtualizerRows
+        ? virtualizerRows.map((virtualRow, index) => ({
             row: rows[virtualRow.index],
             rowStyle: {
               height: `${virtualRow.size}px`,
@@ -43,7 +45,7 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
             },
           }))
         : rows.map((row) => ({ row })),
-    [rows, virtualizer],
+    [rows, virtualizerRows],
   );
 
   return enableDragAndDrop ? (

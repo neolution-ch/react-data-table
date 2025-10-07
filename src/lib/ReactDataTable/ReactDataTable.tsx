@@ -284,6 +284,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
   const virtualizer = useVirtualizer({
     ...virtualizerOptions,
+    count: totalRecords,
     getScrollElement: () => parentRef.current,
   });
 
@@ -300,8 +301,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
         <style>{loadingCss}</style>
 
         {virtualizerOptions.enabled ? (
-          <div ref={parentRef} className="container">
-            <div style={{ height: virtualizer.getTotalSize() }}>
+          <div ref={parentRef} style={{ height: virtualizerOptions.height ?? 600, overflow: "auto" }}>
+            <div style={{ height: `${virtualizer.getTotalSize()}px` }}>
               <TableInternal<TData, TFilter> {...props} virtualizer={virtualizer} />
             </div>
           </div>
