@@ -2,6 +2,7 @@
 import { CSSProperties } from "react";
 import { FilterModel } from "../types/TableState";
 import { DragAndDropOptions } from "./DragAndDropOptions";
+import { VirtualizationOptions } from "./VirtualizationOptions";
 import { PagingNavigationComponents } from "@neolution-ch/react-pattern-ui";
 
 /**
@@ -97,6 +98,11 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
    * to define drag-and-drop options
    */
   dragAndDropOptions?: DragAndDropOptions;
+
+  /**
+   * to define virtualizer options
+   */
+  virtualizerOptions?: VirtualizationOptions;
 
   /**
    * to override the default message in case no entries is found

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `virtualization` features.
 - `pagingNavigationComponents` property to customize the paging navigation components
 
 ## [5.12.0] - 2025-09-15

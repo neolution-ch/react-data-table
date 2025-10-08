@@ -28,3 +28,6 @@ coverage
 storybook-static
 .terraform
 terraform
+
+# Ignore vs files
+.vs
