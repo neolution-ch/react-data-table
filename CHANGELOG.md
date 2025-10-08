@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.13.0] - 2025-10-08
+
 ### Changed
 
 - Updated `react-pattern-ui` from 3.4.0 to 5.3.0
@@ -410,7 +412,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.12.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.13.0...HEAD
+[5.13.0]: https://github.com/neolution-ch/react-data-table/compare/5.12.0...5.13.0
 [5.12.0]: https://github.com/neolution-ch/react-data-table/compare/5.11.0...5.12.0
 [5.11.0]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...5.11.0
 [5.10.0]: https://github.com/neolution-ch/react-data-table/compare/5.9.1...5.10.0
