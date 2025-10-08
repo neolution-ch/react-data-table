@@ -7,7 +7,7 @@ import { ReactDataTableProps } from "./ReactDataTableProps";
 import { Virtualizer } from "@tanstack/react-virtual";
 
 interface TableBodyProps<TData, TFilter extends FilterModel = Record<string, never>>
-  extends Pick<ReactDataTableProps<TData, TFilter>, "enableRowClick" | "onRowClick"> {
+  extends Pick<ReactDataTableProps<TData, TFilter>, "enableRowClick" | "onRowClick" | "subRowComponent"> {
   enableDragAndDrop: boolean;
   table: Table<TData>;
   rowStyle?: (row: TData) => CSSProperties;
@@ -20,7 +20,7 @@ interface InternalRow<TData> {
 }
 
 const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableBodyProps<TData, TFilter>) => {
-  const { enableDragAndDrop, table, rowStyle, enableRowClick, onRowClick, virtualizer } = props;
+  const { enableDragAndDrop, table, rowStyle, enableRowClick, onRowClick, virtualizer, subRowComponent } = props;
 
   if (enableDragAndDrop && !table.options.getRowId) {
     throw new Error("You must provide 'getRowId()' to data-table options in order to use the drag-and-drop feature.");
@@ -65,6 +65,7 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
               ...(rowStyle ? rowStyle(row.original) : {}),
             }}
             fullRowSelectable={fullRowSelectable}
+            subRowComponent={subRowComponent as ReactDataTableProps<TData, TFilter>["subRowComponent"]}
           />
         );
       })}
@@ -87,6 +88,7 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
             }}
             fullRowSelectable={fullRowSelectable}
             hasPinnedColumns={table.getIsSomeColumnsPinned()}
+            subRowComponent={subRowComponent as ReactDataTableProps<TData, TFilter>["subRowComponent"]}
           />
         );
       })}

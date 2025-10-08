@@ -266,6 +266,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     hidePageSizeChange,
     totalRecords = table.getCoreRowModel().rows.length,
     dragAndDropOptions,
+    pagingNavigationComponents,
   } = props;
 
   const { pagination } = table.getState();
@@ -328,6 +329,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
           }}
           pagingPossible={true}
           changePageSizePossible={!hidePageSizeChange}
+          navigationComponents={pagingNavigationComponents}
         />
       )}
     </>
