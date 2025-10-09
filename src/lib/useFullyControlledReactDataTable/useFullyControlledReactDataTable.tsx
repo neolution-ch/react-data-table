@@ -22,6 +22,8 @@ interface useFullyControlledReactDataTableProps<TData, TFilter extends FilterMod
 
 /**
  * A helper hook to use the useReactDataTable hook which is fully controlled. Usefull for server side filtering, sorting and pagination.
+ * @param props The properties to configure the table
+ * @returns The table instance and the state of the table
  */
 const useFullyControlledReactDataTable = <TData, TFilter extends FilterModel>(
   props: useFullyControlledReactDataTableProps<TData, TFilter>,

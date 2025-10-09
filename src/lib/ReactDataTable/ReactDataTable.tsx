@@ -8,19 +8,20 @@ import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { FilterModel } from "../types/TableState";
 import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
-import { useRef } from "react";
+
 import { TableBody } from "./TableBody";
 
 interface TableInternalProps<TData, TFilter extends FilterModel = Record<string, never>> extends ReactDataTableProps<TData, TFilter> {
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
 }
 
+// eslint-disable-next-line complexity
 const TableInternal = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableInternalProps<TData, TFilter>) => {
   const {
     virtualizer,
@@ -96,6 +97,7 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
               </tr>
               {!withoutHeaderFilters && !headerGroup.headers.every((x) => !!x.column.columnDef.meta?.hideHeaderFilters) && (
                 <tr key={`${headerGroup.id}-col-filters`}>
+                  {/* eslint-disable-next-line complexity */}
                   {headerGroup.headers.map((header) => {
                     const {
                       column: {
@@ -336,4 +338,6 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
   );
 };
 
-export { ReactDataTable, ReactDataTableProps };
+export { ReactDataTable };
+
+export { ReactDataTableProps } from "./ReactDataTableProps";

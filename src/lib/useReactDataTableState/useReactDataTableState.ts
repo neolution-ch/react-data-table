@@ -8,6 +8,7 @@ import { OptionalNullable } from "../types/NullableTypes";
 
 /**
  * A custom hook that will initialize all the state needed for the react data table
+ * @param props The properties to configure the initial state
  * @returns the state and the setters
  */
 const useReactDataTableState = <TData, TFilter extends FilterModel = Record<string, never>>(
@@ -46,4 +47,8 @@ const useReactDataTableState = <TData, TFilter extends FilterModel = Record<stri
   };
 };
 
-export { useReactDataTableState, useReactDataTableStateProps, useReactDataTableStateResult };
+export { useReactDataTableState };
+
+export { useReactDataTableStateProps } from "./useReactDataTableStateProps";
+
+export { useReactDataTableStateResult } from "./useReactDataTableStateResult";

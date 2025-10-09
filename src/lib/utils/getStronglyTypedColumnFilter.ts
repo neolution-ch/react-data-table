@@ -14,8 +14,8 @@ const getStronglyTypedColumnFilter = <TData, TResult extends string | number>(
   if (targetType === "string") {
     return item.value as TResult;
   } else if (targetType === "number") {
-    const parsedValue = parseFloat(item.value as string);
-    return isNaN(parsedValue) ? undefined : (parsedValue as TResult);
+    const parsedValue = Number.parseFloat(item.value as string);
+    return Number.isNaN(parsedValue) ? undefined : (parsedValue as TResult);
   }
 
   return undefined;
