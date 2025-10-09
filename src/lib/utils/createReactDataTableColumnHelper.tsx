@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ColumnDef, ColumnHelper, DeepKeys, DisplayColumnDef, RowData, createColumnHelper } from "@tanstack/react-table";
 import { ReactNode } from "react";
-import { DropdownColumnFilterOption } from "src/react-table";
+import type { DropdownColumnFilterOption } from "src/react-table";
 import { faGripLines } from "@fortawesome/free-solid-svg-icons";
 
 interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper<TData> {
@@ -22,6 +22,7 @@ interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper
 const createReactDataTableColumnHelper = <TData extends RowData>(): ReactDataTableColumnHelper<TData> => {
   const columnHelper = createColumnHelper<TData>();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   columnHelper.accessor;
 
   const createDraggableColumn = (

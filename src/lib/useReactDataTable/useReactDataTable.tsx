@@ -21,7 +21,10 @@ import { useMemo } from "react";
 
 /**
  * A react hook that returns a react table instance and the state of the table
+ * @param props The properties to configure the table
+ * @returns The table instance and the state of the table
  */
+// eslint-disable-next-line complexity
 const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(
   props: useReactDataTableProps<TData, TFilter>,
 ): useReactDataTableResult<TData, TFilter> => {
@@ -96,14 +99,14 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
   const effectiveOnColumnPinningChange = onColumnPinningChange ?? setColumnPinningInternal;
 
   // If we active the manual filtering, we have to unset the filter function, else it still does automatic filtering
-  if (manualFiltering) columns.forEach((x) => (x.filterFn = undefined));
+  if (manualFiltering) for (const x of columns) x.filterFn = undefined;
 
   const internalColumns = columns.filter((x) => x.meta?.isHidden !== true);
   const skeletonColumns = internalColumns.map((column) => ({
     ...column,
     cell: () => <Skeleton />,
   }));
-  const skeletonData = Array.from({ length: paginationInternal.pageSize }, () => ({} as TData));
+  const skeletonData = Array.from({ length: paginationInternal.pageSize }, () => ({}) as TData);
 
   const columnFilters = useMemo(() => getColumnFilterFromModel(effectiveColumnFilters), [effectiveColumnFilters]);
   const sorting = useMemo(() => getSortingStateFromModel(effectiveSorting), [effectiveSorting]);
@@ -113,29 +116,29 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     columns: isLoading ? skeletonColumns : internalColumns,
 
     onColumnFiltersChange: (filtersOrUpdaterFn) => {
-      const newFilter = typeof filtersOrUpdaterFn !== "function" ? filtersOrUpdaterFn : filtersOrUpdaterFn(columnFilters);
+      const newFilter = typeof filtersOrUpdaterFn === "function" ? filtersOrUpdaterFn(columnFilters) : filtersOrUpdaterFn;
       return effectiveOnColumnFiltersChange(getModelFromColumnFilter(newFilter));
     },
     onPaginationChange: (paginationOrUpdaterFn) => {
-      const newFilter = typeof paginationOrUpdaterFn !== "function" ? paginationOrUpdaterFn : paginationOrUpdaterFn(effectivePagination);
+      const newFilter = typeof paginationOrUpdaterFn === "function" ? paginationOrUpdaterFn(effectivePagination) : paginationOrUpdaterFn;
       return effectiveOnPaginationChange(newFilter);
     },
     onSortingChange: (sortingOrUpdaterFn) => {
-      const newFilter = typeof sortingOrUpdaterFn !== "function" ? sortingOrUpdaterFn : sortingOrUpdaterFn(sorting);
+      const newFilter = typeof sortingOrUpdaterFn === "function" ? sortingOrUpdaterFn(sorting) : sortingOrUpdaterFn;
       return effectiveOnSortingChange(getModelFromSortingState(newFilter));
     },
     onRowSelectionChange: (rowSelectionOrUpdaterFn) => {
       const newRowSelection =
-        typeof rowSelectionOrUpdaterFn !== "function" ? rowSelectionOrUpdaterFn : rowSelectionOrUpdaterFn(effectiveRowSelection);
+        typeof rowSelectionOrUpdaterFn === "function" ? rowSelectionOrUpdaterFn(effectiveRowSelection) : rowSelectionOrUpdaterFn;
       return effectiveOnRowSelectionChange(newRowSelection);
     },
     onExpandedChange: (expandedOrUpdaterFn) => {
-      const newExpanded = typeof expandedOrUpdaterFn !== "function" ? expandedOrUpdaterFn : expandedOrUpdaterFn(effectiveExpanded);
+      const newExpanded = typeof expandedOrUpdaterFn === "function" ? expandedOrUpdaterFn(effectiveExpanded) : expandedOrUpdaterFn;
       return effectiveOnExpandedChange(newExpanded);
     },
     onColumnPinningChange: (columnPinningOrUpdaterFn) => {
       const newColumnPinning =
-        typeof columnPinningOrUpdaterFn !== "function" ? columnPinningOrUpdaterFn : columnPinningOrUpdaterFn(effectiveColumnPinning);
+        typeof columnPinningOrUpdaterFn === "function" ? columnPinningOrUpdaterFn(effectiveColumnPinning) : columnPinningOrUpdaterFn;
       return effectiveOnColumnPinningChange(newColumnPinning);
     },
 
@@ -184,7 +187,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
 
   return {
     table,
-    columnFilters: effectiveColumnFilters as TFilter,
+    columnFilters: effectiveColumnFilters,
     pagination: effectivePagination,
     sorting: effectiveSorting,
     rowSelection: effectiveRowSelection,
@@ -199,4 +202,8 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
   };
 };
 
-export { useReactDataTable, useReactDataTableProps, useReactDataTableResult };
+export { useReactDataTable };
+
+export { useReactDataTableProps } from "./useReactDataTableProps";
+
+export { useReactDataTableResult } from "./useReactDataTableResult";
