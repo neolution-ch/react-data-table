@@ -4,11 +4,12 @@ import { FilterModel } from "../types/TableState";
 import { DragAndDropOptions } from "./DragAndDropOptions";
 import { VirtualizationOptions } from "./VirtualizationOptions";
 import { PagingNavigationComponents } from "@neolution-ch/react-pattern-ui";
+import { useVirtualizationTableHeightProps } from "../hooks/useVirtualizationTableHeight";
 
 /**
  * The props for the ReactDataTable component
  */
-export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
+export interface ReactDataTableProps<TData, TFilter extends FilterModel> extends Pick<useVirtualizationTableHeightProps, "onPseudoHeightChange"> {
   /**
    * the table instance returned from useReactDataTable or useReactTable
    */

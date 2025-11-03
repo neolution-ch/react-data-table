@@ -1,10 +1,10 @@
 import { Virtualizer } from "@tanstack/react-virtual";
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const adjustTableHeight = (
   tableRef: React.RefObject<HTMLTableElement>,
   virtualHeight: number,
-  setPseudoHeight: Dispatch<SetStateAction<number>>,
+  onPseudoHeightChange: useVirtualizationTableHeightProps["onPseudoHeightChange"],
 ) => {
   if (!tableRef.current) return;
 
@@ -13,24 +13,24 @@ const adjustTableHeight = (
   const existingPseudoHeight = parseFloat(existingPseudoElement.height) || 0;
   const tableHeight = tableRef.current.clientHeight - existingPseudoHeight;
   const pseudoHeight = Math.max(virtualHeight - tableHeight, 0);
-  setPseudoHeight(pseudoHeight);
+  onPseudoHeightChange?.(pseudoHeight);
 
   return pseudoHeight;
 };
 
-interface useVirtualizationTableHeightProps {
+export interface useVirtualizationTableHeightProps {
   parentRef: React.RefObject<HTMLDivElement>;
   virtualizer: Virtualizer<HTMLDivElement, Element>;
   enabled: boolean;
+  onPseudoHeightChange?: (height: number) => void;
 }
 
 // https://github.com/TanStack/virtual/issues/640
 // https://github.com/TanStack/virtual/issues/620
 const useVirtualizationTableHeight = (props: useVirtualizationTableHeightProps) => {
-  const { parentRef, virtualizer, enabled } = props;
+  const { parentRef, virtualizer, enabled, onPseudoHeightChange } = props;
   const scrollableRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
-  const [pseudoHeight, setPseudoHeight] = useState(0);
   const [isScrollNearBottom, setIsScrollNearBottom] = useState(false);
 
   // avoid calling virtualizer methods when virtualization is disabled
@@ -39,8 +39,8 @@ const useVirtualizationTableHeight = (props: useVirtualizationTableHeightProps) 
 
   // callback to adjust the height of the pseudo element
   const handlePseudoResize = useCallback(
-    () => adjustTableHeight(tableRef, virtualSize, setPseudoHeight),
-    [tableRef, virtualSize, setPseudoHeight],
+    () => adjustTableHeight(tableRef, virtualSize, onPseudoHeightChange),
+    [tableRef, virtualSize, onPseudoHeightChange],
   );
 
   // callback to handle scrolling, checking if we are near the bottom
@@ -79,7 +79,7 @@ const useVirtualizationTableHeight = (props: useVirtualizationTableHeightProps) 
     if (isScrollNearBottom) handlePseudoResize();
   }, [isScrollNearBottom, virtualItems.length, handlePseudoResize, enabled]);
 
-  return { scrollableRef, tableRef, pseudoHeight };
+  return { scrollableRef, tableRef };
 };
 
 export { useVirtualizationTableHeight };

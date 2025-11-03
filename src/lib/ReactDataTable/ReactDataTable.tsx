@@ -272,6 +272,7 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     totalRecords = table.getCoreRowModel().rows.length,
     dragAndDropOptions,
     pagingNavigationComponents,
+    onPseudoHeightChange,
   } = props;
 
   const { pagination } = table.getState();
@@ -296,10 +297,11 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
-  const { scrollableRef, tableRef, pseudoHeight } = useVirtualizationTableHeight({
+  const { scrollableRef, tableRef } = useVirtualizationTableHeight({
     parentRef,
     virtualizer,
     enabled: virtualizerOptions.enabled ?? false,
+    onPseudoHeightChange,
   });
 
   return (
@@ -316,7 +318,6 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
           <div ref={parentRef} style={{ height: virtualizerOptions.height ?? 600, overflow: "auto" }}>
             <div ref={scrollableRef} style={{ height: `${virtualizer.getTotalSize()}px` }}>
               <TableInternal<TData, TFilter> {...props} virtualizer={virtualizer} tableRef={tableRef} />
-              <div style={{ content: "", display: "block", height: `${pseudoHeight}px` }}></div>
             </div>
           </div>
         ) : (
