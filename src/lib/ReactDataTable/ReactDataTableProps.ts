@@ -31,6 +31,11 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
   tableStyle?: CSSProperties;
 
   /**
+   * custom header table row style
+   */
+  tableHeaderRowStyle?: CSSProperties;
+
+  /**
    * total number of records in the table, if not supplied,
    * the table will assume that all the data is loaded and set it to the length of the data array
    */

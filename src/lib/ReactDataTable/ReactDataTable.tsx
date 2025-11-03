@@ -16,9 +16,11 @@ import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
 import { useRef } from "react";
 import { TableBody } from "./TableBody";
+import { useVirtualizationTableHeight } from "../hooks/useVirtualizationTableHeight";
 
 interface TableInternalProps<TData, TFilter extends FilterModel = Record<string, never>> extends ReactDataTableProps<TData, TFilter> {
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
+  tableRef?: React.RefObject<HTMLTableElement>;
 }
 
 const TableInternal = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableInternalProps<TData, TFilter>) => {
@@ -37,6 +39,8 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
     noEntriesMessage,
     isStriped = true,
     showClearSearchButton = true,
+    tableRef,
+    tableHeaderRowStyle,
   } = props;
 
   const {
@@ -60,12 +64,13 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
             }
           : tableStyle
       }
+      innerRef={tableRef}
     >
       {!withoutHeaders && (
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <Fragment key={headerGroup.id}>
-              <tr key={`${headerGroup.id}-col-header`}>
+              <tr key={`${headerGroup.id}-col-header`} style={tableHeaderRowStyle}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
@@ -253,7 +258,7 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
   );
 };
 
-/**b
+/**
  * The table renderer for the react data table
  * @param props according to {@link ReactDataTableProps}
  */
@@ -291,6 +296,12 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
+  const { scrollableRef, tableRef } = useVirtualizationTableHeight({
+    parentRef,
+    virtualizer,
+    enabled: virtualizerOptions.enabled ?? false,
+  });
+
   return (
     <>
       <DndContext
@@ -303,8 +314,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
         {virtualizerOptions.enabled ? (
           <div ref={parentRef} style={{ height: virtualizerOptions.height ?? 600, overflow: "auto" }}>
-            <div style={{ height: `${virtualizer.getTotalSize()}px` }}>
-              <TableInternal<TData, TFilter> {...props} virtualizer={virtualizer} />
+            <div ref={scrollableRef} style={{ height: `${virtualizer.getTotalSize()}px` }}>
+              <TableInternal<TData, TFilter> {...props} virtualizer={virtualizer} tableRef={tableRef} />
             </div>
           </div>
         ) : (
