@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ```tsx
   <ReactDataTable<T>
   ...
-  onPseudoHeightChange={(height) =>   document.documentElement.style.setProperty("--pseudo-height", `${height}px`)}
+  onPseudoHeightChange={(height) =>   document.documentElement.style.setProperty("--your-pseudo-height--variable", `${height}px`)}
   />
   ````
 

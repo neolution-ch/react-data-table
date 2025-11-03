@@ -40,7 +40,7 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
     isStriped = true,
     showClearSearchButton = true,
     tableRef,
-    tableHeaderRowStyle,
+    tableHeaderStyle,
   } = props;
 
   const {
@@ -67,10 +67,10 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
       innerRef={tableRef}
     >
       {!withoutHeaders && (
-        <thead>
+        <thead style={tableHeaderStyle}>
           {table.getHeaderGroups().map((headerGroup) => (
             <Fragment key={headerGroup.id}>
-              <tr key={`${headerGroup.id}-col-header`} style={tableHeaderRowStyle}>
+              <tr key={`${headerGroup.id}-col-header`}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}

@@ -26,7 +26,6 @@ export interface useVirtualizationTableHeightProps {
 }
 
 // https://github.com/TanStack/virtual/issues/640
-// https://github.com/TanStack/virtual/issues/620
 const useVirtualizationTableHeight = (props: useVirtualizationTableHeightProps) => {
   const { parentRef, virtualizer, enabled, onPseudoHeightChange } = props;
   const scrollableRef = useRef<HTMLDivElement>(null);
