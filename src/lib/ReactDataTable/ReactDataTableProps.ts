@@ -9,7 +9,8 @@ import { useVirtualizationTableHeightProps } from "../hooks/useVirtualizationTab
 /**
  * The props for the ReactDataTable component
  */
-export interface ReactDataTableProps<TData, TFilter extends FilterModel> extends Pick<useVirtualizationTableHeightProps, "onPseudoHeightChange"> {
+export interface ReactDataTableProps<TData, TFilter extends FilterModel>
+  extends Pick<useVirtualizationTableHeightProps, "onPseudoHeightChange"> {
   /**
    * the table instance returned from useReactDataTable or useReactTable
    */
