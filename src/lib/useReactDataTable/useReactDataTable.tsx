@@ -64,7 +64,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
     columnFilters: columnFiltersInternal,
     pagination: paginationInternal,
     sorting: sortingInternal,
-    rowSelection: rowSelectionInteral,
+    rowSelection: rowSelectionInternal,
     expanded: expandedInternal,
     columnPinning: columnPinningInternal,
     setColumnFilters: setColumnFiltersInternal,
@@ -85,7 +85,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
   const effectiveColumnFilters = columnFiltersExternal ?? columnFiltersInternal;
   const effectivePagination = paginationExternal ?? paginationInternal;
   const effectiveSorting = sortingExternal ?? sortingInternal;
-  const effectiveRowSelection = rowSelectionExternal ?? rowSelectionInteral;
+  const effectiveRowSelection = rowSelectionExternal ?? rowSelectionInternal;
   const effectiveExpanded = expandedExternal ?? expandedInternal;
   const effectiveColumnPinning = columnPinningExternal ?? columnPinningInternal;
   const effectiveOnColumnFiltersChange = onColumnFiltersChange ?? setColumnFiltersInternal;
@@ -154,6 +154,7 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
       sorting: getSortingStateFromModel(sortingInitial ?? sortingExternal),
       expanded: expandedInitial ?? expandedExternal,
       columnPinning: columnPinningInitial ?? columnPinningExternal,
+      rowSelection: rowSelectionInitial ?? rowSelectionExternal,
     },
 
     getCoreRowModel: getCoreRowModel(),
