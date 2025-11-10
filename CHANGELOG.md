@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.13.1] - 2025-11-10
+
 ### Fixed
 
 - Virtualization height computation. This is a well know issue on Tanstack virtualizer package.
@@ -438,7 +440,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.13.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.13.1...HEAD
+[5.13.1]: https://github.com/neolution-ch/react-data-table/compare/5.13.0...5.13.1
 [5.13.0]: https://github.com/neolution-ch/react-data-table/compare/5.12.0...5.13.0
 [5.12.0]: https://github.com/neolution-ch/react-data-table/compare/5.11.0...5.12.0
 [5.11.0]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...5.11.0
