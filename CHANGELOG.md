@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Virtualization height computation. This is a well know issue on Tanstack virtualizer package.
+  When using virtualization, assign to your table the following css
+
+  ````css
+  :root {
+  --your-pseudo-height--variable: 0px;
+  }
+
+  table::after {
+      content: "";
+      display: block;
+      height: var(--your-pseudo-height--variable);
+    }
+  ```css
+
+  and use the `onPseudoHeightChange` to set it on your side
+
+  ```tsx
+  <ReactDataTable<T>
+  ...
+  onPseudoHeightChange={(height) =>   document.documentElement.style.setProperty("--your-pseudo-height--variable", `${height}px`)}
+  />
+  ````
+
 ## [5.13.0] - 2025-10-08
 
 ### Changed
