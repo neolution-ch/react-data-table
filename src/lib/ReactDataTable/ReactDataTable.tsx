@@ -17,6 +17,7 @@ import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
 import { useRef } from "react";
 import { TableBody } from "./TableBody";
 import { useVirtualizationTableHeight } from "../hooks/useVirtualizationTableHeight";
+import Skeleton from "react-loading-skeleton";
 
 interface TableInternalProps<TData, TFilter extends FilterModel = Record<string, never>> extends ReactDataTableProps<TData, TFilter> {
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
@@ -272,8 +273,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     totalRecords = table.getCoreRowModel().rows.length,
     dragAndDropOptions,
     pagingNavigationComponents,
-    isFetching,
     isLoading,
+    isFetching,
     onPseudoHeightChange,
   } = props;
 
@@ -329,17 +330,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
       {showPaging && (
         <>
-          {!isLoading && isFetching ? (
-           <span
-            style={{
-              display: "block",
-              height: "24px",
-              width: "100%",
-              background: "linear-gradient(90deg, #E8E8E8, #ffffff, #E8E8E8)",
-              backgroundSize: "200% 200%",
-              animation: "reloadingAnimation 3s linear infinite",
-            }}
-          />
+          {isLoading || isFetching ? (
+            <Skeleton count={1} height={20} />
           ) : (
             <Paging
               currentItemsPerPage={pagination.pageSize}
