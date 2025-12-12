@@ -272,6 +272,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     totalRecords = table.getCoreRowModel().rows.length,
     dragAndDropOptions,
     pagingNavigationComponents,
+    isFetching,
+    isLoading,
     onPseudoHeightChange,
   } = props;
 
@@ -326,24 +328,36 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
       </DndContext>
 
       {showPaging && (
-        <Paging
-          currentItemsPerPage={pagination.pageSize}
-          currentPage={pagination.pageIndex + 1}
-          totalRecords={totalRecords}
-          currentRecordCount={table.getRowModel().rows.length}
-          setItemsPerPage={(x) => {
-            table.setPageSize(x);
-          }}
-          setCurrentPage={(x) => table.setPageIndex(x - 1)}
-          possiblePageItemCounts={pageSizes}
-          translations={{
-            itemsPerPageDropdown: reactDataTableTranslations.itemsPerPageDropdown,
-            showedItemsText: reactDataTableTranslations.showedItemsText,
-          }}
-          pagingPossible={true}
-          changePageSizePossible={!hidePageSizeChange}
-          navigationComponents={pagingNavigationComponents}
-        />
+        <>
+          {!isLoading && isFetching ? (
+            <span
+              style={{
+                background: "linear-gradient(90deg, #E8E8E8, #ffffff, #E8E8E8)",
+                backgroundSize: "10% 10%",
+                animation: "reloadingAnimation 3s linear infinite",
+              }}
+            />
+          ) : (
+            <Paging
+              currentItemsPerPage={pagination.pageSize}
+              currentPage={pagination.pageIndex + 1}
+              totalRecords={totalRecords}
+              currentRecordCount={table.getRowModel().rows.length}
+              setItemsPerPage={(x) => {
+                table.setPageSize(x);
+              }}
+              setCurrentPage={(x) => table.setPageIndex(x - 1)}
+              possiblePageItemCounts={pageSizes}
+              translations={{
+                itemsPerPageDropdown: reactDataTableTranslations.itemsPerPageDropdown,
+                showedItemsText: reactDataTableTranslations.showedItemsText,
+              }}
+              pagingPossible={true}
+              changePageSizePossible={!hidePageSizeChange}
+              navigationComponents={pagingNavigationComponents}
+            />
+          )}
+        </>
       )}
     </>
   );
