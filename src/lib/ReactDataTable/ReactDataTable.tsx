@@ -330,13 +330,16 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
       {showPaging && (
         <>
           {!isLoading && isFetching ? (
-            <span
-              style={{
-                background: "linear-gradient(90deg, #E8E8E8, #ffffff, #E8E8E8)",
-                backgroundSize: "10% 10%",
-                animation: "reloadingAnimation 3s linear infinite",
-              }}
-            />
+           <span
+            style={{
+              display: "block",
+              height: "24px",
+              width: "100%",
+              background: "linear-gradient(90deg, #E8E8E8, #ffffff, #E8E8E8)",
+              backgroundSize: "200% 200%",
+              animation: "reloadingAnimation 3s linear infinite",
+            }}
+          />
           ) : (
             <Paging
               currentItemsPerPage={pagination.pageSize}
