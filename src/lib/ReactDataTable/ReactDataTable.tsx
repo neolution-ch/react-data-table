@@ -17,6 +17,7 @@ import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
 import { useRef } from "react";
 import { TableBody } from "./TableBody";
 import { useVirtualizationTableHeight } from "../hooks/useVirtualizationTableHeight";
+import Skeleton from "react-loading-skeleton";
 
 interface TableInternalProps<TData, TFilter extends FilterModel = Record<string, never>> extends ReactDataTableProps<TData, TFilter> {
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
@@ -272,6 +273,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     totalRecords = table.getCoreRowModel().rows.length,
     dragAndDropOptions,
     pagingNavigationComponents,
+    isLoading,
+    isFetching,
     onPseudoHeightChange,
   } = props;
 
@@ -326,24 +329,30 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
       </DndContext>
 
       {showPaging && (
-        <Paging
-          currentItemsPerPage={pagination.pageSize}
-          currentPage={pagination.pageIndex + 1}
-          totalRecords={totalRecords}
-          currentRecordCount={table.getRowModel().rows.length}
-          setItemsPerPage={(x) => {
-            table.setPageSize(x);
-          }}
-          setCurrentPage={(x) => table.setPageIndex(x - 1)}
-          possiblePageItemCounts={pageSizes}
-          translations={{
-            itemsPerPageDropdown: reactDataTableTranslations.itemsPerPageDropdown,
-            showedItemsText: reactDataTableTranslations.showedItemsText,
-          }}
-          pagingPossible={true}
-          changePageSizePossible={!hidePageSizeChange}
-          navigationComponents={pagingNavigationComponents}
-        />
+        <>
+          {isLoading || isFetching ? (
+            <Skeleton count={1} height={20} />
+          ) : (
+            <Paging
+              currentItemsPerPage={pagination.pageSize}
+              currentPage={pagination.pageIndex + 1}
+              totalRecords={totalRecords}
+              currentRecordCount={table.getRowModel().rows.length}
+              setItemsPerPage={(x) => {
+                table.setPageSize(x);
+              }}
+              setCurrentPage={(x) => table.setPageIndex(x - 1)}
+              possiblePageItemCounts={pageSizes}
+              translations={{
+                itemsPerPageDropdown: reactDataTableTranslations.itemsPerPageDropdown,
+                showedItemsText: reactDataTableTranslations.showedItemsText,
+              }}
+              pagingPossible={true}
+              changePageSizePossible={!hidePageSizeChange}
+              navigationComponents={pagingNavigationComponents}
+            />
+          )}
+        </>
       )}
     </>
   );

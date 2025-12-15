@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- pagination skeleton on data loading and fetching.
+
 ## [5.13.1] - 2025-11-10
 
 ### Fixed
