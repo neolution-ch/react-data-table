@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- added the `usePersistentReactDataTableState` hook which saves it's own state into the local storage
+
 ## [5.14.0] - 2025-12-15
 
 ### Fixed
