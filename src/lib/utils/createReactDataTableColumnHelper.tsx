@@ -22,9 +22,6 @@ interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper
 const createReactDataTableColumnHelper = <TData extends RowData>(): ReactDataTableColumnHelper<TData> => {
   const columnHelper = createColumnHelper<TData>();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  columnHelper.accessor;
-
   const createDraggableColumn = (
     columnKey: DeepKeys<TData>,
     columndDef: Omit<DisplayColumnDef<TData>, "id" | "cell">,
