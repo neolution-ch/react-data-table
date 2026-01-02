@@ -21,7 +21,6 @@ interface TableInternalProps<TData, TFilter extends FilterModel = Record<string,
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
 }
 
-// eslint-disable-next-line complexity
 const TableInternal = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableInternalProps<TData, TFilter>) => {
   const {
     virtualizer,
@@ -97,7 +96,6 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
               </tr>
               {!withoutHeaderFilters && !headerGroup.headers.every((x) => !!x.column.columnDef.meta?.hideHeaderFilters) && (
                 <tr key={`${headerGroup.id}-col-filters`}>
-                  {/* eslint-disable-next-line complexity */}
                   {headerGroup.headers.map((header) => {
                     const {
                       column: {

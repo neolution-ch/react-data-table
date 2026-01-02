@@ -1,5 +1,4 @@
-﻿/* eslint-disable max-lines */
-import {
+﻿import {
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
@@ -24,10 +23,11 @@ import { useMemo } from "react";
  * @param props The properties to configure the table
  * @returns The table instance and the state of the table
  */
-// eslint-disable-next-line complexity
+
 const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(
   props: useReactDataTableProps<TData, TFilter>,
 ): useReactDataTableResult<TData, TFilter> => {
+  "use no memo";
   const {
     data = [],
     columns,

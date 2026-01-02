@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import { render, fireEvent } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks/server";
 import "@testing-library/jest-dom";
