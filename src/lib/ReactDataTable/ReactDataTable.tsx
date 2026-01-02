@@ -262,6 +262,7 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
 /**
  * The table renderer for the react data table
  * @param props according to {@link ReactDataTableProps}
+ * @returns The rendered ReactDataTable component
  */
 const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(props: ReactDataTableProps<TData, TFilter>) => {
   const {

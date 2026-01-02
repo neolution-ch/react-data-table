@@ -27,7 +27,6 @@ import { useMemo } from "react";
 const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(
   props: useReactDataTableProps<TData, TFilter>,
 ): useReactDataTableResult<TData, TFilter> => {
-  "use no memo";
   const {
     data = [],
     columns,
@@ -111,6 +110,8 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
   const columnFilters = useMemo(() => getColumnFilterFromModel(effectiveColumnFilters), [effectiveColumnFilters]);
   const sorting = useMemo(() => getSortingStateFromModel(effectiveSorting), [effectiveSorting]);
 
+  // known issue for tanstack with open ticket: https://github.com/facebook/react/issues/33057
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable<TData>({
     data: isLoading ? skeletonData : data,
     columns: isLoading ? skeletonColumns : internalColumns,
