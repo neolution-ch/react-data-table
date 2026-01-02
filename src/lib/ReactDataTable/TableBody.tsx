@@ -56,16 +56,16 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
           <DraggableRow<TData, TFilter>
             key={index}
             row={row}
-            enableRowClick={enableRowClick as ReactDataTableProps<TData, TFilter>["enableRowClick"]}
-            onRowClick={onRowClick as ReactDataTableProps<TData, TFilter>["onRowClick"]}
+            enableRowClick={enableRowClick}
+            onRowClick={onRowClick}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={{
-              ...(x.rowStyle ?? {}),
+              ...x.rowStyle,
               ...(rowStyle ? rowStyle(row.original) : {}),
             }}
             fullRowSelectable={fullRowSelectable}
-            subRowComponent={subRowComponent as ReactDataTableProps<TData, TFilter>["subRowComponent"]}
+            subRowComponent={subRowComponent}
           />
         );
       })}
@@ -78,17 +78,17 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
           <InternalTableRow<TData, TFilter>
             key={index}
             row={row}
-            enableRowClick={enableRowClick as ReactDataTableProps<TData, TFilter>["enableRowClick"]}
-            onRowClick={onRowClick as ReactDataTableProps<TData, TFilter>["onRowClick"]}
+            enableRowClick={enableRowClick}
+            onRowClick={onRowClick}
             enableRowSelection={enableRowSelection as boolean | ((row: Row<TData>) => boolean)}
             enableExpanding={enableExpanding as boolean | ((row: Row<TData>) => boolean)}
             rowStyle={{
-              ...(x.rowStyle ?? {}),
+              ...x.rowStyle,
               ...(rowStyle ? rowStyle(row.original) : {}),
             }}
             fullRowSelectable={fullRowSelectable}
             hasPinnedColumns={table.getIsSomeColumnsPinned()}
-            subRowComponent={subRowComponent as ReactDataTableProps<TData, TFilter>["subRowComponent"]}
+            subRowComponent={subRowComponent}
           />
         );
       })}
