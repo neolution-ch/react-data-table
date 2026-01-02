@@ -4,11 +4,13 @@ import { FilterModel } from "../types/TableState";
 import { DragAndDropOptions } from "./DragAndDropOptions";
 import { VirtualizationOptions } from "./VirtualizationOptions";
 import { PagingNavigationComponents } from "@neolution-ch/react-pattern-ui";
+import { useVirtualizationTableHeightProps } from "../hooks/useVirtualizationTableHeight";
 
 /**
  * The props for the ReactDataTable component
  */
-export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
+export interface ReactDataTableProps<TData, TFilter extends FilterModel>
+  extends Pick<useVirtualizationTableHeightProps, "onPseudoHeightChange"> {
   /**
    * the table instance returned from useReactDataTable or useReactTable
    */
@@ -29,6 +31,11 @@ export interface ReactDataTableProps<TData, TFilter extends FilterModel> {
    * custom table style
    */
   tableStyle?: CSSProperties;
+
+  /**
+   * custom header table row style
+   */
+  tableHeaderStyle?: CSSProperties;
 
   /**
    * total number of records in the table, if not supplied,

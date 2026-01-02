@@ -12,6 +12,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - migrated to eslint 9 flat config
 - removed obsolete storybook
 
+## [5.14.0] - 2025-12-15
+
+### Fixed
+
+- pagination skeleton on data loading and fetching.
+
+## [5.13.1] - 2025-11-10
+
+### Fixed
+
+- Virtualization height computation. This is a well know issue on Tanstack virtualizer package.
+  When using virtualization, assign to your table the following css
+
+  ````css
+  :root {
+  --your-pseudo-height--variable: 0px;
+  }
+
+  table::after {
+      content: "";
+      display: block;
+      height: var(--your-pseudo-height--variable);
+    }
+  ```css
+
+  and use the `onPseudoHeightChange` to set it on your side
+
+  ```tsx
+  <ReactDataTable<T>
+  ...
+  onPseudoHeightChange={(height) =>   document.documentElement.style.setProperty("--your-pseudo-height--variable", `${height}px`)}
+  />
+  ````
+
 ## [5.13.0] - 2025-10-08
 
 ### Changed
@@ -417,7 +451,9 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.13.0...HEAD
+[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.14.0...HEAD
+[5.14.0]: https://github.com/neolution-ch/react-data-table/compare/5.13.1...5.14.0
+[5.13.1]: https://github.com/neolution-ch/react-data-table/compare/5.13.0...5.13.1
 [5.13.0]: https://github.com/neolution-ch/react-data-table/compare/5.12.0...5.13.0
 [5.12.0]: https://github.com/neolution-ch/react-data-table/compare/5.11.0...5.12.0
 [5.11.0]: https://github.com/neolution-ch/react-data-table/compare/5.10.0...5.11.0

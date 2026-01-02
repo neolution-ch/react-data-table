@@ -16,9 +16,12 @@ import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
 
 import { TableBody } from "./TableBody";
+import { useVirtualizationTableHeight } from "../hooks/useVirtualizationTableHeight";
+import Skeleton from "react-loading-skeleton";
 
 interface TableInternalProps<TData, TFilter extends FilterModel = Record<string, never>> extends ReactDataTableProps<TData, TFilter> {
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
+  tableRef?: React.RefObject<HTMLTableElement>;
 }
 
 const TableInternal = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableInternalProps<TData, TFilter>) => {
@@ -37,6 +40,8 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
     noEntriesMessage,
     isStriped = true,
     showClearSearchButton = true,
+    tableRef,
+    tableHeaderStyle,
   } = props;
 
   const {
@@ -60,9 +65,10 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
             }
           : tableStyle
       }
+      innerRef={tableRef}
     >
       {!withoutHeaders && (
-        <thead>
+        <thead style={tableHeaderStyle}>
           {table.getHeaderGroups().map((headerGroup) => (
             <Fragment key={headerGroup.id}>
               <tr key={`${headerGroup.id}-col-header`}>
@@ -253,7 +259,7 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
   );
 };
 
-/**b
+/**
  * The table renderer for the react data table
  * @param props according to {@link ReactDataTableProps}
  */
@@ -267,6 +273,9 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
     totalRecords = table.getCoreRowModel().rows.length,
     dragAndDropOptions,
     pagingNavigationComponents,
+    isLoading,
+    isFetching,
+    onPseudoHeightChange,
   } = props;
 
   const { pagination } = table.getState();
@@ -291,6 +300,13 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
   const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
 
+  const { scrollableRef, tableRef } = useVirtualizationTableHeight({
+    parentRef,
+    virtualizer,
+    enabled: virtualizerOptions.enabled ?? false,
+    onPseudoHeightChange,
+  });
+
   return (
     <>
       <DndContext
@@ -303,8 +319,8 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 
         {virtualizerOptions.enabled ? (
           <div ref={parentRef} style={{ height: virtualizerOptions.height ?? 600, overflow: "auto" }}>
-            <div style={{ height: `${virtualizer.getTotalSize()}px` }}>
-              <TableInternal<TData, TFilter> {...props} virtualizer={virtualizer} />
+            <div ref={scrollableRef} style={{ height: `${virtualizer.getTotalSize()}px` }}>
+              <TableInternal<TData, TFilter> {...props} virtualizer={virtualizer} tableRef={tableRef} />
             </div>
           </div>
         ) : (
@@ -313,24 +329,30 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
       </DndContext>
 
       {showPaging && (
-        <Paging
-          currentItemsPerPage={pagination.pageSize}
-          currentPage={pagination.pageIndex + 1}
-          totalRecords={totalRecords}
-          currentRecordCount={table.getRowModel().rows.length}
-          setItemsPerPage={(x) => {
-            table.setPageSize(x);
-          }}
-          setCurrentPage={(x) => table.setPageIndex(x - 1)}
-          possiblePageItemCounts={pageSizes}
-          translations={{
-            itemsPerPageDropdown: reactDataTableTranslations.itemsPerPageDropdown,
-            showedItemsText: reactDataTableTranslations.showedItemsText,
-          }}
-          pagingPossible={true}
-          changePageSizePossible={!hidePageSizeChange}
-          navigationComponents={pagingNavigationComponents}
-        />
+        <>
+          {isLoading || isFetching ? (
+            <Skeleton count={1} height={20} />
+          ) : (
+            <Paging
+              currentItemsPerPage={pagination.pageSize}
+              currentPage={pagination.pageIndex + 1}
+              totalRecords={totalRecords}
+              currentRecordCount={table.getRowModel().rows.length}
+              setItemsPerPage={(x) => {
+                table.setPageSize(x);
+              }}
+              setCurrentPage={(x) => table.setPageIndex(x - 1)}
+              possiblePageItemCounts={pageSizes}
+              translations={{
+                itemsPerPageDropdown: reactDataTableTranslations.itemsPerPageDropdown,
+                showedItemsText: reactDataTableTranslations.showedItemsText,
+              }}
+              pagingPossible={true}
+              changePageSizePossible={!hidePageSizeChange}
+              navigationComponents={pagingNavigationComponents}
+            />
+          )}
+        </>
       )}
     </>
   );
