@@ -1,5 +1,4 @@
 ﻿/* eslint-disable @typescript-eslint/no-unused-vars */
-import "@tanstack/react-table";
 import { RowData, Table } from "@tanstack/react-table";
 import { CSSProperties } from "react";
 
