@@ -14,7 +14,6 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
-
 import { TableBody } from "./TableBody";
 import { useVirtualizationTableHeight } from "../hooks/useVirtualizationTableHeight";
 import Skeleton from "react-loading-skeleton";
@@ -360,5 +359,3 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
 };
 
 export { ReactDataTable };
-
-export { ReactDataTableProps } from "./ReactDataTableProps";

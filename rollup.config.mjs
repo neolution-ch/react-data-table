@@ -1,6 +1,5 @@
 import commonjs from "@rollup/plugin-commonjs";
-// eslint-disable-next-line import/no-named-as-default
-import nodeResolve from "@rollup/plugin-node-resolve";
+import nodeResolvePlugin from "@rollup/plugin-node-resolve";
 import external from "rollup-plugin-peer-deps-external";
 import terser from "@rollup/plugin-terser";
 import typescript from "rollup-plugin-typescript2";
@@ -23,7 +22,7 @@ const plugins = [
   commonjs({
     include: /\/node_modules\//,
   }),
-  nodeResolve(),
+  nodeResolvePlugin(),
   terser({
     output: { comments: false },
     compress: {

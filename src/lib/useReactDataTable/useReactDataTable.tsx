@@ -6,7 +6,7 @@
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useReactDataTableState, useReactDataTableStateProps } from "../useReactDataTableState/useReactDataTableState";
+import { useReactDataTableState } from "../useReactDataTableState/useReactDataTableState";
 import Skeleton from "react-loading-skeleton";
 import { useReactDataTableProps } from "./useReactDataTableProps";
 import { useReactDataTableResult } from "./useReactDataTableResult";
@@ -17,6 +17,7 @@ import { getSortingStateFromModel } from "../utils/getSortingStateFromModel";
 import { getModelFromSortingState } from "../utils/getModelFromSortingState";
 import { OptionalNullable } from "../types/NullableTypes";
 import { useMemo } from "react";
+import { useReactDataTableStateProps } from "../useReactDataTableState/useReactDataTableStateProps";
 
 /**
  * A react hook that returns a react table instance and the state of the table
@@ -204,7 +205,3 @@ const useReactDataTable = <TData, TFilter extends FilterModel = Record<string, n
 };
 
 export { useReactDataTable };
-
-export { useReactDataTableProps } from "./useReactDataTableProps";
-
-export { useReactDataTableResult } from "./useReactDataTableResult";

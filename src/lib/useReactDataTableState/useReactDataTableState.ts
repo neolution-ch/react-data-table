@@ -48,7 +48,3 @@ const useReactDataTableState = <TData, TFilter extends FilterModel = Record<stri
 };
 
 export { useReactDataTableState };
-
-export { useReactDataTableStateProps } from "./useReactDataTableStateProps";
-
-export { useReactDataTableStateResult } from "./useReactDataTableStateResult";
