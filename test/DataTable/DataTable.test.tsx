@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import { render, fireEvent } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks/server";
 import "@testing-library/jest-dom";
@@ -30,7 +29,7 @@ describe("DataTable", () => {
     dateCreated: Date;
   }
 
-  const dataDynamic: DataInterface[] = Array.from(Array(100)).map((_, i) => {
+  const dataDynamic: DataInterface[] = Array.from({ length: 100 }).map((_, i) => {
     const date = new Date(2022, 12, 31);
     date.setDate(date.getDate() - i);
     return {
@@ -240,7 +239,7 @@ describe("DataTable", () => {
     render(<ReactDataTable table={table} showPaging totalRecords={dataDynamic?.length} isFetching={false} isLoading={false} />);
 
     const rows = document.querySelectorAll("tr");
-    rows.forEach((row) => fireEvent.click(row));
+    for (const row of rows) fireEvent.click(row as HTMLElement);
     expect(table.getSelectedRowModel().rows.length).toBe(0);
   });
 });
