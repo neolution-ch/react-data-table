@@ -1,6 +1,5 @@
 ﻿/**
  * This are the possible translations for the data table
- *
  * @interface DataTableTranslations
  * @property {string} clearSearchToolTip is used to print out the bottom text, possible placeholders are: {from}, {to} and {total}
  */

@@ -8,13 +8,12 @@ import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { FilterModel } from "../types/TableState";
 import { getModelFromColumnFilter } from "../utils/getModelFromColumnFilter";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { getFilterValue, setFilterValue } from "../utils/customFilterMethods";
 import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
-import { useRef } from "react";
 import { TableBody } from "./TableBody";
 import { useVirtualizationTableHeight } from "../hooks/useVirtualizationTableHeight";
 import Skeleton from "react-loading-skeleton";
@@ -262,6 +261,7 @@ const TableInternal = <TData, TFilter extends FilterModel = Record<string, never
 /**
  * The table renderer for the react data table
  * @param props according to {@link ReactDataTableProps}
+ * @returns The rendered ReactDataTable component
  */
 const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, never>>(props: ReactDataTableProps<TData, TFilter>) => {
   const {
@@ -358,4 +358,4 @@ const ReactDataTable = <TData, TFilter extends FilterModel = Record<string, neve
   );
 };
 
-export { ReactDataTable, ReactDataTableProps };
+export { ReactDataTable };
