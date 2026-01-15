@@ -3,10 +3,27 @@ import { OptionalNullable } from "../types/NullableTypes";
 import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
+import { FilterModel } from "../types/TableState";
 
-const usePersistentReactDataTableState = <TData, TFilter extends object = Record<string, never>>(
+/**
+ * A custom hook that will initialize all the state needed for the react data table and will persist it to local storage
+ * @param props The properties to configure the initial state
+ * @returns the state and the setters
+ */
+const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = Record<string, never>>(
   props: OptionalNullable<useReactDataTableStateProps<TData, TFilter>> & { localStorageKey: string },
 ): useReactDataTableStateResult<TData, TFilter> => {
+  const {
+    initialColumnFilters,
+    initialSorting,
+    initialPagination,
+    initialRowSelection,
+    initialExpanded,
+    initialColumnPinning,
+    initialAfterSearchFilter,
+    localStorageKey,
+  } = props as useReactDataTableStateProps<TData, TFilter> & { localStorageKey: string };
+
   const {
     pagination,
     setPagination,
@@ -24,28 +41,26 @@ const usePersistentReactDataTableState = <TData, TFilter extends object = Record
     setSorting,
   } = useReactDataTableState<TData, TFilter>({
     initialColumnPinning:
-      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialColumnPinning"]>(`${props.localStorageKey}_columnPinning`) ??
-      props?.initialColumnPinning,
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialColumnPinning"]>(`${localStorageKey}_columnPinning`) ??
+      initialColumnPinning,
     initialExpanded:
-      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialExpanded"]>(`${props.localStorageKey}_expanded`) ??
-      props?.initialExpanded,
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialExpanded"]>(`${localStorageKey}_expanded`) ?? initialExpanded,
     initialPagination:
-      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialPagination"]>(`${props.localStorageKey}_pagination`) ??
-      props?.initialPagination,
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialPagination"]>(`${localStorageKey}_pagination`) ??
+      initialPagination,
     initialRowSelection:
-      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialRowSelection"]>(`${props.localStorageKey}_rowSelection`) ??
-      props?.initialRowSelection,
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialRowSelection"]>(`${localStorageKey}_rowSelection`) ??
+      initialRowSelection,
     initialSorting:
-      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialSorting"]>(`${props.localStorageKey}_sorting`) ??
-      props?.initialSorting,
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialSorting"]>(`${localStorageKey}_sorting`) ?? initialSorting,
     initialColumnFilters:
-      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialColumnFilters"]>(`${props.localStorageKey}_columnFilters`) ??
-      props?.initialColumnFilters,
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialColumnFilters"]>(`${localStorageKey}_columnFilters`) ??
+      initialColumnFilters,
     initialAfterSearchFilter:
       getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialAfterSearchFilter"]>(
-        `${props.localStorageKey}_afterSearchFilter`,
-      ) ?? props?.initialAfterSearchFilter,
-  } as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
+        `${localStorageKey}_afterSearchFilter`,
+      ) ?? initialAfterSearchFilter,
+  } as useReactDataTableStateProps<TData, TFilter> as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
   return {
     pagination,
