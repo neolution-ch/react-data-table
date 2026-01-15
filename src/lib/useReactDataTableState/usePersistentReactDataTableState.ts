@@ -3,7 +3,6 @@ import { OptionalNullable } from "../types/NullableTypes";
 import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
-import { useEffect } from "react";
 
 const usePersistentReactDataTableState = <TData, TFilter extends object = Record<string, never>>(
   props: OptionalNullable<useReactDataTableStateProps<TData, TFilter>> & { localStorageKey: string },
@@ -39,21 +38,14 @@ const usePersistentReactDataTableState = <TData, TFilter extends object = Record
     initialSorting:
       getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialSorting"]>(`${props.localStorageKey}_sorting`) ??
       props?.initialSorting,
+    initialColumnFilters:
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialColumnFilters"]>(`${props.localStorageKey}_columnFilters`) ??
+      props?.initialColumnFilters,
+    initialAfterSearchFilter:
+      getLocalStorageItem<useReactDataTableStateProps<TData, TFilter>["initialAfterSearchFilter"]>(
+        `${props.localStorageKey}_afterSearchFilter`,
+      ) ?? props?.initialAfterSearchFilter,
   } as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
-
-  useEffect(() => {
-    // We can't set these values directly in the useReactDataTableState hook above,
-    // because the filter would be taken as default value also for the reset function.
-    const storedColumnFilters = getLocalStorageItem<TFilter>(`${props.localStorageKey}_columnFilters`);
-    if (storedColumnFilters) {
-      setColumnFilters(storedColumnFilters);
-    }
-
-    const storedAfterSearchFilter = getLocalStorageItem<TFilter>(`${props.localStorageKey}_afterSearchFilter`);
-    if (storedAfterSearchFilter) {
-      setAfterSearchFilter(storedAfterSearchFilter);
-    }
-  }, [props.localStorageKey, setColumnFilters, setAfterSearchFilter]);
 
   return {
     pagination,
