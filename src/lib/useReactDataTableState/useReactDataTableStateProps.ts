@@ -13,6 +13,11 @@ export interface useReactDataTableStateProps<TData, TFilter extends FilterModel>
   initialColumnFilters: ColumnFilterState<TFilter>;
 
   /**
+   * the initial after search filter
+   */
+  initialAfterSearchFilter?: ColumnFilterState<TFilter>;
+
+  /**
    * the initial sorting
    */
   initialSorting?: SortingState<TData>;
