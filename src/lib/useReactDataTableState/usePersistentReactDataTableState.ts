@@ -4,6 +4,7 @@ import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
 import { FilterModel } from "../types/TableState";
+import { useCallback } from "react";
 
 /**
  * A custom hook that will initialize all the state needed for the react data table and will persist it to local storage
@@ -64,40 +65,61 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
 
   return {
     pagination,
-    setPagination: (newPagination) => {
-      setPagination(newPagination);
-      setLocalStorageItem(`${props.localStorageKey}_pagination`, newPagination);
-    },
+    setPagination: useCallback(
+      (newPagination) => {
+        setPagination(newPagination);
+        setLocalStorageItem(`${props.localStorageKey}_pagination`, newPagination);
+      },
+      [props.localStorageKey, setPagination],
+    ),
     columnFilters,
-    setColumnFilters: (newColumnFilters) => {
-      setColumnFilters(newColumnFilters);
-      setLocalStorageItem(`${props.localStorageKey}_columnFilters`, newColumnFilters);
-    },
+    setColumnFilters: useCallback(
+      (newColumnFilters) => {
+        setColumnFilters(newColumnFilters);
+        setLocalStorageItem(`${props.localStorageKey}_columnFilters`, newColumnFilters);
+      },
+      [props.localStorageKey, setColumnFilters],
+    ),
     afterSearchFilter,
-    setAfterSearchFilter: (newAfterSearchFilter) => {
-      setAfterSearchFilter(newAfterSearchFilter);
-      setLocalStorageItem(`${props.localStorageKey}_afterSearchFilter`, newAfterSearchFilter);
-    },
+    setAfterSearchFilter: useCallback(
+      (newAfterSearchFilter) => {
+        setAfterSearchFilter(newAfterSearchFilter);
+        setLocalStorageItem(`${props.localStorageKey}_afterSearchFilter`, newAfterSearchFilter);
+      },
+      [props.localStorageKey, setAfterSearchFilter],
+    ),
     columnPinning,
-    setColumnPinning: (newColumnPinning) => {
-      setColumnPinning(newColumnPinning);
-      setLocalStorageItem(`${props.localStorageKey}_columnPinning`, newColumnPinning);
-    },
+    setColumnPinning: useCallback(
+      (newColumnPinning) => {
+        setColumnPinning(newColumnPinning);
+        setLocalStorageItem(`${props.localStorageKey}_columnPinning`, newColumnPinning);
+      },
+      [props.localStorageKey, setColumnPinning],
+    ),
     expanded,
-    setExpanded: (newExpanded) => {
-      setExpanded(newExpanded);
-      setLocalStorageItem(`${props.localStorageKey}_expanded`, newExpanded);
-    },
+    setExpanded: useCallback(
+      (newExpanded) => {
+        setExpanded(newExpanded);
+        setLocalStorageItem(`${props.localStorageKey}_expanded`, newExpanded);
+      },
+      [props.localStorageKey, setExpanded],
+    ),
     rowSelection,
-    setRowSelection: (newRowSelection) => {
-      setRowSelection(newRowSelection);
-      setLocalStorageItem(`${props.localStorageKey}_rowSelection`, newRowSelection);
-    },
+    setRowSelection: useCallback(
+      (newRowSelection) => {
+        setRowSelection(newRowSelection);
+        setLocalStorageItem(`${props.localStorageKey}_rowSelection`, newRowSelection);
+      },
+      [props.localStorageKey, setRowSelection],
+    ),
     sorting,
-    setSorting: (newSorting) => {
-      setSorting(newSorting);
-      setLocalStorageItem(`${props.localStorageKey}_sorting`, newSorting);
-    },
+    setSorting: useCallback(
+      (newSorting) => {
+        setSorting(newSorting);
+        setLocalStorageItem(`${props.localStorageKey}_sorting`, newSorting);
+      },
+      [props.localStorageKey, setSorting],
+    ),
   };
 };
 
