@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - added the `usePersistentReactDataTableState` hook which saves it's own state into the local storage
+- added `initialAfterSearchFilter` property to give the possebility, to set a different initial after filter search (fall back is still `initialColumnFilters`)
 
 ### Changed
 
