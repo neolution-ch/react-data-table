@@ -5,11 +5,10 @@ import { FilterModel, TableState } from "../types/TableState";
 
 type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
-interface useFullyControlledReactDataTableProps<TData, TFilter extends FilterModel>
-  extends WithRequired<
-    Omit<useReactDataTableProps<TData, TFilter>, "manualFiltering" | "manualPagination" | "manualSorting">,
-    "onColumnFiltersChange" | "onPaginationChange" | "onSortingChange"
-  > {
+interface useFullyControlledReactDataTableProps<TData, TFilter extends FilterModel> extends WithRequired<
+  Omit<useReactDataTableProps<TData, TFilter>, "manualFiltering" | "manualPagination" | "manualSorting">,
+  "onColumnFiltersChange" | "onPaginationChange" | "onSortingChange"
+> {
   state: {
     columnFilters: TableState<TData, TFilter>["columnFilters"];
     pagination: TableState<TData, TFilter>["pagination"];

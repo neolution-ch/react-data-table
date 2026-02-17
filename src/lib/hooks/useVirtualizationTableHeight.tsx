@@ -2,7 +2,7 @@ import { Virtualizer } from "@tanstack/react-virtual";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const adjustTableHeight = (
-  tableRef: React.RefObject<HTMLTableElement>,
+  tableRef: React.RefObject<HTMLTableElement | null>,
   virtualHeight: number,
   onPseudoHeightChange: useVirtualizationTableHeightProps["onPseudoHeightChange"],
 ) => {
@@ -19,7 +19,7 @@ const adjustTableHeight = (
 };
 
 export interface useVirtualizationTableHeightProps {
-  parentRef: React.RefObject<HTMLDivElement>;
+  parentRef: React.RefObject<HTMLDivElement | null>;
   virtualizer: Virtualizer<HTMLDivElement, Element>;
   enabled: boolean;
   onPseudoHeightChange?: (height: number) => void;

@@ -6,8 +6,10 @@ import { getCommonPinningStyles } from "../utils/getCommonPinningStyles";
 import { FilterModel } from "../types/TableState";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 
-interface TableRowProps<TData, TFilter extends FilterModel = Record<string, never>>
-  extends Pick<ReactDataTableProps<TData, TFilter>, "onRowClick" | "enableRowClick" | "subRowComponent"> {
+interface TableRowProps<TData, TFilter extends FilterModel = Record<string, never>> extends Pick<
+  ReactDataTableProps<TData, TFilter>,
+  "onRowClick" | "enableRowClick" | "subRowComponent"
+> {
   row: Row<TData>;
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
   fullRowSelectable?: boolean;

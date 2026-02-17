@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`DataTable renders correctly 1`] = `
 <div>
@@ -82,7 +82,7 @@ exports[`DataTable renders correctly 1`] = `
         </th>
         <th>
           <select
-            class="form-control-sm form-control"
+            class="form-select-sm form-select"
           >
             <option
               value=""
@@ -103,7 +103,7 @@ exports[`DataTable renders correctly 1`] = `
         </th>
         <th>
           <select
-            class="form-control-sm form-control"
+            class="form-select-sm form-select"
           >
             <option
               value=""
@@ -325,7 +325,7 @@ exports[`DataTable renders correctly 1`] = `
     aria-live="assertive"
     id="DndLiveRegion-0"
     role="status"
-    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+    style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
   />
   <div
     class="container-fluid paging"
@@ -352,6 +352,7 @@ exports[`DataTable renders correctly 1`] = `
           <div
             aria-hidden="true"
             class="dropdown-menu"
+            data-bs-popper="static"
             role="menu"
             tabindex="-1"
           >
@@ -574,7 +575,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </th>
         <th>
           <select
-            class="form-control-sm form-control"
+            class="form-select-sm form-select"
           >
             <option
               value=""
@@ -595,7 +596,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
         </th>
         <th>
           <select
-            class="form-control-sm form-control"
+            class="form-select-sm form-select"
           >
             <option
               value=""
@@ -847,7 +848,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
     aria-live="assertive"
     id="DndLiveRegion-4"
     role="status"
-    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+    style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
   />
   <div
     class="container-fluid paging"
@@ -874,6 +875,7 @@ exports[`DataTable renders with draggable-column correctly 1`] = `
           <div
             aria-hidden="true"
             class="dropdown-menu"
+            data-bs-popper="static"
             role="menu"
             tabindex="-1"
           >
@@ -1231,7 +1233,7 @@ exports[`DataTable renders without header correctly 1`] = `
     aria-live="assertive"
     id="DndLiveRegion-1"
     role="status"
-    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+    style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
   />
   <div
     class="container-fluid paging"
@@ -1258,6 +1260,7 @@ exports[`DataTable renders without header correctly 1`] = `
           <div
             aria-hidden="true"
             class="dropdown-menu"
+            data-bs-popper="static"
             role="menu"
             tabindex="-1"
           >
@@ -1615,7 +1618,7 @@ exports[`DataTable renders without page changing correctly 1`] = `
     aria-live="assertive"
     id="DndLiveRegion-3"
     role="status"
-    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+    style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
   />
   <div
     class="container-fluid paging"
@@ -1934,7 +1937,7 @@ exports[`DataTable renders without paging correctly 1`] = `
     aria-live="assertive"
     id="DndLiveRegion-2"
     role="status"
-    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+    style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
   />
 </div>
 `;

@@ -20,7 +20,7 @@ import Skeleton from "react-loading-skeleton";
 
 interface TableInternalProps<TData, TFilter extends FilterModel = Record<string, never>> extends ReactDataTableProps<TData, TFilter> {
   virtualizer?: Virtualizer<HTMLDivElement, Element>;
-  tableRef?: React.RefObject<HTMLTableElement>;
+  tableRef?: React.RefObject<HTMLTableElement | null>;
 }
 
 const TableInternal = <TData, TFilter extends FilterModel = Record<string, never>>(props: TableInternalProps<TData, TFilter>) => {
