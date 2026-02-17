@@ -1262,6 +1262,12 @@
   dependencies:
     classnames "^2.3.2"
 
+"@neolution-ch/react-pattern-ui@https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@80":
+  version "5.3.1-6c81b6194206774dd4f200f900552940d98a61cb"
+  resolved "https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@80#cbd58c7130164221f44ef4acb4f5addcd4f5c6f7"
+  dependencies:
+    classnames "^2.5.1"
+
 "@next/eslint-plugin-next@^15.5.5":
   version "15.5.9"
   resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-15.5.9.tgz#629c34b6f4979df252afeaa6027dba52a0c619bd"
@@ -3385,6 +3391,11 @@ classnames@^2.2.3, classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
+
+classnames@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
+  integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
 
 clean-regexp@^1.0.0:
   version "1.0.0"
