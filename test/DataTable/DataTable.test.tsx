@@ -1,14 +1,15 @@
+import { TextDecoder, TextEncoder } from "util";
+
+global.TextEncoder = TextEncoder as unknown as typeof global.TextEncoder;
+global.TextDecoder = TextDecoder as unknown as typeof global.TextDecoder;
+
 import { render, fireEvent } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks/server";
 import "@testing-library/jest-dom";
 import React from "react";
 import { ReactDataTable, createReactDataTableColumnHelper, useReactDataTable } from "src";
-import { TextDecoder, TextEncoder } from "util";
 
 global.React = React; // this also works for other globally available libraries
-global.TextEncoder = TextEncoder as unknown as typeof global.TextEncoder;
-global.TextDecoder = TextDecoder as unknown as typeof global.TextDecoder;
-
 function padTo2Digits(num: number) {
   return num.toString().padStart(2, "0");
 }
