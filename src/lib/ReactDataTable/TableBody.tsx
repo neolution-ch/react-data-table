@@ -6,8 +6,10 @@ import { FilterModel } from "../types/TableState";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { Virtualizer } from "@tanstack/react-virtual";
 
-interface TableBodyProps<TData, TFilter extends FilterModel = Record<string, never>>
-  extends Pick<ReactDataTableProps<TData, TFilter>, "enableRowClick" | "onRowClick" | "subRowComponent"> {
+interface TableBodyProps<TData, TFilter extends FilterModel = Record<string, never>> extends Pick<
+  ReactDataTableProps<TData, TFilter>,
+  "enableRowClick" | "onRowClick" | "subRowComponent"
+> {
   enableDragAndDrop: boolean;
   table: Table<TData>;
   rowStyle?: (row: TData) => CSSProperties;

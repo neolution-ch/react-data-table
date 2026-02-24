@@ -1,6 +1,6 @@
 ﻿/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RowData, Table } from "@tanstack/react-table";
-import { CSSProperties } from "react";
+import { CSSProperties, JSX } from "react";
 
 interface DropdownColumnFilterOption {
   label: string;

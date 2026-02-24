@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- updated dependencies
+- :boom: changed to own reactstrap fork with react 19 support
+
 ## [5.15.0] - 2026-01-20
 
 ### Added
