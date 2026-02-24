@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.0] - 2026-02-24
+
 ### Changed
 
 - updated dependencies
@@ -463,7 +465,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[unreleased]: https://github.com/neolution-ch/react-data-table/compare/5.15.0...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.0.0...HEAD
+[6.0.0]: https://github.com/neolution-ch/react-data-table/compare/5.15.0...6.0.0
 [5.15.0]: https://github.com/neolution-ch/react-data-table/compare/5.14.0...5.15.0
 [5.14.0]: https://github.com/neolution-ch/react-data-table/compare/5.13.1...5.14.0
 [5.13.1]: https://github.com/neolution-ch/react-data-table/compare/5.13.0...5.13.1
