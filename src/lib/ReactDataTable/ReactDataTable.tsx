@@ -3,7 +3,7 @@ import { faSortDown, faSortUp, faSearch, faTimes, faSort } from "@fortawesome/fr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Paging } from "@neolution-ch/react-pattern-ui";
 import { flexRender } from "@tanstack/react-table";
-import { Table as ReactStrapTable, Input } from "reactstrap";
+import { Table as ReactStrapTable, Input } from "@neolution-ch/reactstrap";
 import { reactDataTableTranslations } from "../translations/translations";
 import { ReactDataTableProps } from "./ReactDataTableProps";
 import { FilterModel } from "../types/TableState";
