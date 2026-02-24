@@ -1255,9 +1255,10 @@
     date-fns "^2.30.0"
     uuid "^9.0.1"
 
-"@neolution-ch/react-pattern-ui@https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@5f3043e":
-  version "5.3.1-848480d3352dc80da6881aba0733efcc8e35cdea"
-  resolved "https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@5f3043e#9de37b0aa52dc17154d20a29025d9243446a71ce"
+"@neolution-ch/react-pattern-ui@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@neolution-ch/react-pattern-ui/-/react-pattern-ui-6.0.0.tgz#80739f4fbe0c59c7e53e78be28bc16223192c8fb"
+  integrity sha512-tDPUPLAOS4uqD6Msowucyro6V3ZKU4h40JOLuimuqBi8uCLYbxNNEDG78wSHelSix8F3yEghLr48VhmThjRzWg==
   dependencies:
     classnames "^2.5.1"
 
@@ -1269,10 +1270,10 @@
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
 
-"@neolution-ch/reactstrap@^10.0.0-rc.0":
-  version "10.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@neolution-ch/reactstrap/-/reactstrap-10.0.0-rc.0.tgz#e41a64bbab4a60a83ffffbb80b37a20d51ab2f81"
-  integrity sha512-msG33PBir/6pgfc8MIAaz3Rp/o6H3wWmlAPbteE6erQU7n+DN4Ta9Ji5FdxvZ5n4OYGzlZXaOwTNI1DvWhCu5Q==
+"@neolution-ch/reactstrap@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@neolution-ch/reactstrap/-/reactstrap-10.0.0.tgz#5e88b4c4e81e122215a42631786532b50a493f52"
+  integrity sha512-/54HuEEkBS6YhKJEgDk7zDasAm7eaWGJHCFnKb1ubJ0KwlyKfp2ZG9UElNpIeajDL4a1rnFYiiOoWCOTll4n/w==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@neolution-ch/react-popper" "3.0.1"
