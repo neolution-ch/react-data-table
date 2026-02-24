@@ -1255,9 +1255,9 @@
     date-fns "^2.30.0"
     uuid "^9.0.1"
 
-"@neolution-ch/react-pattern-ui@https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@80":
-  version "5.3.1-6c81b6194206774dd4f200f900552940d98a61cb"
-  resolved "https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@80#cbd58c7130164221f44ef4acb4f5addcd4f5c6f7"
+"@neolution-ch/react-pattern-ui@https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@5f3043e":
+  version "5.3.1-848480d3352dc80da6881aba0733efcc8e35cdea"
+  resolved "https://pkg.pr.new/neolution-ch/react-pattern-ui/@neolution-ch/react-pattern-ui@5f3043e#9de37b0aa52dc17154d20a29025d9243446a71ce"
   dependencies:
     classnames "^2.5.1"
 
