@@ -52,11 +52,11 @@ const TableBody = <TData, TFilter extends FilterModel = Record<string, never>>(p
 
   return enableDragAndDrop ? (
     <SortableContext items={table.getRowModel().rows.map((row) => row.id)} strategy={verticalListSortingStrategy}>
-      {rowsToRender.map((x, index) => {
+      {rowsToRender.map((x) => {
         const { row } = x;
         return (
           <DraggableRow<TData, TFilter>
-            key={index}
+            key={row.id}
             row={row}
             enableRowClick={enableRowClick}
             onRowClick={onRowClick}
