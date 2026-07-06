@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- use row id instead of index for draggable row
+
 ## [6.0.0] - 2026-02-24
 
 ### Changed
