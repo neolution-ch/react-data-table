@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.1.0] - 2026-08-06
+
 ### Added
 
 - Possibility to pass isEnabled as a function depencing on the row in `createDraggableColumn`
@@ -473,7 +475,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.0.0...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.1.0...HEAD
+[6.1.0]: https://github.com/neolution-ch/react-data-table/compare/6.0.0...6.1.0
 [6.0.0]: https://github.com/neolution-ch/react-data-table/compare/5.15.0...6.0.0
 [5.15.0]: https://github.com/neolution-ch/react-data-table/compare/5.14.0...5.15.0
 [5.14.0]: https://github.com/neolution-ch/react-data-table/compare/5.13.1...5.14.0
