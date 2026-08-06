@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Possibility to pass isEnabled as a function depencing on the row in `createDraggableColumn`
+
+### Fixed
+
+- `createDraggableColumn` to disable draggable feature when isEnabled = false
+
 ## [6.0.0] - 2026-02-24
 
 ### Changed
