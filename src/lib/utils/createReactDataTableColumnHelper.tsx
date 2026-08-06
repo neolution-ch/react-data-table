@@ -14,7 +14,7 @@ interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper
   createDraggableColumn: (
     columnKey: DeepKeys<TData>,
     columndDef: Omit<DisplayColumnDef<TData>, "id" | "cell">,
-    isEnabled?: boolean,
+    isEnabled?: boolean | ((row: Row<TData>) => boolean),
     draggableElement?: ReactNode,
   ) => ColumnDef<TData>;
 }
@@ -22,11 +22,11 @@ interface ReactDataTableColumnHelper<TData extends RowData> extends ColumnHelper
 const createReactDataTableColumnHelper = <TData extends RowData>(): ReactDataTableColumnHelper<TData> => {
   const columnHelper = createColumnHelper<TData>();
 
-  const createDraggableColumn = (
-    columnKey: DeepKeys<TData>,
-    columndDef: Omit<DisplayColumnDef<TData>, "id" | "cell">,
-    isEnabled?: boolean | ((row: Row<TData>) => boolean),
-    draggableElement?: ReactNode,
+  const createDraggableColumn: ReactDataTableColumnHelper<TData>["createDraggableColumn"] = (
+    columnKey,
+    columndDef,
+    isEnabled,
+    draggableElement,
   ) => {
     const RowDragHandleCell = ({ row }: { row: Row<TData> }) => {
       const isEnabledInternal = isEnabled === undefined ? true : typeof isEnabled === "function" ? isEnabled(row) : isEnabled;
