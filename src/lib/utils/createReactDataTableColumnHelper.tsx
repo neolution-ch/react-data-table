@@ -1,6 +1,6 @@
 ﻿import { useSortable } from "@dnd-kit/sortable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ColumnDef, ColumnHelper, DeepKeys, DisplayColumnDef, RowData, createColumnHelper } from "@tanstack/react-table";
+import { ColumnDef, ColumnHelper, DeepKeys, DisplayColumnDef, RowData, Row, createColumnHelper } from "@tanstack/react-table";
 import { ReactNode } from "react";
 import type { DropdownColumnFilterOption } from "src/react-table";
 import { faGripLines } from "@fortawesome/free-solid-svg-icons";
@@ -25,18 +25,19 @@ const createReactDataTableColumnHelper = <TData extends RowData>(): ReactDataTab
   const createDraggableColumn = (
     columnKey: DeepKeys<TData>,
     columndDef: Omit<DisplayColumnDef<TData>, "id" | "cell">,
-    isEnabled?: boolean,
+    isEnabled?: boolean | ((row: Row<TData>) => boolean),
     draggableElement?: ReactNode,
   ) => {
-    const RowDragHandleCell = ({ rowId }: { rowId: string }) => {
-      const { attributes, listeners, isDragging } = useSortable({ id: rowId });
+    const RowDragHandleCell = ({ row }: { row: Row<TData> }) => {
+      const isEnabledInternal = isEnabled === undefined ? true : typeof isEnabled === "function" ? isEnabled(row) : isEnabled;
+      const { attributes, listeners, isDragging } = useSortable({ id: row.id, disabled: !isEnabledInternal });
 
       return (
         <span
           {...attributes}
           {...listeners}
-          className={isEnabled === false ? "opacity-25" : "opacity-100"}
-          style={{ cursor: isEnabled === false ? "auto" : isDragging ? "grabbing" : "grab" }}
+          className={isEnabledInternal === false ? "opacity-25" : "opacity-100"}
+          style={{ cursor: isEnabledInternal === false ? "auto" : isDragging ? "grabbing" : "grab" }}
         >
           {draggableElement ?? <FontAwesomeIcon icon={faGripLines} />}
         </span>
@@ -46,7 +47,7 @@ const createReactDataTableColumnHelper = <TData extends RowData>(): ReactDataTab
     return columnHelper.display({
       ...columndDef,
       id: columnKey as string,
-      cell: ({ row }) => <RowDragHandleCell rowId={row.id} />,
+      cell: ({ row }) => <RowDragHandleCell row={row} />,
     });
   };
 
