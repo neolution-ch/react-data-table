@@ -12,3 +12,4 @@ export * from "./lib/useFullyControlledReactDataTable/useFullyControlledReactDat
 export * from "./lib/utils/createReactDataTableColumnHelper";
 export * from "./lib/utils/getColumnFilterFromModel";
 export * from "./lib/utils/getModelFromColumnFilter";
+export * from "./lib/types/TableState";
