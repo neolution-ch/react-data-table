@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.2.0] - 2026-09-14
+
 ### Added
 
 - Exported `TableState` types to support strongly typed table state in consumer applications.
@@ -479,7 +481,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.1.0...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.2.0...HEAD
+[6.2.0]: https://github.com/neolution-ch/react-data-table/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/neolution-ch/react-data-table/compare/6.0.0...6.1.0
 [6.0.0]: https://github.com/neolution-ch/react-data-table/compare/5.15.0...6.0.0
 [5.15.0]: https://github.com/neolution-ch/react-data-table/compare/5.14.0...5.15.0
