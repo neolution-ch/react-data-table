@@ -4,7 +4,19 @@ import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
 import { FilterModel } from "../types/TableState";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
+
+interface PersistentReactDataTableStateProps {
+  /**
+   * The prefix of the local storage keys the state is persisted under
+   */
+  localStorageKey: string;
+  /**
+   * Returns the date the persisted state expires, called on every write (e.g. `() => getEndOfDay(new Date())`).
+   * Expired state is ignored and the initial state is used instead. Without it, the persisted state never expires.
+   */
+  getExpirationDate?: () => Date;
+}
 
 /**
  * A custom hook that will initialize all the state needed for the react data table and will persist it to local storage
@@ -12,7 +24,7 @@ import { useCallback } from "react";
  * @returns the state and the setters
  */
 const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = Record<string, never>>(
-  props: OptionalNullable<useReactDataTableStateProps<TData, TFilter>> & { localStorageKey: string },
+  props: OptionalNullable<useReactDataTableStateProps<TData, TFilter>> & PersistentReactDataTableStateProps,
 ): useReactDataTableStateResult<TData, TFilter> => {
   const {
     initialColumnFilters,
@@ -23,7 +35,14 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     initialColumnPinning,
     initialAfterSearchFilter,
     localStorageKey,
-  } = props as useReactDataTableStateProps<TData, TFilter> & { localStorageKey: string };
+    getExpirationDate,
+  } = props as useReactDataTableStateProps<TData, TFilter> & PersistentReactDataTableStateProps;
+
+  // kept in a ref, so an inline function does not make the setters change on every render
+  const getExpirationDateRef = useRef(getExpirationDate);
+  useEffect(() => {
+    getExpirationDateRef.current = getExpirationDate;
+  }, [getExpirationDate]);
 
   const {
     pagination,
@@ -68,7 +87,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setPagination: useCallback(
       (newPagination) => {
         setPagination(newPagination);
-        setLocalStorageItem(`${props.localStorageKey}_pagination`, newPagination);
+        setLocalStorageItem(`${props.localStorageKey}_pagination`, newPagination, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setPagination],
     ),
@@ -76,7 +95,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setColumnFilters: useCallback(
       (newColumnFilters) => {
         setColumnFilters(newColumnFilters);
-        setLocalStorageItem(`${props.localStorageKey}_columnFilters`, newColumnFilters);
+        setLocalStorageItem(`${props.localStorageKey}_columnFilters`, newColumnFilters, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setColumnFilters],
     ),
@@ -84,7 +103,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setAfterSearchFilter: useCallback(
       (newAfterSearchFilter) => {
         setAfterSearchFilter(newAfterSearchFilter);
-        setLocalStorageItem(`${props.localStorageKey}_afterSearchFilter`, newAfterSearchFilter);
+        setLocalStorageItem(`${props.localStorageKey}_afterSearchFilter`, newAfterSearchFilter, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setAfterSearchFilter],
     ),
@@ -92,7 +111,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setColumnPinning: useCallback(
       (newColumnPinning) => {
         setColumnPinning(newColumnPinning);
-        setLocalStorageItem(`${props.localStorageKey}_columnPinning`, newColumnPinning);
+        setLocalStorageItem(`${props.localStorageKey}_columnPinning`, newColumnPinning, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setColumnPinning],
     ),
@@ -100,7 +119,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setExpanded: useCallback(
       (newExpanded) => {
         setExpanded(newExpanded);
-        setLocalStorageItem(`${props.localStorageKey}_expanded`, newExpanded);
+        setLocalStorageItem(`${props.localStorageKey}_expanded`, newExpanded, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setExpanded],
     ),
@@ -108,7 +127,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setRowSelection: useCallback(
       (newRowSelection) => {
         setRowSelection(newRowSelection);
-        setLocalStorageItem(`${props.localStorageKey}_rowSelection`, newRowSelection);
+        setLocalStorageItem(`${props.localStorageKey}_rowSelection`, newRowSelection, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setRowSelection],
     ),
@@ -116,7 +135,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     setSorting: useCallback(
       (newSorting) => {
         setSorting(newSorting);
-        setLocalStorageItem(`${props.localStorageKey}_sorting`, newSorting);
+        setLocalStorageItem(`${props.localStorageKey}_sorting`, newSorting, getExpirationDateRef.current?.());
       },
       [props.localStorageKey, setSorting],
     ),

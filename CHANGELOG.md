@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `getExpirationDate` option in `usePersistentReactDataTableState` to let the persisted state expire (e.g. `() => getEndOfDay(new Date())`); expired state falls back to the initial state.
+
 ## [6.2.0] - 2026-09-14
 
 ### Added
