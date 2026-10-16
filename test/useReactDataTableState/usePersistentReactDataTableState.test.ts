@@ -1,5 +1,5 @@
-import { act, renderHook } from "@testing-library/react";
-import { useLayoutEffect } from "react";
+import { act, render, renderHook } from "@testing-library/react";
+import { createElement, startTransition, useLayoutEffect } from "react";
 import { usePersistentReactDataTableState } from "src";
 
 const localStorageKey = "testTable";
@@ -134,5 +134,56 @@ describe("usePersistentReactDataTableState", () => {
     rerender({ currentExpirationDate: expirationDate });
 
     expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 1, pageSize: 10 }, expirationDate: expirationDate.toISOString() });
+  });
+
+  test("uses a changed getExpirationDate for writes from a child's layout effect in the same render", () => {
+    const expirationDate = new Date(Date.now() + 60_000);
+
+    const Child = ({
+      setPagination,
+      isEnabled,
+    }: {
+      setPagination: (pagination: { pageIndex: number; pageSize: number }) => void;
+      isEnabled: boolean;
+    }) => {
+      useLayoutEffect(() => {
+        if (isEnabled) {
+          setPagination({ pageIndex: 1, pageSize: 10 });
+        }
+      }, [isEnabled, setPagination]);
+
+      return null;
+    };
+
+    const Parent = ({ currentExpirationDate }: { currentExpirationDate?: Date }) => {
+      const { setPagination } = usePersistentReactDataTableState({
+        localStorageKey,
+        getExpirationDate: currentExpirationDate ? () => currentExpirationDate : undefined,
+      });
+
+      return createElement(Child, { setPagination, isEnabled: !!currentExpirationDate });
+    };
+
+    const { rerender } = render(createElement(Parent, {}));
+    rerender(createElement(Parent, { currentExpirationDate: expirationDate }));
+
+    expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 1, pageSize: 10 }, expirationDate: expirationDate.toISOString() });
+  });
+
+  test("lets React render an urgent update before a pending transition", () => {
+    const renderedPageIndexes: number[] = [];
+    const { result } = renderHook(() => {
+      const state = usePersistentReactDataTableState({ localStorageKey, initialPagination: { pageIndex: 0, pageSize: 10 } });
+      renderedPageIndexes.push(state.pagination.pageIndex);
+      return state;
+    });
+
+    act(() => {
+      startTransition(() => result.current.setPagination((previous) => ({ ...previous, pageIndex: previous.pageIndex + 10 })));
+      result.current.setPagination((previous) => ({ ...previous, pageIndex: previous.pageIndex + 1 }));
+    });
+
+    expect(renderedPageIndexes).toEqual([0, 1, 11]);
+    expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 11, pageSize: 10 } });
   });
 });

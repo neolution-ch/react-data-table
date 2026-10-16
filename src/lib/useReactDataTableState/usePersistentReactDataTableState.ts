@@ -4,7 +4,7 @@ import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
 import { FilterModel } from "../types/TableState";
-import { Dispatch, SetStateAction, useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useCallback, useInsertionEffect, useRef } from "react";
 
 interface PersistentReactDataTableStateProps {
   /**
@@ -22,9 +22,6 @@ type PersistedState<TData, TFilter> = Pick<
   useReactDataTableStateResult<TData, TFilter>,
   "pagination" | "columnFilters" | "afterSearchFilter" | "columnPinning" | "expanded" | "rowSelection" | "sorting"
 >;
-
-// useLayoutEffect warns during server side rendering in React 18, where it would not run anyway
-const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * A custom hook that will initialize all the state needed for the react data table and will persist it to local storage
@@ -46,10 +43,11 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     getExpirationDate,
   } = props as useReactDataTableStateProps<TData, TFilter> & PersistentReactDataTableStateProps;
 
-  // kept in a ref, so an inline function does not make the setters change on every render. Updated in a layout effect, so it is
-  // already up to date when a consumer calls a setter from its own layout effect in the same render.
+  // kept in a ref, so an inline function does not make the setters change on every render. Updated in an insertion effect, which
+  // React runs for the whole tree before any layout effect, so it is already up to date when a setter is called from a layout
+  // effect in the same commit (also from a child component).
   const getExpirationDateRef = useRef(getExpirationDate);
-  useIsomorphicLayoutEffect(() => {
+  useInsertionEffect(() => {
     getExpirationDateRef.current = getExpirationDate;
   }, [getExpirationDate]);
 
@@ -91,9 +89,9 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
       ) ?? initialAfterSearchFilter,
   } as useReactDataTableStateProps<TData, TFilter> as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
-  // The latest state of every persisted part. All state changes go through the setters below, so it never differs from the
-  // React state and update functions (e.g. `setSorting(previous => ...)`) can be resolved synchronously, also when several of
-  // them are called in a row.
+  // The state of every persisted part after all updates so far. All state changes go through the setters below, so React's
+  // state ends up at the same value once it has processed them. It lets update functions (e.g. `setSorting(previous => ...)`)
+  // be resolved synchronously for persisting, also when several of them are called in a row.
   const latestStateRef = useRef<PersistedState<TData, TFilter>>({
     pagination,
     columnFilters,
@@ -105,7 +103,8 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
   });
 
   // Resolves the new state and persists it right away, outside of React's updater, so that it is neither lost when the
-  // component unmounts before the next render nor written for a render React discards.
+  // component unmounts before the next render nor written for a render React discards. React still gets the original action,
+  // so it can schedule update functions by their priority (e.g. an urgent update while a transition is pending).
   const setAndPersistState = useCallback(
     <TKey extends keyof PersistedState<TData, TFilter>>(
       key: TKey,
@@ -121,7 +120,7 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
 
       latestStateRef.current[key] = resolvedState;
       setLocalStorageItem(`${localStorageKey}_${key}`, resolvedState, getExpirationDateRef.current?.());
-      setState(resolvedState);
+      setState(newState);
     },
     [localStorageKey],
   );
