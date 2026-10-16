@@ -4,7 +4,7 @@ import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
 import { FilterModel } from "../types/TableState";
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useLayoutEffect, useRef } from "react";
 
 interface PersistentReactDataTableStateProps {
   /**
@@ -17,6 +17,14 @@ interface PersistentReactDataTableStateProps {
    */
   getExpirationDate?: () => Date;
 }
+
+type PersistedState<TData, TFilter> = Pick<
+  useReactDataTableStateResult<TData, TFilter>,
+  "pagination" | "columnFilters" | "afterSearchFilter" | "columnPinning" | "expanded" | "rowSelection" | "sorting"
+>;
+
+// useLayoutEffect warns during server side rendering in React 18, where it would not run anyway
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * A custom hook that will initialize all the state needed for the react data table and will persist it to local storage
@@ -38,25 +46,12 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
     getExpirationDate,
   } = props as useReactDataTableStateProps<TData, TFilter> & PersistentReactDataTableStateProps;
 
-  // kept in a ref, so an inline function does not make the setters change on every render
+  // kept in a ref, so an inline function does not make the setters change on every render. Updated in a layout effect, so it is
+  // already up to date when a consumer calls a setter from its own layout effect in the same render.
   const getExpirationDateRef = useRef(getExpirationDate);
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     getExpirationDateRef.current = getExpirationDate;
   }, [getExpirationDate]);
-
-  // Update functions (e.g. `setSorting(previous => ...)`) are resolved against the previous state, so the resolved state gets
-  // persisted and not the function itself. The write happens inside the updater, which React may call twice in StrictMode,
-  // that only writes the same state again.
-  const setAndPersistState = useCallback(
-    <TState>(setState: Dispatch<SetStateAction<TState>>, localStorageKeySuffix: string, newState: SetStateAction<TState>) => {
-      setState((previousState) => {
-        const resolvedState = typeof newState === "function" ? (newState as (previousState: TState) => TState)(previousState) : newState;
-        setLocalStorageItem(`${localStorageKey}_${localStorageKeySuffix}`, resolvedState, getExpirationDateRef.current?.());
-        return resolvedState;
-      });
-    },
-    [localStorageKey],
-  );
 
   const {
     pagination,
@@ -96,36 +91,71 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
       ) ?? initialAfterSearchFilter,
   } as useReactDataTableStateProps<TData, TFilter> as OptionalNullable<useReactDataTableStateProps<TData, TFilter>>);
 
+  // The latest state of every persisted part. All state changes go through the setters below, so it never differs from the
+  // React state and update functions (e.g. `setSorting(previous => ...)`) can be resolved synchronously, also when several of
+  // them are called in a row.
+  const latestStateRef = useRef<PersistedState<TData, TFilter>>({
+    pagination,
+    columnFilters,
+    afterSearchFilter,
+    columnPinning,
+    expanded,
+    rowSelection,
+    sorting,
+  });
+
+  // Resolves the new state and persists it right away, outside of React's updater, so that it is neither lost when the
+  // component unmounts before the next render nor written for a render React discards.
+  const setAndPersistState = useCallback(
+    <TKey extends keyof PersistedState<TData, TFilter>>(
+      key: TKey,
+      setState: Dispatch<SetStateAction<PersistedState<TData, TFilter>[TKey]>>,
+      newState: SetStateAction<PersistedState<TData, TFilter>[TKey]>,
+    ) => {
+      const resolvedState =
+        typeof newState === "function"
+          ? (newState as (previousState: PersistedState<TData, TFilter>[TKey]) => PersistedState<TData, TFilter>[TKey])(
+              latestStateRef.current[key],
+            )
+          : newState;
+
+      latestStateRef.current[key] = resolvedState;
+      setLocalStorageItem(`${localStorageKey}_${key}`, resolvedState, getExpirationDateRef.current?.());
+      setState(resolvedState);
+    },
+    [localStorageKey],
+  );
+
   return {
     pagination,
     setPagination: useCallback(
-      (newPagination) => setAndPersistState(setPagination, "pagination", newPagination),
+      (newPagination) => setAndPersistState("pagination", setPagination, newPagination),
       [setAndPersistState, setPagination],
     ),
     columnFilters,
     setColumnFilters: useCallback(
-      (newColumnFilters) => setAndPersistState(setColumnFilters, "columnFilters", newColumnFilters),
+      (newColumnFilters) => setAndPersistState("columnFilters", setColumnFilters, newColumnFilters),
       [setAndPersistState, setColumnFilters],
     ),
     afterSearchFilter,
     setAfterSearchFilter: useCallback(
-      (newAfterSearchFilter) => setAndPersistState(setAfterSearchFilter, "afterSearchFilter", newAfterSearchFilter),
+      (newAfterSearchFilter) => setAndPersistState("afterSearchFilter", setAfterSearchFilter, newAfterSearchFilter),
       [setAndPersistState, setAfterSearchFilter],
     ),
     columnPinning,
     setColumnPinning: useCallback(
-      (newColumnPinning) => setAndPersistState(setColumnPinning, "columnPinning", newColumnPinning),
+      (newColumnPinning) => setAndPersistState("columnPinning", setColumnPinning, newColumnPinning),
       [setAndPersistState, setColumnPinning],
     ),
     expanded,
-    setExpanded: useCallback((newExpanded) => setAndPersistState(setExpanded, "expanded", newExpanded), [setAndPersistState, setExpanded]),
+    setExpanded: useCallback((newExpanded) => setAndPersistState("expanded", setExpanded, newExpanded), [setAndPersistState, setExpanded]),
     rowSelection,
     setRowSelection: useCallback(
-      (newRowSelection) => setAndPersistState(setRowSelection, "rowSelection", newRowSelection),
+      (newRowSelection) => setAndPersistState("rowSelection", setRowSelection, newRowSelection),
       [setAndPersistState, setRowSelection],
     ),
     sorting,
-    setSorting: useCallback((newSorting) => setAndPersistState(setSorting, "sorting", newSorting), [setAndPersistState, setSorting]),
+    setSorting: useCallback((newSorting) => setAndPersistState("sorting", setSorting, newSorting), [setAndPersistState, setSorting]),
   };
 };
 

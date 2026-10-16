@@ -1,4 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
+import { useLayoutEffect } from "react";
 import { usePersistentReactDataTableState } from "src";
 
 const localStorageKey = "testTable";
@@ -94,5 +95,44 @@ describe("usePersistentReactDataTableState", () => {
 
     expect(result.current.pagination).toEqual({ pageIndex: 2, pageSize: 10 });
     expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 2, pageSize: 10 } });
+  });
+
+  test("persists the last state when the component unmounts in the same batch", () => {
+    const { result, unmount } = renderHook(() => usePersistentReactDataTableState({ localStorageKey }));
+
+    act(() => {
+      result.current.setPagination({ pageIndex: 1, pageSize: 10 });
+      result.current.setPagination({ pageIndex: 2, pageSize: 10 });
+      unmount();
+    });
+
+    expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 2, pageSize: 10 } });
+  });
+
+  test("uses a changed getExpirationDate for writes from a layout effect in the same render", () => {
+    const expirationDate = new Date(Date.now() + 60_000);
+
+    const { rerender } = renderHook(
+      ({ currentExpirationDate }: { currentExpirationDate?: Date }) => {
+        const state = usePersistentReactDataTableState({
+          localStorageKey,
+          getExpirationDate: currentExpirationDate ? () => currentExpirationDate : undefined,
+        });
+        const { setPagination } = state;
+
+        useLayoutEffect(() => {
+          if (currentExpirationDate) {
+            setPagination({ pageIndex: 1, pageSize: 10 });
+          }
+        }, [currentExpirationDate, setPagination]);
+
+        return state;
+      },
+      { initialProps: {} },
+    );
+
+    rerender({ currentExpirationDate: expirationDate });
+
+    expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 1, pageSize: 10 }, expirationDate: expirationDate.toISOString() });
   });
 });
