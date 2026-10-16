@@ -71,4 +71,28 @@ describe("usePersistentReactDataTableState", () => {
 
     expect(result.current.setPagination).toBe(setPagination);
   });
+
+  test("persists the resolved state when a setter gets an update function", () => {
+    const { result } = renderHook(() => usePersistentReactDataTableState<unknown, { name?: string; type?: string }>({ localStorageKey }));
+
+    act(() => result.current.setColumnFilters({ name: "test" }));
+    act(() => result.current.setColumnFilters((previous) => ({ ...previous, type: "active" })));
+
+    expect(result.current.columnFilters).toEqual({ name: "test", type: "active" });
+    expect(getStoredItem("columnFilters")).toEqual({ data: { name: "test", type: "active" } });
+  });
+
+  test("persists the latest state when several update functions are applied in one go", () => {
+    const { result } = renderHook(() =>
+      usePersistentReactDataTableState({ localStorageKey, initialPagination: { pageIndex: 0, pageSize: 10 } }),
+    );
+
+    act(() => {
+      result.current.setPagination((previous) => ({ ...previous, pageIndex: previous.pageIndex + 1 }));
+      result.current.setPagination((previous) => ({ ...previous, pageIndex: previous.pageIndex + 1 }));
+    });
+
+    expect(result.current.pagination).toEqual({ pageIndex: 2, pageSize: 10 });
+    expect(getStoredItem("pagination")).toEqual({ data: { pageIndex: 2, pageSize: 10 } });
+  });
 });

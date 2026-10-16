@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `getExpirationDate` option in `usePersistentReactDataTableState` to let the persisted state expire (e.g. `() => getEndOfDay(new Date())`); expired state falls back to the initial state.
 
+### Fixed
+
+- `usePersistentReactDataTableState` setters persisted update functions (e.g. `setColumnFilters(previous => ...)`) as `{}` instead of the resulting state, so that state was lost on reload.
+
 ## [6.2.0] - 2026-09-14
 
 ### Added

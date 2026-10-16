@@ -4,7 +4,7 @@ import { useReactDataTableStateProps } from "./useReactDataTableStateProps";
 import { useReactDataTableStateResult } from "./useReactDataTableStateResult";
 import { useReactDataTableState } from "./useReactDataTableState";
 import { FilterModel } from "../types/TableState";
-import { useCallback, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react";
 
 interface PersistentReactDataTableStateProps {
   /**
@@ -43,6 +43,20 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
   useEffect(() => {
     getExpirationDateRef.current = getExpirationDate;
   }, [getExpirationDate]);
+
+  // Update functions (e.g. `setSorting(previous => ...)`) are resolved against the previous state, so the resolved state gets
+  // persisted and not the function itself. The write happens inside the updater, which React may call twice in StrictMode,
+  // that only writes the same state again.
+  const setAndPersistState = useCallback(
+    <TState>(setState: Dispatch<SetStateAction<TState>>, localStorageKeySuffix: string, newState: SetStateAction<TState>) => {
+      setState((previousState) => {
+        const resolvedState = typeof newState === "function" ? (newState as (previousState: TState) => TState)(previousState) : newState;
+        setLocalStorageItem(`${localStorageKey}_${localStorageKeySuffix}`, resolvedState, getExpirationDateRef.current?.());
+        return resolvedState;
+      });
+    },
+    [localStorageKey],
+  );
 
   const {
     pagination,
@@ -85,60 +99,33 @@ const usePersistentReactDataTableState = <TData, TFilter extends FilterModel = R
   return {
     pagination,
     setPagination: useCallback(
-      (newPagination) => {
-        setPagination(newPagination);
-        setLocalStorageItem(`${props.localStorageKey}_pagination`, newPagination, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setPagination],
+      (newPagination) => setAndPersistState(setPagination, "pagination", newPagination),
+      [setAndPersistState, setPagination],
     ),
     columnFilters,
     setColumnFilters: useCallback(
-      (newColumnFilters) => {
-        setColumnFilters(newColumnFilters);
-        setLocalStorageItem(`${props.localStorageKey}_columnFilters`, newColumnFilters, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setColumnFilters],
+      (newColumnFilters) => setAndPersistState(setColumnFilters, "columnFilters", newColumnFilters),
+      [setAndPersistState, setColumnFilters],
     ),
     afterSearchFilter,
     setAfterSearchFilter: useCallback(
-      (newAfterSearchFilter) => {
-        setAfterSearchFilter(newAfterSearchFilter);
-        setLocalStorageItem(`${props.localStorageKey}_afterSearchFilter`, newAfterSearchFilter, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setAfterSearchFilter],
+      (newAfterSearchFilter) => setAndPersistState(setAfterSearchFilter, "afterSearchFilter", newAfterSearchFilter),
+      [setAndPersistState, setAfterSearchFilter],
     ),
     columnPinning,
     setColumnPinning: useCallback(
-      (newColumnPinning) => {
-        setColumnPinning(newColumnPinning);
-        setLocalStorageItem(`${props.localStorageKey}_columnPinning`, newColumnPinning, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setColumnPinning],
+      (newColumnPinning) => setAndPersistState(setColumnPinning, "columnPinning", newColumnPinning),
+      [setAndPersistState, setColumnPinning],
     ),
     expanded,
-    setExpanded: useCallback(
-      (newExpanded) => {
-        setExpanded(newExpanded);
-        setLocalStorageItem(`${props.localStorageKey}_expanded`, newExpanded, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setExpanded],
-    ),
+    setExpanded: useCallback((newExpanded) => setAndPersistState(setExpanded, "expanded", newExpanded), [setAndPersistState, setExpanded]),
     rowSelection,
     setRowSelection: useCallback(
-      (newRowSelection) => {
-        setRowSelection(newRowSelection);
-        setLocalStorageItem(`${props.localStorageKey}_rowSelection`, newRowSelection, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setRowSelection],
+      (newRowSelection) => setAndPersistState(setRowSelection, "rowSelection", newRowSelection),
+      [setAndPersistState, setRowSelection],
     ),
     sorting,
-    setSorting: useCallback(
-      (newSorting) => {
-        setSorting(newSorting);
-        setLocalStorageItem(`${props.localStorageKey}_sorting`, newSorting, getExpirationDateRef.current?.());
-      },
-      [props.localStorageKey, setSorting],
-    ),
+    setSorting: useCallback((newSorting) => setAndPersistState(setSorting, "sorting", newSorting), [setAndPersistState, setSorting]),
   };
 };
 
