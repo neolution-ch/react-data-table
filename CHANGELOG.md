@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.0] - 2026-10-20
+
 ### Added
 
 - `getExpirationDate` option in `usePersistentReactDataTableState` to let the persisted state expire (e.g. `() => getEndOfDay(new Date())`); expired state falls back to the initial state.
@@ -489,7 +491,8 @@ columnHelper.display({
 
 - created package :tada:
 
-[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.2.0...HEAD
+[Unreleased]: https://github.com/neolution-ch/react-data-table/compare/6.3.0...HEAD
+[6.3.0]: https://github.com/neolution-ch/react-data-table/compare/6.2.0...6.3.0
 [6.2.0]: https://github.com/neolution-ch/react-data-table/compare/6.1.0...6.2.0
 [6.1.0]: https://github.com/neolution-ch/react-data-table/compare/6.0.0...6.1.0
 [6.0.0]: https://github.com/neolution-ch/react-data-table/compare/5.15.0...6.0.0
